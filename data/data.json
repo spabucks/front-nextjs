@@ -1,0 +1,65 @@
+{
+    "recommand" : [
+      {
+      "id" : 1,
+      "name" :  "23 체리블라썸",
+      "data" : [
+        {
+          "id" : 1,
+          "title" : "23 체리블라썸 인스탁스 미니 필름팩 (10EA)",
+          "imgUrl" : "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
+          "price" : 15000,
+          "isNew" : false
+        },
+        {
+          "id" : 2,
+          "title" : "23 체리블라썸 커트러리 세트",
+          "imgUrl" :  "https://shop-phinf.pstatic.net/20230213_164/1676251149310drYOl_JPEG/77386933024259955_455603734.jpg?type=m510",
+          "price" : 12000,
+          "isNew" : false
+        },
+        {
+          "id" : 4,
+          "title" : "23 체리블라썸 베이지 쿨러백",
+          "imgUrl" :  "https://shop-phinf.pstatic.net/20230213_67/1676251354742spgzR_JPEG/77387188560991889_1557480702.jpg?type=m510",
+          "price" :  22000,
+          "isNew" : false
+        }
+      ]
+    },
+    {
+      "id" : 2,
+      "name" :"갤럭시+스타벅스",
+      "data" : [
+        {
+          "id" : 3,
+          "title" : "사이렌 버즈2 케이스",
+          "imgUrl" :  "https://shop-phinf.pstatic.net/20220704_149/16568929487667PT1F_JPEG/58028776577624479_607244592.jpg?type=m510",
+          "price" :  39000,
+          "isNew" : false
+        },
+        {
+          "id" : 5,
+          "title" :  "라떼아트 버즈2 케이스",
+          "imgUrl" :"https://shop-phinf.pstatic.net/20220704_13/1656892959631DNQgl_JPEG/58028787449554998_824581734.jpg?type=m510",
+          "price" : 59000,
+          "isNew" : true
+        }
+      ]
+    },
+    {
+      "id" : 3,
+      "name" :"Christmas",
+      "data" : [
+        {
+          "id" : 6,
+          "title" :  "22 SS 홀리데이 디너 포크 세트(2p)",
+          "imgUrl" : "https://shop-phinf.pstatic.net/20221028_110/1666946969270K3FRD_JPEG/68082804105777019_515633303.jpg?type=m510",
+          "price" :  17000,
+          "isNew" : false
+        }
+       
+      ]
+    } 
+  ]
+  }

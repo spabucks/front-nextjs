@@ -1,0 +1,97 @@
+/*nav-sub css 구현*/
+.sub-nav nav ul {
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sub-nav nav ul li {
+  list-style: none;
+  width: 25%;
+  margin: 0 4px;
+  text-align: center;
+  color: var(--color-black);
+  font-size: 0.8rem;
+  height: 30px;
+}
+
+.sub-nav nav ul li:last-child {
+  margin-right: 0px;
+}
+.sub-nav nav ul li:first-child {
+  margin-left: 0px;
+}
+
+.sub-nav nav ul li.active {
+  border-bottom: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-primary);
+}
+
+.sub-nav nav ul li {
+  text-align: center;
+}
+
+/*best-product-lists CSS*/
+
+.best-product-lists {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 160px;
+  width: 100%;
+}
+.best-product-list {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 95%;
+}
+
+.best-product {
+  padding: 0.8rem 0.5rem;
+  width: 50%;
+  box-sizing: border-box;
+}
+.best-product__img {
+  position: relative;
+}
+.best-product__img img {
+  width: 100%;
+  height: auto;
+  background-color: #f3f5f7;
+  border-radius: 10px;
+}
+.best-product__img div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 20px;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  background-color: var(--color-starbucks);
+}
+.flex-wrap-product__soldout {
+  filter: brightness(50%);
+}
+.flex-wrap-product__soldout_title {
+  position: absolute;
+  top: 60px;
+  left: 55px;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+}
+.best-product-title,
+.best-product-price {
+  margin: 10px 0px 0px 0px;
+}

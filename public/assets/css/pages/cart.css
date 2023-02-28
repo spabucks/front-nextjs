@@ -1,0 +1,260 @@
+.sub-header {
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+.sub-header img:first-child {
+  margin: 20px;
+}
+.sub-header img:last-child {
+  margin: 20px;
+  width: 15px;
+  height: 15px;
+}
+.sub-header-title {
+  color: black;
+  font-size: 20px;
+}
+
+.sub-header {
+  text-align: center;
+  box-shadow: -1px 7px 4px -8px rgba(219, 215, 215, 0.62);
+  -webkit-box-shadow: -1px 7px 4px -6px rgba(219, 215, 215, 0.62);
+  -moz-box-shadow: -1px 7px 4px -6px rgba(219, 215, 215, 0.62);
+}
+.sub-header img {
+  width: 20px;
+  height: 20px;
+}
+/*section*/
+.section-cart-top {
+  margin-top: 80px;
+}
+.section-cart-top h2 {
+  padding: 0 20px;
+  margin: 10px 0px;
+}
+
+.check-row {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: thin solid #99999940;
+}
+
+.check-row:last-child {
+  align-items: start;
+}
+/*checkbox 커스텀*/
+
+/**/
+.check-right button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.check-right button span {
+  color: green;
+  font-weight: 700;
+}
+.product-cart-view {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 10px;
+}
+.product-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.product-view img {
+  width: 30%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-view .product-view-info {
+  width: 70%;
+  margin: 0px 10px;
+}
+
+.product-view-info p {
+  margin: 0px 0px 10px 0px;
+}
+.product-view-info p:last-child {
+  font-weight: 800;
+}
+.product-view img:first-child {
+  width: 30%;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 5px 0px 0px 0px;
+}
+.product-view img:last-child {
+  width: 15px;
+  height: 15px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 5px 0px 0px 0px;
+}
+.product-view-count-info {
+  width: 100%;
+}
+.product-view-count {
+  margin: 0.8em 0em;
+  padding: 0.8em 0.5em;
+  font-size: 0.9rem;
+  background-color: var(--color-brightgrey-background);
+}
+.product-view-charge-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.product-view-charge-info p {
+  margin: 2px 0px;
+  font-weight: 800;
+}
+.product-view-change_buy__btn {
+  text-align: center;
+}
+.product-view-change_buy__btn button {
+  width: 50%;
+  height: 3vh;
+  margin: 20px 0px;
+  display: inline-block;
+  background-color: transparent;
+  border: thin solid rgba(59, 58, 58, 0.837);
+}
+.product-view-change_buy__btn button:last-child {
+  border-left: none;
+}
+
+/*section-cart-middle CSS*/
+.section-cart-middle {
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+  background-color: var(--color-brightgrey-background);
+}
+
+.section-cart-middle p:first-child {
+  margin: 10px 0px;
+}
+.section-cart-middle p:last-child {
+  font-weight: 800;
+  margin: 5px 0px 20px 0px;
+}
+.section-cart-middle button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+/*section-cart-bottom CSS*/
+.section-cart-bottom {
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 140px;
+}
+.section-cart__product {
+  margin: 1rem 0rem;
+}
+.section-cart__product div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 30px;
+  font-size: 1rem;
+}
+.section-cart__total-charge div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 30px;
+  margin: 20px 0px;
+  font-size: 1.2rem;
+}
+.section-cart__product p,
+.section-cart__total-charge p {
+  font-weight: 800;
+}
+.section-cart__total-charge__info {
+  background-color: var(--color-brightgrey-background);
+  padding: 1rem;
+  font-size: 0.8rem;
+  margin: 2rem 0rem;
+}
+.section-cart__total-charge__info p {
+  margin: 0px;
+  color: var(--color-darkgrey);
+}
+.footer-product-cart {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+}
+.footer-product-cart__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 40px;
+  padding: 0.8rem 1.2rem;
+}
+.footer-product-cart__info div {
+  font-size: 1rem;
+  font-weight: 800;
+}
+.footer-product-cart__info p {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.footer-charge-total-btn {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer-charge-total-btn button {
+  background-color: transparent;
+  width: 50%;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.footer-charge-total-btn button:first-child {
+  margin-right: 0.5rem;
+  border: thin var(--color-starbucks) solid;
+  color: var(--color-starbucks);
+}
+.footer-charge-total-btn button:last-child {
+  margin-left: 0.5rem;
+  border: none;
+  background-color: var(--color-starbucks);
+  color: white;
+}

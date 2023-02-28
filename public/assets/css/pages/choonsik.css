@@ -1,0 +1,120 @@
+/*nav-sub css 구현*/
+.sub-nav nav ul {
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sub-nav nav ul li {
+  list-style: none;
+  width: 25%;
+  margin: 0 4px;
+  text-align: center;
+  color: var(--color-black);
+  font-size: 0.8rem;
+  height: 30px;
+}
+
+.sub-nav nav ul li:last-child {
+  margin-right: 0px;
+}
+.sub-nav nav ul li:first-child {
+  margin-left: 0px;
+}
+
+.sub-nav nav ul li.active {
+  border-bottom: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-primary);
+}
+
+.sub-nav nav ul li {
+  text-align: center;
+}
+/*event-page-banner*/
+.event-page-banner img {
+  width: 100%;
+  height: auto;
+  margin-top: 150px;
+}
+/*flex-wrap-product-lists CSS*/
+
+.flex-wrap-product-lists {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px 1px;
+  width: 100%;
+}
+.flex-wrap-product-list {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 95%;
+}
+
+.flex-wrap-product {
+  padding: 0.8rem 0.5rem;
+  width: 50%;
+  box-sizing: border-box;
+}
+.flex-wrap-product__img {
+  position: relative;
+}
+.flex-wrap-product__img img {
+  width: 100%;
+  height: auto;
+  background-color: #f3f5f7;
+  border-radius: 10px;
+}
+.flex-wrap-product__soldout {
+  filter: brightness(50%);
+}
+.flex-wrap-product__soldout_title {
+  position: absolute;
+  top: 60px;
+  left: 55px;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+}
+.flex-wrap-product-title,
+.flex-wrap-product-price {
+  margin: 10px 0px 0px 0px;
+}
+
+/*event-page-footer CSS*/
+.event-page-footer {
+  padding: 0px;
+  margin: 0px;
+}
+.event-page-footer-main__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 20px;
+  height: 50px;
+  color: var(--color-darkgrey);
+}
+
+.event-page-footer-main__title h4 {
+  color: rgb(64, 64, 64);
+}
+
+.event-page-footer-info {
+  background-color: #f4f4f2;
+  padding: 10px 20px;
+}
+
+.event-page-footer-info span {
+  font-size: 13px;
+  font-weight: 800;
+}
+.event-page-footer-info p {
+  font-size: 0.8rem;
+}

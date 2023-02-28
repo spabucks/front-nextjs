@@ -1,0 +1,39 @@
+body {
+  margin: 0px;
+}
+
+h1 {
+  color: var(--color-black);
+}
+
+.boder-under {
+  border-bottom: thin solid #dedede;
+}
+.border-top {
+  border-top: thin solid #dedede;
+}
+.sep {
+  height: 10px;
+  background-color: #f3f5f7;
+  margin: 10px 0px;
+}
+
+.product-item-new {
+  font-size: 0.8rem;
+  color: #0db904;
+  font-weight: lighter;
+  font-style: italic;
+  margin: 0px;
+  padding: 5px 0px;
+}
+
+.product-item-best {
+  font-size: 0.8rem;
+  margin: 2px 0px 0px 0px;
+  color: #e32208;
+  font-weight: bolder;
+  font-style: italic;
+}
+.product-item-new-hidden {
+  opacity: 0;
+}
