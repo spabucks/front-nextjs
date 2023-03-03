@@ -9,19 +9,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
-export default function Home() {
-
-  const [data, setData] = useState<recommandData[]>([])
-
-  useEffect(() => {
-    axios.get("http://10.10.10.173:8081/api/v1/event/get-recommend-md")
-    .then( res => {
-      console.log(res)
-      setData(res.data)
-    })
-    .catch( err  => console.log( err ))
-  },[])
-
+export default function Cake() {
   return (
     <>
       <Head>
@@ -31,19 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favic
         rfon.ico" />
       </Head>
-      <FirstHeader />
-      <section className="main-page-banner">
-        <img src="assets/images/banner/banner01.png" alt="메인페이지배너" />
-      </section>
-      <SlideCircleProduct />
-      {
-        data && data.map( item => (
-          <SlideSquareProduct 
-            title={item.name}
-            itemData={item.data}
-          />
-        ))
-      }
+      
     </>
   )
 }

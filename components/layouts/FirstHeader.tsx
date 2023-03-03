@@ -1,13 +1,29 @@
 import Link from "next/link";
-import { headerMenus, headerRightIcons } from "@/data/navMenuDatas";
-import { useState } from "react";
+import { headerMenus, headerRightIcons, headerEventSubMenus, headerBestSubMenus } from "@/data/navMenuDatas";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import axios from "axios";
+import { categoryMenu } from "@/types/type";
 
 export default function FirstHeader() {
   const router = useRouter();
-  console.log(router);
-  console.log(router.pathname);
+  const cateId:any = router.query.category;
+  // console.log(router);
+  // console.log(router.pathname);
+
+  const [categoryMenus, setCategoryMenus] = useState<categoryMenu[]>([])
+
+  useEffect(() => {
+    axios.get('http://10.10.10.173:8081/api/v1/bigCategory/get/all')
+    .then( res => {
+      // console.log(res.data)
+      setCategoryMenus(res.data)
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  },[])
 
   return (
     <header>
@@ -45,31 +61,36 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
-      { router.pathname === "/best" ?  <div className="main-header-sub">
+      { router.pathname === "/best" &&  <div className="main-header-sub">
       <nav>
         <ul>
-          <li>케이크</li>
-          <li className="active">텀블러/보온병</li>
-          <li>머그/컵</li>
-          <li>라이프스타일</li>
-          <li>티/커피용품</li>
-          <li>세트</li>
+          {categoryMenus.map((category)=>(
+            <li 
+              key={category.id}
+              className={ category.id == cateId ? 'active' : ''}
+            >
+              <Link href={`/best?category=${category.id}`}>
+                {category.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
-    </div> :
-     ''
+    </div> 
       }
-       { router.pathname === "/event" ?  <div className="main-header-sub">
+       { router.pathname === "/event" &&  <div className="main-header-sub">
        <nav>
         <ul>
-          <li>케이크</li>
-          <li className="active">바리스트춘식</li>
-          <li>핸디데스크</li>
-          <li>별⭐적립혜택</li>
+        {headerEventSubMenus.map((eventSubMenu)=>(
+            <li key={eventSubMenu.id}
+            className={router.pathname === eventSubMenu.link ? "active" : ""}
+            >
+              <Link href={eventSubMenu.link}>{eventSubMenu.name}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
-    </div> :
-     ''
+    </div> 
       }
     </header>
   );

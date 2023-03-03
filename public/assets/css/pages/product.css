@@ -1,5 +1,5 @@
 .section-main {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 .product-main-info img {
   width: 100%;
@@ -55,7 +55,7 @@
 .product-charge {
   font-size: 30px;
   font-weight: 800;
-  margin: 20px 0px 0px 0px;
+  margin: 0px;
 }
 .product-detail-info h3 {
   margin: 5px 2px;
@@ -64,6 +64,10 @@
 .footer-product-detail {
   margin-top: 1rem;
   margin-bottom: 90px;
+}
+.footer-product-detail img{
+  width: 20px;
+  height: 20px;
 }
 .footer-product-checkinfo {
   margin: 0px 20px;
@@ -78,4 +82,7 @@
   font-size: 1.2rem;
   font-weight: 800;
   margin: 1rem 0px;
+}
+.right-arrow{
+  transform: rotate( 180deg );
 }

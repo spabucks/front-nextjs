@@ -10,9 +10,7 @@ export default function DetailProduct(props:{data:detailProduct}) {
 
     console.log(query.productId)
     useEffect(() => {
-        {/*axios.get(`http://localhost:3001/data/${query.productId}`) */}
         axios.get(`http://10.10.10.173:8081/api/v1/product/get/${query.productId}`)
-        
         .then( res => {
           console.log(res.data)
           setData(res.data)
