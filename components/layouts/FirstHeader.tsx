@@ -8,28 +8,39 @@ import { categoryMenu } from "@/types/type";
 
 export default function FirstHeader() {
   const router = useRouter();
-  const cateId:any = router.query.category;
-  // console.log(router);
-  // console.log(router.pathname);
-
-  const [categoryMenus, setCategoryMenus] = useState<categoryMenu[]>([])
-
+  const categoryId:any = router.query.category;
+  const BaseUrl = process.env.baseApiUrl;
+  const [categoryBestMenus, setCategoryBestMenus] = useState<categoryMenu[]>([])/** 베스트 관련 메뉴*/
+  const [categoryEventMenus,setCategoryEventMenus]=useState<categoryMenu[]>([])/** 이벤트 관련 메뉴 */
+  /** 베스트 관련 메뉴*/
   useEffect(() => {
-    axios.get('http://10.10.10.173:8081/api/v1/bigCategory/get/all')
+    axios.get(`${BaseUrl}/api/v1/bigCategory/get/all`)
     .then( res => {
-      // console.log(res.data)
-      setCategoryMenus(res.data)
+       console.log('categoryBestMenus',res.data)
+       setCategoryBestMenus(res.data)
     })
     .catch( err => {
       console.log(err)
     })
   },[])
-
+  /** 이벤트 관련 매뉴 */
+  useEffect(() => {
+    axios.get(`http://localhost:3001/category`)
+    .then( res => {
+       console.log('categoryEventMenus',res.data)
+       setCategoryEventMenus(res.data)
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  },[])
   return (
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          <img src="assets/images/icons/menu.svg" alt="" />
+          <Link href={`/subpage`}>
+            <img src="assets/images/icons/menu.svg" alt="" />
+          </Link>
         </div>
         <h1>온라인 스토어</h1>
         <nav>
@@ -47,7 +58,7 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
-      <div className="main-header-bottom border-under">
+      <div className="main-header-bottom boder-under">
         <nav>
           <ul>
             {headerMenus.map((menu) => (
@@ -61,13 +72,25 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
+      { router.pathname === "/event" &&  <div className="main-header-sub">
+       <nav>
+        <ul>
+        {categoryEventMenus.map((eventSubMenu)=>(
+            <li key={eventSubMenu.id}>
+              <Link href={`/event/category/${eventSubMenu.id}`}>{eventSubMenu.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div> 
+      }
       { router.pathname === "/best" &&  <div className="main-header-sub">
       <nav>
         <ul>
-          {categoryMenus.map((category)=>(
+          {categoryBestMenus.map((category)=>(
             <li 
               key={category.id}
-              className={ category.id == cateId ? 'active' : ''}
+              className={ category.id == categoryId ? 'active' : ''}
             >
               <Link href={`/best?category=${category.id}`}>
                 {category.name}
@@ -78,20 +101,7 @@ export default function FirstHeader() {
       </nav>
     </div> 
       }
-       { router.pathname === "/event" &&  <div className="main-header-sub">
-       <nav>
-        <ul>
-        {headerEventSubMenus.map((eventSubMenu)=>(
-            <li key={eventSubMenu.id}
-            className={router.pathname === eventSubMenu.link ? "active" : ""}
-            >
-              <Link href={eventSubMenu.link}>{eventSubMenu.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div> 
-      }
+
     </header>
   );
 }

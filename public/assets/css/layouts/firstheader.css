@@ -92,17 +92,17 @@ header {
   overflow-y: auto;
   white-space: nowrap;
 }
-.main-header-sub a{
+.main-header-sub a {
   outline: none;
   text-decoration: none;
-  color:black
+  color: black;
 }
-.main_header-sub-click{
+.main_header-sub-click {
   color: var(--color-primary);
   font-weight: 800;
 }
-.main_header-sub-nonclick{
-  color:black;
+.main_header-sub-nonclick {
+  color: black;
 }
 .main-header-sub nav ul {
   display: flex;
@@ -121,13 +121,12 @@ header {
   list-style: none;
   padding: 10px;
   font-size: 1rem;
-  color: #6e6e6e;
 }
 .main-header-sub nav ul li:first-child {
   margin-left: 20px;
 }
 .main-header-sub nav ul li.active {
-  color: var(--color-primary);
+  color: blue;
   font-weight: bold;
 }
 .main-header-sub nav ul li:first-child {

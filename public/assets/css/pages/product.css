@@ -22,9 +22,9 @@
 .product-detail-main__title h2 {
   width: 90%;
   margin: 0px;
+  margin-right: 5px;
 }
 .product-detail-main__title img {
-  width: 10%;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -65,7 +65,7 @@
   margin-top: 1rem;
   margin-bottom: 90px;
 }
-.footer-product-detail img{
+.footer-product-detail img {
   width: 20px;
   height: 20px;
 }
@@ -83,6 +83,6 @@
   font-weight: 800;
   margin: 1rem 0px;
 }
-.right-arrow{
-  transform: rotate( 180deg );
+.right-arrow {
+  transform: rotate(180deg);
 }

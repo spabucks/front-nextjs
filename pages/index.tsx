@@ -12,9 +12,9 @@ import axios from 'axios'
 export default function Home() {
 
   const [data, setData] = useState<recommandData[]>([])
-
+  const BaseUrl = process.env.baseApiUrl;
   useEffect(() => {
-    axios.get("http://10.10.10.173:8081/api/v1/event/get-recommend-md")
+    axios.get(`${BaseUrl}/api/v1/event/get-recommend-md`)
     .then( res => {
       console.log(res)
       setData(res.data)

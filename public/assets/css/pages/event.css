@@ -101,7 +101,10 @@
   height: 50px;
   color: var(--color-darkgrey);
 }
-
+.event-page-footer-main__title img {
+  width: 20px;
+  height: 20px;
+}
 .event-page-footer-main__title h4 {
   color: rgb(64, 64, 64);
 }

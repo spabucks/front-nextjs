@@ -17,7 +17,6 @@ h1 {
   background-color: #f3f5f7;
   margin: 10px 0px;
 }
-
 .product-item-new {
   font-size: 0.8rem;
   color: #0db904;
@@ -36,4 +35,7 @@ h1 {
 }
 .product-item-new-hidden {
   opacity: 0;
+}
+.top-arrow-icon {
+  transform: rotate(90deg);
 }

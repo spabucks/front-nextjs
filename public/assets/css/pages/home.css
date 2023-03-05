@@ -56,7 +56,7 @@ section.slide-square-product-lists {
 .slide-square-product__main-title {
   font-size: 20px;
   font-weight: 800;
-  margin: 0px 0px 0px 10px
+  margin: 0px 0px 0px 10px;
 }
 .slide-square-product-item__img {
   width: 100%;
@@ -74,13 +74,11 @@ section.slide-square-product-lists {
 }
 
 .slide-square-product-itemlist {
-  width: 300px;
+  width: 140px;
   height: 310px;
   margin: 0px 10px;
   padding: 0px;
 }
-
-
 
 .slide-square-item-img {
   border-radius: 10px;
@@ -91,10 +89,9 @@ section.slide-square-product-lists {
   width: 100%;
   margin: 0.2rem 0rem;
 }
-.slide-square-product-item-title a{
+.slide-square-product-item-title a {
   text-decoration: none;
   color: black;
-  
 }
 .slide-square-product-item-price {
   font-weight: bold;

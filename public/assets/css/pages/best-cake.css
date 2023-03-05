@@ -19,6 +19,7 @@
 .best-product {
   padding: 0.8rem 0.5rem;
   width: 50%;
+  height: 310px;
   box-sizing: border-box;
 }
 .best-product__img {
@@ -59,7 +60,7 @@
   margin: 10px 0px 0px 0px;
 }
 
-.best-product-title a{
+.best-product-title a {
   text-decoration: none;
-  color:black
+  color: black;
 }

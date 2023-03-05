@@ -7,10 +7,10 @@ import { detailProduct } from '@/types/type'
 export default function DetailProduct(props:{data:detailProduct}) {
     const [data, setData] = useState<detailProduct>()
     const { query } = useRouter();
-
+    const BaseUrl = process.env.baseApiUrl;
     console.log(query.productId)
     useEffect(() => {
-        axios.get(`http://10.10.10.173:8081/api/v1/product/get/${query.productId}`)
+        axios.get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
         .then( res => {
           console.log(res.data)
           setData(res.data)

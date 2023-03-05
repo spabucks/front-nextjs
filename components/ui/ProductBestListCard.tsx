@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { productList } from "@/types/type";
+import { productBestList } from "@/types/type";
+import { useState } from "react";
 
-export default function ProductListCard(props: { data: productList }) {
+export default function ProducBestListCard(props: {
+  data: productBestList;
+  count: number;
+}) {
   return (
     <div className="best-product">
       <div className="best-product__img">
-       
         <Link href={`/product/${props.data.id}`}>
-
-        <img src={props.data.imgUrl} alt={props.data.title} />
+          <img src={props.data.imgUrl} alt={props.data.title} />
         </Link>
-        <div>2</div>
+        <div>{props.count + 1}</div>
       </div>
       <div className="best-product__info">
         <p
