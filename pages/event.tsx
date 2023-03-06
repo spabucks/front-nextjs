@@ -1,4 +1,4 @@
-import FirstHeader from "@/components/layouts/FirstHeader"
+import FirstHeader from "@/components/sections/FirstHeader"
 import Head from "next/head"
 import { productEventList } from "@/types/type"
 import { useEffect, useState } from "react"

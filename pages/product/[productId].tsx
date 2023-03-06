@@ -5,6 +5,7 @@ import DetailProduct from "@/components/ui/DetailProduct";
 import { recommandproduct } from "@/types/type";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import FooterBtn from "@/components/ui/FooterBtn";
 
 export default function Product() {
 
@@ -58,9 +59,7 @@ export default function Product() {
           </div>
         </div>
       </footer>
-      <footer className="footer-login-sumit">
-        <button type="submit">구매하기</button>
-      </footer>
+      <FooterBtn title={'구매하기'}></FooterBtn>
 </>
     );
 }

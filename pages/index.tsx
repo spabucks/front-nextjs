@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import FirstHeader from '@/components/layouts/FirstHeader'
+import FirstHeader from '@/components/sections/FirstHeader'
 import SlideCircleProduct from '@/components/layouts/SlideCircleProduct'
 import SlideSquareProduct from '@/components/layouts/SlideSquareProduct'
 import { recommandData } from '@/types/type'
@@ -14,7 +14,7 @@ export default function Home() {
   const [data, setData] = useState<recommandData[]>([])
   const BaseUrl = process.env.baseApiUrl;
   useEffect(() => {
-    axios.get(`${BaseUrl}/api/v1/event/get-recommend-md`)
+    axios.get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
     .then( res => {
       console.log(res)
       setData(res.data)

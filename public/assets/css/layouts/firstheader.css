@@ -95,12 +95,13 @@ header {
 .main-header-sub a {
   outline: none;
   text-decoration: none;
-  color: black;
 }
+/*main_header-sub가 클릭되었을 때*/
 .main_header-sub-click {
-  color: var(--color-primary);
+  color:var(--color-primary);
   font-weight: 800;
 }
+/*main_header-sub가 클릭 되지 않았을 때*/
 .main_header-sub-nonclick {
   color: black;
 }

@@ -12,7 +12,7 @@ export const headerMenus = [
     {
       id: 3,
       name: '베스트',
-      link: 'best?category=1',
+      link: '/best?category=1',
     },
     {
       id: 4,

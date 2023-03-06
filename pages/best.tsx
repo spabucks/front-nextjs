@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import FirstHeader from '@/components/layouts/FirstHeader'
+import FirstHeader from '@/components/sections/FirstHeader'
 import ProductBestList from '@/components/layouts/ProductBestList'
 import axios from 'axios'
 import { useState, useEffect } from 'react'

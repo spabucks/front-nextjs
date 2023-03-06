@@ -1,5 +1,20 @@
 import Link from "next/link";
+import SubPageMenu from "@/components/sections/SubPageMenu";
+import { useEffect, useState } from "react";
+import { subPageMenu } from "@/types/type";
+import axios from "axios";
 export default function Subpage() {
+  const [data,setData]= useState<subPageMenu[]>([])
+
+  useEffect(()=>{
+    axios.get(`http://localhost:3001/subpagemanu`)
+    .then(res=>{
+      setData(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },[])
   return (
     <>
       <div className="sub-page__main-header sub-boder-under">
@@ -56,31 +71,11 @@ export default function Subpage() {
           </div>
         </div>
       </section>
+
       <section className="sub-page__sub-contents">
-        <div className="sub-page__sub-content boder-under">
-          <div className="sub-page__sub-content-title">
-            <p>기획전</p>
-            <p>진행중인 기획전을 만나보세요</p>
-          </div>
-          <div className="sub-page__sub-content-icon">
-            <img
-              className="sub-change-left-icon"
-              src="assets/images/icons/left-chevron.svg"
-            />
-          </div>
-        </div>
-        <div className="sub-page__sub-content">
-          <div className="sub-page__sub-content-title">
-            <p>베스트</p>
-            <p>스타벅스의 베스트 상품을 만나보세요</p>
-          </div>
-          <div className="sub-page__sub-content-icon">
-            <img
-              className="sub-change-left-icon"
-              src="assets/images/icons/left-chevron.svg"
-            />
-          </div>
-        </div>
+        {data && data.map(item=>(
+          <SubPageMenu title={item.title} context={item.context}/>)
+        )}
       </section>
     </>
   );

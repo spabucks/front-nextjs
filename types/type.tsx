@@ -61,3 +61,7 @@ export interface categoryMenu {
     id: number,
     name: string
 }
+export interface subPageMenu{
+    title:string,
+    context:string
+}

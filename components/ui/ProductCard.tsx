@@ -1,5 +1,4 @@
 import { productCardData } from "@/types/type";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductCard(props:{data:productCardData}) {

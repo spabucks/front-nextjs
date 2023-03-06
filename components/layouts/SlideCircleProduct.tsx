@@ -1,7 +1,4 @@
-import Link from "next/link";
 import { slideCircleProducts } from "@/data/slideCircleProduct";
-import { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 
 export default function SlideCircleProduct(){
