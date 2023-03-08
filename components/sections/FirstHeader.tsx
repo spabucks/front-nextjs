@@ -10,16 +10,17 @@ export default function FirstHeader() {
   const router = useRouter();
   const categoryId:any = router.query.category;
   const BaseUrl = process.env.baseApiUrl;
+  const [cateName, setCateName] = useState<string[]>();
   const [categoryBestMenus, setCategoryBestMenus] = useState<categoryMenu[]>([])/** 베스트 관련 메뉴*/
   const [categoryEventMenus,setCategoryEventMenus]=useState<categoryMenu[]>([])/** 이벤트 관련 메뉴 */
-console.log('categoryId',categoryId)
-console.log("router.pathname",router.pathname)
+console.log("categoryEventMenus",categoryEventMenus)
   /** 베스트 관련 메뉴*/
   useEffect(() => {
     axios.get(`${BaseUrl}/api/v1/bigCategory/get/all`)
     .then( res => {
        console.log('categoryBestMenus',res.data)
        setCategoryBestMenus(res.data)
+       
     })
     .catch( err => {
       console.log(err)
@@ -27,15 +28,24 @@ console.log("router.pathname",router.pathname)
   },[])
   /** 이벤트 관련 매뉴 */
   useEffect(() => {
-    axios.get(`http://localhost:3001/category`)
+    axios.get(`${BaseUrl}/api/v1/tag/get/all`)
     .then( res => {
        console.log('categoryEventMenus',res.data)
        setCategoryEventMenus(res.data)
+       let cNames:string[] = [];
+      //  res.data.map((item:categoryMenu)=>{
+      //   console.log(item.name)
+      //   cNames.push(item.name)
+      //  })
+
+      console.log(res.data.filter( (item:categoryMenu) => item.image !== '' ))
+      //  setCateName(cNames)
     })
     .catch( err => {
       console.log(err)
     })
   },[])
+
   return (
     <header>
       <div className="main-header-top">
@@ -47,7 +57,8 @@ console.log("router.pathname",router.pathname)
         <h1>온라인 스토어</h1>
         <nav>
           <ul>
-            {headerRightIcons.map((menuIcon) => (
+            {
+            headerRightIcons.map((menuIcon) => (
               <li key={menuIcon.id}>
                 <Image
                   width={20}
@@ -77,11 +88,17 @@ console.log("router.pathname",router.pathname)
       { router.pathname === "/event" &&  <div className="main-header-sub">
        <nav>
         <ul>
+          
         {categoryEventMenus.map((eventSubMenu)=>(
-            <li key={eventSubMenu.id}>
-              <Link href={`/event/category/${eventSubMenu.id}`}>{eventSubMenu.name}</Link>
+          eventSubMenu.image === '' ? null :
+          <li key={eventSubMenu.id}>
+              <Link href={`/event?category=${eventSubMenu.id}`} 
+               className={ eventSubMenu.id == categoryId ? 'main_header-sub-click ' : 'main_header-sub-nonclick'}>
+              {eventSubMenu.name}</Link>
             </li>
+        
           ))}
+         
         </ul>
       </nav>
     </div> 

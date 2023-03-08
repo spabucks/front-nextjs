@@ -59,6 +59,14 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+.sub-page__main-second-content a,
+.sub-page__main-first-content a{        
+  text-decoration: none;
+  color:black;
+  text-decoration-line: none;
+}
+
 .sub-page__main-second-content {
   display: flex;
   justify-content: space-between;

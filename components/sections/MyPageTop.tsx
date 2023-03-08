@@ -31,7 +31,6 @@ export default function MyPageTop() {
             className="main-mypage-step__icon change-left-chevron"
             src="assets/images/icons/left-chevron.svg"
           />
-
           <div className="main-mypage-step__product">
             <p>0</p>
             <p>배송완료</p>

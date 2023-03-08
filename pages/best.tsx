@@ -9,17 +9,12 @@ import { useRouter } from 'next/router'
 
 export default function Best() {
   const [data, setData] = useState<productBestList[]>([])
-
   const BaseUrl = process.env.baseApiUrl;
-const count = data.length;
-console.log('count',count)
+  const count = data.length;
   const router = useRouter();
-  console.log('router',router) //router {pathname: '/best', route: '/best', query: {…}, asPath: '/best?category=1', components: {…}, …}
-  console.log('router.query.category',router.query.category) //router.query.category 1
   useEffect(() => {
     axios.get(`${BaseUrl}/api/v1/product/get-best/${router.query.category}`)
     .then( res => {
-      console.log('res',res.data)
       setData(res.data)
     })
     .catch( err  => console.log( err ))

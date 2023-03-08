@@ -54,14 +54,38 @@ export interface eventProductList{
     imgUrl : string,
     price : number,
     isNew : boolean,
+    isBest :boolean,
 }
 /** */
 
 export interface categoryMenu {
     id: number,
-    name: string
+    name: string,
+    image: string
 }
 export interface subPageMenu{
     title:string,
     context:string
+}
+
+export interface myMenuList{
+    id:number,
+    title:string,
+    data:[]
+}
+export interface myMenuLists{
+    id:number,
+    icon:string,
+    title:string,
+    arrowicon:string
+}
+/**검색할 데이터 */
+export interface searchValue{
+    word : string
+}
+/**슬라이드 */
+export interface slide{
+    eventid : number,
+    name:string,
+    imageUrl:string 
 }

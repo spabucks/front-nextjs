@@ -7,7 +7,7 @@ export const headerMenus = [
     {
       id: 2,
       name: '기획전',
-      link: '/event',
+      link: '/event?category=1',
     },
     {
       id: 3,

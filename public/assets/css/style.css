@@ -3,12 +3,15 @@
 @import url(./layouts/firstheader.css);
 @import url(./layouts/secondheader.css);
 @import url(./layouts/loginheader.css);
+@import url(./layouts/swiper.css);
 @import url(./pages/home.css);
 @import url(./pages/product.css);
 @import url(./pages/login.css);
 @import url(./pages/best-cake.css);
 @import url(./pages/subpage.css);
 @import url(./pages/event.css);
+@import url(./pages/mypage.css);
+@import url(./pages/search.css);
 
 /*
 @import url(./pages/cart.css);

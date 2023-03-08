@@ -10,10 +10,12 @@ import FooterBtn from "@/components/ui/FooterBtn";
 export default function Product() {
 
     const router = useRouter();
+    console.log("router.query",router.query.productId)
     const [data, setData] = useState<recommandproduct[]>([])
 
   useEffect(() => {
-    axios.get("http://localhost:3001/recommandproduct")
+    axios.get(`
+    http://10.10.10.173:8081/api/v1/product-category/get-others/${router.query.productId}`)
     .then( res => {
       console.log(res)
       setData(res.data)

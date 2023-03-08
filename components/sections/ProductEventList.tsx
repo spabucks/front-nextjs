@@ -1,6 +1,3 @@
-
-import Link from "next/link";
-import ProductListCard from "../ui/ProductBestListCard";
 import { eventProductList } from "@/types/type";
 import EventProductList from "../layouts/EventProductList";
 export default function ProductEventList(props: {

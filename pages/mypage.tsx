@@ -1,6 +1,6 @@
 import FirstHeader from "@/components/sections/FirstHeader";
 import Head from "next/head";
-import MyPageTop from "@/components/sections/MypageTop";
+import MyPageTop from "@/components/sections/MyPageTop";
 import MypageMenuLists from "@/components/sections/MyPageMenuLists";
 export default function Mypage() {
     return(
@@ -17,8 +17,8 @@ export default function Mypage() {
         </Head>
         <FirstHeader />
         <MyPageTop/>
-        <MypageMenuLists/>
-        <MypageMenuLists/>
+        <MypageMenuLists title={'서비스'}/>
+        <MypageMenuLists title={'약관 및 정책'}/>
 </>
     )
 }

@@ -7,16 +7,14 @@ import SlideSquareProduct from '@/components/layouts/SlideSquareProduct'
 import { recommandData } from '@/types/type'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import SliderContainer from '@/components/layouts/slide'
 
 export default function Home() {
-
   const [data, setData] = useState<recommandData[]>([])
   const BaseUrl = process.env.baseApiUrl;
   useEffect(() => {
     axios.get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
     .then( res => {
-      console.log(res)
       setData(res.data)
     })
     .catch( err  => console.log( err ))
@@ -32,9 +30,7 @@ export default function Home() {
         rfon.ico" />
       </Head>
       <FirstHeader />
-      <section className="main-page-banner">
-        <img src="assets/images/banner/banner01.png" alt="메인페이지배너" />
-      </section>
+      <SliderContainer/>
       <SlideCircleProduct />
       {
         data && data.map( item => (

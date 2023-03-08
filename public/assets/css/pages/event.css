@@ -61,6 +61,7 @@
 .flex-wrap-product {
   padding: 0.8rem 0.5rem;
   width: 50%;
+  height: 320px;
   box-sizing: border-box;
 }
 .flex-wrap-product__img {

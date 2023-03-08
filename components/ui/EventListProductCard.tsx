@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { eventproductList } from "@/types/type";
-import { useState } from "react";
+import { eventProductList} from "@/types/type";
 
-export default function EventProductListCard(props: { data: eventproductList }) {
+export default function EventProductListCard(props: { data: eventProductList }) {
   console.log(props.data)
   return(
     <div className="flex-wrap-product">
