@@ -1,0 +1,15 @@
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 0px;
+}
+.swiper-pagination-horizontal {
+  opacity: 0.5;
+}
+.swiper img{
+  margin-top: 103px;
+  height: 300px;
+  width: 100%;
+}
+.swiper-pagination span{
+  position: relative;
+  bottom: 20px;
+}
