@@ -28,7 +28,7 @@ export default function SliderContainer() {
       <Swiper
         effect={"fade"}
         autoplay={{
-          delay: 3000,
+          delay: 2000,
           disableOnInteraction: false,
         }}
         pagination={{

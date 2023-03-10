@@ -63,7 +63,7 @@
 /*footer-product-detail CSS*/
 .footer-product-detail {
   margin-top: 1rem;
-  margin-bottom: 90px;
+  margin-bottom: 100px;
 }
 .footer-product-detail img {
   width: 20px;
@@ -85,4 +85,105 @@
 }
 .right-arrow {
   transform: rotate(180deg);
+}
+/*구매할때 수량, 가격 확인 모달창*/
+.buy-product-list{
+  
+  background-color: var(--color-brightgrey-background);
+  padding: 20px;
+  margin: 20px;
+  box-sizing: border-box;
+}
+.buy-product-list p{
+  margin: 0px 0px 20px 0px;
+  font-size: 18px;
+}
+.footer-charge-total-btn {
+  box-sizing: border-box;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  -webkit-box-shadow: -2px 9px 23px -8px #000000;
+  box-shadow: -2px 9px 23px -8px #000000;
+}
+
+.footer-charge-total-btn img{
+  width: 20px;
+  height: 20px;                       
+}
+.buy-product-count button:first-child{
+  margin-right: 10px;
+}
+.buy-product-count button:last-child{
+  margin-left: 10px;
+}
+.buy-product-count-charge{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.buy-product-count{
+  display: flex;
+  align-items: center;
+}
+.buy-product-count p{
+  text-align: center;
+  margin: 0px;
+}
+.buy-product-count button{
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+.buy-product-charge{
+  font-size: 25px;
+  font-weight: 800;
+}
+.buy-product-total p{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size:27px;
+  font-weight: 800;
+  margin: 20px 10px;
+  padding: 10px;
+}
+.footer-charge-total-btn{
+  display: flex;
+  align-items: center;
+}
+.footer-charge-total-btn img{
+  width: 26px;
+  height: 26px;
+  padding: 0px 10px;
+}
+
+.buy-product-lists {
+  width: 100%;
+  position: fixed;
+  bottom: 5rem;
+  background-color: white;
+}
+.buy-announcement-none{
+  background-color: #000000;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 15px;
+  position: relative;
+  bottom: 80px;
+  opacity: 0;
+}
+.buy-announcement-look{
+  background-color: #000000;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 15px;
+  position: relative;
+  bottom: 80px;
+  opacity: 0;
 }

@@ -386,5 +386,16 @@
       "title": "베스트",
       "context": "스타벅스의 베스트 상품을 만나보세요"
     }
+  ],
+  "cartproduct": [
+    {
+      "productId": 1,
+      "bigCategory": "케이크",
+      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
+      "price": 15000,
+      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
+      "count": 5
+    }
+   
   ]
 }

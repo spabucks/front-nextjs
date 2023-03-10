@@ -6,10 +6,6 @@ import { InputType } from "zlib";
 import Link from "next/link";
 
 export default function Search() {
-  // interface inputType {
-  //   searchWord: string ;
-  // }
-
   const [recentWords, setRecentWords] = useRecoilState(recentSearchWord);
   const [input, setInput] = useState<string>();
   // const [valueList, setValueList] = useState<string[]>([]);
@@ -23,7 +19,6 @@ export default function Search() {
     console.log("submit");
 
     if (typeof input !== "undefined") {
-      console.log("input", input);
       // setValueList([...valueList,input]);
       setRecentWords([...recentWords, input]);
     }
@@ -41,7 +36,6 @@ export default function Search() {
               id="searchword"
               placeholder="검색어를 입력해주세요"
             />
-
             <button type="submit" onSubmit={handleSubmit}>
               입력
             </button>

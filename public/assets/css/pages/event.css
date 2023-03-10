@@ -84,7 +84,12 @@
   font-weight: 800;
   font-size: 15px;
 }
-.flex-wrap-product-title,
+
+.flex-wrap-product-title a{
+  text-decoration: none;
+  color: black;
+}
+
 .flex-wrap-product-price {
   margin: 10px 0px 0px 0px;
 }

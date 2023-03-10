@@ -7,7 +7,7 @@ import SlideSquareProduct from '@/components/layouts/SlideSquareProduct'
 import { recommandData } from '@/types/type'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import SliderContainer from '@/components/layouts/slide'
+import SliderContainer from '@/components/layouts/Slide'
 
 export default function Home() {
   const [data, setData] = useState<recommandData[]>([])

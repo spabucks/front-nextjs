@@ -89,3 +89,11 @@ export interface slide{
     name:string,
     imageUrl:string 
 }
+export interface cartproduct{
+    productId : number,
+    bigCategory: string,
+    imgUrl: string,
+    price: number,
+    productName: string,
+    count: number
+}
