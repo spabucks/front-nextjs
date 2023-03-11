@@ -11,16 +11,16 @@ import Image from "next/image";
 import axios from "axios";
 import { categoryMenu } from "@/types/type";
 
-export default function FirstHeader() {
+export default function FilterPage() {
   const router = useRouter();
   const categoryId: any = router.query.category;
   const BaseUrl = process.env.baseApiUrl;
-   /** 베스트 관련 변수저장*/
+   /** 베스트 카테고리 관련 변수저장*/
   const [categoryBestMenus, setCategoryBestMenus] = useState<categoryMenu[]>(
     []
   );
-   /** 이벤트 관련 변수저장 */
-  const [categoryEventMenus, setCategoryEventMenus] = useState<categoryMenu[]>(
+   /** 가격 관련 변수저장 */
+  const [categoryChargeMenus, setCategoryChargeMenus] = useState<categoryMenu[]>(
     []
   );
   /** 베스트 관련 메뉴*/
@@ -39,7 +39,7 @@ export default function FirstHeader() {
     axios
       .get(`${BaseUrl}/api/v1/tag/get/all`)
       .then((res) => {
-        setCategoryEventMenus(res.data);
+        setCategoryChargeMenus(res.data);
         let cNames: string[] = [];
         //  setCateName(cNames)
       })
@@ -47,9 +47,8 @@ export default function FirstHeader() {
         console.log(err);
       });
   }, []);
-
-  return (
-    <header>
+    return(
+<header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
           <Link href={`/subpage`}>
@@ -72,23 +71,30 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
-      <div className="main-header-bottom boder-under">
+      {/*전체 메뉴에 대한 api 받아오기*/}
+      <div className="main-header-sub">
         <nav>
           <ul>
-            {headerMenus.map((menu) => (
-              <li
-                key={menu.id}
-                className={
-                  router.pathname === menu.link.split("?")[0] ? "active" : ""
-                }
-              >
-                <Link href={menu.link}>{menu.name}</Link>
-              </li>
-            ))}
+          {categoryBestMenus.map((eventSubMenu) =>
+                eventSubMenu.image === "" ? null : (
+                  <li key={eventSubMenu.id}>
+                    <Link
+                      href={`/event?category=${eventSubMenu.id}`}
+                      className={
+                        eventSubMenu.id == categoryId
+                          ? "main_header-sub-click "
+                          : "main_header-sub-nonclick"
+                      }
+                    >
+                      {eventSubMenu.name}
+                    </Link>
+                  </li>
+                )
+              )}
           </ul>
         </nav>
       </div>
-      {router.pathname === "/event" && (
+      {/* {router.pathname === "/event" && (
         <div className="main-header-sub">
           <nav>
             <ul>
@@ -133,7 +139,7 @@ export default function FirstHeader() {
             </ul>
           </nav>
         </div>
-      )}
-    </header>
+      )}*/}
+    </header> 
   );
 }

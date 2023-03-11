@@ -88,7 +88,6 @@
 }
 /*구매할때 수량, 가격 확인 모달창*/
 .buy-product-list{
-  
   background-color: var(--color-brightgrey-background);
   padding: 20px;
   margin: 20px;
@@ -173,17 +172,11 @@
   padding: 20px;
   box-sizing: border-box;
   font-size: 15px;
-  position: relative;
-  bottom: 80px;
-  opacity: 0;
+  position: absolute;
+  z-index: 100;
+  top: 80px;
+  display: none;
 }
-.buy-announcement-look{
-  background-color: #000000;
-  color: white;
-  padding: 20px;
-  box-sizing: border-box;
-  font-size: 15px;
-  position: relative;
-  bottom: 80px;
-  opacity: 0;
+.buy-announcement-none.show{
+  display: block;
 }

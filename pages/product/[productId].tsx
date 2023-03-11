@@ -6,10 +6,7 @@ import { detailProduct, recommandproduct } from "@/types/type";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import FooterBtn from "@/components/ui/FooterBtn";
-import FooterChangeBtn from "@/components/ui/FooterChangeBtn";
 import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
-import Link from "next/link";
-import ModalBackground from "@/components/ui/ModalBackground";
 import CartPlusModal from "@/components/sections/CartPlusModal";
 export default function Product() {
   const { query } = useRouter();
@@ -19,7 +16,7 @@ export default function Product() {
   const [productData, setProductData] = useState<detailProduct>();
   const [isClick, setIsClick] = useState<Boolean>(false); // 메뉴의 초기값을 false로 설정
   const [isCartModal, setIsCartModal] = useState<Boolean>(false)
-
+console.log('query',query)
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
@@ -41,11 +38,15 @@ export default function Product() {
   }, [query.productId]);
 
   const handleAddCart = (): void => {
+    console.log("queryyyyyyyyyyyy",query)
     console.log("addCart", query.productId);
     setIsCartModal(true)
     setIsClick(false)
     axios.post(``, {
       productId: query.productId,
+      title :query.title,
+      userId:query.userid,
+      count:query.data
     });
     // axios post
   };
