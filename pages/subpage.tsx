@@ -86,7 +86,7 @@ export default function Subpage() {
 
       <section className="sub-page__sub-contents">
         {data && data.map(item=>(
-          <SubPageMenu title={item.title} context={item.context}/>)
+          <SubPageMenu key={item.title} title={item.title} context={item.context}/>)
         )}
       </section>
     </>

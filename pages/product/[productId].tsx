@@ -16,6 +16,7 @@ export default function Product() {
   const [productData, setProductData] = useState<detailProduct>();
   const [isClick, setIsClick] = useState<Boolean>(false); // 메뉴의 초기값을 false로 설정
   const [isCartModal, setIsCartModal] = useState<Boolean>(false)
+  const uuid:string = "85295edc-24ee-4781-b8e3-becc596b010e"
 console.log('query',query)
   useEffect(() => {
     axios
@@ -37,18 +38,18 @@ console.log('query',query)
       .catch((err) => console.log(err));
   }, [query.productId]);
 
-  const handleAddCart = (): void => {
-    console.log("queryyyyyyyyyyyy",query)
-    console.log("addCart", query.productId);
+  const handleAddCart = () => {
+    console.log('productId',query.productId)
+    console.log('userId',uuid)
     setIsCartModal(true)
     setIsClick(false)
-    axios.post(``, {
+    axios.post("http://124.216.167.73:8081/api/v1/cart/add", {
       productId: query.productId,
-      title :query.title,
-      userId:query.userid,
-      count:query.data
-    });
-    // axios post
+      userId:uuid,
+      amount:1
+    }).then((res)=>{
+      console.log("res.data",res)
+    }).catch((err)=>console.log(err));
   };
 
   return (
@@ -60,7 +61,7 @@ console.log('query',query)
         setIsCartModal = {setIsCartModal}
       />
       {productData && <DetailProduct data={productData} />}
-      {data.map((item) => (
+      {data && data.map((item) => (
         <SlideSquareProduct
           key={item.id}
           title={item.name}

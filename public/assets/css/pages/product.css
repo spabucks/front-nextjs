@@ -166,17 +166,25 @@
   bottom: 5rem;
   background-color: white;
 }
-.buy-announcement-none{
-  background-color: #000000;
+.buy-announcement-show{
+  background-color: rgb(0, 0, 0,0.9);
   color: white;
-  padding: 20px;
+  padding: 25px;
+  width: 100%;
   box-sizing: border-box;
   font-size: 15px;
   position: absolute;
   z-index: 100;
-  top: 80px;
-  display: none;
+  top: 90px;
+  animation: fadeOut 5s;
 }
-.buy-announcement-none.show{
-  display: block;
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+  
 }

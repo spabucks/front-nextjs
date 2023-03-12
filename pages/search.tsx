@@ -28,7 +28,7 @@ export default function Search() {
     <>
       <div className="main-search-container">
         <div className="form-search">
-          <form className="search" onSubmit={handleSubmit}>
+          <form className="search-keyword" onSubmit={handleSubmit}>
             <input
               onChange={handleInputChange}
               name="searchWord"
@@ -36,9 +36,6 @@ export default function Search() {
               id="searchword"
               placeholder="검색어를 입력해주세요"
             />
-            <button type="submit" onSubmit={handleSubmit}>
-              입력
-            </button>
             <div className="search-icons">
               <img
                 className="search-item-icon"

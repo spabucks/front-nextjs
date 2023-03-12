@@ -13,3 +13,15 @@
   position: relative;
   bottom: 20px;
 }
+.swiper-pagination-bullet {
+  background: white !important;
+}
+.swiper-pagination-bullet-active {
+  background: black !important;
+}
+.swiper-button-prev::after,.swiper-button-next::after{
+font-size: 20px !important;
+color: black !important;
+position: relative;
+top: 40px;
+}

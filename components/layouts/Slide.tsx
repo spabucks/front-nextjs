@@ -34,6 +34,7 @@ export default function SliderContainer() {
         pagination={{
           clickable: true,
         }}
+        navigation
         modules={[Navigation, EffectFade, Pagination,Autoplay]}
         className="mySwiper"
         loop={true}

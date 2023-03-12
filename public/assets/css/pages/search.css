@@ -15,7 +15,7 @@
   position: absolute;
   width: 20px;
   top: 15px;
-  right: 45px;
+  right: 30px;
   margin: 0;
 }
 
@@ -27,8 +27,8 @@
   margin: 0;
 }
 
-.search input {
-  width: 85%;
+.search-keyword input {
+  width: 80%;
   height: 3vh;
   border: none;
   border-radius: 10px;
@@ -37,7 +37,7 @@
   font-size: 1.1rem;
 }
 
-.search input:focus {
+.search-keyword input:focus {
   outline: none;
 }
 .section-search-item {
