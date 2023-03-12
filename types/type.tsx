@@ -89,11 +89,19 @@ export interface slide{
     name:string,
     imageUrl:string 
 }
-export interface cartproduct{
-    productId : number,
-    bigCategory: string,
-    imgUrl: string,
-    price: number,
-    productName: string,
-    count: number
+export interface cartData{
+itemNumber:number,
+generalitems:[cartuseritem],
+freezeitems:[cartuseritem]
 }
+export interface cartuseritem{
+    cartId: number,
+    productId: number,
+    bigCategoryId : number,
+    count : number
+    }
+    export interface cartInfo {
+        productName : string,
+        imgUrl : string,
+        price : number,
+    }

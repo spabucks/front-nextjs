@@ -387,58 +387,65 @@
       "context": "스타벅스의 베스트 상품을 만나보세요"
     }
   ],
-  "cartproduct-freeze": [
+  "cart-data": [
     {
+      "id":1,
       "productId": 1,
-      "bigCategory": "케이크",
+      "title": "23 체리블라썸 인스탁스 미니 필름팩 (10EA)",
       "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
       "price": 15000,
-      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
-      "count": 5
+      "isNew": false
     },
     {
+      "id":2,
       "productId": 2,
-      "bigCategory": "케이크",
-      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
-      "price": 15000,
-      "productName": "텀블러",
-      "count": 5
-    }
-  ],
-  "cartproduct-general": [
-    {
-      "productId": 2,
-      "bigCategory": "케이크",
-      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
-      "price": 15000,
-      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
-      "count": 5
-    }
-  ],
-  "cartproduct": [
-    {
-      "productId": 1,
-      "bigCategory": "케이크",
-      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
-      "price": 15000,
-      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
-      "count": 5
+      "title": "23 체리블라썸 커트러리 세트",
+      "imgUrl": "https://shop-phinf.pstatic.net/20230213_164/1676251149310drYOl_JPEG/77386933024259955_455603734.jpg?type=m510",
+      "price": 12000,
+      "isNew": false
     },
     {
-      "productId": 2,
-      "bigCategory": "텀블러",
-      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
-      "price": 15000,
-      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
-      "count": 5
-    },
-    {
+      "id":3,
       "productId": 3,
-      "bigCategory": "케이크",
-      "imgUrl": "https://shop-phinf.pstatic.net/20230213_22/1676251106866ty33f_JPEG/77386890579802960_2126694789.jpg?type=m510",
-      "price": 15000,
-      "productName": "22 SS 홀리데이 디너 포크 세트(2p)",
-      "count": 5
-    }]
+      "title": "23 체리블라썸 베이지 쿨러백",
+      "imgUrl": "https://shop-phinf.pstatic.net/20230213_67/1676251354742spgzR_JPEG/77387188560991889_1557480702.jpg?type=m510",
+      "price": 22000,
+      "isNew": false
+    },
+    {
+      "id":4,
+      "productId": 4,
+      "title": "사이렌 버즈2 케이스",
+      "imgUrl": "https://shop-phinf.pstatic.net/20220704_149/16568929487667PT1F_JPEG/58028776577624479_607244592.jpg?type=m510",
+      "price": 39000,
+      "isNew": false
+    }
+  ],
+  "cart-items-by-user": [
+    {
+      "id": 1,
+      "productId": 4,
+      "qty" : 2,
+      "isFreeze" : false
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "qty" : 1,
+      "isFreeze" : true
+    },
+    {
+      "id": 3,
+      "productId": 3,
+      "qty" : 3,
+      "isFreeze" : false
+    },
+    {
+      "id": 4,
+      "productId": 2,
+      "qty" : 1,
+      "isFreeze" : true
+    }
+  ]
 }
 

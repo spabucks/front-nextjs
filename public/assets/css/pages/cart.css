@@ -240,6 +240,9 @@
     flex-direction: row;
     height: 40px;
     padding: 0.8rem 1.2rem;
+    position: relative;
+    bottom: 70px;
+    background-color: white;
   }
   .footer-product-cart__info div {
     font-size: 1rem;
