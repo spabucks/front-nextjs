@@ -1,0 +1,61 @@
+.modalcount-container{
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+}
+.modalchangecount-main{
+    margin-top: 60px;
+    padding: 20px;
+}
+.modalchangecount-info img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+.modalchangecount-info{
+    display: flex;
+    align-items: center;
+}
+.modalchangecount-title-count{
+    padding: 10px;
+    font-weight: 800;
+    width: 100%;
+}
+.buy-product-change-lists{
+    background-color: var(--color-brightgrey-background);
+    margin: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.buy-product-change-lists p{
+    margin: 0px 0px 20px 0px;
+}
+.buy-product-change--count-charge{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.buy-product-change-count{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.buy-product-change-count span{
+    font-weight: 800;
+}
+.buy-product-change-count button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+.buy-product-change-count button:first-child{
+   margin-right: 10px;
+}
+.buy-product-change-count button:last-child{
+    margin-left: 10px;
+ }
+ .buy-product-change-charge{
+    font-weight: 800;
+    font-size: 20px;
+ }
