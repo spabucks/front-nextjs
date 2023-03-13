@@ -3,8 +3,70 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { cartData, cartuseritem } from "@/types/type";
 import CartProductListItem from "@/components/sections/CartProductListitem";
+import { cartInfo } from "@/types/type";
+import { count } from "console";
+export interface ChildProps {
+  setIsChangeModal:React.Dispatch<React.SetStateAction<Boolean>>
+}
+function ModalChangeCount({setIsChangeModal}:ChildProps){
+  return(
+    <>
+      <header>
+        <div className="sub-header">
+          <img src="assets/images/icons/close.svg" />
+          <h1 className="sub-header-title">온라인 스토어</h1>
+          <img src="assets/images/icons/close.svg" onClick={()=>{setIsChangeModal(false)}}/>
+        </div>
+      </header>
+      <section className="modalchangecount-main boder-under-border">
+        <div className="modalchangecount-info">
+          <div className="modalchangecount-img">
+            <img src={""} />
+          </div>
+          <div className="modalchangecount-title-count">
+            <p>dddd</p>
+            <p>gggggg</p>
+          </div>
+        </div>
+      </section>
+      <div className="buy-product-change-lists">
+        <div className="buy-product-change-list-main">
+          <div className="buy-product-change-list">
+            <p>상품주문수량</p>
+            <div className="buy-product-change--count-charge">
+              <div className="buy-product-change-count">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+              </div>
+              <div className="buy-product-change-charge">dddd원</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer className="footer-product-cart">
+         <div className="footer-product-cart__info">
+           <div>주문금액</div>
+           <p>
+             <span>합계 26,000</span>원
+           </p>
+         </div>
+         <div className="footer-charge-total-btn">
+           <button type="button">취소</button>
+           <button type="button">확인</button>
+         </div>
+       </footer>
+    </>
+
+  )
+}
+
+
+
+
 export default function Cart() {
   const [data, setData] = useState<cartData>();
+  let [ischangemodal, setIsChangeModal] = useState<Boolean>(false);
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   useEffect(() => {
@@ -22,7 +84,7 @@ export default function Cart() {
 
   return (
     <>
-      <header>
+{ischangemodal===true? <ModalChangeCount setIsChangeModal={setIsChangeModal}/>: <><header>
         <div className="sub-header">
           <img src="assets/images/icons/left-chevron.svg" />
           <h1 className="sub-header-title">온라인 스토어</h1>
@@ -58,9 +120,10 @@ export default function Cart() {
 
        {data &&
          data.generalitems.map((item) => (
-         <CartProductListItem key={item.cartId}
+        <CartProductListItem key={item.cartId}
          productId={item.productId}
-         count={item.count}/>
+         count={item.count}
+         setIsChangeModal ={setIsChangeModal}/>
          ))} 
          
          <div className="section-cart-middle border-top">
@@ -78,7 +141,8 @@ export default function Cart() {
          data.freezeitems.map((item) => (
          <CartProductListItem key={item.cartId}
          productId={item.productId}
-         count={item.count}/>
+         count={item.count}
+         setIsChangeModal ={setIsChangeModal}/>
          ))} 
 
        <div className="section-cart-middle border-top">
@@ -136,7 +200,9 @@ export default function Cart() {
          </div>
        </footer>
 
-       </section>}
+       </section>}</>}
+  
+    
        </>
        )
 }

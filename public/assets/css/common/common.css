@@ -9,6 +9,9 @@ h1 {
 .boder-under {
   border-bottom: thin solid #dedede;
 }
+.boder-under-border {
+  border-bottom: 10px solid var(--color-brightgrey-background);
+}
 .border-top {
   border-top: thin solid #dedede;
 }
