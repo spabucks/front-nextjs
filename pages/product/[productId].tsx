@@ -8,47 +8,37 @@ import axios from "axios";
 import FooterBtn from "@/components/ui/FooterBtn";
 import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartCount } from "@/state/cartCount";
 export default function Product() {
   const { query } = useRouter();
   const BaseUrl = process.env.baseApiUrl;
-  // console.log("router.query", router.query.productId);
   const [data, setData] = useState<recommandproduct[]>([]);
   const [productData, setProductData] = useState<detailProduct>();
-  const [isClick, setIsClick] = useState<Boolean>(false); // 메뉴의 초기값을 false로 설정
+  const [isClick, setIsClick] = useState<Boolean>(false); 
   const [isCartModal, setIsCartModal] = useState<Boolean>(false)
   const uuid:string = "85295edc-24ee-4781-b8e3-becc596b010e"
-console.log('query',query)
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
       .then((res) => {
-        console.log(res);
         setData(res.data);
       })
       .catch((err) => console.log(err));
   }, [query.productId]);
 
-  useEffect(() => {
-    axios
-      .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
-      .then((res) => {
-        console.log(res.data);
-        setProductData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [query.productId]);
+  const [count, setCount] = useRecoilState(cartCount);
 
   const handleAddCart = () => {
-    console.log('productId',query.productId)
-    console.log('userId',uuid)
     setIsCartModal(true)
     setIsClick(false)
-    axios.post("http://124.216.167.73:8081/api/v1/cart/add", {
+    axios.post(`${BaseUrl}/api/v1/cart/add`, {
       productId: query.productId,
       userId:uuid,
-      amount:1
+      amount:count
     }).then((res)=>{
       console.log("res.data",res)
+      setCount(1)
     }).catch((err)=>console.log(err));
   };
 

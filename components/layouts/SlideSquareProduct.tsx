@@ -10,6 +10,7 @@ export default function SlideSquareProduct(props : {title:string, itemData:produ
             {
                 props.itemData.map( item => (
                     <ProductCard 
+                    key={item.id}
                         data = {item}
                     />
                 ))

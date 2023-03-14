@@ -243,6 +243,7 @@
     position: relative;
     bottom: 70px;
     background-color: white;
+    box-shadow: -2px 9px 23px -8px #000000;
   }
   .footer-product-cart__info div {
     font-size: 1rem;

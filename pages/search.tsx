@@ -9,19 +9,17 @@ export default function Search() {
   const [recentWords, setRecentWords] = useRecoilState(recentSearchWord);
   const [input, setInput] = useState<string>();
   // const [valueList, setValueList] = useState<string[]>([]);
+      if (typeof input !== "undefined") {
+      // setValueList([...valueList,input]);
+        setRecentWords([...recentWords, input]);
+    }
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    console.log(value);
     setInput(value);
   };
   const handleSubmit: any = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    console.log("submit");
 
-    if (typeof input !== "undefined") {
-      // setValueList([...valueList,input]);
-      setRecentWords([...recentWords, input]);
-    }
   };
 
   return (

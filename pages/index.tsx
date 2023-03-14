@@ -35,6 +35,7 @@ export default function Home() {
       {
         data && data.map( item => (
           <SlideSquareProduct 
+            key={item.id}
             title={item.name}
             itemData={item.data}
           />

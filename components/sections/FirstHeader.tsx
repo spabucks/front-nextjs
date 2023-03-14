@@ -61,12 +61,14 @@ export default function FirstHeader() {
           <ul>
             {headerRightIcons.map((menuIcon) => (
               <li key={menuIcon.id}>
+                <Link href={menuIcon.link}>
                 <Image
                   width={20}
                   height={20}
                   src={menuIcon.icon}
                   alt={menuIcon.name}
                 ></Image>
+                </Link>
               </li>
             ))}
           </ul>
