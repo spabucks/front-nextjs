@@ -1,10 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
 import { cartInfo } from "@/types/type";
 import { cartuseritem } from "@/types/type";
+import ProductCard from "../ui/ProductCard";
 export default function CartProductListItem(props: {
   setIsChangeModal: React.Dispatch<React.SetStateAction<Boolean>>;
   setModalData: React.Dispatch<React.SetStateAction<any>>;
+  setIsCheck: React.Dispatch<React.SetStateAction<Boolean>>;
+  handleAddOrderList: Function;
+  handleRemoveOrderList: Function;
+  isCheck: Boolean,
   productId: number;
   count: number;
   cartId: number;
@@ -25,16 +30,33 @@ export default function CartProductListItem(props: {
       price: cartProductData?.price,
       imgUrl: cartProductData?.imgUrl,
       count: props.count,
-      cartId:props.cartId
+      cartId: props.cartId,
     });
     props.setIsChangeModal(true);
   };
+
+const handleDelete = () => {
+  console.log(props.cartId)
+    axios.patch(`${BaseUrl}/api/v1/cart/delete`,{
+      cartId:props.cartId
+    }).then((res)=>{
+      console.log(res)
+      props.setIsCheck(!props.isCheck)
+    })
+    
+  }
+
+  const handleCheckChange = (event:ChangeEvent<HTMLInputElement>) => {
+    if(event.target.checked) props.handleAddOrderList( props.cartId, props.count, cartProductData?.price )
+    else props.handleRemoveOrderList( props.cartId )
+  }
+
   return (
     <>
       {cartProductData && (
         <div className="check-row">
           <div className="check-left">
-            <input type="checkbox" id="product-check" />
+            <input type="checkbox" id={`product-check${props.cartId}`} onChange={handleCheckChange}/>
             <label htmlFor="product-check"></label>
           </div>
           <div className="product-cart-view">
@@ -46,7 +68,7 @@ export default function CartProductListItem(props: {
                   <span>{cartProductData.price}</span>원
                 </p>
               </div>
-              <img src="assets/images/icons/close.svg" />
+              <img src="assets/images/icons/close.svg" onClick={handleDelete}/>
             </div>
             <div className="product-view-count-info">
               <div className="product-view-count">{`수량: ${props.count}개`}</div>
