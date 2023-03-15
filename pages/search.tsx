@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Search() {
   const [recentWords, setRecentWords] = useRecoilState(recentSearchWord);
   const [input, setInput] = useState<string>();
-  // const [valueList, setValueList] = useState<string[]>([]);
+  const [valueList, setValueList] = useState<string[]>([]);
       if (typeof input !== "undefined") {
       // setValueList([...valueList,input]);
         setRecentWords([...recentWords, input]);
@@ -19,7 +19,6 @@ export default function Search() {
   };
   const handleSubmit: any = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-
   };
 
   return (

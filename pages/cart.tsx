@@ -1,12 +1,15 @@
 import CartProductTitle from "@/components/ui/CartProductTitle";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { cartData, cartuseritem } from "@/types/type";
+import { cartData, cartuseritem, orderListType } from "@/types/type";
 import CartProductListItem from "@/components/sections/CartProductListitem";
 import { ShowModal } from "@/components/ui/CartProductCardDetail";
 import Link from "next/link";
+
 export interface ChildProps {
   setIsChangeModal: React.Dispatch<React.SetStateAction<Boolean>>;
+  setIsCheck: React.Dispatch<React.SetStateAction<Boolean>>;
+  isCheck: Boolean;
   modalData: ModalDatas;
 }
 export interface ModalDatas {
@@ -16,20 +19,30 @@ export interface ModalDatas {
   count: number;
   cartId: number;
 }
-function ModalChangeCount({ setIsChangeModal, modalData }: ChildProps) {
+function ModalChangeCount({
+  setIsChangeModal,
+  modalData,
+  setIsCheck,
+  isCheck,
+}: ChildProps) {
+  const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   const BaseUrl = process.env.baseApiUrl;
   const [itmeChangecount, setItemChangecount] = useState<number>(
     modalData.count
   );
   const changeItemCart = () => {
-    axios.put(`${BaseUrl}/api/v1/cart/updata/${modalData.cartId}`, {
-      amount: {itmeChangecount}
-    }).then((res)=>{
-      console.log('res',res)
-    }).catch((err)=>console.log(err));
+    axios
+      .post(`${BaseUrl}/api/v1/cart/update`, {
+        cartId: modalData.cartId,
+        amount: itmeChangecount,
+      })
+      .then((res) => {
+        setIsChangeModal(false);
+        setIsCheck(!isCheck);
+      })
+      .catch((err) => console.log(err));
   };
-  console.log('modalData.cartId',modalData.cartId)
-  console.log('itmeChangecount',itmeChangecount)
+
   return (
     <>
       <header>
@@ -103,13 +116,7 @@ function ModalChangeCount({ setIsChangeModal, modalData }: ChildProps) {
         </div>
         <div className="footer-charge-total-btn">
           <button type="button">취소</button>
-          <button
-            type="button"
-            onClick={() => {
-              changeItemCart;
-          
-            }}
-          >
+          <button type="button" onClick={changeItemCart}>
             확인
           </button>
         </div>
@@ -119,11 +126,16 @@ function ModalChangeCount({ setIsChangeModal, modalData }: ChildProps) {
 }
 
 export default function Cart() {
-  const [data, setData] = useState<cartData>();
-  const [modalData, setModalData] = useState<ModalDatas>();
-  let [ischangemodal, setIsChangeModal] = useState<Boolean>(false);
+
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
+
+  const [isCheck, setIsCheck] = useState<Boolean>(false);
+  const [data, setData] = useState<cartData>();
+  const [modalData, setModalData] = useState<ModalDatas>();
+  const [ischangemodal, setIsChangeModal] = useState<Boolean>(false);
+  const [orderList, setOrderList] = useState<orderListType[]>([] as orderListType[]);
+
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/${uuid}`)
@@ -138,13 +150,28 @@ export default function Cart() {
         setData({ ...data, itemNumber, generalitems, freezeitems });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [isCheck]);
+
+  const handleAddOrderList = ( cartId:number, count:number, price:number ):void => {
+    setOrderList([...orderList, {cartId:cartId, count:count, price:price}])
+  }
+
+  const handleRemoveOrderList = ( cartId:number ):void => {
+    setOrderList(orderList.filter(order => order.cartId !== cartId))
+  }
+
+  useEffect(() => {
+    console.log(orderList)
+  },[orderList])
+
   return (
     <>
       {modalData && ischangemodal === true ? (
         <ModalChangeCount
           setIsChangeModal={setIsChangeModal}
           modalData={modalData}
+          setIsCheck={setIsCheck}
+          isCheck={isCheck}
         />
       ) : (
         <>
@@ -168,7 +195,7 @@ export default function Cart() {
             <section className="section-cart-top">
               <div className="check-title-main">
                 <div className="check-btn">
-                  <input type="checkbox" id="total-product-check" />
+                  <input type="checkbox" id="totaldelete-product-check" />
                   <p>전체 선택</p>
                 </div>
                 <div className="check-right">
@@ -178,8 +205,14 @@ export default function Cart() {
                   <button>전체삭제</button>
                 </div>
               </div>
+
               {data.generalitems.length > 0 && (
-                <CartProductTitle title={"일반 상품"} />
+                <div className="check-title-main">
+                  <div className="check-btn">
+                    <input type="checkbox" id="general-product-check" />
+                    <p>일반상품</p>
+                  </div>
+                </div>
               )}
               {data.generalitems.length > 0 &&
                 data.generalitems.map((item) => (
@@ -190,6 +223,10 @@ export default function Cart() {
                     cartId={item.cartId}
                     setIsChangeModal={setIsChangeModal}
                     setModalData={setModalData}
+                    isCheck = {isCheck}
+                    setIsCheck = {setIsCheck}
+                    handleAddOrderList = {handleAddOrderList}
+                    handleRemoveOrderList = {handleRemoveOrderList}
                   />
                 ))}
               {data.generalitems.length > 0 && (
@@ -201,9 +238,18 @@ export default function Cart() {
                   <button type="button">더 담으러 가기</button>
                 </div>
               )}
-              {data.freezeitems.length > 0 && (
+              {/* {data.freezeitems.length > 0 && (
                 <CartProductTitle title={"냉동 상품"} />
+              )} */}
+              {data.freezeitems.length > 0 && (
+                <div className="check-title-main">
+                  <div className="check-btn">
+                    <input type="checkbox" id="freeze-product-check" />
+                    <p>냉동상품</p>
+                  </div>
+                </div>
               )}
+
               {data.freezeitems.length > 0 &&
                 data.freezeitems.map((item) => (
                   <CartProductListItem
@@ -213,6 +259,10 @@ export default function Cart() {
                     cartId={item.cartId}
                     setIsChangeModal={setIsChangeModal}
                     setModalData={setModalData}
+                    isCheck = {isCheck}
+                    setIsCheck = {setIsCheck}
+                    handleAddOrderList = {handleAddOrderList}
+                    handleRemoveOrderList = {handleRemoveOrderList}
                   />
                 ))}
               {data.freezeitems.length > 0 && (

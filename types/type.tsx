@@ -99,9 +99,14 @@ export interface cartuseritem{
     productId: number,
     bigCategoryId : number,
     count : number
-    }
-    export interface cartInfo {
-        productName : string,
-        imgUrl : string,
-        price : number,
-    }
+}
+export interface cartInfo {
+    productName : string,
+    imgUrl : string,
+    price : number,
+}
+export interface orderListType {
+    cartId: number,
+    count: number,
+    price: number
+}

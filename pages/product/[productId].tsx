@@ -18,6 +18,17 @@ export default function Product() {
   const [isClick, setIsClick] = useState<Boolean>(false); 
   const [isCartModal, setIsCartModal] = useState<Boolean>(false)
   const uuid:string = "85295edc-24ee-4781-b8e3-becc596b010e"
+
+  useEffect(() => {
+    axios
+      .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
+      .then((res) => {
+        console.log(res.data)
+        setProductData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [query.productId]);
+
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
@@ -26,6 +37,7 @@ export default function Product() {
       })
       .catch((err) => console.log(err));
   }, [query.productId]);
+
 
   const [count, setCount] = useRecoilState(cartCount);
 
@@ -37,7 +49,7 @@ export default function Product() {
       userId:uuid,
       amount:count
     }).then((res)=>{
-      console.log("res.data",res)
+      console.log("res.dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",res)
       setCount(1)
     }).catch((err)=>console.log(err));
   };

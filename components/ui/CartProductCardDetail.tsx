@@ -2,10 +2,11 @@ import React, { use, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { setTimeout } from "timers/promises";
 import { cartCount } from "@/state/cartCount";
+import { detailProduct } from "@/types/type";
 export interface ChildProps {
   isClick?: Boolean;
   setIsClick?: React.Dispatch<React.SetStateAction<Boolean>>;
-  data: { title: string; price: number };
+  data?: detailProduct;
 }
 
 export function ShowModal() {
@@ -27,6 +28,8 @@ export function ShowModal() {
   );
 }
 
+
+
 export default function CartProductCardDetail({
   data,
   isClick,
@@ -44,7 +47,7 @@ export default function CartProductCardDetail({
       {isClick ? (
         <>
           <div className="buy-product-list">
-            <p>{data.title}</p>
+            <p>{data?.title}</p>
             <div className="buy-product-count-charge">
               <div className="buy-product-count">
                 {count > 1 ? (
