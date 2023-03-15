@@ -110,3 +110,9 @@ export interface orderListType {
     count: number,
     price: number
 }
+
+export interface orderListSumType {
+    generalSum: number,
+    freezeSum: number,
+    allSum: number
+}

@@ -1,8 +1,10 @@
 import axios from "axios";
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
-import { cartInfo } from "@/types/type";
-import { cartuseritem } from "@/types/type";
-import ProductCard from "../ui/ProductCard";
+import { ChangeEvent, useEffect, useState } from "react";
+import { cartInfo, orderListSumType } from "@/types/type";
+import { useRecoilState } from "recoil";
+import { orderPrice } from "@/state/orderPrice";
+
+
 export default function CartProductListItem(props: {
   setIsChangeModal: React.Dispatch<React.SetStateAction<Boolean>>;
   setModalData: React.Dispatch<React.SetStateAction<any>>;
@@ -13,17 +15,27 @@ export default function CartProductListItem(props: {
   productId: number;
   count: number;
   cartId: number;
+  bigCategoryId: number;
 }) {
+
   const BaseUrl = process.env.baseApiUrl;
   const [cartProductData, setCartProductData] = useState<cartInfo>();
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
+
+
+  const [total, setTotal] = useRecoilState(orderPrice);
+console.log(props.bigCategoryId)
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/product/${props.productId}`)
       .then((res) => {
         setCartProductData(res.data);
+        console.log('res.dataaaaaaaaaaaaaaa',res.data)
+        console.log('cartProductData',cartProductData)
+        if(props.bigCategoryId!==1) setTotal(total + (res.data.price * props.count))
       });
-  });
+  },[]);
+
   const handleChangeTrueModal = () => {
     props.setModalData({
       title: cartProductData?.productName,
@@ -33,7 +45,7 @@ export default function CartProductListItem(props: {
       cartId: props.cartId,
     });
     props.setIsChangeModal(true);
-  };
+  }; 
 
 const handleDelete = () => {
   console.log(props.cartId)

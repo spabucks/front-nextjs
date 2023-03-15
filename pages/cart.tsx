@@ -1,11 +1,11 @@
-import CartProductTitle from "@/components/ui/CartProductTitle";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { cartData, cartuseritem, orderListType } from "@/types/type";
+import { cartData, orderListSumType, orderListType } from "@/types/type";
 import CartProductListItem from "@/components/sections/CartProductListitem";
 import { ShowModal } from "@/components/ui/CartProductCardDetail";
-import Link from "next/link";
-
+import { useRecoilValue } from "recoil";
+import { orderPrice } from "@/state/orderPrice";
+import { useRecoilState } from "recoil";
 export interface ChildProps {
   setIsChangeModal: React.Dispatch<React.SetStateAction<Boolean>>;
   setIsCheck: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -25,14 +25,13 @@ function ModalChangeCount({
   setIsCheck,
   isCheck,
 }: ChildProps) {
-  const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   const BaseUrl = process.env.baseApiUrl;
   const [itmeChangecount, setItemChangecount] = useState<number>(
     modalData.count
   );
   const changeItemCart = () => {
     axios
-      .post(`${BaseUrl}/api/v1/cart/update`, {
+      .patch(`${BaseUrl}/api/v1/cart/update`, {
         cartId: modalData.cartId,
         amount: itmeChangecount,
       })
@@ -126,15 +125,17 @@ function ModalChangeCount({
 }
 
 export default function Cart() {
-
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
 
+  const total = useRecoilValue(orderPrice);
   const [isCheck, setIsCheck] = useState<Boolean>(false);
   const [data, setData] = useState<cartData>();
   const [modalData, setModalData] = useState<ModalDatas>();
   const [ischangemodal, setIsChangeModal] = useState<Boolean>(false);
-  const [orderList, setOrderList] = useState<orderListType[]>([] as orderListType[]);
+  const [orderList, setOrderList] = useState<orderListType[]>(
+    [] as orderListType[]
+  );
 
   useEffect(() => {
     axios
@@ -151,18 +152,24 @@ export default function Cart() {
       })
       .catch((err) => console.log(err));
   }, [isCheck]);
+  const handleAddOrderList = (
+    cartId: number,
+    count: number,
+    price: number
+  ): void => {
+    setOrderList([
+      ...orderList,
+      { cartId: cartId, count: count, price: price },
+    ]);
+  };
 
-  const handleAddOrderList = ( cartId:number, count:number, price:number ):void => {
-    setOrderList([...orderList, {cartId:cartId, count:count, price:price}])
-  }
-
-  const handleRemoveOrderList = ( cartId:number ):void => {
-    setOrderList(orderList.filter(order => order.cartId !== cartId))
-  }
-
+  const handleRemoveOrderList = (cartId: number): void => {
+    setOrderList(orderList.filter((order) => order.cartId !== cartId));
+  };
   useEffect(() => {
-    console.log(orderList)
-  },[orderList])
+    console.log(orderList);
+  }, [orderList]);
+
 
   return (
     <>
@@ -223,24 +230,22 @@ export default function Cart() {
                     cartId={item.cartId}
                     setIsChangeModal={setIsChangeModal}
                     setModalData={setModalData}
-                    isCheck = {isCheck}
-                    setIsCheck = {setIsCheck}
-                    handleAddOrderList = {handleAddOrderList}
-                    handleRemoveOrderList = {handleRemoveOrderList}
+                    isCheck={isCheck}
+                    setIsCheck={setIsCheck}
+                    handleAddOrderList={handleAddOrderList}
+                    handleRemoveOrderList={handleRemoveOrderList}
+                    bigCategoryId={item.bigCategoryId}
                   />
                 ))}
               {data.generalitems.length > 0 && (
                 <div className="section-cart-middle border-top">
                   <div>
-                    <p>상품 1건 23000원 배송비 3,000원 = 총 26,000원</p>
+                    <p>{`상품 ${data.generalitems.length}건 ${total}원 배송비 3,000원 = 총 26,000원`}</p>
                     <p>7,000원 더 담으면 무료배송</p>
                   </div>
                   <button type="button">더 담으러 가기</button>
                 </div>
               )}
-              {/* {data.freezeitems.length > 0 && (
-                <CartProductTitle title={"냉동 상품"} />
-              )} */}
               {data.freezeitems.length > 0 && (
                 <div className="check-title-main">
                   <div className="check-btn">
@@ -259,16 +264,17 @@ export default function Cart() {
                     cartId={item.cartId}
                     setIsChangeModal={setIsChangeModal}
                     setModalData={setModalData}
-                    isCheck = {isCheck}
-                    setIsCheck = {setIsCheck}
-                    handleAddOrderList = {handleAddOrderList}
-                    handleRemoveOrderList = {handleRemoveOrderList}
+                    isCheck={isCheck}
+                    setIsCheck={setIsCheck}
+                    handleAddOrderList={handleAddOrderList}
+                    handleRemoveOrderList={handleRemoveOrderList}
+                    bigCategoryId={item.bigCategoryId}
                   />
                 ))}
               {data.freezeitems.length > 0 && (
                 <div className="section-cart-middle border-top">
                   <div>
-                    <p>상품 1건 23,000원 배송비 3,000원 = 총 26,000원</p>
+                    {/* <p>{`상품 ${data.generalitems.length}건 ${total}원 배송비 3,000원 = 총 26,000원`}</p> */}
                     <p>7,000원 더 담으면 무료배송</p>
                   </div>
                   <button type="button">더 담으러 가기</button>
