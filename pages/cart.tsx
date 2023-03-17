@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { cartData, orderListSumType, orderListType } from "@/types/type";
+import { cartData, orderListType } from "@/types/type";
 import CartProductListItem from "@/components/sections/CartProductListitem";
 import { ShowModal } from "@/components/ui/CartProductCardDetail";
-import { useRecoilValue } from "recoil";
 import { orderPrice } from "@/state/orderPrice";
 import { useRecoilState } from "recoil";
 export interface ChildProps {
@@ -128,7 +127,7 @@ export default function Cart() {
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
 
-  const total = useRecoilValue(orderPrice);
+  const [total, setTotal] = useRecoilState(orderPrice);
   const [isCheck, setIsCheck] = useState<Boolean>(false);
   const [data, setData] = useState<cartData>();
   const [modalData, setModalData] = useState<ModalDatas>();
@@ -136,7 +135,6 @@ export default function Cart() {
   const [orderList, setOrderList] = useState<orderListType[]>(
     [] as orderListType[]
   );
-
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/${uuid}`)
@@ -155,11 +153,17 @@ export default function Cart() {
   const handleAddOrderList = (
     cartId: number,
     count: number,
-    price: number
+    price: number,
+    bigCategoryId: number
   ): void => {
     setOrderList([
       ...orderList,
-      { cartId: cartId, count: count, price: price },
+      {
+        cartId: cartId,
+        count: count,
+        price: price,
+        bigCategoryId: bigCategoryId
+      },
     ]);
   };
 
@@ -169,8 +173,92 @@ export default function Cart() {
   useEffect(() => {
     console.log(orderList);
   }, [orderList]);
+  /**체크한 상품에 대한 가격 */
+  const totalProdectList = orderList.map(function (v) {
+    return v.price * v.count;
+  });
+  console.log("totalProdectList", totalProdectList);
 
+  const totalOrderListTotalprice = totalProdectList.reduce(function (a, x) {
+    return (a += x);
+  }, 0);
 
+  /**체크한 상품을 가지고 왔으니까 bigcategory가 1인것과 아닌것을 분류해서 화면호출 */
+  const generalOrderList = orderList.filter(
+    (item: any) => item.bigCategoryId !== 1
+  );
+  const freezeOrderList = orderList.filter(
+    (item: any) => item.bigCategoryId === 1
+  );
+
+  const generalOrderListprice = generalOrderList.map((v) => v.price * v.count);
+
+  const generalOrderListTotalprice = generalOrderListprice.reduce(
+    (sum, charge) => (sum += charge),
+    0
+  );
+
+  const freezeOrderListprice = freezeOrderList.map((v) => v.price * v.count);
+
+  const freezeOrderListTotalprice = freezeOrderListprice.reduce(
+    (sum, charge) => (sum += charge),
+    0
+  );
+
+  function deliveryCharge() {
+    if (
+      totalProdectList.length == 0 ||
+      (generalOrderListTotalprice >= 30000 &&
+        freezeOrderListTotalprice >= 30000)
+    ) {
+      return 0;
+    } else if (
+      freezeOrderList.length !== 0 &&
+      generalOrderList.length == 0 &&
+      freezeOrderListTotalprice >= 30000
+    ) {
+      return 0;
+    } else if (
+      generalOrderList.length !== 0 &&
+      freezeOrderList.length === 0 &&
+      generalOrderListTotalprice > 30000
+    ) {
+      return 0;
+    } else if (
+      freezeOrderList.length !== 0 &&
+      generalOrderList.length == 0 &&
+      freezeOrderListTotalprice < 30000
+    ) {
+      return 3000;
+    } else if (
+      generalOrderList.length !== 0 &&
+      freezeOrderList.length == 0 &&
+      generalOrderListTotalprice < 30000
+    ) {
+      return 3000;
+    } else if (
+      generalOrderList.length !== 0 &&
+      freezeOrderList.length !== 0 &&
+      freezeOrderListTotalprice >= 30000 &&
+      generalOrderListTotalprice < 30000
+    ) {
+      return 3000;
+    } else if (
+      generalOrderList.length !== 0 &&
+      freezeOrderList.length !== 0 &&
+      freezeOrderListTotalprice < 30000 &&
+      generalOrderListTotalprice >= 30000
+    ) {
+      return 3000;
+    } else if (
+      generalOrderList.length !== 0 &&
+      freezeOrderList.length !== 0 &&
+      generalOrderListTotalprice <= 30000 &&
+      freezeOrderListTotalprice <= 30000
+    ) {
+      return 6000;
+    }
+  }
   return (
     <>
       {modalData && ischangemodal === true ? (
@@ -237,11 +325,26 @@ export default function Cart() {
                     bigCategoryId={item.bigCategoryId}
                   />
                 ))}
-              {data.generalitems.length > 0 && (
+              {generalOrderList.length > 0 && (
                 <div className="section-cart-middle border-top">
                   <div>
-                    <p>{`상품 ${data.generalitems.length}건 ${total}원 배송비 3,000원 = 총 26,000원`}</p>
-                    <p>7,000원 더 담으면 무료배송</p>
+                    {generalOrderListTotalprice >= 30000 ? (
+                      <>
+                        <p>{`상품 ${generalOrderList.length}건 ${generalOrderListTotalprice}원 배송비 0원 = 총 ${generalOrderListTotalprice}원`}</p>
+                        <p>무료배송</p>
+                      </>
+                    ) : (
+                      <>
+                        <p>{`상품 ${
+                          generalOrderList.length
+                        }건 ${generalOrderListTotalprice}원 배송비 3000원 = 총 ${
+                          generalOrderListTotalprice + 3000
+                        }원`}</p>
+                        <p>{`${
+                          30000 - generalOrderListTotalprice
+                        }원 더 담으면 무료배송`}</p>
+                      </>
+                    )}
                   </div>
                   <button type="button">더 담으러 가기</button>
                 </div>
@@ -271,36 +374,56 @@ export default function Cart() {
                     bigCategoryId={item.bigCategoryId}
                   />
                 ))}
-              {data.freezeitems.length > 0 && (
+
+              {freezeOrderList.length > 0 && (
                 <div className="section-cart-middle border-top">
                   <div>
-                    {/* <p>{`상품 ${data.generalitems.length}건 ${total}원 배송비 3,000원 = 총 26,000원`}</p> */}
-                    <p>7,000원 더 담으면 무료배송</p>
+                    {freezeOrderListTotalprice >= 30000 ? (
+                      <>
+                        <p>{`상품 ${freezeOrderList.length}건 ${freezeOrderListTotalprice}원 배송비 0원 = 총 ${freezeOrderListTotalprice}원`}</p>
+                        <p>무료배송</p>
+                      </>
+                    ) : (
+                      <>
+                        <p>{`상품 ${
+                          freezeOrderList.length
+                        }건 ${freezeOrderListTotalprice}원 배송비 3000원 = 총 ${
+                          freezeOrderListTotalprice + 3000
+                        }원`}</p>
+                        <p>{`${
+                          30000 - freezeOrderListTotalprice
+                        }원 더 담으면 무료배송`}</p>
+                      </>
+                    )}
                   </div>
                   <button type="button">더 담으러 가기</button>
                 </div>
               )}
+
               <section className="section-cart-bottom">
                 <h4>총 주문 금액</h4>
                 <div className="section-cart__product">
                   <div>
                     <span>상품금액</span>
-                    <p>0원</p>
+                    <p>{totalOrderListTotalprice}원</p>
                   </div>
                   <div>
                     <span>할인금액</span>
                     <p>0원</p>
                   </div>
-                  <div>
-                    <span>배송비</span>
-                    <p>0원</p>
-                  </div>
-                </div>
 
+                  {
+                    <div>
+                      <span>배송비</span>
+                      <p>{deliveryCharge()}원</p>
+                    </div>
+                  }
+                </div>
+                {/* totalProdectList.length !== 0 && */}
                 <div className="section-cart__total-charge">
                   <div>
                     <span>최종 결제 금액</span>
-                    <p>0원</p>
+                    <p>{`${totalOrderListTotalprice + deliveryCharge()}`}원</p>
                   </div>
                 </div>
                 <div className="section-cart__total-charge__info">
@@ -314,9 +437,11 @@ export default function Cart() {
               </section>
               <footer className="footer-product-cart">
                 <div className="footer-product-cart__info">
-                  <div>총 1건/20건</div>
+                  <div>{`총 ${
+                    freezeOrderList.length + generalOrderList.length
+                  }건/20건`}</div>
                   <p>
-                    <span>26,000</span>원
+                    <span>{totalOrderListTotalprice}</span>원
                   </p>
                 </div>
                 <div className="footer-charge-total-btn">

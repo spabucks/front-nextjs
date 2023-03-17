@@ -108,7 +108,8 @@ export interface cartInfo {
 export interface orderListType {
     cartId: number,
     count: number,
-    price: number
+    price: number,
+    bigCategoryId:number
 }
 
 export interface orderListSumType {

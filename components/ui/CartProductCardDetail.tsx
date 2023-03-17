@@ -1,6 +1,5 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { setTimeout } from "timers/promises";
 import { cartCount } from "@/state/cartCount";
 import { detailProduct } from "@/types/type";
 export interface ChildProps {
@@ -37,7 +36,7 @@ export default function CartProductCardDetail({
 }: ChildProps) {
   const [count, setCount] = useRecoilState(cartCount);
 
-  console.log("count", count);
+  console.log("dataaaaaaaaaaaaaaaaaaa", data);
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };

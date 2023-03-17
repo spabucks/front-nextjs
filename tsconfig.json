@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "state/recentSearchWord.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "state/recentSearchWord.ts", "pages/signup11"],
   "exclude": ["node_modules"]
 }

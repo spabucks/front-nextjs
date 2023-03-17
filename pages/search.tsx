@@ -27,7 +27,7 @@ export default function Search() {
         <div className="form-search">
           <form className="search-keyword" onSubmit={handleSubmit}>
             <input
-              onChange={handleInputChange}
+              // onChange={handleInputChange}
               name="searchWord"
               type="text"
               id="searchword"

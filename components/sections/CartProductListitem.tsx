@@ -21,18 +21,15 @@ export default function CartProductListItem(props: {
   const BaseUrl = process.env.baseApiUrl;
   const [cartProductData, setCartProductData] = useState<cartInfo>();
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
-
-
   const [total, setTotal] = useRecoilState(orderPrice);
-console.log(props.bigCategoryId)
+
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/product/${props.productId}`)
       .then((res) => {
         setCartProductData(res.data);
-        console.log('res.dataaaaaaaaaaaaaaa',res.data)
-        console.log('cartProductData',cartProductData)
-        if(props.bigCategoryId!==1) setTotal(total + (res.data.price * props.count))
+        if(props.bigCategoryId!==1) 
+        setTotal(res.data.price * props.count)
       });
   },[]);
 
@@ -43,6 +40,7 @@ console.log(props.bigCategoryId)
       imgUrl: cartProductData?.imgUrl,
       count: props.count,
       cartId: props.cartId,
+      bigCategoryId:props.bigCategoryId
     });
     props.setIsChangeModal(true);
   }; 
@@ -59,7 +57,7 @@ const handleDelete = () => {
   }
 
   const handleCheckChange = (event:ChangeEvent<HTMLInputElement>) => {
-    if(event.target.checked) props.handleAddOrderList( props.cartId, props.count, cartProductData?.price )
+    if(event.target.checked) props.handleAddOrderList( props.cartId, props.count, cartProductData?.price, props.bigCategoryId )
     else props.handleRemoveOrderList( props.cartId )
   }
 

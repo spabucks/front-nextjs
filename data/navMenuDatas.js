@@ -107,3 +107,40 @@ export const headerMenus = [
       icon: 'assets/images/icons/user.svg'
     }
   ]
+
+  export const FilterCategoryList = [
+    {
+      id: 1,
+      name: '전체h',
+      categoryId:2
+    },
+    {
+      id: 2,
+      name: '케이크',
+      categoryId:2
+    },
+    {
+      id: 3,
+      name: '텀블러/보온병',
+      categoryId:2
+    }
+    ,
+    {
+      id: 4,
+      name: '머그/캅',
+      categoryId:2
+    }
+    ,
+    {
+      id: 5,
+      name: '라이프스타일',
+      categoryId:2
+    }
+    ,
+    {
+      id: 6,
+      name: '티/커피용품',
+      categoryId:2
+    }
+
+  ]
