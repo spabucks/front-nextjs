@@ -109,7 +109,8 @@ export interface orderListType {
     cartId: number,
     count: number,
     price: number,
-    bigCategoryId:number
+    bigCategoryId:number,
+    isCheck:boolean
 }
 
 export interface orderListSumType {

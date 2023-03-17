@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, ChangeEvent } from "react";
+import axios, { all } from "axios";
 import { cartData, orderListType } from "@/types/type";
 import CartProductListItem from "@/components/sections/CartProductListitem";
 import { ShowModal } from "@/components/ui/CartProductCardDetail";
 import { orderPrice } from "@/state/orderPrice";
 import { useRecoilState } from "recoil";
+const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
 export interface ChildProps {
   setIsChangeModal: React.Dispatch<React.SetStateAction<Boolean>>;
   setIsCheck: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -33,6 +34,7 @@ function ModalChangeCount({
       .patch(`${BaseUrl}/api/v1/cart/update`, {
         cartId: modalData.cartId,
         amount: itmeChangecount,
+        
       })
       .then((res) => {
         setIsChangeModal(false);
@@ -135,6 +137,15 @@ export default function Cart() {
   const [orderList, setOrderList] = useState<orderListType[]>(
     [] as orderListType[]
   );
+
+  const [allData,setAllData]=useState<orderListType>();
+  console.log('allDatallDatallData',allData)
+
+
+
+
+
+
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/${uuid}`)
@@ -147,14 +158,22 @@ export default function Cart() {
           (item: any) => item.bigCategoryId === 1
         );
         setData({ ...data, itemNumber, generalitems, freezeitems });
+        setAllData(res.data)
       })
       .catch((err) => console.log(err));
   }, [isCheck]);
+
+
+
+
+
+
   const handleAddOrderList = (
     cartId: number,
     count: number,
     price: number,
-    bigCategoryId: number
+    bigCategoryId: number,
+    isCheck:boolean,
   ): void => {
     setOrderList([
       ...orderList,
@@ -162,7 +181,8 @@ export default function Cart() {
         cartId: cartId,
         count: count,
         price: price,
-        bigCategoryId: bigCategoryId
+        bigCategoryId: bigCategoryId,
+        isCheck:isCheck
       },
     ]);
   };
@@ -170,14 +190,14 @@ export default function Cart() {
   const handleRemoveOrderList = (cartId: number): void => {
     setOrderList(orderList.filter((order) => order.cartId !== cartId));
   };
-  useEffect(() => {
-    console.log(orderList);
-  }, [orderList]);
+
+  console.log('orderList',orderList)
+
+
   /**체크한 상품에 대한 가격 */
   const totalProdectList = orderList.map(function (v) {
     return v.price * v.count;
   });
-  console.log("totalProdectList", totalProdectList);
 
   const totalOrderListTotalprice = totalProdectList.reduce(function (a, x) {
     return (a += x);
@@ -205,7 +225,7 @@ export default function Cart() {
     0
   );
 
-  function deliveryCharge() {
+  function deliveryCharge(){
     if (
       totalProdectList.length == 0 ||
       (generalOrderListTotalprice >= 30000 &&
@@ -259,6 +279,15 @@ export default function Cart() {
       return 6000;
     }
   }
+
+  const [partCheck, setPartCheck] = useState<boolean>(false) //일반상품
+
+
+  const handlePartCheck = (event:ChangeEvent<HTMLInputElement>) => {
+    setPartCheck(!event.target.checked)
+
+
+  }
   return (
     <>
       {modalData && ischangemodal === true ? (
@@ -304,7 +333,7 @@ export default function Cart() {
               {data.generalitems.length > 0 && (
                 <div className="check-title-main">
                   <div className="check-btn">
-                    <input type="checkbox" id="general-product-check" />
+                    <input type="checkbox" id="general-product-check" onChange={handlePartCheck}/>
                     <p>일반상품</p>
                   </div>
                 </div>
@@ -323,6 +352,7 @@ export default function Cart() {
                     handleAddOrderList={handleAddOrderList}
                     handleRemoveOrderList={handleRemoveOrderList}
                     bigCategoryId={item.bigCategoryId}
+                    testCheck={partCheck}
                   />
                 ))}
               {generalOrderList.length > 0 && (
@@ -330,7 +360,7 @@ export default function Cart() {
                   <div>
                     {generalOrderListTotalprice >= 30000 ? (
                       <>
-                        <p>{`상품 ${generalOrderList.length}건 ${generalOrderListTotalprice}원 배송비 0원 = 총 ${generalOrderListTotalprice}원`}</p>
+                        <p>{`상품 ${generalOrderList.length.toLocaleString()}건 ${generalOrderListTotalprice}원 배송비 0원 = 총 ${generalOrderListTotalprice.toLocaleString()}원`}</p>
                         <p>무료배송</p>
                       </>
                     ) : (
@@ -338,10 +368,10 @@ export default function Cart() {
                         <p>{`상품 ${
                           generalOrderList.length
                         }건 ${generalOrderListTotalprice}원 배송비 3000원 = 총 ${
-                          generalOrderListTotalprice + 3000
+                          (generalOrderListTotalprice + 3000).toLocaleString()
                         }원`}</p>
                         <p>{`${
-                          30000 - generalOrderListTotalprice
+                          (30000 - generalOrderListTotalprice).toLocaleString()
                         }원 더 담으면 무료배송`}</p>
                       </>
                     )}
@@ -352,7 +382,7 @@ export default function Cart() {
               {data.freezeitems.length > 0 && (
                 <div className="check-title-main">
                   <div className="check-btn">
-                    <input type="checkbox" id="freeze-product-check" />
+                    <input type="checkbox" id="freeze-product-check" onChange={()=>setPartCheck2(partCheck2)}/>
                     <p>냉동상품</p>
                   </div>
                 </div>
@@ -372,6 +402,7 @@ export default function Cart() {
                     handleAddOrderList={handleAddOrderList}
                     handleRemoveOrderList={handleRemoveOrderList}
                     bigCategoryId={item.bigCategoryId}
+            
                   />
                 ))}
 
@@ -380,7 +411,7 @@ export default function Cart() {
                   <div>
                     {freezeOrderListTotalprice >= 30000 ? (
                       <>
-                        <p>{`상품 ${freezeOrderList.length}건 ${freezeOrderListTotalprice}원 배송비 0원 = 총 ${freezeOrderListTotalprice}원`}</p>
+                        <p>{`상품 ${freezeOrderList.length}건 ${freezeOrderListTotalprice.toLocaleString()}원 배송비 0원 = 총 ${freezeOrderListTotalprice.toLocaleString()}원`}</p>
                         <p>무료배송</p>
                       </>
                     ) : (
@@ -399,13 +430,13 @@ export default function Cart() {
                   <button type="button">더 담으러 가기</button>
                 </div>
               )}
-
+{/* 
               <section className="section-cart-bottom">
                 <h4>총 주문 금액</h4>
                 <div className="section-cart__product">
                   <div>
                     <span>상품금액</span>
-                    <p>{totalOrderListTotalprice}원</p>
+                    <p>{totalOrderListTotalprice.toLocaleString()}원</p>
                   </div>
                   <div>
                     <span>할인금액</span>
@@ -415,15 +446,15 @@ export default function Cart() {
                   {
                     <div>
                       <span>배송비</span>
-                      <p>{deliveryCharge()}원</p>
+                      <p>{deliveryCharge().toLocaleString()}원</p>
                     </div>
                   }
                 </div>
-                {/* totalProdectList.length !== 0 && */}
+                totalProdectList.length !== 0 &&
                 <div className="section-cart__total-charge">
                   <div>
                     <span>최종 결제 금액</span>
-                    <p>{`${totalOrderListTotalprice + deliveryCharge()}`}원</p>
+                    <p>{`${(totalOrderListTotalprice + deliveryCharge()).toLocaleString()}`}원</p>
                   </div>
                 </div>
                 <div className="section-cart__total-charge__info">
@@ -441,14 +472,14 @@ export default function Cart() {
                     freezeOrderList.length + generalOrderList.length
                   }건/20건`}</div>
                   <p>
-                    <span>{totalOrderListTotalprice}</span>원
+                    <span>{`${(totalOrderListTotalprice + deliveryCharge()).toLocaleString()}`}</span>원
                   </p>
                 </div>
                 <div className="footer-charge-total-btn">
                   <button type="button">선물하기</button>
                   <button type="button">구매하기</button>
                 </div>
-              </footer>
+              </footer> */}
             </section>
           )}
         </>
