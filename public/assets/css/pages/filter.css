@@ -1,0 +1,115 @@
+
+.dddd{
+    background-color:brown;
+    height: 6000px;
+}
+.filter-main-category{
+display: flex;
+align-items: center;
+margin-left: 20px;
+}
+.filter-mainheader-sub {
+    margin-top:60px;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
+  .filter-mainheader-sub  nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    overflow-x: scroll;
+    margin: 0px;
+    padding: 0px;
+  }
+  .filter-mainheader-sub  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-mainheader-sub  nav ul li {
+    list-style: none;
+    padding: 10px;
+    font-size: 1rem;
+    color: #6e6e6e;
+  }
+  .filter-mainheader-sub  nav ul li:first-child {
+    margin-left: 10px;
+  }
+  .filter-mainheader-sub  nav ul li.active {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  .filter-mainheader-sub  nav ul li:first-child {
+    padding-right: 20px;
+  }
+/*filter 서브 카테고리*/
+/* .filter-main-category{
+display: flex;
+justify-content: left;
+flex-direction: row;
+height: 50px;
+}
+.filter-title{
+  width: 20%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+font-weight: bolder;
+}
+  .filter-subheader-sub {
+    overflow-y: auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    justify-content:left;
+    width: 80%;
+  }
+
+  .filter-subheader-sub-content{
+    padding: 10px 0px;
+    margin: 10px;
+  }
+  
+  .filter-subheader-sub-content::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-subheader-sub li {
+    list-style: none;
+    color: #6e6e6e;
+  }  */
+
+
+  .filter-main-category{
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    height: 50px;
+    }
+ .filter-title{
+      width: 20%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+    font-weight: bolder;
+    }
+   
+      .filter-container {
+        overflow-x: scroll;
+        white-space: nowrap;
+        display: flex;
+        justify-content:left;
+  width: 80%;
+      }
+      .filter-subheader-sub-content{
+        padding: 10px 0px;
+        margin: 10px;
+      }
+      
+      .filter-subheader-sub-content::-webkit-scrollbar {
+        display: none;
+      }
+      .filter-subheader-sub li {
+        list-style: none;
+        color: #6e6e6e;
+      } 
+    
