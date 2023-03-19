@@ -6,7 +6,7 @@ export interface filterMenuType {
   }
   export interface bigCategoryType{
     name:string;
-    index: string;
+    index: number;
   }
   export interface filterSubCategoryType {
     id: Number;
@@ -41,9 +41,7 @@ export interface filterMenuType {
   export interface pricefiltercategorydataType{
     name:string,
   }
-  export interface seasonType{
-    name:String
-  }
+
   export interface filtercategoryType{
     title:string,
     data:filtercategorydataType[],
@@ -53,13 +51,21 @@ export interface filterMenuType {
     id:number,
     name:string,
   }
-  export interface tumblercategoryType{
-    id:Number,
-    name:String
-  }
   export interface setcategoryType{
     id:Number,
     name:String
+  }
+
+/**cakecategorymenu Type */
+  export interface cakecategoryType{
+    id:number,
+    title:string,
+    data:cakecategoryDataType[]
+   }
+  export interface cakecategoryDataType{
+    id: number,
+    name: string
+
   }
   /*상품별 데이터 타입*/
   export interface productType {
