@@ -1,0 +1,145 @@
+.main membership-section {
+  margin-top: 60;
+  height: 200px;
+}
+
+.main membership-title {
+  width: 40%;
+  padding: 10px;
+}
+
+.main-membership-img img {
+  width: 100px;
+  height: 100px;
+  padding-left: 30px;
+}
+
+.left-che {
+  width: 30px;
+  margin: 20px;
+}
+.close {
+  width: 20px;
+  margin: 20px;
+}
+.main-membership-submit {
+  background-color: rgba(255, 255, 255, 0.893);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  -webkit-box-shadow: -2px 9px 23px -8px #000000;
+  box-shadow: -2px 9px 23px -8px #000000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.main-membership-submit button {
+  width: 90%;
+  height: 60%;
+  padding: 0px;
+  background-color: #01a862;
+  border: none;
+  border-radius: 30px;
+  color: rgb(255, 255, 255);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.main-membership-section {
+  margin-top: 60px;
+}
+
+.main-membership-section h1 {
+  width: 50%;
+  margin: 30px 0px 50px 0px;
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 1.7rem;
+}
+
+.nick-header .nick-check-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.m-check-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-checkbox-form {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.m-check {
+  position: relative;
+  line-height: 250%;
+  top: 130px;
+  padding: 10px 30px 30px 20px;
+}
+.m-check label{
+    margin-left: 10px;
+}
+.m-agree {
+  position: relative;
+  top: 140px;
+  display: inline;
+  padding: 0px 0px 0px 20px;
+}
+.m-agree label{
+    margin-left: 10px;
+}
+.main-agree-check {
+  position: relative;
+  top: 170px;
+  padding: 10px 30px 30px 20px;
+}
+
+.m-choice {
+  font-size: 0.8rem;
+  padding-left: 30px;
+  line-height: 10%;
+}
+.label-email{
+  margin:0px 10px
+}
+.label-sms{
+  margin-left: 10px;
+}
+
+.main-membership-section input[type="checkbox"] {
+  border-radius: 50px;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #787676;
+  appearance: none;
+}
+
+.main-membership-section input[type="checkbox"] {
+  content: "";
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #9b9696;
+  border-radius: 30px;
+  vertical-align: middle;
+}
+.main-membership-section input[type="checkbox"]:checked {
+  background: #01a862;
+  border-color: #fbf7f7;
+}
+.membership-firststep-arrow{
+  width: 20px;
+  height: 20px;
+}
+.m-check-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
