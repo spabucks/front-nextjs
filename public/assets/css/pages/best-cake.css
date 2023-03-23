@@ -8,6 +8,14 @@
   margin-top: 160px;
   width: 100%;
 }
+.filter-product-lists {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 0px;
+  width: 100%;
+}
 .best-product-list {
   display: flex;
   justify-content: left;
@@ -19,7 +27,7 @@
 .best-product {
   padding: 0.8rem 0.5rem;
   width: 50%;
-  height: 310px;
+  height: 320px;
   box-sizing: border-box;
 }
 .best-product__img {

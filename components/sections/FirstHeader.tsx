@@ -40,8 +40,6 @@ export default function FirstHeader() {
       .get(`${BaseUrl}/api/v1/tag/get/all`)
       .then((res) => {
         setCategoryEventMenus(res.data);
-        let cNames: string[] = [];
-        //  setCateName(cNames)
       })
       .catch((err) => {
         console.log(err);

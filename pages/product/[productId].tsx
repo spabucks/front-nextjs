@@ -47,10 +47,10 @@ export default function Product() {
     axios.post(`${BaseUrl}/api/v1/cart/add`, {
       productId: query.productId,
       userId:uuid,
-      amount:count
+      amount:count,
     }).then((res)=>{
-      console.log("res.dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",res)
       setCount(1)
+      console.log('res.data',res.data)
     }).catch((err)=>console.log(err));
   };
 

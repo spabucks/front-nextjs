@@ -7,6 +7,7 @@ export interface filterMenuType {
   export interface bigCategoryType{
     name:string;
     index: number;
+    id:number;
   }
   export interface filterSubCategoryType {
     id: Number;
@@ -32,7 +33,8 @@ export interface filterMenuType {
   export interface filterType {
     name: String,
     value: String,
-    checked: Boolean
+    checked: Boolean,
+    title:string
   }
   export interface pricecategoryType{
     title:string,
@@ -60,6 +62,7 @@ export interface filterMenuType {
   export interface cakecategoryType{
     id:number,
     title:string,
+    value:string,
     data:cakecategoryDataType[]
    }
   export interface cakecategoryDataType{

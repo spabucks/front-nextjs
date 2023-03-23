@@ -89,6 +89,18 @@ export interface slide{
     name:string,
     imageUrl:string 
 }
+export interface cartfreeze{
+    cartId: number,
+    productId: number,
+    bigCategoryId : number,
+    count : number
+}
+export interface cartgeneral{
+    cartId: number,
+    productId: number,
+    bigCategoryId : number,
+    count : number
+}
 export interface cartData{
 itemNumber:number,
 generalitems:[cartuseritem],
@@ -117,4 +129,21 @@ export interface orderListSumType {
     generalSum: number,
     freezeSum: number,
     allSum: number
+}
+
+export interface filterProductList{
+    id: number,
+    name: string,
+    imgUrl: string,
+    description: string,
+    price: number,
+    productDetailImgUrl: filterProductImgType[],
+    likeCount: number,
+    size:string,
+    isBest:boolean,
+    isNew:boolean
+}
+
+export interface filterProductImgType{
+    imgdata:string
 }

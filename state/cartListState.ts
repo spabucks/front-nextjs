@@ -4,11 +4,11 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
-export const cartOrderState = atom({
-  key: "cartOrderState",
+export const cartListState = atom<cartType>({
+  key: "cartListState",
   default: {
-    typeId: 0,
-    itemId: 0
+    cartListFreeze: [],
+    cartList: [],
     // effects_UNSTABLE: [persistAtom]
   },
 });

@@ -35,6 +35,7 @@ export default function Subpage() {
         </div>
       </div>
       <section className="sub-page__main-contents">
+  <Link href={`http://localhost:3000/filter?bigCategory=0`}>
         <div className="sub-page__main-contents-title">
           전제상품보기
           <img
@@ -42,20 +43,21 @@ export default function Subpage() {
             src="assets/images/icons/left-chevron.svg"
           />
         </div>
+        </Link>
         <div className="sub-page__main-first-content">
-          <Link href="./best?category=1">
+          <Link href="http://localhost:3000/filter?bigCategory=1">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/케이크.jpg" />
             <p>케이크</p>
           </div>
           </Link>
-          <Link href="./best?category=2">
+          <Link href="http://localhost:3000/filter?bigCategory=2">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/텀블러보온병.jpg" />
             <p>텀블러/보온병</p>
           </div>
           </Link>
-          <Link href="./best?category=3">
+          <Link href="http://localhost:3000/filter?bigCategory=3">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/머그컵.jpg" />
             <p>머그/컵</p>
@@ -63,19 +65,19 @@ export default function Subpage() {
           </Link>
         </div>
         <div className="sub-page__main-second-content">
-        <Link href="./best?category=4">
+        <Link href="http://localhost:3000/filter?bigCategory=4">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/라이프스타일.jpg" />
             <p>라이프스타일</p>
           </div>
           </Link>
-          <Link href="./best?category=5">
+          <Link href="http://localhost:3000/filter?bigCategory=5">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/티커피용품.jpg" />
             <p>티/커피용품</p>
           </div>
           </Link>
-          <Link href="./best?category=6">
+          <Link href="http://localhost:3000/filter?bigCategory=6">
           <div className="sub-page__main-content-category">
             <img src="assets/images/products/세트.jpg" />
             <p>세트</p>

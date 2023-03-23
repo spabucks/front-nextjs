@@ -15,7 +15,7 @@
   position: absolute;
   width: 20px;
   top: 15px;
-  right: 30px;
+  right: 50px;
   margin: 0;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .search-keyword input {
-  width: 80%;
+  width: 87%;
   height: 3vh;
   border: none;
   border-radius: 10px;

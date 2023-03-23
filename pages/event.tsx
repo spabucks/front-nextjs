@@ -11,8 +11,6 @@ export default function Event() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const categoryId: string | string[] | undefined = router.query.category;
-  console.log("router", router);
-  console.log("categoryIdddddddddd", categoryId);
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-tag/exhibition/get/${categoryId}`)
@@ -21,7 +19,6 @@ export default function Event() {
       })
       .catch((err) => console.log(err));
   }, [categoryId]);
-  console.log("dddddddddddatadatadatadata", data);
   
   return (
     <>

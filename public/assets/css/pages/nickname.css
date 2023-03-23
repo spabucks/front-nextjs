@@ -1,0 +1,117 @@
+.nickgree-body {
+    padding: 20px 20px;
+  }
+  
+  .main-nick-form .nick-header {
+    padding: 20px 20px;
+  }
+  
+  .nick-check-stepline-container {
+    width: 100%;
+    padding: 16px 0px;
+  }
+  
+  /* 뒤로가기 버튼*/
+  .nick-back img {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 24px;
+    height: auto;
+    color: #a89e9e;
+  }
+  
+  /*닉네임을 입력해 주세요 */
+  .nick-header .nick-check-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nick-header .checkbox-form {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .nick-header .checkbox-form label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .main-nick-form h1 {
+    width: 100%;
+    margin: 10px 0px 30px 0px;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+  
+  .nick-right-img {
+    width: 23px;
+    transform: rotate(180deg);
+  }
+  
+  .nickgree-check-all label {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .nickgree-check-all input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: center;
+    margin-right: 10px;
+  }
+  
+  .nickgree-body-form-input {
+    border-bottom: thin solid #c7c7c7;
+  }
+  
+  .nickgree-body-form-input input,
+  .nickgree-body-form-input select {
+    width: 100%;
+    height: 40px;
+    border: none;
+  }
+  
+  .nickgree-body-form-input input::placeholder {
+    font-size: 1.2rem;
+    color: #c7c7c7;
+  }
+  
+  .nick-find {
+    font-size: 0.75rem;
+    padding: 10px 20px;
+  }
+  
+  .nick-jump {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    font-size: 1.3rem;
+    color: #01a862;
+  }
+  
+  .main-nickname-submit {
+    background-color: rgba(255, 255, 255, 0.893);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    -webkit-box-shadow: -2px 9px 23px -8px #000000;
+    box-shadow: -2px 9px 23px -8px #000000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .main-nickname-submit button {
+    width: 90%;
+    height: 60%;
+    padding: 0px;
+    background-color: #01a862;
+    border: none;
+    border-radius: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  

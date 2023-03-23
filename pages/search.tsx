@@ -1,5 +1,5 @@
 import { constants } from "buffer";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { recentSearchWord } from "../state/recentSearchWord";
 import { InputType } from "zlib";
@@ -7,20 +7,23 @@ import Link from "next/link";
 
 export default function Search() {
   const [recentWords, setRecentWords] = useRecoilState(recentSearchWord);
+  console.log('recentWords',recentWords)
   const [input, setInput] = useState<string>();
+  console.log('inputinput',input)
   const [valueList, setValueList] = useState<string[]>([]);
-      if (typeof input !== "undefined") {
-      // setValueList([...valueList,input]);
-        setRecentWords([...recentWords, input]);
-    }
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
+    console.log(event.target)
     setInput(value);
   };
   const handleSubmit: any = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+    console.log('handleSubmit',handleSubmit)
   };
-
+  if (typeof input !== "undefined") {
+    setRecentWords([...recentWords, input]);
+}
   return (
     <>
       <div className="main-search-container">

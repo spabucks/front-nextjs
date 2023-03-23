@@ -4,7 +4,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    baseApiUrl: "http://124.216.167.73:8081"
+    baseApiUrl: "http://34.22.69.135"
   },
 };
 

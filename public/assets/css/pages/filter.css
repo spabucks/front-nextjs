@@ -122,7 +122,7 @@ font-weight: bolder;
   padding: 0px 20px;
 }
 .filter-btn-list{
-  height: 50px;
+  height: 60px;
   background-color: white;
   border: 1px solid gainsboro;
   display: flex;
@@ -136,6 +136,7 @@ font-weight: bolder;
   margin: 0px 5px;
   border-radius: 5px;
   height: 35px;
+  box-sizing: border-box;
 
 }
 .filter-btn-box-title{
@@ -150,10 +151,17 @@ font-weight: bolder;
 }
 .filter-btn-content-list{
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  overflow-x: scroll;
+white-space:nowrap;
+height:70px;
 }
-.filter-btn-content{
-display: flex;
-overflow-x: scroll
+.order-product-btn{
+  float: right;
+  margin: 10px 20px;
+}
+.order-high-product, .order-low-product{
+  background-color: transparent;
+  border: none;
 }
