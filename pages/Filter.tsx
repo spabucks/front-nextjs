@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import { eventProductList } from "@/types/type";
 import ProfuctFilterList from "@/components/sections/ProductFilterList";
 import { filterProductList } from "@/types/type";
+import FirstHeader from "@/components/sections/FirstHeader";
+import Header from "@/components/sections/Header";
 
 export default function filter(props: {
   id: number;
@@ -20,16 +22,6 @@ export default function filter(props: {
     axios
       .get(`${BaseUrl}/api/v1/product/search2?${asPath.split("?")[1]}`)
       .then((res) => {
-        console.log(
-          res.data.find(
-            (product: productType) => product.bigCategory === query.category
-          )
-        );
-        console.log(
-          res.data.filter(
-            (product: productType) => product.bigCategory === query.category
-          )
-        );
         setProductList(res.data);
       })
       .catch((err) => {
@@ -38,7 +30,8 @@ export default function filter(props: {
   }, [asPath]);
   return (
     <>
-      <FilterHeader></FilterHeader>
+      <Header/>
+      <FilterHeader/>
       <ProfuctFilterList itemData={productList} />
     </>
   );
