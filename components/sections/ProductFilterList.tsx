@@ -2,7 +2,6 @@ import React from "react";
 import { filterProductList } from "@/types/type";
 import ProductFilterListCard from "./ProductFilterListCard";
 import { useState } from "react";
-import FilterHeader from "../pages/filter/FilterHeader";
 
 export default function ProfuctFilterList(props: {
   itemData: filterProductList[];

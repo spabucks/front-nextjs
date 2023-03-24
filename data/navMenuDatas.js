@@ -111,7 +111,7 @@ export const headerMenus = [
   export const FilterCategoryList = [
     {
       id: 1,
-      name: '전체h',
+      name: '전체',
       categoryId:2
     },
     {

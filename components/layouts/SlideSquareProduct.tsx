@@ -5,7 +5,7 @@ export default function SlideSquareProduct(props : {title:string,description:str
   return (
     <section className="slide-square-product-lists">
       <div>
-        <p className="slide-square-product__main-title">{props.title}</p>
+        <p className="slide-square-product__main-title">{props.description}</p>
         <div className="slide-square-product-list">
             {
                 props.itemData.map( item => (
