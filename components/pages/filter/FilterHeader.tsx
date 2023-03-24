@@ -10,7 +10,7 @@ export default function FilterHeader() {
   const [bigcategory, setBigCategory] = useState<bigCategoryType[]>();
   const [subCategory, setSubCategory] = useState<cakecategoryType[]>([]);
   const [filterList, setFilterList] = useState<filterType[]>([]);
-
+console.log('filterList',filterList)
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
@@ -80,11 +80,14 @@ export default function FilterHeader() {
   };
 
   const deleteFilter = (title: String) => {
-    console.log(title);
     setFilterList((prev) =>
       prev.filter((item: filterType) => item.title !== title)
     );
   };
+
+  // const allDelete = ()=>{
+  //   setFilterList("")
+  // };
 
   return (
     <>
@@ -156,6 +159,7 @@ export default function FilterHeader() {
               <img
                 src="assets/images/icons/새로고침.png"
                 className="refresh-img"
+                //  onClick={()=>allDelete}
               />
             </div>
             <div className="filter-btn-content-list">
