@@ -2,6 +2,7 @@
 export interface recommandData {
     id: number,
     name :string,
+    description : string,
     data : [productCardData]
 }
 
@@ -29,6 +30,7 @@ export interface detailProduct{
 export interface recommandproduct {
     id: number,
     name :string,
+    description:string,
     data : [productCardData]
 }
 /** */

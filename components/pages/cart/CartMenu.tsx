@@ -8,7 +8,6 @@ export default function CartMenu() {
     
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState)
   const [listAllCheck, setListAllCheck] = useState(false)
-console.log('cartList',cartList)
   useEffect(() => {
     let check = true
     let freezeCheck = true
@@ -20,6 +19,10 @@ console.log('cartList',cartList)
       setListAllCheck(false)
     }
   },[cartList])
+
+  const AllDeleteCheck =()=>{
+    setCartList("")
+  }
 
   const handleAllCheck = (check:boolean) => {
     setListAllCheck(!check)
@@ -44,7 +47,7 @@ console.log('cartList',cartList)
             <label htmlFor="total-product-check">전체 선택</label>
           </div>
           <div className="check-right">
-            <button><span>선택삭제</span></button>
+            <button>선택삭제</button>
             <button>전체삭제</button>
           </div>
         </div>

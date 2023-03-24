@@ -8,7 +8,7 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import axios from "axios";
 import { useEffect } from "react";
 import { slide } from "@/types/type";
-
+import Link from "next/link";
 export default function SliderContainer() {
   const [data, setData] = useState<slide[]>([])
   const BaseUrl = process.env.baseApiUrl;
@@ -34,15 +34,17 @@ export default function SliderContainer() {
         pagination={{
           clickable: true,
         }}
-        navigation
-        modules={[Navigation, EffectFade, Pagination,Autoplay]}
+        modules={[ EffectFade, Pagination,Autoplay]}
         className="mySwiper"
         loop={true}
       >
         {data.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={item.imageUrl} />
+           {item.name==="케이크"&& <Link href={`http://localhost:3000/event?category=4`}><img src={item.imageUrl} /></Link>}
+           {item.name==="데스크"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=9`}><img src={item.imageUrl} /></Link>}
+           {item.name==="삼일절"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=8`}><img src={item.imageUrl} /></Link>}
+           {item.name==="23체리블라썸"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=4`}><img src={item.imageUrl} /></Link>}
             </SwiperSlide>
           );
         })}

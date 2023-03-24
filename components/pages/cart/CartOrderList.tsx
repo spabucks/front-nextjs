@@ -24,7 +24,7 @@ export function GeneralCartOrderList() {
       return;
     }
     setGeneralDeliveryCharge(0);
-  }, [cartItems]);
+  }, [Generalitem]);
 
   return (
     <>
@@ -71,7 +71,7 @@ export default function FreezeCartOrderList() {
       return;
     }
     setFreezeDeliveryCharge(0);
-  }, [cartItems]);
+  }, [Freezeitem]);
 
   return (
     <>

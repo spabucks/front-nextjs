@@ -9,7 +9,6 @@ export default function ProfuctFilterList(props: {
 }) {
   const [product, setProduct] = useState<filterProductList[]>(props.itemData);
 
-  console.log("product", product);
   return (
     <>
       <div className="order-product-btn">

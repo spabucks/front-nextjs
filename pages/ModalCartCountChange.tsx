@@ -6,7 +6,7 @@ import { cartListType, cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
 import { orderListitem } from "@/state/orderList";
 import axios from "axios";
-export default function ModalCartCountChange() {
+export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setIsChangeCount: Function}) {
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [cartListItem, setCartListItems] =
     useRecoilState<cartType>(cartListState);
@@ -43,6 +43,7 @@ console.log(item?.cartId)
         amount: changecount,
       })
       .then((res) => {
+        props.setIsChangeCount(!props.isChangeCount)
         setIsChangeModal(false);
       })
       .catch((err) => console.log(err));
@@ -56,7 +57,7 @@ console.log(item?.cartId)
         <div className="modalcount-container">
           <header>
             <div className="sub-header">
-              <img src="assets/images/icons/close.svg" />
+              <img src="assets/images/icons/white.png" />
               <h1 className="sub-header-title">주문수량</h1>
               <img
                 src="assets/images/icons/close.svg"

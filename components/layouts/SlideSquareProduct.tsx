@@ -1,7 +1,7 @@
 import { productCardData } from "@/types/type";
 import ProductCard from "../ui/ProductCard"; 
 
-export default function SlideSquareProduct(props : {title:string, itemData:productCardData[]}) {
+export default function SlideSquareProduct(props : {title:string,description:string, itemData:productCardData[]}) {
   return (
     <section className="slide-square-product-lists">
       <div>

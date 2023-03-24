@@ -19,7 +19,6 @@ export default function Home() {
     })
     .catch( err  => console.log( err ))
   },[])
-
   return (
     <>
       <Head>
@@ -38,6 +37,7 @@ export default function Home() {
             key={item.id}
             title={item.name}
             itemData={item.data}
+            description={item.description}
           />
         ))
       }

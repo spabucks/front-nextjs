@@ -54,7 +54,7 @@ export default function FirstHeader() {
             <img src="assets/images/icons/menu.svg" alt="" />
           </Link>
         </div>
-        <h1>온라인 스토어</h1>
+        <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>
         <nav>
           <ul>
             {headerRightIcons.map((menuIcon) => (
@@ -72,22 +72,26 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
+      {router.pathname==="/cart" ? "" :
       <div className="main-header-bottom boder-under">
-        <nav>
-          <ul>
-            {headerMenus.map((menu) => (
-              <li
-                key={menu.id}
-                className={
-                  router.pathname === menu.link.split("?")[0] ? "active" : ""
-                }
-              >
-                <Link href={menu.link}>{menu.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <nav>
+        <ul>
+          {headerMenus.map((menu) => (
+            <li
+              key={menu.id}
+              className={
+                router.pathname === menu.link.split("?")[0] ? "active" : ""
+              }
+            >
+              <Link href={menu.link}>{menu.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+      
+      
+      }
       {router.pathname === "/event" && (
         <div className="main-header-sub">
           <nav>

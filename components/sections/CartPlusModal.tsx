@@ -7,7 +7,6 @@ export interface ChildProps {
 }
 
 export default function CartPlusModal({ isView, setIsCartModal }: ChildProps) {
-  console.log(isView);
   if (!isView) {
     return null;
   }

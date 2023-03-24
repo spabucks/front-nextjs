@@ -165,3 +165,12 @@ height:70px;
   background-color: transparent;
   border: none;
 }
+.filter-input-checkbox{
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+
+}
+.filter-input-checkbox-label{
+  position: relative;
+}

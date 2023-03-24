@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 import CartList from "@/components/pages/cart/CartList";
 import CartMenu from "@/components/pages/cart/CartMenu";
 import FirstHeader from "@/components/sections/FirstHeader";
 import CartFooter from "@/components/pages/cart/CartFooter";
-import ModalCartCountChange from "@/components/sections/ModalCartCountChange";
-
+import ModalCartCountChange from "./ModalCartCountChange";
 import { cartListType, cartType } from "@/types/cartTypes";
 
 import { cartListState } from "@/state/cartListState";
@@ -19,14 +18,15 @@ export default function cart() {
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
 
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
-  console.log("cartOrder", cartOrder);
+  const [cartListItem, setCartListItems] =
+  useRecoilState<cartType>(cartListState);
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
+  const [isChangeCount, setIsChangeCount] = useState<Boolean>(false)
   /**장바구니 조회 */
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/cart/get/v2/${uuid}`)
       .then((res) => {
-        console.log("res", res);
         setCartList({
           cartListFreeze: res.data.filter(
             (item: cartListType) => item.bigCategoryId === 1
@@ -39,19 +39,24 @@ export default function cart() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isChangeCount]);
 
   return (
+   
     <>
+      {ischangemodal === true ? (
+        <ModalCartCountChange 
+          isChangeCount = { isChangeCount }
+          setIsChangeCount = { setIsChangeCount }
+        />
+      ) : (
         <>
-        {ischangemodal===true ? <ModalCartCountChange></ModalCartCountChange> :<>
-        <FirstHeader />
+          <FirstHeader />
           <CartMenu />
           <CartList />
           <CartFooter />
-        
-        </>}
         </>
+      )}
     </>
   );
 }

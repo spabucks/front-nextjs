@@ -3,14 +3,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { filterType, cakecategoryType } from "@/types/filterTypes";
 import { bigCategoryType } from "@/types/filterTypes";
-import filter from "@/pages/filter";
 
 export default function FilterHeader() {
   const { pathname, query } = useRouter();
   const [bigcategory, setBigCategory] = useState<bigCategoryType[]>();
   const [subCategory, setSubCategory] = useState<cakecategoryType[]>([]);
   const [filterList, setFilterList] = useState<filterType[]>([]);
-console.log('filterList',filterList)
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
@@ -85,9 +83,10 @@ console.log('filterList',filterList)
     );
   };
 
-  // const allDelete = ()=>{
-  //   setFilterList("")
-  // };
+  /*전체삭제*/
+  const allDelete = () => {
+    setFilterList([]);
+  };
 
   return (
     <>
@@ -125,24 +124,51 @@ console.log('filterList',filterList)
                     <div className="filter-subheader-sub" key={index}>
                       <ul className="filter-subheader-sub-content">
                         <li key={data.id}>
-                          <input
-                            type="checkbox"
-                            name={menu.value}
-                            value={data.id}
-                            title={`${data.name}`}
-                            onChange={handleSubFilter}
-                            id="filtercheckbox"
-                            checked={
-                              filterList.find(
-                                (item: filterType) => item.title === data.name
-                              )
-                                ? true
-                                : false
-                            }
-                          />
-                          { filterList.find(
-                                (item: filterType) => item.title === data.name
-                              )? <label className="bolder-string" htmlFor={`${data.id}`}>{data.name}</label>: <label htmlFor={`${data.id}`}>{data.name}</label>}
+                          {filterList.find(
+                            (item: filterType) => item.title === data.name
+                          ) ? (
+                            <label className="filter-input-checkbox-label bolder-string">
+                              {data.name}
+                              <input
+                                type="checkbox"
+                                name={menu.value}
+                                value={data.id}
+                                title={data.name}
+                                onChange={handleSubFilter}
+                                id="filtercheckbox"
+                                className="filter-input-checkbox"
+                                checked={
+                                  filterList.find(
+                                    (item: filterType) =>
+                                      item.title === data.name
+                                  )
+                                    ? true
+                                    : false
+                                }
+                              />
+                            </label>
+                          ) : (
+                            <label>
+                              {data.name}
+                              <input
+                                type="checkbox"
+                                name={menu.value}
+                                value={data.id}
+                                title={data.name}
+                                onChange={handleSubFilter}
+                                id="filtercheckbox"
+                                className="filter-input-checkbox"
+                                checked={
+                                  filterList.find(
+                                    (item: filterType) =>
+                                      item.title === data.name
+                                  )
+                                    ? true
+                                    : false
+                                }
+                              />
+                            </label>
+                          )}
                         </li>
                       </ul>
                     </div>
@@ -159,7 +185,7 @@ console.log('filterList',filterList)
               <img
                 src="assets/images/icons/새로고침.png"
                 className="refresh-img"
-                //  onClick={()=>allDelete}
+                onClick={allDelete}
               />
             </div>
             <div className="filter-btn-content-list">

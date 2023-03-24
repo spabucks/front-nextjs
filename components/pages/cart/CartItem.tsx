@@ -6,7 +6,6 @@ import { cartListState } from "@/state/cartListState";
 import { cartOrderState } from "@/state/cartOrderState";
 import { modal } from "@/state/modal";
 import axios from "axios";
-
 export default function CartItem(props: { data: cartListType }) {
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
@@ -39,15 +38,13 @@ export default function CartItem(props: { data: cartListType }) {
   };
 
   const handleDelete = () => {
-    console.log(cartOrder.itemId);
     axios
       .patch(`${BaseUrl}/api/v1/cart/delete`, {
         cartId: props.data.cartId,
       })
       .then((res) => {
-        console.log(res);
         setClose(true)
-        setIsChangeModal(true);
+        setIsChangeModal(false);
       });
   };
 
@@ -61,7 +58,7 @@ export default function CartItem(props: { data: cartListType }) {
   };
   return (
         <>
-  <div className="check-row">
+        {close===false ?  <div className="check-row">
             <div className="check-left">
               <div
                 className={props.data.check ? "sbCheckBoxOn" : "sbCheckBox"}
@@ -103,7 +100,7 @@ export default function CartItem(props: { data: cartListType }) {
               </div>
             </div>
           </div>
-          
+          : ""}
           </> 
 
   );

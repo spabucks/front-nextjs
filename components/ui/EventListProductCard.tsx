@@ -2,7 +2,6 @@ import Link from "next/link";
 import { eventProductList} from "@/types/type";
 
 export default function EventProductListCard(props: { data: eventProductList }) {
-  console.log(props.data)
   return(
     <div className="flex-wrap-product">
     <div className="flex-wrap-product__img">

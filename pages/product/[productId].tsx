@@ -23,7 +23,6 @@ export default function Product() {
     axios
       .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
       .then((res) => {
-        console.log(res.data)
         setProductData(res.data);
       })
       .catch((err) => console.log(err));
@@ -68,6 +67,7 @@ export default function Product() {
           key={item.id}
           title={item.name}
           itemData={item.data}
+          description={item.description}
         />
       ))}
       <div className="sep"></div>

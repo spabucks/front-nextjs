@@ -36,7 +36,6 @@ export default function CartProductCardDetail({
 }: ChildProps) {
   const [count, setCount] = useRecoilState(cartCount);
 
-  console.log("dataaaaaaaaaaaaaaaaaaa", data);
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };
