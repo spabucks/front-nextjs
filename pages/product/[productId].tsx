@@ -49,7 +49,6 @@ export default function Product() {
       amount:count,
     }).then((res)=>{
       setCount(1)
-      console.log('res.data',res.data)
     }).catch((err)=>console.log(err));
   };
 

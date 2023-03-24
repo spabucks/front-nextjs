@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
 import { categoryMenu } from "@/types/type";
+import { useImageSize } from 'react-image-size';
 
 export default function FirstHeader() {
   const router = useRouter();
@@ -51,7 +52,8 @@ export default function FirstHeader() {
       <div className="main-header-top">
         <div className="main-header__menu-icon">
           <Link href={`/subpage`}>
-            <img src="assets/images/icons/menu.svg" alt="" />
+            {/* <img src="assets/images/icons/menu.svg" alt="" /> */}
+            <Image src="assets/images/icons/menu.svg" alt="" width={20} height={20}></Image>
           </Link>
         </div>
         <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>

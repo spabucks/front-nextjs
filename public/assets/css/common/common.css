@@ -144,3 +144,51 @@ h1 {
   font-size: 1.1rem;
   font-weight: 800;
 }
+
+/*맨 아래 버튼*/
+.wrap {
+  position: relative;
+  padding: 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  background: lightgray;
+}
+
+.topBtn {
+  position: fixed; 
+  opacity: 0; 
+  bottom: 40px; 
+  right: 30px;
+  z-index: 100; 
+  width: 45px; 
+  height: 45px;
+  border-radius: 100%;
+  border: 0 none;
+  background: rgba(253, 253, 253, 0.9);
+  color: gainsboro;
+  border: 2px solid gray;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.06em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in;
+}
+
+
+.topBtn.active {
+  z-index: 10; 
+  opacity: 1; 
+}
+
+.topBtn:hover,
+.topBtn:focus,
+.topBtn:active { 
+  outline: 0 none; 
+}
+.topbtn-scroll{
+text-align: center;
+position: relative;
+right:2px;
+top:2px
+}

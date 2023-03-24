@@ -5,7 +5,7 @@ import LoginHeader from "@/components/sections/LoginHeader";
 export default function Login() {
   return (
     <>
-    <LoginHeader/>
+      <LoginHeader />
       <LoginMain />
       <FooterBtn title={"로그인"}></FooterBtn>
     </>

@@ -21,7 +21,12 @@ export default function Header() {
       <div className="main-header-top">
         <div className="main-header__menu-icon">
           <Link href={`/subpage`}>
-            <img src="assets/images/icons/menu.svg" alt="" />
+            <Image
+              src="assets/images/icons/menu.svg"
+              alt=""
+              width={20}
+              height={20}
+            ></Image>
           </Link>
         </div>
         <h1>온라인 스토어</h1>
@@ -30,12 +35,12 @@ export default function Header() {
             {headerRightIcons.map((menuIcon) => (
               <li key={menuIcon.id}>
                 <Link href={menuIcon.link}>
-                <Image
-                  width={20}
-                  height={20}
-                  src={menuIcon.icon}
-                  alt={menuIcon.name}
-                ></Image>
+                  <Image
+                    width={20}
+                    height={20}
+                    src={menuIcon.icon}
+                    alt={menuIcon.name}
+                  ></Image>
                 </Link>
               </li>
             ))}

@@ -19,15 +19,15 @@ export interface VeriftyEmailReq {
 }
 
 export interface inputRegisterType {
-  userEmail: string | undefined;
-  userName: string | undefined;
-  userNickname: string | undefined;
-  birthday: Date | undefined;
-  password: string | undefined;
-  confirmPassword: string | undefined;
-  phone: string | undefined;
-  isUserConfirm: boolean | undefined;
-  privateAgree: privateAgreeType | undefined;
+  userEmail: string;
+  userName: string;
+  userNickname: string;
+  birthday: Date;
+  password: string;
+  confirmPassword: string;
+  phone: string;
+  isUserConfirm: boolean;
+  privateAgree: privateAgreeType;
 }
 
 export interface privateAgreeType {

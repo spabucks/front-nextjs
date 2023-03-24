@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { slide } from "@/types/type";
 import Link from "next/link";
+import Image from "next/image";
 export default function SliderContainer() {
   const [data, setData] = useState<slide[]>([])
   const BaseUrl = process.env.baseApiUrl;
@@ -41,10 +42,10 @@ export default function SliderContainer() {
         {data.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-           {item.name==="케이크"&& <Link href={`http://localhost:3000/event?category=4`}><img src={item.imageUrl} /></Link>}
-           {item.name==="데스크"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=9`}><img src={item.imageUrl} /></Link>}
-           {item.name==="삼일절"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=8`}><img src={item.imageUrl} /></Link>}
-           {item.name==="23체리블라썸"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=4`}><img src={item.imageUrl} /></Link>}
+           {item.name==="케이크"&& <Link href={`http://localhost:3000/event?category=4`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
+           {item.name==="데스크"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=9`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
+           {item.name==="삼일절"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=8`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
+           {item.name==="23체리블라썸"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=4`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
             </SwiperSlide>
           );
         })}

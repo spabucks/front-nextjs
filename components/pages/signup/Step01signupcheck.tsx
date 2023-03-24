@@ -3,13 +3,14 @@ import { inputRegisterType } from "@/types/UserRequest/Request";
 import { privateAgreeType } from "@/types/UserRequest/Request";
 import { useState } from "react";
 import { useEffect } from "react";
-import CheckBox from "@/components/ui/CheckBox";
+import CheckBox from "@/components/pages/signup/ui/CheckBox";
+import Separator from "@/components/pages/signup/ui/Separator";
 interface ChildProps {
-  inputData: inputRegisterType;
-  setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;
+  inputData?: inputRegisterType;
+  setInputData?: React.Dispatch<React.SetStateAction<inputRegisterType>>;
 }
 
-export default function membership({ inputData, setInputData }: ChildProps) {
+export default function Step01signupcheck({ inputData, setInputData }: ChildProps) {
   const [agreeArray, setAgreeArray] = useState<privateAgreeType>(
     {} as privateAgreeType
   );
@@ -64,40 +65,32 @@ export default function membership({ inputData, setInputData }: ChildProps) {
               link="?"
               handler={handleInput}
             />
+            <Separator color="#e5e5e5" gutter={1} />
             <div className="m-check">
-              <div className="m-check-list">
-                <div>
-                  <input type="checkbox" id="agree" name="agree" />
-                  <label>이용약관 동의(필수)</label>
-                </div>
-                <img
-                  src="../assets/images/icons/left-chevron.svg"
-                  alt=""
-                  className="membership-firststep-arrow"
-                />
-              </div>
-              <div className="m-check-list">
-                <div>
-                  <input type="checkbox" id="agree" name="agree" />
-                  <label>개인정보 수집 및 이용동의(필수)</label>
-                </div>
-                <img
-                  src="../assets/images/icons/left-chevron.svg"
-                  alt=""
-                  className="membership-firststep-arrow"
-                />
-              </div>
-              <div className="m-check-list">
-                <div>
-                  <input type="checkbox" id="agree" name="agree" />
-                  <label>광고성 정보 수신동의(선택)</label>
-                </div>
-                <img
-                  src="../assets/images/icons/left-chevron.svg"
-                  alt=""
-                  className="membership-firststep-arrow"
-                />
-              </div>
+              <CheckBox
+                lableText="이용약관 동의(필수)"
+                isArrow={true}
+                inputName="isAgree"
+                link="/best_cake"
+                handler={handleInput}
+                value={agreeArray.isAgree}
+              />
+              <CheckBox
+                lableText="개인정보 수집 및 이용동의(필수)"
+                isArrow={true}
+                inputName="isUseConfirm"
+                link="/best_cake"
+                handler={handleInput}
+                value={agreeArray.isUseConfirm}
+              />
+              <CheckBox
+                lableText="광고성 정보 수신동의(선택)"
+                isArrow={true}
+                inputName="isAdvertisingConfirm"
+                link="/best_cake"
+                handler={handleInput}
+                value={agreeArray.isAdvertisingConfirm}
+              />
               <div className="m-choice">
                 <p>광고성 정보 수신 방법(선택)</p>
                 <br />

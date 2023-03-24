@@ -4,10 +4,10 @@ export interface ButtonProps {
 }
 
 export default function FooterChangeBtn(props:{handleAddCart: ButtonProps}) {
+
   return (
     <>
       <div className="footer-charge-total-btn">
-  
         <div>
         <Link href={`/cart`}>
         <img src="../assets/images/icons/shopping-cart.svg" alt="arrow-right" />
