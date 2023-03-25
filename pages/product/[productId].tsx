@@ -10,6 +10,8 @@ import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartCount } from "@/state/cartCount";
+import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
+
 export default function Product() {
   const { query } = useRouter();
   const BaseUrl = process.env.baseApiUrl;
@@ -54,7 +56,7 @@ export default function Product() {
 
   return (
     <>
-      <SecondHeader />
+        <SecondHeader />
       <div className="sep"></div>
       <CartPlusModal
         isView = {isCartModal}

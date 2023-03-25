@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { filterProductList, searchValue } from '@/types/type';
+import { searchDataType } from '@/types/searchTypes';
+import { useRecoilValue } from 'recoil';
+import { recentSearchWord } from '@/state/recentSearchWord';
+export default function search2(props:{searchValue:string}) {
+  const BaseUrl = process.env.baseApiUrl;
+  const { query, asPath } = useRouter();
+  const [data,setData]=useState<searchDataType>()
+  const searchValuetitle = useRecoilValue(recentSearchWord)
+  useEffect(() => {
+    axios
+      .get(`${BaseUrl}/api/v1/product/search2/keyword=${searchValuetitle}`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [asPath]);
 
-export default function searchproduct() {
+  console.log('data',data)
+  console.log('productList',data)
   return (
     <div>
           <header>
@@ -18,7 +40,7 @@ export default function searchproduct() {
           </nav>
         </div>
       </header>
-      <div className="search-title">"춘식"의 검색결과</div>
+      <div className="search-title">{searchValuetitle}</div>
       <div className="search-mainheader-sub border-under">
         <nav>
           <ul>

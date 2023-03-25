@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Step02idfw() {
+export default function Step03() {
   return (
     <>
       <div className="check-stepline-container">

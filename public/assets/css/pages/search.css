@@ -1,14 +1,13 @@
 .main-search-container{
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 20px;
 }
 
 .form-search {
   position: relative;
-  width: 100%;
   margin: 10px 0px;
+  box-sizing: border-box;
 }
 
 .search-item-icon {
@@ -16,19 +15,18 @@
   width: 20px;
   top: 15px;
   right: 50px;
-  margin: 0;
 }
 
 .search-item-close {
   position: absolute;
   width: 20px;
   top: 15px;
-  right: 5px;
-  margin: 0;
+  right: 0px;
+
 }
 
 .search-keyword input {
-  width: 87%;
+  width:85%;
   height: 3vh;
   border: none;
   border-radius: 10px;
@@ -44,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 30vh;
 }
 .section-search-tag {
   display: flex;
@@ -75,15 +73,33 @@
   justify-content: center;
   align-items: center;
 }
-/*검색어가 있을 경우 해당 태그 사용*/
+.section-search-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.keywordalldelete{
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 20px;
+  background-color: transparent;
+  color: gray;
+}
 .section-yessearch-title{
   font-size: 20px;
   color: grey;
   padding: 10px 0px;
 }
-.section-search-itemList-close{
+.removeBtn{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.removeBtn img{
   width: 16px;
   height: 16px;
+
 }
 .section-search-total{
   display: flex;
@@ -108,4 +124,8 @@ min-width: 100px;
 }
 .section-yessearch{
   height: 300px;
+}
+.section-nosearch{
+  display: flex;
+  justify-content: center;
 }

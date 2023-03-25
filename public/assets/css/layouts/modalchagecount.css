@@ -2,6 +2,16 @@
     position: absolute;
     z-index: 999;
     width: 100%;
+    height: 100%;
+} 
+.sub-header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.modal-count-btn{
+    width: 20px;
+    height: 20px;
 }
 .modalchangecount-main{
     margin-top: 60px;

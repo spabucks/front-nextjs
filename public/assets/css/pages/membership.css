@@ -9,11 +9,22 @@
 }
 
 .main-membership-img img {
-  width: 100px;
+  width: 105px;
   height: 100px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
+.agree-check-arrow {
+  width: 20px;
+  height: 20px;
+  transform: rotate(180deg);
+}
+.m-check-agree-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
 .left-che {
   width: 30px;
   margin: 20px;
@@ -80,21 +91,17 @@
 .m-check {
   position: relative;
   line-height: 250%;
-  top: 130px;
+  top: 110px;
   padding: 10px 30px 30px 20px;
 }
-.m-check label{
-    margin-left: 10px;
-}
+
 .m-agree {
   position: relative;
-  top: 140px;
+  top: 120px;
   display: inline;
   padding: 0px 0px 0px 20px;
 }
-.m-agree label{
-    margin-left: 10px;
-}
+
 .main-agree-check {
   position: relative;
   top: 170px;
@@ -104,13 +111,7 @@
 .m-choice {
   font-size: 0.8rem;
   padding-left: 30px;
-  line-height: 10%;
-}
-.label-email{
-  margin:0px 10px
-}
-.label-sms{
-  margin-left: 10px;
+  line-height: 200%;
 }
 
 .main-membership-section input[type="checkbox"] {
@@ -133,13 +134,4 @@
 .main-membership-section input[type="checkbox"]:checked {
   background: #01a862;
   border-color: #fbf7f7;
-}
-.membership-firststep-arrow{
-  width: 20px;
-  height: 20px;
-}
-.m-check-list{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

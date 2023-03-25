@@ -1,8 +1,9 @@
 import React from "react";
-
+import Link from "next/link";
 export interface handleInput {
   (e: React.ChangeEvent<HTMLInputElement>): void;
 }
+
 export default function CheckBox(props: {
   lableText: string;
   isArrow: boolean;
@@ -13,22 +14,26 @@ export default function CheckBox(props: {
 }) {
   return (
     <>
-      <div className="agree-check">
-        <div className="m-agree">
-          <input 
-             type="checkbox" 
-             id="tos-agree" 
-             name={props.inputName} 
-             onChange = { props.handler && props.handler } 
-             checked = { props.value && props.value }
-              />
-          <label>{props.lableText}</label>
-          <hr />
-          <img src="../assets/images/icons/left-chevron.svg"
-               alt=""
-               className="membership-firststep-arrow"
-                />
+      <div className="m-check-agree-container">
+        <div>
+          <input
+            type="checkbox"
+            id="tos-agree"
+            name={props.inputName}
+            onChange={props.handler && props.handler}
+            checked={props.value && props.value}
+          />
+          <label>{props.link && props.link}</label>
         </div>
+        <Link href={props.link && props.link}>
+          {props.isArrow && (
+            <img
+              className="agree-check-arrow"
+              alt=""
+              src="../assets/images/icons/left-chevron.svg"
+            />
+          )}
+        </Link>
       </div>
     </>
   );

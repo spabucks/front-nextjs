@@ -2,8 +2,8 @@ import { inputRegisterType } from '@/types/UserRequest/Request';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import Swal from 'sweetalert2';
-import Step01signupcheck from '../Step01signupcheck';
-import Step02idfw from '../Step02idfw';
+import Step01signupcheck from '../../../../pages/signup/signupcheck';
+import Step02idfw from '../Step03';
 import Step03 from '../page/signup/Step03';
 import Step04 from '../page/signup/Step04';
 import Step05 from '../page/signup/Step05';

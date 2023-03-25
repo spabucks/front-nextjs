@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function nickname() {
+export default function Step02() {
   return (
     <>
       <div className="nick-check-stepline-container">
