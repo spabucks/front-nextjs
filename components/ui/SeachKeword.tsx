@@ -17,7 +17,7 @@ export default function SeachKeword({ onAddKeyword }: Props) {
   const onChangeSearch = useCallback((e:any) => {
     setSearchValue(e.target.value)
   }, [])
-  const onSubmit = useCallback(
+  const onSubmit = 
     (e:any) => {
       e.preventDefault()
       // ② 로컬 스토리지에 해당 searchValue를 저장해야 한다
@@ -25,9 +25,8 @@ export default function SeachKeword({ onAddKeyword }: Props) {
       router.push(`/search2?keyword=${searchValue}`)
       onAddKeyword(searchValue)
       setSearchValue('')
-    },
-    [searchValue, router, onAddKeyword]
-  )
+    }
+
   return (
     <>
       <div className="form-search">

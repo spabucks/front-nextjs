@@ -7,19 +7,22 @@ import { useRecoilValue } from 'recoil';
 import { recentSearchWord } from '@/state/recentSearchWord';
 export default function search2(props:{searchValue:string}) {
   const BaseUrl = process.env.baseApiUrl;
-  const { query, asPath } = useRouter();
+  const router = useRouter();
   const [data,setData]=useState<searchDataType>()
   const searchValuetitle = useRecoilValue(recentSearchWord)
   useEffect(() => {
+    console.log(router)
+    const keyword = router.asPath.split('?keyword=')[1];
     axios
-      .get(`${BaseUrl}/api/v1/product/search2/keyword=${searchValuetitle}`)
+      .get(`${BaseUrl}/api/v1/product/search2?keyword=${keyword}`)
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [asPath]);
+  }, [router]);
 
   console.log('data',data)
   console.log('productList',data)
