@@ -2,12 +2,14 @@
   bottom: 0px;
 }
 .swiper-pagination-horizontal {
-  opacity: 0.5;
+  opacity: 1;
 }
 .swiper img{
   margin-top: 103px;
+  height: fit-content;
+  width: 100vw;
   height: 300px;
-  width: 100%;
+
 }
 .swiper-pagination span{
   position: relative;
@@ -24,4 +26,5 @@ font-size: 20px !important;
 color: black !important;
 position: relative;
 top: 40px;
+margin-top: 103px;
 }

@@ -1,11 +1,7 @@
 import Link from "next/link";
-export default function SubPageMenu(props: {
-  title: string;
-  context: string;
-}) {
+export default function SubPageMenu(props: { title: string; context: string }) {
   return (
     <>
-      {}
       <div className="sub-page__sub-content boder-under">
         <div className="sub-page__sub-content-title">
           <p>{props.title}</p>

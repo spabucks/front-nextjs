@@ -6,9 +6,6 @@ const nextConfig = {
   env: {
     baseApiUrl: "http://34.22.69.135"
   },
-  // images: {
-  //   domains: ['shop-phinf.pstatic.net']
-  // }
   images: {
     domains: ['prod-starbucks-product-details.s3.ap-northeast-2.amazonaws.com','shop-phinf.pstatic.net','cdn.clien.net','blog.kakaocdn.net','image.istarbucks.co.kr','i.ibb.co'],
   },

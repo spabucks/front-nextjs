@@ -14,6 +14,7 @@ export default function CartItem(props: { data: cartListType }) {
   const BaseUrl = process.env.baseApiUrl;
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
+  const [itemclose,setItemClose]=useState<boolean>(false)
 
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
@@ -44,13 +45,12 @@ export default function CartItem(props: { data: cartListType }) {
         cartId: props.data.cartId,
       })
       .then((res) => {
-        setIsChangeModal(false);
+        setIsChangeModal(!modal);
+        setItemClose(true)
       });
   };
 
-  // const AllDelete=()=>{
-  //   orderItem("")
-  // }
+
   const handleChangeTrueModal = () => {
     setCartOrder({
       ...cartOrder,
@@ -60,46 +60,49 @@ export default function CartItem(props: { data: cartListType }) {
     setIsChangeModal(true);
   };
   return (
-    <>
-      <div className="check-row">
-        <div className="check-left">
-          <div
-            className={props.data.check ? "sbCheckBoxOn" : "sbCheckBox"}
-            onClick={handleCheck}
-          />
-          <label htmlFor="product-check"></label>
+    <>{itemclose ===false ?
+    
+    <div className="check-row">
+    <div className="check-left">
+      <div
+        className={props.data.check ? "sbCheckBoxOn" : "sbCheckBox"}
+        onClick={handleCheck}
+      />
+      <label htmlFor="product-check"></label>
+    </div>
+    <div className="product-cart-view">
+      <div className="product-view">
+        <img src={`${props.data.imgUrl}`} alt="상품이미지" />
+        <div className="product-view-info">
+          <p>{props.data.productName}</p>
+          <p>
+            <span>{props.data.price.toLocaleString()}</span>원
+          </p>
         </div>
-        <div className="product-cart-view">
-          <div className="product-view">
-            <img src={`${props.data.imgUrl}`} alt="상품이미지" />
-            <div className="product-view-info">
-              <p>{props.data.productName}</p>
-              <p>
-                <span>{props.data.price.toLocaleString()}</span>원
-              </p>
-            </div>
-            <img src="assets/images/icons/close.svg" onClick={handleDelete} />
-          </div>
-          <div className="product-view-count-info">
-            <div className="product-view-count">{`수량: ${props.data.count}개`}</div>
-            <div className="product-view-charge-info">
-              <p className="product-view-charge__title">주문금액</p>
-              <p className="product-view-charge">
-                <span>
-                  {(props.data.price * props.data.count).toLocaleString()}
-                </span>
-                원
-              </p>
-            </div>
-            <div className="product-view-change_buy__btn">
-              <button type="button" onClick={handleChangeTrueModal}>
-                주문 수정 
-              </button>
-              <button type="button">바로 구매</button>
-            </div>
-          </div>
+        <img src="assets/images/icons/close.svg" onClick={handleDelete} />
+      </div>
+      <div className="product-view-count-info">
+        <div className="product-view-count">{`수량: ${props.data.count}개`}</div>
+        <div className="product-view-charge-info">
+          <p className="product-view-charge__title">주문금액</p>
+          <p className="product-view-charge">
+            <span>
+              {(props.data.price * props.data.count).toLocaleString()}
+            </span>
+            원
+          </p>
+        </div>
+        <div className="product-view-change_buy__btn">
+          <button type="button" onClick={handleChangeTrueModal}>
+            주문 수정 
+          </button>
+          <button type="button">바로 구매</button>
         </div>
       </div>
+    </div>
+  </div>:""
+    }
+      
     </>
   );
 }

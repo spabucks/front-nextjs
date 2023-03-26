@@ -23,14 +23,13 @@ export default function CheckBox(props: {
             onChange={props.handler && props.handler}
             checked={props.value && props.value}
           />
-          <label>{props.link && props.link}</label>
+          <label>{props.lableText}</label>
         </div>
         <Link href={props.link && props.link}>
           {props.isArrow && (
             <img
               className="agree-check-arrow"
-              alt=""
-              src="../assets/images/icons/left-chevron.svg"
+              src="assets/images/icons/left-chevron.svg"
             />
           )}
         </Link>

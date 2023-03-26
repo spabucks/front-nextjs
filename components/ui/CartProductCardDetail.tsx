@@ -40,7 +40,7 @@ export default function CartProductCardDetail({
     setIsClick && setIsClick(!isClick);
   };
   return (
-    <div className="buy-product-lists border-top">
+    <div className="buy-product-lists">
       <div className="view-btn" onClick={handleView}></div>
       {isClick ? (
         <>

@@ -44,7 +44,7 @@ export default function ProductCard(props: { data: productCardData }) {
           <Link href={`/product/${props.data.id}`}>{props.data.title}</Link>
         </p>
         <p className="slide-square-product-item-price">
-          <span>{props.data.price}</span>원
+          <span>{props.data.price.toLocaleString()}</span>원
         </p>
       </div>
     </div>

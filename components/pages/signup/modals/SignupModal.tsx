@@ -2,13 +2,10 @@ import { inputRegisterType } from '@/types/UserRequest/Request';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import Swal from 'sweetalert2';
-import Step01signupcheck from '../../../../pages/signup/signupcheck';
-import Step02idfw from '../Step03';
-import Step03 from '../page/signup/Step03';
-import Step04 from '../page/signup/Step04';
-import Step05 from '../page/signup/Step05';
-import StButton from '../ui/StButton';
-
+import Membership from '@/pages/membership';
+import Step01 from '../../../../pages/Step01';
+import Step02 from '../../../../pages/Step02';
+import Step03 from '../../../../pages/Step03';
 export interface SignupModalProps {
   isSignupModalOpen: boolean;
   setIsSignupModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -34,9 +31,10 @@ export default function SignupModal({ isSignupModalOpen, setIsSignupModalOpen }:
   });
 
   const steps:any = [
-    { 1: <Step01signupcheck inputData={inputData} setInputData={setInputData}/> },
-    { 2: <Step02idfw inputData={inputData} setInputData={setInputData}/> },
-    { 3: <Step03 inputData={inputData} setInputData={setInputData}/> }
+    { 1: <Membership inputData={inputData} setInputData={setInputData}/> },
+    { 2: <Step01 inputData={inputData} setInputData={setInputData}/> },
+    { 3: <Step02 inputData={inputData} setInputData={setInputData}/> },
+    { 3: <Step03 inputData={inputData} setInputData={setInputData}/> },
   ]
 
   useEffect(()=>{

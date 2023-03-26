@@ -29,7 +29,7 @@ export default function Header() {
             ></Image>
           </Link>
         </div>
-        <h1>온라인 스토어</h1>
+        <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>
         <nav>
           <ul>
             {headerRightIcons.map((menuIcon) => (

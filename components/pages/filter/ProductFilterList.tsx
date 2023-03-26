@@ -1,6 +1,6 @@
 import React from "react";
 import { filterProductList } from "@/types/type";
-import ProductFilterListCard from "./ProductFilterListCard";
+import ProductFilterListCard from "../../sections/ProductFilterListCard";
 import { useState } from "react";
 
 export default function ProfuctFilterList(props: {

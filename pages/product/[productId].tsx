@@ -10,9 +10,10 @@ import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartCount } from "@/state/cartCount";
-import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
-
+import { useRef } from "react";
+import Header from "@/components/sections/Header";
 export default function Product() {
+
   const { query } = useRouter();
   const BaseUrl = process.env.baseApiUrl;
   const [data, setData] = useState<recommandproduct[]>([]);
@@ -20,7 +21,6 @@ export default function Product() {
   const [isClick, setIsClick] = useState<Boolean>(false);
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
-
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
@@ -58,7 +58,7 @@ export default function Product() {
 
   return (
     <>
-      <SecondHeader />
+      <SecondHeader/>
       <div className="sep"></div>
       <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />
       {productData && <DetailProduct data={productData} />}

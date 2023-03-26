@@ -20,14 +20,10 @@ export default function SliderContainer() {
     })
     .catch( err  => console.log( err ))
   },[])
-  data.map((item)=>{
-    { src: { item.imageUrl} }
-  })
-
   return (
     <>
       <Swiper
-        effect={"fade"}
+        effect={"slide"}
         autoplay={{
           delay: 2000,
           disableOnInteraction: false,
@@ -42,10 +38,10 @@ export default function SliderContainer() {
         {data.map((item, idx) => {
           return (
             <SwiperSlide key={idx}>
-           {item.name==="케이크"&& <Link href={`http://localhost:3000/event?category=4`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
-           {item.name==="데스크"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=9`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
-           {item.name==="삼일절"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=8`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
-           {item.name==="23체리블라썸"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=4`}><Image src={item.imageUrl} height={300} width={300} alt={''}></Image></Link>}
+           {item.name==="케이크"&& <Link href={`http://localhost:3000/event?category=4`}><Image src={item.imageUrl} height={500} width={500} alt={'케이크'}></Image></Link>}
+           {item.name==="데스크"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=9`}><Image src={item.imageUrl} height={500} width={500} alt={'데스크'}></Image></Link>}
+           {item.name==="삼일절"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=8`}><Image src={item.imageUrl} height={500} width={500} alt={'삼일절'}></Image></Link>}
+           {item.name==="23 체리블라썸"&& <Link href={`http://localhost:3000/filter?bigCategory=0&season=4`}><Image src={item.imageUrl} height={500} width={500} alt={'23체리블라썸'}></Image></Link>}
             </SwiperSlide>
           );
         })}

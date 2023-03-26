@@ -34,7 +34,7 @@ export function GeneralCartOrderList() {
             <p>{`상품 ${
               Generalitem.length
             }건 ${GeneralitemCharge.toLocaleString()}원 + 배송비${generaldeliveryCharge.toLocaleString()}원 = 총 ${
-              generaldeliveryCharge + GeneralitemCharge
+              (generaldeliveryCharge + GeneralitemCharge).toLocaleString()
             }원`}</p>
             {GeneralitemCharge < 30000 ? (
               <p>{`${(
@@ -84,7 +84,7 @@ export default function FreezeCartOrderList() {
               freezedeliveryCharge + FreezeitemCharge
             ).toLocaleString()}원`}</p>
             {FreezeitemCharge < 30000 ? (
-              <p>{`${30000 - FreezeitemCharge}원 더 담으면 무료배송`}</p>
+              <p>{`${(30000 - FreezeitemCharge).toLocaleString()}원 더 담으면 무료배송`}</p>
             ) : (
               <p>무료배송</p>
             )}

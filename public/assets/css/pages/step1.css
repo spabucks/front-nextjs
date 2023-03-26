@@ -89,7 +89,14 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+  .agree-check-service{
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 8px;
+  }
   /* 여기서부터 이메일 인증*/
   
   .id-email-body {
@@ -101,15 +108,7 @@
     border-bottom: solid 1px #c7c7c7;
     
   }
-  .id-email-body-form{
-    width: 40%;
-  }
-  .id-ematl-total{
-  
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
+
   
   
   .id-mail-ac p{
@@ -128,8 +127,12 @@
     width: 100%;
   }
   
-  
-  .id-email-body-form-input input::placeholder {
+  .birth p{
+    margin: 0px 20px;
+  }
+  .id-email-body-form-input::placeholder,
+  .id-number input::placeholder
+   {
     font-size: 1.2rem;
     color: #c7c7c7;
     padding: 30px 0px;
@@ -138,6 +141,7 @@
   
   .id-email-body-form-check-btn{
     height: 50px;
+    width: 70px;
     border: none;
     outline: none;
     background-color: var(--color-starbucks);

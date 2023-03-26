@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { filterProductList } from "@/types/type";
-import ProductSearchListCard from './ProductSearchListCard';
+import ProductSearchListCard from '../../sections/ProductSearchListCard';
 import { useState } from "react";
 export default function ProductSearchList(props: {
     itemData: filterProductList[];

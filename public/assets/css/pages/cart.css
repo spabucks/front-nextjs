@@ -232,6 +232,7 @@
     bottom: 0;
     width: 100%;
     background-color: white;
+    z-index: 999;
   }
   .footer-product-cart__info {
     display: flex;

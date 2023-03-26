@@ -1,6 +1,6 @@
 import SeachKeword from "@/components/ui/SeachKeword";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
 interface keyInterface {
   id: number;
   text: string;
@@ -51,7 +51,7 @@ export default function Search() {
         <section className="section-yessearch">
           <div className="section-search-container">
             <div className="section-yessearch-title">최근 검색어</div>
-            {keywords.length>0 ? (
+            {keywords.length ? (
               <button
                 type="button"
                 onClick={handleClearKeywords}
@@ -64,33 +64,30 @@ export default function Search() {
             )}
           </div>
           <div className="section-search-total">
-            {keywords.length && (
-              keywords.map((value, idx) => (
-                <div className="section-search-contents" key={idx}>
-                  <div className="section-search-itemList">
-                    <div className="section-search-itemList-tag">
-                      {value.text}
-                    </div>
-                    <button
-                      className="removeBtn"
-                      type="button"
-                      onClick={() => handleRemoveKeyword(value.id)}
-                    >
-                      <img src="assets/images/icons/close.svg" alt="개별삭제" />
-                    </button>
+            {keywords.map((value, idx) => (
+              <div className="section-search-contents" key={idx}>
+                <div className="section-search-itemList">
+                  <div className="section-search-itemList-tag">
+                    {value.text}
                   </div>
+                  <button
+                    className="removeBtn"
+                    type="button"
+                    onClick={() => handleRemoveKeyword(value.id)}
+                  >
+                    <img src="assets/images/icons/close.svg" alt="개별삭제" />
+                  </button>
                 </div>
-              ))
-            ) }
-            </div>
-            {keywords.length==0 && (
-              <section className="section-nosearch">
+              </div>
+            ))}
+          </div>
+          {keywords.length == 0 && (
+            <section className="section-nosearch">
               <div className="section-search-item">
                 <h3>최근 검색어가 없습니다.</h3>
               </div>
             </section>
-            ) }
-
+          )}
         </section>
 
         <section>

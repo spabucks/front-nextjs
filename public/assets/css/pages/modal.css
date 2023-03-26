@@ -12,7 +12,10 @@
     padding: 0px 20px;
     font-size: 20px;
     font-weight: 800;
+    position: relative;
+    bottom: 30px;
     height: 60px;
+    background-color: white;
 }
 .carplus-title img{
     width: 20px;

@@ -9,9 +9,9 @@ export default function Step03() {
           <div className="check-stepline-number">
             <p>1</p>
             <div className="dash"></div>
-            <p className="active">2</p>
+            <p>2</p>
             <div className="dash"></div>
-            <p>3</p>
+            <p className="active">3</p>
           </div>
         </div>
         <form className="main-idfw-section">

@@ -39,7 +39,7 @@ export default function CartFooter() {
 
           <div>
             <span>배송비</span>
-            <p>{`${generaldeliveryCharge+freezedeliveryCharge}`}원</p>
+            <p>{`${(generaldeliveryCharge+freezedeliveryCharge).toLocaleString()}`}원</p>
           </div>
         </div>
         <div className="section-cart__total-charge  border-top">

@@ -25,7 +25,7 @@ export default function ProductFilterListCard(props: {
             <Link href={`/product/${props.data.id}`}>{props.data.name}</Link>
           </p>
           <p className="best-product-price">
-            <strong>{props.data.price}</strong>원
+            <strong>{props.data.price.toLocaleString()}</strong>원
           </p>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <button 
         className={BtnStatus ? "topBtn active top-arrow-icon" : "topBtn top-arrow-icon"} // 버튼 노출 여부
         onClick={handleTop}  // 버튼 클릭시 함수 호출
-      ><Image className="topbtn-scroll" src={"assets/images/icons/left-chevron.svg"} alt={''} width={20} height={20}></Image></button>
+      ><Image className="topbtn-scroll" src={"../assets/images/icons/left-chevron.svg"} alt={'버튼'} width={20} height={20}></Image></button>
     </RecoilRoot>
     
   )

@@ -6,9 +6,9 @@ import Image from "next/image";
 export default function SecondHeader() {
   return (
     <header>
-    <div className="sub-header">
-      <img src="../assets/images/icons/left-chevron.svg" alt="메뉴아이콘" />
-      <p className="sub-header-title">온라인스토어</p>
+    <div className="main-header-top">
+      <img src="../assets/images/icons/left-chevron.svg" alt="뒤로가기" />
+      <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>
       <img src="../assets/images/icons/close.svg" alt="닫기아이콘"/>
     </div>
   </header>

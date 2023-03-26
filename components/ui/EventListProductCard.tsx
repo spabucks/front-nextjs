@@ -27,7 +27,7 @@ export default function EventProductListCard(props: { data: eventProductList }) 
         <Link href={`/product/${props.data.id}`}>{props.data.title}</Link>
       </p>
       <p className="flex-wrap-product-price">
-        <strong>{props.data.price}</strong>원
+        <strong>{(props.data.price).toLocaleString()}</strong>원
       </p>
     </div>
   </div>

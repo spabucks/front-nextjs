@@ -4,9 +4,10 @@ import { modal } from "@/state/modal";
 import { cartOrderState } from "@/state/cartOrderState";
 import { cartListType, cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
-import { orderListitem } from "@/state/orderList";
 import axios from "axios";
+
 export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setIsChangeCount: Function}) {
+  
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [cartListItem, setCartListItems] =
     useRecoilState<cartType>(cartListState);
@@ -14,6 +15,7 @@ export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setI
   const orderItem = useRecoilValue(cartOrderState);
   const [changecount, setCount] = useState<number>(0);
   const BaseUrl = process.env.baseApiUrl;
+
   useEffect(() => {
     if (orderItem.typeId === 0)
       setItem(
@@ -35,7 +37,7 @@ export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setI
     setIsChangeModal(false);
   };
 
-console.log(item?.cartId)
+
   const changeItemCart = () => {
     axios
       .patch(`${BaseUrl}/api/v1/cart/update`, {
@@ -72,7 +74,7 @@ console.log(item?.cartId)
               </div>
               <div className="modalchangecount-title-count">
                 <p>{item.productName}</p>
-                <p>{item.price.toLocaleString()}원</p>
+                <p>{(item.price).toLocaleString()}원</p>
               </div>
             </div>
           </section>

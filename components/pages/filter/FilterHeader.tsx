@@ -12,7 +12,7 @@ export default function FilterHeader() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
-console.log('bigcategorybigcategory',bigcategory)
+  
   /**빅카테고리 API호출 */
   useEffect(() => {
     axios
