@@ -42,6 +42,7 @@ export interface productBestList{
     imgUrl : string,
     price : number,
     isNew : boolean,
+    isBest:boolean
 }
 /** */
 /** EVENT 관련 타입 지정 */

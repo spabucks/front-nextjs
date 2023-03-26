@@ -17,9 +17,9 @@ export default function Product() {
   const BaseUrl = process.env.baseApiUrl;
   const [data, setData] = useState<recommandproduct[]>([]);
   const [productData, setProductData] = useState<detailProduct>();
-  const [isClick, setIsClick] = useState<Boolean>(false); 
-  const [isCartModal, setIsCartModal] = useState<Boolean>(false)
-  const uuid:string = "85295edc-24ee-4781-b8e3-becc596b010e"
+  const [isClick, setIsClick] = useState<Boolean>(false);
+  const [isCartModal, setIsCartModal] = useState<Boolean>(false);
+  const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
 
   useEffect(() => {
     axios
@@ -39,38 +39,38 @@ export default function Product() {
       .catch((err) => console.log(err));
   }, [query.productId]);
 
-
   const [count, setCount] = useRecoilState(cartCount);
 
   const handleAddCart = () => {
-    setIsCartModal(true)
-    setIsClick(false)
-    axios.post(`${BaseUrl}/api/v1/cart/add`, {
-      productId: query.productId,
-      userId:uuid,
-      amount:count,
-    }).then((res)=>{
-      setCount(1)
-    }).catch((err)=>console.log(err));
+    setIsCartModal(true);
+    setIsClick(false);
+    axios
+      .post(`${BaseUrl}/api/v1/cart/add`, {
+        productId: query.productId,
+        userId: uuid,
+        amount: count,
+      })
+      .then((res) => {
+        setCount(1);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
-        <SecondHeader />
+      <SecondHeader />
       <div className="sep"></div>
-      <CartPlusModal
-        isView = {isCartModal}
-        setIsCartModal = {setIsCartModal}
-      />
+      <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />
       {productData && <DetailProduct data={productData} />}
-      {data && data.map((item) => (
-        <SlideSquareProduct
-          key={item.id}
-          title={item.name}
-          itemData={item.data}
-          description={item.description}
-        />
-      ))}
+      {data &&
+        data.map((item) => (
+          <SlideSquareProduct
+            key={item.id}
+            title={item.name}
+            itemData={item.data}
+            description={item.description}
+          />
+        ))}
       <div className="sep"></div>
 
       <footer className="footer-product-detail">

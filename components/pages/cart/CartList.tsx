@@ -12,6 +12,7 @@ export default function CartList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
   const [listAllCheck, setListAllCheck] = useState(false);
   const [listFreezeAllCheck, setListFreezeAllCheck] = useState(false);
+  console.log('artItemsartItemsartItemsartItems',cartItems)
   useEffect(() => {
     let check = true;
     let freezeCheck = true;

@@ -3,6 +3,7 @@
 }
 .product-main-info img {
   width: 100%;
+  height: fit-content;
 }
 .product-detail-info img {
   width: 20px;

@@ -6,7 +6,7 @@ import { cartListState } from "@/state/cartListState";
 import { cartOrderState } from "@/state/cartOrderState";
 import { modal } from "@/state/modal";
 import axios from "axios";
-import ModalCartCountChange from "./ModalCartCountChange";
+import { useRecoilValue } from "recoil";
 
 export default function CartItem(props: { data: cartListType }) {
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
@@ -14,6 +14,7 @@ export default function CartItem(props: { data: cartListType }) {
   const BaseUrl = process.env.baseApiUrl;
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
+
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
       setCartList({
@@ -46,6 +47,10 @@ export default function CartItem(props: { data: cartListType }) {
         setIsChangeModal(false);
       });
   };
+
+  // const AllDelete=()=>{
+  //   orderItem("")
+  // }
   const handleChangeTrueModal = () => {
     setCartOrder({
       ...cartOrder,

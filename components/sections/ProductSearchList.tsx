@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react'
+
 import { filterProductList } from "@/types/type";
-import ProductFilterListCard from "./ProductFilterListCard";
+import ProductSearchListCard from './ProductSearchListCard';
 import { useState } from "react";
-
-export default function ProfuctFilterList(props: {
-  itemData: filterProductList[];
-}) {
-  const [product, setProduct] = useState<filterProductList[]>(props.itemData);
-
+export default function ProductSearchList(props: {
+    itemData: filterProductList[];
+  }) {
+    const [product, setProduct] = useState<filterProductList[]>(props.itemData);
   return (
     <>
       <div className="order-product-btn">
@@ -27,6 +26,7 @@ export default function ProfuctFilterList(props: {
           onClick={() => {
             let lowcopy = [...props.itemData];
             lowcopy.sort((a, b) => a.price - b.price);
+            console.log("lowcopy", lowcopy);
             setProduct(lowcopy);
           }}
         >
@@ -38,7 +38,7 @@ export default function ProfuctFilterList(props: {
         <div className="best-product-list">
           {props.itemData &&
             props.itemData.map((items, i) => (
-              <ProductFilterListCard key={items.id} data={items} />
+              <ProductSearchListCard key={items.id} data={items} />
             ))}
         </div>
         {props.itemData.length === 0 && (
@@ -46,5 +46,5 @@ export default function ProfuctFilterList(props: {
         )}
       </section>
     </>
-  );
+  )
 }

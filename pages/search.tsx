@@ -28,7 +28,7 @@ export default function Search() {
       id: Date.now(),
       text: text,
     };
-    setKeywords([newKeyword, ...keywords]);
+    setKeywords([newKeyword, ...keywords]); /**.splice(0,10) */
   };
 
   // 단일 검색어 삭제
@@ -51,7 +51,7 @@ export default function Search() {
         <section className="section-yessearch">
           <div className="section-search-container">
             <div className="section-yessearch-title">최근 검색어</div>
-            {keywords.length ? (
+            {keywords.length>0 ? (
               <button
                 type="button"
                 onClick={handleClearKeywords}
@@ -64,7 +64,7 @@ export default function Search() {
             )}
           </div>
           <div className="section-search-total">
-            {keywords.length>0 && (
+            {keywords.length && (
               keywords.map((value, idx) => (
                 <div className="section-search-contents" key={idx}>
                   <div className="section-search-itemList">
@@ -83,7 +83,7 @@ export default function Search() {
               ))
             ) }
             </div>
-            {keywords.length===0 && (
+            {keywords.length==0 && (
               <section className="section-nosearch">
               <div className="section-search-item">
                 <h3>최근 검색어가 없습니다.</h3>

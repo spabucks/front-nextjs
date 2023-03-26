@@ -35,10 +35,23 @@ h1 {
   color: #e32208;
   font-weight: bolder;
   font-style: italic;
+  padding: 5px 0px;
 }
 .product-item-new-hidden {
+  font-size: 0.8rem;
+  margin: 2px 0px 0px 0px;
+  color: #e32208;
+  font-weight: bolder;
+  font-style: italic;
+  padding: 5px 0px;
   opacity: 0;
 }
+.new-best{
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+}
+
 .top-arrow-icon {
   transform: rotate(90deg);
 }
