@@ -20,6 +20,7 @@ export default function Home() {
     axios
       .get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
       .then((res) => {
+        console.log(res)
         setData(res.data);
       })
       .catch((err) => console.log(err));

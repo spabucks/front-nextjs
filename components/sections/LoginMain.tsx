@@ -1,4 +1,9 @@
+import { useRouter } from "next/router";
+
 export default function LoginMain() {
+
+  const router = useRouter();
+  
   return (
     <>
       <section className="section-main-login">
@@ -22,7 +27,7 @@ export default function LoginMain() {
           <p>|</p>
           <button type="button">비밀번호 찾기</button>
           <p>|</p>
-          <button type="button">회원가입</button>
+          <button type="button" onClick={()=>router.push('/signup')}>회원가입</button>
         </div>
       </section>
     </>

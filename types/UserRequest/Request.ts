@@ -22,11 +22,13 @@ export interface inputRegisterType {
   userEmail: string;
   userName: string;
   userNickname: string;
+  loginId: string;
   birthday: Date;
   password: string;
   confirmPassword: string;
   phone: string;
   isUserConfirm: boolean;
+  isLoginIdConfirm: boolean;
   privateAgree: privateAgreeType;
 }
 
