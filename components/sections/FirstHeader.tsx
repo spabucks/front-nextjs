@@ -77,7 +77,8 @@ export default function FirstHeader() {
           </ul>
         </nav>
       </div>
-      {router.pathname==="/cart" ? "" :
+
+      {(router.pathname==="/cart" || router.pathname==="/filter" || router.pathname==="/search2") ? "" :
       <div className="main-header-bottom boder-under">
       <nav>
         <ul>

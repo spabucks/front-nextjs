@@ -7,6 +7,7 @@ import ProfuctFilterList from "@/components/pages/filter/ProductFilterList";
 import { filterProductList } from "@/types/type";
 import Header from "@/components/sections/Header";
 import Head from "next/head";
+import FirstHeader from "@/components/sections/FirstHeader";
 export default function filter(props: {
   id: number;
   imgUrl: string;
@@ -34,7 +35,7 @@ export default function filter(props: {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicrfon.ico" />
       </Head>
-      <Header />
+      <FirstHeader/>
       <FilterHeader />
       <ProfuctFilterList itemData={productList} />
     </>

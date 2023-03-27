@@ -37,7 +37,8 @@ export default function SubpageModal() {
             </div>
             <h2>sign in to Online Store</h2>
             <p>
-              <Link href={`/login`}>
+              <Link href={`/login`}
+              onClick={handleSubpageClose}>
                 <button className="sub-page-login" type="button">
                   로그인
                 </button>
@@ -51,6 +52,7 @@ export default function SubpageModal() {
             <Link
               href={`http://localhost:3000/filter?bigCategory=0`}
               className="sub-page__main-contents-a"
+              onClick={handleSubpageClose}
             >
               전체상품보기
               <img
@@ -61,19 +63,22 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-first-content">
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=1">
+              <Link href="http://localhost:3000/filter?bigCategory=1"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/케이크.jpg" />
                 <p>케이크</p>
               </Link>
             </div>
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=2">
+              <Link href="http://localhost:3000/filter?bigCategory=2"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/텀블러보온병.jpg" />
                 <p>텀블러/보온병</p>
               </Link>
             </div>
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=3">
+              <Link href="http://localhost:3000/filter?bigCategory=3"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/머그컵.jpg" />
                 <p>머그/컵</p>
               </Link>
@@ -81,19 +86,22 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-second-content">
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=4">
+              <Link href="http://localhost:3000/filter?bigCategory=4"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/라이프스타일.jpg" />
                 <p>라이프스타일</p>
               </Link>
             </div>
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=5">
+              <Link href="http://localhost:3000/filter?bigCategory=5"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/티커피용품.jpg" />
                 <p>티/커피용품</p>
               </Link>
             </div>
             <div className="sub-page__main-content-category">
-              <Link href="http://localhost:3000/filter?bigCategory=6">
+              <Link href="http://localhost:3000/filter?bigCategory=6"
+              onClick={handleSubpageClose}>
                 <img src="assets/images/products/세트.jpg" />
                 <p>세트</p>
               </Link>

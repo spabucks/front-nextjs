@@ -4,19 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
 import { recentSearchWord } from "@/state/recentSearchWord";
-
+import Router from "next/router";
+import { useRouter } from "next/router";
 export default function SeachKeword() {
 
   const [searchValue, setSearchValue] = useRecoilState(recentSearchWord);
   const [inputData, setInputData] = useState<string>('')
-
+  const { query, asPath } = useRouter();
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
     setInputData(e.target.value)
   }
+console.log('queryqueryqueryquery',query)
   const handleSearchKeyword = () => {
     if ( !searchValue.includes(inputData) ) {
       setSearchValue((prev) => [...prev, inputData]);
+      Router.push(`/search2?keyword=${inputData}`);
     }
     setInputData('')
   }
@@ -42,6 +44,7 @@ export default function SeachKeword() {
               alt="search"
               height={20}
               width={20}
+              onClick={handleSearchKeyword}
             />
             <Link href="/">
               <Image
@@ -53,7 +56,6 @@ export default function SeachKeword() {
               />
             </Link>
           </div>
-          <button type="button" onClick={handleSearchKeyword}>go</button>
         </form>
       </div>
     </>

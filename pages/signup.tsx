@@ -133,7 +133,7 @@ export default function SignUp() {
         phoneNum: inputData.phone,
         email: inputData.userEmail,
         birth: "2023-03-27T10:51:32.964Z",
-        nickName: inputData.userNickname, 
+        nickName:inputData.userNickname
       }).then(
         (res) => {
           console.log(res)

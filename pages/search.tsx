@@ -51,7 +51,7 @@ export default function Search() {
               </div>
             ))}
           </div>
-          { !recentWordsBox && (
+          { recentWordsBox.length===0 && (
             <section className="section-nosearch">
               <div className="section-search-item">
                 <h3>최근 검색어가 없습니다.</h3>
