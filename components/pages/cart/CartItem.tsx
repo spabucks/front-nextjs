@@ -79,7 +79,7 @@ export default function CartItem(props: { data: cartListType }) {
             <span>{props.data.price.toLocaleString()}</span>원
           </p>
         </div>
-        <img src="assets/images/icons/close.svg" onClick={handleDelete} />
+        <img src="assets/images/icons/close.svg" onClick={()=>handleDelete()} />
       </div>
       <div className="product-view-count-info">
         <div className="product-view-count">{`수량: ${props.data.count}개`}</div>

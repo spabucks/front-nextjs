@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ProductEventList from "@/components/sections/ProductEventList";
-
+import { subPage } from "@/state/subPage";
+import { useRecoilState } from "recoil";
+import SubpageModal from "@/components/sections/SubpageModal";
 export default function Event() {
 
   const [data, setData] = useState<productEventList>();
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const categoryId: string | string[] | undefined = router.query.category;
-
+ const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-tag/exhibition/get/${categoryId}`)
@@ -92,6 +94,7 @@ export default function Event() {
           <p>∙ 적립된 별의 유효기간은 적립일로부터 1년입니다.</p>
         </div>
       </footer>
+      
     </>
   );
 }

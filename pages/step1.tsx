@@ -67,10 +67,7 @@ export default function step1({ inputData, setInputData } : ChildProps) {
       }
       console.log("이메일 전송")
       setConfirmView(true)
-      useEffect(()=>{
-        axios.get('').then().catch((error))
-      })
-  
+     
   
     }
     const handleConfirmKey = () => {

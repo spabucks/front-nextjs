@@ -11,7 +11,8 @@ export interface productCardData {
     title : string,
     imgUrl : string,
     price : number,
-    isNew : boolean
+    isNew : boolean,
+    isBest:boolean
 }
 /** */
 

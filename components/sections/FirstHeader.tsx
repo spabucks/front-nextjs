@@ -11,7 +11,8 @@ import Image from "next/image";
 import axios from "axios";
 import { categoryMenu } from "@/types/type";
 import { useImageSize } from 'react-image-size';
-
+import { useRecoilState } from "recoil";
+import { subPage } from "@/state/subPage";
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
@@ -24,6 +25,11 @@ export default function FirstHeader() {
   const [categoryEventMenus, setCategoryEventMenus] = useState<categoryMenu[]>(
     []
   );
+  const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
+
+  const handleSubpageOpen = () =>{
+    setSubpageModal(true)
+}
   /** 베스트 관련 메뉴*/
   useEffect(() => {
     axios
@@ -51,10 +57,7 @@ export default function FirstHeader() {
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          <Link href={`/subpage`}>
-            {/* <img src="assets/images/icons/menu.svg" alt="" /> */}
-            <Image src="assets/images/icons/menu.svg" alt="" width={20} height={20}></Image>
-          </Link>
+            <Image src="assets/images/icons/menu.svg" alt="" width={20} height={20} onClick={handleSubpageOpen}></Image>
         </div>
         <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>
         <nav>

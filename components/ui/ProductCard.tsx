@@ -31,15 +31,18 @@ export default function ProductCard(props: { data: productCardData }) {
         </Link>
       </div>
       <div className="slide-square-product-item__info">
-        <p
-          className={
-            props.data.isNew === true
-              ? "product-item-new"
-              : "product-item-new product-item-new-hidden"
-          }
-        >
-          New
-        </p>
+      <div className="new-best">
+          {props.data.isNew === true ? (
+            <p className={"product-item-new"}>New</p>
+          ) : (
+            <p className={"product-item-new-hidden"}> </p>
+          )}
+          {props.data.isBest == true ? (
+            <p className={"product-item-best"}>Best</p>
+          ) : (
+            <p className={"product-item-new-hidden"}> </p>
+          )}
+        </div>
         <p className="slide-square-product-item-title">
           <Link href={`/product/${props.data.id}`}>{props.data.title}</Link>
         </p>
