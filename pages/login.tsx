@@ -1,9 +1,62 @@
-import SecondHeader from "@/components/layouts/SecondHeader";
-import FooterBtn from "@/components/ui/FooterBtn";
 import LoginMain from "@/components/sections/LoginMain";
 import LoginHeader from "@/components/sections/LoginHeader";
 import Head from "next/head";
+import { useState } from "react";
+import { LoginReq } from "@/types/UserRequest/Request";
+import StButton from "@/components/pages/signup/ui/StButton";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useRouter } from "next/router";
+
 export default function Login() {
+
+  const BaseUrl = process.env.baseApiUrl;
+  const router = useRouter();
+
+  const [ inputData, setInputData ] = useState<LoginReq>({
+    loginId: '',
+    password: '',
+  })
+
+  const handleLogin = () => {
+    console.log(inputData)
+    if(inputData.loginId === '' || inputData.password === '') {
+      Swal.fire({
+        icon: 'error',
+        text: '아이디와 비밀번호를 입력해주세요.',
+        customClass: {
+          confirmButton: 'swal-confirm-button',
+        }
+      })
+      return;
+    }
+    axios.post(`${BaseUrl}/api/v1/auth/login`, {
+      loginId: inputData.loginId,
+      pwd: inputData.password,
+    }).then(res=>{
+      console.log(res)
+      if(res.status === 204){
+        Swal.fire({
+          icon: 'error',
+          text: '아이디와 비밀번호를 확인해주세요.',
+          customClass: {
+            confirmButton: 'swal-confirm-button',
+          }
+      })
+    } else if(res.status === 200) {
+      Swal.fire({
+        icon: 'success',
+        text: '로그인 성공',
+        customClass: {
+          confirmButton: 'swal-confirm-button',
+        }
+      }).then( res =>  res.isConfirmed && router.back() )
+    }
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
   return (
     <>
       <Head>
@@ -17,8 +70,18 @@ export default function Login() {
         />
       </Head>
       <LoginHeader />
-      <LoginMain />
-      <FooterBtn title={"로그인"}></FooterBtn>
+      <LoginMain 
+        inputData={inputData}
+        setInputData={setInputData}
+      />
+      <footer className="footer-login-sumit">
+        <StButton 
+          buttonText = '로그인'
+          textSize = '1.1rem'
+          handler = { handleLogin }
+          type='button'
+        />
+      </footer>
     </>
   );
 }

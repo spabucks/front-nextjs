@@ -1,8 +1,23 @@
+import { LoginReq } from "@/types/UserRequest/Request";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
-export default function LoginMain() {
+interface ChildProps {
+  inputData: LoginReq;
+  setInputData: React.Dispatch<React.SetStateAction<LoginReq>>;
+}
+
+export default function LoginMain({ inputData, setInputData } : ChildProps) {
 
   const router = useRouter();
+
+  const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputData({
+      ...inputData,
+      [name]: value,
+    })
+  }
   
   return (
     <>
@@ -19,8 +34,8 @@ export default function LoginMain() {
           <p>회원 서비스 이용을 위해 로그인 해주세요.</p>
         </div>
         <form className="main-login__input" action="">
-          <input type="text" placeholder="아이디" />
-          <input type="password" placeholder="비밀번호" />
+          <input type="text" placeholder="아이디" name="loginId" onChange={handleChagne}/>
+          <input type="password" placeholder="비밀번호" name="password" onChange={handleChagne}/>
         </form>
         <div className="main-login__search">
           <button type="button">아이디 찾기</button>

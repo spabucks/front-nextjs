@@ -9,9 +9,12 @@ import Step03 from "./signup/Step03";
 import StButton from "@/components/pages/signup/ui/StButton";
 import Steper from "./signup/Steper";
 import Step04 from "./signup/Step04";
+import axios from "axios";
 
 
 export default function SignUp() {
+
+  const BaseUrl = process.env.baseApiUrl;
 
   const [stepId, setStepId] = useState<number>(1);
   const [inputData, setInputData] = useState<inputRegisterType>({
@@ -123,6 +126,30 @@ export default function SignUp() {
         })
         return;
       }
+      axios.post(`${BaseUrl}/api/v1/auth/signup` ,{
+        loginId: inputData.loginId,
+        pwd: inputData.password,
+        userName: inputData.userName,
+        phoneNum: inputData.phone,
+        email: inputData.userEmail,
+        birth: "2023-03-27T10:51:32.964Z",
+        nickName: inputData.userNickname, 
+      }).then(
+        (res) => {
+          console.log(res)
+          Swal.fire({
+            icon: 'success',
+            text: `회원가입이 완료되었습니다.`,
+            customClass: {
+              confirmButton: 'swal-confirm-button',
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '/login';
+            }
+          })
+        }
+      )
     }
   }
 

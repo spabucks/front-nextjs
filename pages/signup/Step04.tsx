@@ -55,7 +55,7 @@ export default function Step04({ inputData, setInputData } : ChildProps) {
               <div className="idfw-body-form-input">
                 <div className="pass-check">
                   <input type="password" placeholder="비밀번호 확인" 
-                  name="passwordCheck" onChange={handleChagne}
+                  name="confirmPassword" onChange={handleChagne}
                   />
                 </div>
               </div>
