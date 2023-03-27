@@ -6,18 +6,19 @@ import { useRecoilState } from "recoil";
 import { recentSearchWord } from "@/state/recentSearchWord";
 
 export default function SeachKeword() {
-  // ① props로 전달받은 onAddKeyword의 데이터로 들어갈 state이다
+
   const [searchValue, setSearchValue] = useRecoilState(recentSearchWord);
-  const [inputData, setInputData] = useState<string[]>([])
+  const [inputData, setInputData] = useState<string>('')
 
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value)
-    const data:string = e.target.value
-    let newData = ;
-    setInputData()
+    setInputData(e.target.value)
   }
   const handleSearchKeyword = () => {
-   
+    if ( !searchValue.includes(inputData) ) {
+      setSearchValue((prev) => [...prev, inputData]);
+    }
+    setInputData('')
   }
 
 
@@ -25,11 +26,13 @@ export default function SeachKeword() {
     <>
       <div className="form-search">
         <form className="search-keyword">
+          
           <input
             name="searchWord"
             type="text"
             id="searchword"
             placeholder="검색어를 입력해주세요"
+            value={inputData && inputData}
             onChange={handleChange}
           />
           <div className="search-icons">
@@ -50,7 +53,7 @@ export default function SeachKeword() {
               />
             </Link>
           </div>
-          <button type="button" onClick={()=>handleSearchKeyword(inputData)}>go</button>
+          <button type="button" onClick={handleSearchKeyword}>go</button>
         </form>
       </div>
     </>

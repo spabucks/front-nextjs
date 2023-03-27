@@ -3,16 +3,13 @@ import { recentSearchWord } from "@/state/recentSearchWord";
 import { useRecoilState } from "recoil";
 
 export default function Search() {
-  // 로컬 스토리지에 저장한 검색어를 관리할 useState keywords
+
   const [recentWordsBox, setRecentWordsBox] = useRecoilState(recentSearchWord);
 
-
-  console.log(recentWordsBox)
   const handleRemoveKeyword = (text:string) => {
     setRecentWordsBox((prev)=>prev.filter(item=>item!==text))
   };
 
-  //검색어 전체 삭제
   const handleClearKeywords = () => {
     setRecentWordsBox([]);
   }
@@ -37,22 +34,22 @@ export default function Search() {
             )}
           </div>
           <div className="section-search-total">
-            {/* {recentWordsBox.map((item, idx) => (
+            {recentWordsBox.map((item, idx) => (
               <div className="section-search-contents" key={idx}>
                 <div className="section-search-itemList">
                   <div className="section-search-itemList-tag">
-                    {item.text}
+                    {item}
                   </div>
                   <button
                     className="removeBtn"
                     type="button"
-                    onClick={() => handleRemoveKeyword(item.text)}
+                    onClick={() => handleRemoveKeyword(item)}
                   >
                     <img src="assets/images/icons/close.svg" alt="개별삭제" />
                   </button>
                 </div>
               </div>
-            ))} */}
+            ))}
           </div>
           { !recentWordsBox && (
             <section className="section-nosearch">

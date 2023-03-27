@@ -1,8 +1,8 @@
 import { atom } from 'recoil'
 
 
-export const recentSearchWord = atom({
+export const recentSearchWord = atom<string[]>({
     key: 'recentSearchWord',
-    default: ""
+    default: [],
    // effects_UNSTABLE: [persistAtom]
 })
