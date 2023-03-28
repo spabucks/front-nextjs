@@ -21,7 +21,7 @@ export default function filter(props: {
     axios
       .get(`${BaseUrl}/api/v1/product/search2?${asPath.split("?")[1]}`)
       .then((res) => {
-        setProductList(res.data);
+        setProductList(res.data.data);
       })
       .catch((err) => {
         console.log(err);

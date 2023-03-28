@@ -21,7 +21,7 @@ export default function Home() {
       .get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
       .then((res) => {
         console.log(res)
-        setData(res.data);
+        setData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, []);

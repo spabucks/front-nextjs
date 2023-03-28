@@ -25,7 +25,7 @@ export default function Product() {
     axios
       .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
       .then((res) => {
-        setProductData(res.data);
+        setProductData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, [query.productId]);
@@ -34,7 +34,7 @@ export default function Product() {
     axios
       .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
       .then((res) => {
-        setData(res.data);
+        setData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, [query.productId]);

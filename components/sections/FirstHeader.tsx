@@ -35,7 +35,7 @@ export default function FirstHeader() {
     axios
       .get(`${BaseUrl}/api/v1/bigCategory/get/all`)
       .then((res) => {
-        setCategoryBestMenus(res.data);
+        setCategoryBestMenus(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +46,7 @@ export default function FirstHeader() {
     axios
       .get(`${BaseUrl}/api/v1/tag/get/all`)
       .then((res) => {
-        setCategoryEventMenus(res.data);
+        setCategoryEventMenus(res.data.data);
       })
       .catch((err) => {
         console.log(err);

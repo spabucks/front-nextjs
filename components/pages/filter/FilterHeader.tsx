@@ -12,13 +12,12 @@ export default function FilterHeader() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
-  
   /**빅카테고리 API호출 */
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product/getBigCategory`)
       .then((res) => {
-        setBigCategory(res.data);
+        setBigCategory(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -30,12 +29,13 @@ export default function FilterHeader() {
     axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
-        setSubCategory(res.data);
+        setSubCategory(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [query.bigCategory]);
+
 
   const handleSubFilter = (event: ChangeEvent<HTMLInputElement>) => {
     let checker = filterList.find(

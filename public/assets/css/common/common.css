@@ -201,3 +201,7 @@ h1 {
   right: 2px;
   top: 2px;
 }
+
+.hide{
+  opacity: 0;
+}

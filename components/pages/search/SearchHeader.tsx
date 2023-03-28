@@ -18,10 +18,10 @@ export default function SearchHeader() {
   useEffect(() => {
     axios
       .get(
-        `${BaseUrl}/api/v1/product/search-menu?keyword=${query.keyword}&page=0&size=10&sort=id`
+        `${BaseUrl}/api/v1/product/search-menu?keyword=${query.keyword}`
       )
       .then((res) => {
-        setBigCategory(res.data);
+        setBigCategory(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -33,7 +33,7 @@ export default function SearchHeader() {
     axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
-        setSubCategory(res.data);
+        setSubCategory(res.data.data);
       })
       .catch((err) => {
         console.log(err);

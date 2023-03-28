@@ -34,7 +34,6 @@ export default function DetailProduct(props: { data: detailProduct }) {
     };
   });
 
-  console.log("positionpositionposition", position);
 
   return (
     <>

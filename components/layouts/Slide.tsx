@@ -16,7 +16,7 @@ export default function SliderContainer() {
   useEffect(() => {
     axios.get(`${BaseUrl}/api/v1/event/get/banner`)
     .then( res => {
-      setData(res.data)
+      setData(res.data.data)
     })
     .catch( err  => console.log( err ))
   },[])

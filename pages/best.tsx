@@ -15,7 +15,7 @@ export default function Best() {
     axios
       .get(`${BaseUrl}/api/v1/product/get-best/${router.query.category}`)
       .then((res) => {
-        setData(res.data);
+        setData(res.data.data);
       })
       .catch((err) => console.log(err));
   }, [router.query.category]);

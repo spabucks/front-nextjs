@@ -14,16 +14,17 @@ export default function Event() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const categoryId: string | string[] | undefined = router.query.category;
- const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
+  const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product-tag/exhibition/get/${categoryId}`)
       .then((res) => {
-        setData(res.data);
+        console.log('res',res.data.data)
+        setData(res.data.data)
       })
       .catch((err) => console.log(err));
   }, [categoryId]);
-
+console.log('datadatadatadata222',data)
   return (
     <>
       <Head>

@@ -4,13 +4,13 @@ import { filterProductList } from "@/types/type";
 import ProductSearchListCard from '../../sections/ProductSearchListCard';
 import { useState } from "react";
 export default function ProductSearchList(props: {
-    itemData: filterProductList[];
+    productData: filterProductList[];
   }) {
-    const [product, setProduct] = useState<filterProductList[]>(props.itemData);
+    const [product, setProduct] = useState<filterProductList[]>(props.productData);
   return (
     <>
       <div className="order-product-btn">
-        <button
+        {/* <button
           className="order-high-product"
           onClick={() => {
             let highcopy = [...props.itemData];
@@ -31,19 +31,19 @@ export default function ProductSearchList(props: {
           }}
         >
           낮은가격순
-        </button>
+        </button> */}
       </div>
 
       <section className="filter-product-lists">
-        <div className="best-product-list">
-          {props.itemData &&
-            props.itemData.map((items, i) => (
+    <>  <div className="best-product-list">
+          {props.productData &&
+            props.productData.map((items, i) => (
               <ProductSearchListCard key={items.id} data={items} />
             ))}
         </div>
-        {props.itemData.length === 0 && (
+        {(props.productData.length === 0 )&& (
           <div className="filter-nonproduct">조회되는 상품이 없습니다.</div>
-        )}
+        )}</> 
       </section>
     </>
   )
