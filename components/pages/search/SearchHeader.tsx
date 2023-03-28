@@ -71,13 +71,13 @@ export default function SearchHeader() {
     );
     router.push(
       `/search2?keyword=${query.keyword}&bigCategory=${query.bigCategory}${url}`,
-      `/search2?keyword=${query.keyword}&bigCategory=0${url}`,
+      undefined,
       {
         shallow: true,
       }
     );
   }, [filterList]);
-console.log('bigCategory',bigcategory)
+
   const handleFilter = (id: number) => {
     setFilterList([]);
     router.push(`/search2?keyword=${query.keyword}&bigCategory=${id}`);

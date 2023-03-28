@@ -1,7 +1,8 @@
 import SeachKeword from "@/components/ui/SeachKeword";
 import { recentSearchWord } from "@/state/recentSearchWord";
 import { useRecoilState } from "recoil";
-
+import Link from "next/link";
+import { useRouter } from "next/router";
 export default function Search() {
 
   const [recentWordsBox, setRecentWordsBox] = useRecoilState(recentSearchWord);
@@ -13,7 +14,7 @@ export default function Search() {
   const handleClearKeywords = () => {
     setRecentWordsBox([]);
   }
-
+  const router = useRouter();
   return (
     <>
       <div className="main-search-container">
@@ -37,9 +38,13 @@ export default function Search() {
             {recentWordsBox.map((item, idx) => (
               <div className="section-search-contents" key={idx}>
                 <div className="section-search-itemList">
+                  
                   <div className="section-search-itemList-tag">
+                  <Link href={`/search2?keyword=${item}&bigCategory=0`} className="recent-words-direct">
                     {item}
+                    </Link>
                   </div>
+
                   <button
                     className="removeBtn"
                     type="button"

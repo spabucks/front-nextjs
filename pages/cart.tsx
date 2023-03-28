@@ -14,7 +14,7 @@ import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
 
 export default function cart() {
-  const [cartList,setCartList] = useRecoilState<cartType>(cartListState);
+  const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
@@ -60,9 +60,15 @@ export default function cart() {
         <>
           <FirstHeader />
           <CartMenu />
-          {(cartList.cartList.length===0 && cartList.cartListFreeze.length===0) ? "": <>
-          <CartList />
-          <CartFooter /></>}
+          {cartList.cartList.length === 0 &&
+          cartList.cartListFreeze.length === 0 ? (
+            ""
+          ) : (
+            <>
+              <CartList />
+              <CartFooter />
+            </>
+          )}
         </>
       )}
     </>

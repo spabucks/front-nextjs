@@ -1,34 +1,43 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Link from "next/link";
 
 import Image from "next/image";
 import { useRecoilState } from "recoil";
 import { recentSearchWord } from "@/state/recentSearchWord";
 import Router from "next/router";
-import { useRouter } from "next/router";
+
 export default function SeachKeword() {
-
   const [searchValue, setSearchValue] = useRecoilState(recentSearchWord);
-  const [inputData, setInputData] = useState<string>('')
-  const { query, asPath } = useRouter();
-  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
-    setInputData(e.target.value)
-  }
-console.log('queryqueryqueryquery',query)
-  const handleSearchKeyword = () => {
-    if ( !searchValue.includes(inputData) ) {
-      setSearchValue((prev) => [...prev, inputData]);
-      Router.push(`/search2?keyword=${inputData}`);
-    }
-    setInputData('')
-  }
+  const [inputData, setInputData] = useState<string>("");
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputData(e.target.value);
+  };
+  const handleSearchKeyword = () => {
+    //최근 검색어에 inputData가 포함되어있지않으면?
+    if (!searchValue.includes(inputData) && inputData.length>0) {
+      Router.push(`/search2?keyword=${inputData}`);
+      setSearchValue((prev) => [inputData,...prev.slice(0, 9) ]);
+      setInputData("");
+      //최근 검색어에 inputData가 포함되어있으면?
+    } else if(searchValue.includes(inputData) && inputData.length>0) {
+      Router.push(`/search2?keyword=${inputData}`);
+      const newList = [inputData, ...searchValue.filter((item)=>item !== inputData)]
+      setInputData("")
+      setSearchValue(newList.slice(0, 10))
+      // return newList
+      // setSearchValue((prev) => [...prev]);
+      // Router.push(`/search2?keyword=${inputData}`);
+      // setInputData("");
+    }else if(inputData.length===0){
+      //0일때 모달창 구현
+    }
+  };
 
   return (
     <>
       <div className="form-search">
         <form className="search-keyword">
-          
           <input
             name="searchWord"
             type="text"

@@ -8,13 +8,17 @@ import ProductSearchList from "@/components/pages/search/ProductSearchList";
 
 import { filterProductList } from "@/types/type";
 import FirstHeader from "@/components/sections/FirstHeader";
-
+import { useRecoilState } from "recoil";
+import { recentSearchWord } from "@/state/recentSearchWord";
 export default function search2() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
   const [productList, setProductList] = useState<filterProductList[]>([]);
+  const [searchValue, setSearchValue] = useRecoilState(recentSearchWord);
   const { query } = useRouter();
-
+  const [productCountCheck, SetProductCountCheck] = useState<boolean>(false);
+  // console.log("product", productList);
+  console.log("search start")
   useEffect(() => {
     const keyword = router.asPath.split("?keyword=")[1];
     axios
@@ -25,13 +29,28 @@ export default function search2() {
       .catch((err) => {
         console.log(err);
       });
-  }, [router]);
+  }, []);
+
+  useEffect(() => {
+    if (productList.length === 0) {
+      SetProductCountCheck(true);
+    } else if (productList.length >= 1) {
+      SetProductCountCheck(false);
+    }
+  }, [productList]);
+
   return (
     <>
-      <FirstHeader/>
+      <FirstHeader />
       <div className="search-title">"{query.keyword}"의 검색결과</div>
-      <SearchHeader />
-      <ProductSearchList itemData={productList} />
-      </>
+      {productCountCheck ? (
+        <div className="search-prodcut-title">검색 결과가 없습니다.</div>
+        ) : (
+        <>
+          <SearchHeader />
+          <ProductSearchList itemData={productList} />
+        </>
+      )}
+    </>
   );
 }
