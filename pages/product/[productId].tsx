@@ -12,15 +12,22 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { cartCount } from "@/state/cartCount";
 import { useRef } from "react";
 import Header from "@/components/sections/Header";
-export default function Product() {
+import { ShowModal } from "@/components/ui/CartProductCardDetail";
+import ChangeCheckShowModal from "@/components/ui/ChangeCheckShowModal";
 
+
+export default function Product() {
   const { query } = useRouter();
   const BaseUrl = process.env.baseApiUrl;
   const [data, setData] = useState<recommandproduct[]>([]);
   const [productData, setProductData] = useState<detailProduct>();
+  /**isClick===true이면 선물하기, 구매하기,장바구니가 보이는게  */
   const [isClick, setIsClick] = useState<Boolean>(false);
+  /**장바구니에 추가되었습니다라는 모달 */
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
+  const [status, setStatus]=useState<number>(0);
+  const [addcount,setAddCount]=useState<number>(0);
   useEffect(() => {
     axios
       .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
@@ -42,8 +49,6 @@ export default function Product() {
   const [count, setCount] = useRecoilState(cartCount);
 
   const handleAddCart = () => {
-    setIsCartModal(true);
-    setIsClick(false);
     axios
       .post(`${BaseUrl}/api/v1/cart/add`, {
         productId: query.productId,
@@ -51,14 +56,24 @@ export default function Product() {
         amount: count,
       })
       .then((res) => {
-        setCount(1);
+        console.log("성공!");
+        setIsCartModal(true); //"장바구니에 추가되었습니다라는 것이 표시되게 true로 바뀜"
+        setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 400) {
+          const errorresponse = err.response.data;
+          console.log('errorresponse',errorresponse)
+          console.log("err.response.data", err.response.data);
+          setStatus(400)
+          setAddCount(errorresponse)
+        }
+      });
   };
 
   return (
     <>
-      <SecondHeader/>
+      <SecondHeader />
       <div className="sep"></div>
       <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />
       {productData && <DetailProduct data={productData} />}
@@ -114,14 +129,14 @@ export default function Product() {
         isClick={isClick}
         setIsClick={setIsClick}
         data={productData}
+        status={status}
+        addcount={addcount}
       />
+       
       {isClick ? (
         <div className="footer-charge-total-btn">
           <div onClick={handleAddCart}>
-            <img
-              src="../assets/images/icons/shopping-cart.svg"
-              alt="arrow-right"
-            />
+            <img src="../assets/images/icons/shopping-cart.svg" alt="cart" />
           </div>
           <button type="button">선물하기</button>
           <button type="button">구매하기</button>

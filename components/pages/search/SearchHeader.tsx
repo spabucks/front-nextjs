@@ -71,7 +71,7 @@ export default function SearchHeader() {
     );
     router.push(
       `/search2?keyword=${query.keyword}&bigCategory=${query.bigCategory}${url}`,
-      undefined,
+      `/search2?keyword=${query.keyword}&bigCategory=0`,
       {
         shallow: true,
       }

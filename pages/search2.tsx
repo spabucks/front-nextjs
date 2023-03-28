@@ -42,7 +42,6 @@ export default function search2() {
 
   return (
     <>
-
       <FirstHeader />
       <div className="search-title">"{query.keyword}"의 검색결과</div>
 

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartCount } from "@/state/cartCount";
 import { detailProduct } from "@/types/type";
+
 export interface ChildProps {
   isClick?: Boolean;
   setIsClick?: React.Dispatch<React.SetStateAction<Boolean>>;
-  data?: detailProduct;
+  data: detailProduct;
+  status: number;
+  addcount: number;
 }
 
 export function ShowModal() {
@@ -27,18 +30,43 @@ export function ShowModal() {
   );
 }
 
-
+export function ChangeCheckShowModal(props: {
+  status: number;
+  addcount: number;
+  data: detailProduct;
+}) {
+  const [time, setTime] = useState<boolean>(false);
+  useEffect(() => {
+    window.setTimeout(() => {
+      setTime(true);
+    }, 2000);
+  });
+  if (time === true) {
+    return null;
+  }
+  return (
+    <>
+      <div className="buy-checkannouncement-show">
+        {`${props.data.title}상품이 장바구니에 담겨있습니다`}
+        <br />
+        {`담기가능수량 : ${props.addcount}개`}
+      </div>
+    </>
+  );
+}
 
 export default function CartProductCardDetail({
   data,
   isClick,
   setIsClick,
+  status,
+  addcount,
 }: ChildProps) {
   const [count, setCount] = useRecoilState(cartCount);
-
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };
+  
   return (
     <div className="buy-product-lists">
       <div className="view-btn" onClick={handleView}></div>
@@ -72,13 +100,22 @@ export default function CartProductCardDetail({
                   <button>+</button>
                 )}
               </div>
-              <div className="buy-product-charge">{data.price * count}원</div>
+              <div className="buy-product-charge">
+                {data && (data.price * count).toLocaleString()}원
+              </div>
             </div>
           </div>
           <div className="buy-product-total">
-            <p>합계 {data.price * count}원</p>
+            <p>합계 {data && (data.price * count).toLocaleString()}원</p>
           </div>
           {count === 5 && <ShowModal />}
+          {status === 400 && (
+            <ChangeCheckShowModal
+              status={status}
+              addcount={addcount}
+              data={data}
+            />
+          )}
         </>
       ) : (
         ""
