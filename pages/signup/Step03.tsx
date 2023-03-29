@@ -11,7 +11,7 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
 
   const BaseUrl = process.env.baseApiUrl;
 
-  const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputData({
       ...inputData,
@@ -44,7 +44,7 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
       <div className="nickgree-body">
         <div className="nickgree-body-form">
           <div className="nickgree-body-form-input">
-            <input type="text" placeholder="닉네임 (한글 6자리 이내)"  name="userNickname" onChange={handleChagne}/>
+            <input type="text" placeholder="닉네임 (한글 6자리 이내)"  name="userNickname" onChange={handleChange}/>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import SliderContainer from "@/components/layouts/Slide";
 import SubpageModal from "@/components/sections/SubpageModal";
 import { subPage } from "@/state/subPage";
 import { useRecoilState } from "recoil";
+import Link from "next/link";
 export default function Home() {
   const [data, setData] = useState<recommandData[]>([]);
   const BaseUrl = process.env.baseApiUrl;
@@ -42,6 +43,7 @@ export default function Home() {
           <FirstHeader />
           <SliderContainer />
           <SlideCircleProduct />
+          <Link href={`http://10.10.10.173:8080/api/v1/paying/test`}><button>dddd</button></Link>
           {data &&
             data.map((item) => (
               <SlideSquareProduct

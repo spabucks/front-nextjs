@@ -1,208 +1,211 @@
 .agree-body {
-    padding: 0px 20px;
-  }
-  
-  
-  
-  /*
+  padding: 0px 20px;
+}
+
+/*
   여기까지가 스탭 1-2-3 라인입니다.
   */
-  
-  .agree-form .agree-header {
-    padding: 20px 20px;
-    border-bottom: thin solid #c7c7c7;
-  }
-  
-  .agree-form .agree-title h1 {
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 20px 0px;
-  }
-  
-  .agree-check-all {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .agree-check-all label {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  .agree-check-all input[type="text box"] {
-    width: 20px;
-    height: 20px;
-    vertical-align: center;
-    margin-right: 10px;
-  }
-  
-  .agree-info-wrap {
-    
-    align-items: center;
-  }
-  
-  .agree-info-wrap p {
-    font-size: 0.9rem;
-    line-height: 0.8;
-    margin: 8px;
-    color: #888;
-  }
-  
-  .agree-info-wrap-list{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .agree-info-wrap-list img{
-    width: 20px;
-    height: 20px;
-  }
-  .agree-right-img{
-    transform: rotate(180deg);
-  }
-  
-  
-  
-  .agree-body-form-input {
-    height: 70px;
-    border-bottom: thin solid #c7c7c7;
-    display: flex;
-    align-items: center;
-  
-  }
-  
-  .agree-body-form-input input,
-  .agree-body-form-input select {
-    height: 30px;
-    border: none;
-  }
-  
-  .agree-body-form-input input::placeholder {
-    font-size: 1.2rem;
-    color: #c7c7c7;
-  }
-  
-  .agree-body-form-input .birth {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .agree-check-service{
-    width: 15px;
-    height: 15px;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-right: 5px;
-    margin-left: 8px;
-  }
-  /* 여기서부터 이메일 인증*/
-  
-  .id-email-body {
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    border-bottom: solid 1px #c7c7c7;
-    
-  }
 
-  
-  
-  .id-mail-ac p{
-  
-    width: 30%;
-    font-size: 1.4rem;
-    color: #7a7777;
-    display: flex;
-    align-items: center;
-  }
-  
-  .id-email-body-form-input{
-    font-size: 1.2rem;
-    border: none;
-    outline: none;
-    width: 100%;
-  }
-  
-  .birth p{
-    margin: 0px 20px;
-  }
-  .id-email-body-form-input::placeholder,
-  .id-number input::placeholder
-   {
-    font-size: 1.2rem;
-    color: #c7c7c7;
-    padding: 30px 0px;
-  
-  }
-  
-  .id-email-body-form-check-btn{
-    height: 50px;
-    width: 70px;
-    border: none;
-    outline: none;
-    background-color: var(--color-starbucks);
-    border-radius: 5px;
-    color: white;
-  }
-  .id-email-body-form-input input,
-  .id-email-body-form-input select {
-    height: 30px;
-    border: none;
-    font-size: 1.2rem;
-    color: #b2b1b1;
-  
-  }
-  
-  .id-email-body-form-input .email select {
-    font-size: 1.3rem;
-    width: 100px;
-  }
-  
-  
-  .id-mail-body-form-input .mail-ac {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  
-  .id-email-body-form-input .id-e-data {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 40%;
-    font-size: 1.4rem;
-  }
-  
-  /* 중복확인 버튼 class 수정*/
-  .id-number{
-    display: flex;
-    align-items: center;
-    flex-direction:row;
-    height: 70px;
-    border-bottom: thin solid #c7c7c7;
-  
-  }
-  
-  .email-check-botton{
-    width: 200px;
-    font-size: 1rem;
-    height: 40px;
-    border: none;
-    background-color: rgba(0,0,0,0);
-    border-color:rgb(255, 255, 255);
-    color: #b2b1b1;
-  }
-  
-  
-  /*여기까지 이메일 인증*/
-  
-  .id-warning{
-  
-    font-size: 0.8rem;
-    color: #8d8b8b;;
-  }
+.agree-form .agree-header {
+  padding: 20px 20px;
+  border-bottom: thin solid #c7c7c7;
+}
+
+.agree-form .agree-title h1 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 20px 0px;
+}
+
+.agree-check-all {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.agree-check-all label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.agree-check-all input[type="text box"] {
+  width: 20px;
+  height: 20px;
+  vertical-align: center;
+  margin-right: 10px;
+}
+
+.agree-info-wrap {
+  align-items: center;
+}
+
+.agree-info-wrap p {
+  font-size: 0.9rem;
+  line-height: 0.8;
+  margin: 8px;
+  color: #888;
+}
+
+.agree-info-wrap-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.agree-info-wrap-list img {
+  width: 20px;
+  height: 20px;
+}
+.agree-right-img {
+  transform: rotate(180deg);
+}
+
+.agree-body-form-input {
+  height: 70px;
+  border-bottom: thin solid #c7c7c7;
+  display: flex;
+  align-items: center;
+}
+
+.agree-body-form-input input,
+.agree-body-form-input select {
+  border: none;
+  font-size: 1.2rem;
+}
+
+.agree-body-form-input input:focus,
+.agree-body-form-input select {
+  height: 30px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+}
+.agree-body-form-input input::placeholder {
+  font-size: 1.2rem;
+  color: #c7c7c7;
+}
+
+.agree-body-form-input .birth {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+.agree-check-service {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 8px;
+}
+
+.select-agree-check-service {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--color-starbucks);
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 8px;
+  background-color: var(--color-starbucks);
+}
+
+/* 여기서부터 이메일 인증*/
+.id-email-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  border-bottom: solid 1px #c7c7c7;
+}
+
+.id-mail-ac p {
+  width: 30%;
+  font-size: 1.4rem;
+  color: #7a7777;
+  display: flex;
+  align-items: center;
+}
+
+.id-email-body-form-input {
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.birth p {
+  margin: 0px 20px;
+}
+.id-email-body-form-input::placeholder,
+.id-number input::placeholder {
+  font-size: 1.2rem;
+  color: #c7c7c7;
+  padding: 30px 0px;
+}
+.id-number input:focus{
+outline: none;
+border: none;
+}
+.id-email-body-form-check-btn {
+  height: 50px;
+  width: 70px;
+  border: none;
+  outline: none;
+  background-color: var(--color-starbucks);
+  border-radius: 5px;
+  color: white;
+}
+.id-email-body-form-input input,
+.id-email-body-form-input select {
+  height: 30px;
+  border: none;
+  font-size: 1.2rem;
+  color: #b2b1b1;
+}
+
+.id-email-body-form-input .email select {
+  font-size: 1.3rem;
+  width: 100px;
+}
+
+.id-mail-body-form-input .mail-ac {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.id-email-body-form-input .id-e-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  font-size: 1.4rem;
+}
+
+/* 중복확인 버튼 class 수정*/
+.id-number {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 70px;
+  border-bottom: thin solid #c7c7c7;
+}
+
+.email-check-botton {
+  width: 200px;
+  font-size: 1rem;
+  height: 40px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgb(255, 255, 255);
+  color: #b2b1b1;
+}
+
+/*여기까지 이메일 인증*/
+
+.id-warning {
+  font-size: 0.8rem;
+  color: #8d8b8b;
+}

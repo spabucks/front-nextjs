@@ -13,16 +13,7 @@ export default function Step01({ inputData, setInputData }: ChildProps) {
 
   const [isAllAgree, setIsAllAgree] = useState<boolean>(false);
 
-  // useEffect(()=> {
-  //   setInputData({...inputData, privateAgree: agreeArray})
-  // },[agreeArray])
-
-
   const [ agreeArray, setAgreeArray ] = useState<privateAgreeType>({} as privateAgreeType);
-  const [ adOption, setAdOption ] = useState<object>([
-    {id: 1, name: 'E-mail', checked: false},
-    {id: 2, name: 'SMS', checked: false},
-  ]);
 
   useEffect(()=> {
     setInputData({...inputData, privateAgree: agreeArray})

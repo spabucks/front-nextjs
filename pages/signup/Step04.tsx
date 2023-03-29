@@ -10,7 +10,7 @@ export default function Step04({ inputData, setInputData } : ChildProps) {
 
   const BaseUrl = process.env.baseApiUrl;
 
-  const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     console.log(e.target.focus())
@@ -40,7 +40,7 @@ export default function Step04({ inputData, setInputData } : ChildProps) {
           <div className="idfw-body">
             <div className="idfw-body-form">
               <div className="idfw-body-form-input">
-                <input type="text" placeholder="아이디 (4~13자리 이내)" name="loginId" onChange={handleChagne}/>
+                <input type="text" placeholder="아이디 (4~13자리 이내)" name="loginId" onChange={handleChange}/>
               </div>
               <div className="idfw-body-form-input">
                 <div className="p-check">
@@ -48,14 +48,14 @@ export default function Step04({ inputData, setInputData } : ChildProps) {
                     type="password"
                     placeholder="비밀번호 (10~20자리 이내)"
                     name="password"
-                    onChange={handleChagne}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="idfw-body-form-input">
                 <div className="pass-check">
                   <input type="password" placeholder="비밀번호 확인" 
-                  name="confirmPassword" onChange={handleChagne}
+                  name="confirmPassword" onChange={handleChange}
                   />
                 </div>
               </div>
