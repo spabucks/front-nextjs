@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { productBestList } from "@/types/type";
 import { useRouter } from "next/router";
 import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
-
+import TopScrollBtn from "@/components/ui/TopScrollBtn";
 export default function Best() {
   const [data, setData] = useState<productBestList[]>([]);
   const BaseUrl = process.env.baseApiUrl;
@@ -31,6 +31,7 @@ export default function Best() {
         rfon.ico"
         />
       </Head>
+      <TopScrollBtn/>
       <FirstHeader />
       <ProductBestList itemData={data} />
     </>

@@ -27,10 +27,11 @@ export default function SearchHeader() {
         console.log(err);
       });
   }, []);
-
+console.log('[bigcategory[bigcategory[bigcategory[bigcategory',bigcategory)
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
-    axios
+    if(bigcategoryId===undefined){
+      axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
         setSubCategory(res.data.data);
@@ -38,6 +39,16 @@ export default function SearchHeader() {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      axios
+      .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
+      .then((res) => {
+        setSubCategory(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   }, [query.bigCategory]);
 
   const handleSubFilter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +82,7 @@ export default function SearchHeader() {
     );
     router.push(
       `/search2?keyword=${query.keyword}&bigCategory=${query.bigCategory}${url}`,
-      `/search2?keyword=${query.keyword}&bigCategory=0`,
+      `/search2?keyword=${query.keyword}&bigCategory=0${url}`,
       {
         shallow: true,
       }
@@ -91,7 +102,7 @@ export default function SearchHeader() {
   const allDelete = () => {
     setFilterList([]);
   };
-
+  console.log('subCategory',subCategory)
   return (
     <>
       {/**메인 헤더*/}
@@ -117,8 +128,8 @@ export default function SearchHeader() {
           </nav>
         </div>
       ) : null}
-      {subCategory && router.query.bigCategory == bigcategoryId
-        ? subCategory.map((menu, index) => (
+      {(subCategory && router.query.bigCategory == bigcategoryId)
+        && subCategory.map((menu, index) => (
             <div className="filter-main-category" key={index}>
               <div className="filter-title">{menu.title}</div>
               <div className="filter-container">
@@ -180,7 +191,7 @@ export default function SearchHeader() {
               </div>
             </div>
           ))
-        : null}
+        }
       {filterList.length > 0 && (
         <>
           <div className="filter-btn-list">

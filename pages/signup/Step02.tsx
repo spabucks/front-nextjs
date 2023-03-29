@@ -109,6 +109,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
     });
     setConfirmView(true);
   };
+
   const handleConfirmKey = () => {
     console.log(confirmKey);
     axios
@@ -154,11 +155,17 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
   const time = new Date();
   time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
 
-  const [check, setCheck] = useState<boolean>(false);
+  // const [isEmailAgree, setIsEmailAgree] = useState<boolean>(false);
+  // console.log("isEmailAgree", isEmailAgree);
 
   const onehandleCheck = (check: boolean) => {
-    setCheck(!check);
+    setInputData({
+      ...inputData,
+      isEmailAgree : !check
+    })
+    // setIsEmailAgree(!check);
   };
+
   return (
     <div className="agree-form">
       <div className="agree-header">
@@ -172,9 +179,11 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         <div className="agree-check-all">
           <div
             className={
-              check ? "select-agree-check-service" : "agree-check-service"
+              inputData.isEmailAgree
+                ? "select-agree-check-service"
+                : "agree-check-service"
             }
-            onClick={() => onehandleCheck(check)}
+            onClick={() => onehandleCheck(inputData.isEmailAgree)}
           ></div>
           <div>본인 인증 서비스 약관 전체동의</div>
         </div>

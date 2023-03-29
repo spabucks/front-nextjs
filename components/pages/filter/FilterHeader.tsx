@@ -26,7 +26,8 @@ export default function FilterHeader() {
 
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
-    axios
+    if(bigcategoryId===undefined){
+      axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
         setSubCategory(res.data.data);
@@ -34,6 +35,16 @@ export default function FilterHeader() {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      axios
+      .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
+      .then((res) => {
+        setSubCategory(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   }, [query.bigCategory]);
 
 

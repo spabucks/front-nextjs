@@ -6,10 +6,11 @@ import axios from "axios";
 import Head from "next/head";
 import { useRecoilState } from "recoil";
 import { subPage } from "@/state/subPage";
+import { userState } from "@/state/userState";
 export default function SubpageModal() {
     const [data, setData] = useState<subPageMenu[]>([]);
     const [subPageModal,setSubpageModal] = useRecoilState(subPage);
-
+    const [loginData,setLoginData]=useRecoilState(userState)
     const handleSubpageClose = () =>{
         setSubpageModal(false)
     }
@@ -35,16 +36,25 @@ export default function SubpageModal() {
             <div className="sub-page__main-header-content-icon">
                 <img src="assets/images/icons/close.svg" onClick={handleSubpageClose}/>
             </div>
-            <h2>sign in to Online Store</h2>
-            <p>
-              <Link href={`/login`}
-              onClick={handleSubpageClose}>
-                <button className="sub-page-login" type="button">
-                  로그인
-                </button>
-              </Link>
-              후 이용해보세요
-            </p>
+
+            {loginData.isLogin === true ? (
+            <>
+              <h2>Welcome</h2>
+              <p className="welcome-title">온라인 스토어에 오신 것을 환영합니다.</p>
+            </>
+          ) : (
+            <>
+              <h2>sign in to Online Store</h2>
+              <p>
+                <Link href={`/login`}>
+                  <button className="sub-page-login" type="button">
+                    로그인
+                  </button>
+                </Link>
+                후 이용해보세요
+              </p>
+            </>
+          )}
           </div>
         </div>
         <section className="sub-page__main-contents">

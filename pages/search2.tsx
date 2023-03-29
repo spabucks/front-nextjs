@@ -24,7 +24,7 @@ export default function search2() {
   useEffect(() => {
     const keyword = router.asPath.split("?keyword=")[1];
     axios
-      .get(`${BaseUrl}/api/v1/product/search2?keyword=${keyword}&bigCategory=0`)
+      .get(`${BaseUrl}/api/v1/product/search2?keyword=${keyword}`)
       .then((res) => {
         setProductList(res.data.data)
         if(res.data.data.length!==0) {
@@ -42,6 +42,7 @@ export default function search2() {
 
   return (
     <>
+
       <FirstHeader />
       <div className="search-title">"{query.keyword}"의 검색결과</div>
 

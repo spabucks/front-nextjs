@@ -1,0 +1,32 @@
+.login-check-title{
+    margin-top: 140px;
+    padding: 0px 20px ;
+    font-size: 20px;
+    font-weight: 800;
+}
+.login-check-title-btn{
+    padding: 10px 20px;
+}
+.login-check-title-btn button{
+    background-color: transparent;
+    height: 30px;
+    border-radius: 30px;
+}
+.login-check-title-btn button:first-child{
+    width: 140px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 2px solid var(--color-primary-btn);
+    color :  var(--color-primary-btn);
+    font-size: 16px;
+}
+.login-check-title-btn button:last-child{
+    width:100px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    background-color :  var(--color-primary-btn);
+    border: 2px solid var(--color-primary-btn);
+    color:white;
+    font-size: 16px;
+}

@@ -8,6 +8,7 @@ import ProductEventList from "@/components/sections/ProductEventList";
 import { subPage } from "@/state/subPage";
 import { useRecoilState } from "recoil";
 import SubpageModal from "@/components/sections/SubpageModal";
+import TopScrollBtn from "@/components/ui/TopScrollBtn";
 export default function Event() {
 
   const [data, setData] = useState<productEventList>();
@@ -33,6 +34,7 @@ console.log('datadatadatadata222',data)
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicrfon.ico" />
       </Head>
+      <TopScrollBtn/>
       <FirstHeader />
       {data && (
         <ProductEventList

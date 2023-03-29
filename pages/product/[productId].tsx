@@ -14,8 +14,8 @@ import { useRef } from "react";
 import Header from "@/components/sections/Header";
 import { ShowModal } from "@/components/ui/CartProductCardDetail";
 import ChangeCheckShowModal from "@/components/ui/ChangeCheckShowModal";
-
-
+import TopScrollBtn from "@/components/ui/TopScrollBtn";
+import { userState } from "@/state/userState";
 export default function Product() {
   const { query } = useRouter();
   const BaseUrl = process.env.baseApiUrl;
@@ -47,12 +47,12 @@ export default function Product() {
   }, [query.productId]);
 
   const [count, setCount] = useRecoilState(cartCount);
-
+  const [loginData,setLoginData]=useRecoilState(userState)
   const handleAddCart = () => {
     axios
       .post(`${BaseUrl}/api/v1/cart/add`, {
         productId: query.productId,
-        userId: uuid,
+        userId: `${loginData.userId}`,
         amount: count,
       })
       .then((res) => {
@@ -74,6 +74,7 @@ export default function Product() {
   return (
     <>
       <SecondHeader />
+      <TopScrollBtn></TopScrollBtn>
       <div className="sep"></div>
       <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />
       {productData && <DetailProduct data={productData} />}

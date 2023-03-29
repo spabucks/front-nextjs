@@ -30,11 +30,17 @@ header {
 .main-header-top nav {
   width: 25%;
 }
-.main-header-top img {
+.main-header-top img:first-child {
+  width: 1.6rem;
+  height: 1.6rem;
+  opacity: 0.5;
+}
+.main-header-top img:last-child {
   width: 1.1rem;
   height: 1.1rem;
   opacity: 0.5;
 }
+
 .main-header-top nav ul {
   display: flex;
   justify-content: end;

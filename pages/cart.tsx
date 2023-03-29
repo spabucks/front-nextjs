@@ -12,18 +12,26 @@ import { cartListType, cartType } from "@/types/cartTypes";
 
 import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
-
+import { config } from "process";
+import { useCookies } from "react-cookie";
+import { userState } from "@/state/userState";
 export default function cart() {
+
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const BaseUrl = process.env.baseApiUrl;
   const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<Boolean>(false);
-
+  const [loginData,setLoginData]=useRecoilState(userState)
   /**장바구니 조회 */
   useEffect(() => {
     axios
-      .get(`${BaseUrl}/api/v1/cart/get/v2/${uuid}`)
+      .get(`${BaseUrl}/api/v1/cart/get/v2/${loginData.userId}`,{
+        headers:{
+          Authorization:`${loginData.accessToken}`
+        }
+      }
+      )
       .then((res) => {
         setCartList({
           cartListFreeze: res.data.filter(

@@ -19,7 +19,13 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
     }); 
   }
 
-
+  const onehandleNickCheck = (check: boolean) => {
+    setInputData({
+      ...inputData,
+      isNickAgree : !check
+    })
+    // setIsEmailAgree(!check);
+  };
   return (
     <div className="main-nick-form">
       <div className="nick-header">
@@ -30,10 +36,19 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
           입력해 주세요.
         </h1>
         <div className="nick-check-all">
-          <div className="agree-check-all">
+          {/* <div className="agree-check-all">
             <input type="checkbox" id="nickgree" />
             <label> 선택적 개인정보 수집동의 및 이용약관</label>
-          </div>
+          </div> */}
+                    <div
+            className={
+              inputData.isNickAgree
+                ? "select-agree-check-service"
+                : "agree-check-service"
+            }
+            onClick={() => onehandleNickCheck(inputData.isNickAgree)}
+          ></div>
+          <div>선택적 개인정보 수집동의 및 이용약관</div>
           <img
             className="nick-right-img"
             src="assets/images/icons/left-chevron.svg"

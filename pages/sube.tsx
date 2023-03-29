@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import { subPageMenu } from "@/types/type";
 import axios from "axios";
 import Head from "next/head";
+import { useRecoilState } from "recoil";
+import { loginCheck } from "@/state/loginCheck";
 export default function Subpage() {
   const [data, setData] = useState<subPageMenu[]>([]);
 
+  // 토큰 키가 있을때 true
+  const [logincheck, setLoginCheck] = useRecoilState(loginCheck);
   useEffect(() => {
     axios
       .get(`http://localhost:3001/subpagemanu`)
@@ -36,15 +40,25 @@ export default function Subpage() {
               <img src="assets/images/icons/close.svg" />
             </Link>
           </div>
-          <h2>sign in to Online Store</h2>
-          <p>
-            <Link href={`/login`}>
-              <button className="sub-page-login" type="button">
-                로그인
-              </button>
-            </Link>
-            후 이용해보세요
-          </p>
+
+          {logincheck === true ? (
+            <>
+              <h2>Welcome</h2>
+              <p>온라인 스토어에 오신 것을 환영합니다.</p>
+            </>
+          ) : (
+            <>
+              <h2>sign in to Online Store</h2>
+              <p>
+                <Link href={`/login`}>
+                  <button className="sub-page-login" type="button">
+                    로그인
+                  </button>
+                </Link>
+                후 이용해보세요
+              </p>
+            </>
+          )}
         </div>
       </div>
       <section className="sub-page__main-contents">

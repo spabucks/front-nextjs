@@ -35,7 +35,7 @@
   float: right;
 }
 .sub-page__main-contents-title {
-  margin: 10px 0px;
+  margin: 20px 0px;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -105,4 +105,8 @@
 }
 .sub-boder-under {
   border-bottom: thin solid #dedede;
+}
+.welcome-title{
+  font-weight: 500;
+  font-size: 17px;
 }
