@@ -120,14 +120,36 @@ export default function SubpageModal() {
         </section>
   
         <section className="sub-page__sub-contents">
-          {data &&
-            data.map((item) => (
-              <SubPageMenu
-                key={item.title}
-                title={item.title}
-                context={item.context}
+        <div className="sub-page__sub-content boder-under">
+        <div className="sub-page__sub-content-title">
+          <p>기획전</p>
+          <p>실행중인 기획을 만나보세요</p>
+        </div>
+        <Link href="/event?category=1" onClick={handleSubpageClose}>
+            <div className="sub-page__sub-content-icon">
+              <img
+                className="sub-change-left-icon"
+                src="assets/images/icons/left-chevron.svg"
               />
-            ))}
+            </div>
+            </Link>
+      </div>
+        </section>
+        <section className="sub-page__sub-contents">
+        <div className="sub-page__sub-content boder-under">
+        <div className="sub-page__sub-content-title">
+          <p>베스트</p>
+          <p>스타벅스의 베스트 상품을 만나보세요</p>
+        </div>
+        <Link href="/best?category=1" onClick={handleSubpageClose}>
+            <div className="sub-page__sub-content-icon">
+              <img
+                className="sub-change-left-icon"
+                src="assets/images/icons/left-chevron.svg"
+              />
+            </div>
+            </Link>
+      </div>
         </section>
       </div>
     );
