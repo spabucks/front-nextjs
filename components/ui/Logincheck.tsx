@@ -2,7 +2,7 @@ import React from 'react'
 import SecondHeader from "@/components/layouts/SecondHeader";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-export default function logincheck() {
+export default function Logincheck() {
   const router = useRouter();
   return (
     <div>

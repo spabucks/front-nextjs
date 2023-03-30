@@ -2,7 +2,12 @@ import FirstHeader from "@/components/sections/FirstHeader";
 import Head from "next/head";
 import MyPageTop from "@/components/sections/MyPageTop";
 import MypageMenuLists from "@/components/sections/MyPageMenuLists";
+import { useRecoilState } from "recoil";
+import { userState } from "@/state/userState";
+import LoginHeader from "@/components/sections/LoginHeader";
+import Logincheck from "@/components/ui/logincheck";
 export default function Mypage() {
+  const [loginData, setLoginData] = useRecoilState(userState);
   return (
     <>
       <Head>
@@ -15,10 +20,20 @@ export default function Mypage() {
             rfon.ico"
         />
       </Head>
-      <FirstHeader />
-      <MyPageTop />
-      <MypageMenuLists title={"서비스"} />
-      <MypageMenuLists title={"약관 및 정책"} />
+      {loginData.isLogin === true ? (
+        <>
+          {" "}
+          <FirstHeader />
+          <MyPageTop />
+          <MypageMenuLists title={"서비스"} />
+          <MypageMenuLists title={"약관 및 정책"} />
+        </>
+      ) : (
+        <>
+          <LoginHeader></LoginHeader>
+          <Logincheck></Logincheck>
+        </>
+      )}
     </>
   );
 }

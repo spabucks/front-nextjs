@@ -16,6 +16,7 @@ import { subPage } from "@/state/subPage";
 import { loginCheck } from "@/state/loginCheck";
 import { userState } from "@/state/userState";
 import Swal from "sweetalert2";
+import { useCookies } from "react-cookie";
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
@@ -35,6 +36,7 @@ export default function FirstHeader() {
   const handleSubpageOpen = () => {
     setSubpageModal(true);
   };
+  const [cookies, setCookie,removeCookie] = useCookies(["id"]);
   /** 베스트 관련 메뉴*/
   useEffect(() => {
     axios
@@ -72,8 +74,11 @@ export default function FirstHeader() {
           accessToken: "",
           isLogin: false,
         });
-        localStorage.removeItem("accessToken");
+        removeCookie('id')
+        // cookie.remove('userid', {path : '/'},1000)
+        // localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
+      
         let timerInterval: string | number | NodeJS.Timer | undefined;
         Swal.fire({
           html: "다음에 또 만나요~~",
@@ -154,7 +159,7 @@ export default function FirstHeader() {
               </li>
             ) : (
               <li>
-                <Link href="/logincheck">
+                <Link href="/cart">
                   <Image
                     width={20}
                     height={20}

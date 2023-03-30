@@ -20,7 +20,8 @@ export default function Login() {
   });
   //로그인 데이터
   const [loginData, setLoginData] = useRecoilState(userState);
-  const [cookies, setCookie] = useCookies(["id"]);
+  const [cookies, setCookie,removeCookie] = useCookies(["id"]);
+
 
   const handleLogin = () => {
     console.log(inputData);
@@ -56,7 +57,8 @@ export default function Login() {
           });
           let myLogin = localStorage;
           myLogin.setItem("userId", res.data.data.userId);
-          myLogin.setItem("accessToken", res.data.data.accessToken);
+          setCookie("id", res.data.data.accessToken, { path: "/" });
+          
           Swal.fire({
             icon: "success",
             text: "로그인 성공",
