@@ -10,27 +10,22 @@ import { userState } from "@/state/userState";
 
 import { useCookies } from "react-cookie";
 export default function SubpageModal() {
-  const [isLogin, setIsLogin] = useRecoilState(userState);
+  // const [isLogin, setIsLogin] = useRecoilState(userState);
   const [cookies, setCookie] = useCookies(["id"]);
   const [subPageModal, setSubpageModal] = useRecoilState(subPage);
   const [loginData, setLoginData] = useRecoilState(userState);
   useEffect(() => {
     const myLogin = cookies.id;
-    if (myLogin && !isLogin.isLogin) {
+    if (myLogin && !loginData.isLogin) {
       console.log("로그인 되어있음");
-      setIsLogin({
+      setLoginData({
         userId: localStorage.getItem("userId") || "",
         accessToken: localStorage.getItem("accessToken") || "",
         isLogin: true,
       });
-      // setIsLogin({
-      //   userId: localStorage.getItem("userId") || "",
-      //   accessToken: localStorage.getItem("accessToken") || "",
-      //   refreshToken: localStorage.getItem("refreshToken") || "",
-      //   isLogin: true,
-      // });
     }
   },[]);
+
   const handleSubpageClose = () => {
     setSubpageModal(false);
   };
