@@ -58,28 +58,30 @@ export default function cart() {
         rfon.ico"
         />
       </Head>
-      {(ischangemodal === true && loginData.isLogin===true) ? (
+      {ischangemodal === true && loginData.isLogin === true ? (
         <ModalCartCountChange
           isChangeCount={isChangeCount}
           setIsChangeCount={setIsChangeCount}
         />
-      ) : ((ischangemodal === false && loginData.isLogin===true) && (
-        <>
-        <FirstHeader />
-        <CartMenu />
-        {cartList.cartList.length === 0 &&
-        cartList.cartListFreeze.length === 0 ? (
-          ""
-        ) : (
+      ) : (
+        ischangemodal === false &&
+        loginData.isLogin === true && (
           <>
-            <CartList />
-            <CartFooter />
+            <FirstHeader />
+            <CartMenu />
+            {cartList.cartList.length === 0 &&
+            cartList.cartListFreeze.length === 0 ? (
+              ""
+            ) : (
+              <>
+                <CartList />
+                <CartFooter />
+              </>
+            )}
           </>
-        )}
-      </>
-      )
+        )
       )}
-           {/* {loginData.isLogin===true && 
+      {/* {loginData.isLogin===true && 
               <>
                   <FirstHeader />
           <CartMenu />
@@ -88,13 +90,12 @@ export default function cart() {
             </>
       
       } */}
-      {loginData.isLogin!==true && 
-              <>
-              <LoginHeader></LoginHeader>
-              <Logincheck></Logincheck>
-            </>
-      
-      }
+      {loginData.isLogin !== true && (
+        <>
+          <LoginHeader></LoginHeader>
+          <Logincheck></Logincheck>
+        </>
+      )}
     </>
   );
 }
