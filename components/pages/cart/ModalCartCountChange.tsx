@@ -13,7 +13,7 @@ export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setI
     useRecoilState<cartType>(cartListState);
   const [item, setItem] = useState<cartListType>();
   const orderItem = useRecoilValue(cartOrderState);
-  const [changecount, setCount] = useState<number>(0);
+  const [changecount, setCount] = useState<number>(1);
   const BaseUrl = process.env.baseApiUrl;
 
   useEffect(() => {
@@ -45,6 +45,7 @@ export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setI
         amount: changecount,
       })
       .then((res) => {
+        console.log(res);
         props.setIsChangeCount(!props.isChangeCount)
         setIsChangeModal(false);
       })

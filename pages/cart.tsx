@@ -23,27 +23,33 @@ export default function cart() {
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<Boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
+  console.log('cartListcartList',cartList)
   /**장바구니 조회 */
-  useEffect(() => {
+  console.log('cartListcartListcartList',cartList)
+  const fecthCartData = () => {
     axios
-      .get(`${BaseUrl}/api/v1/cart/get/v2/${loginData.userId}`, {
-        headers: {
-          Authorization: `${loginData.accessToken}`,
-        },
-      })
-      .then((res) => {
-        setCartList({
-          cartListFreeze: res.data.filter(
-            (item: cartListType) => item.bigCategoryId === 1
-          ),
-          cartList: res.data.filter(
-            (item: cartListType) => item.bigCategoryId !== 1
-          ),
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    .get(`${BaseUrl}/api/v1/cart/get/v2/${loginData.userId}`, {
+      headers: {
+        Authorization: `${loginData.accessToken}`,
+      },
+    })
+    .then((res) => {
+      setCartList({
+        cartListFreeze: res.data.filter(
+          (item: cartListType) => item.bigCategoryId === 1
+        ),
+        cartList: res.data.filter(
+          (item: cartListType) => item.bigCategoryId !== 1
+        ),
       });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    fecthCartData();    
   }, [isChangeCount]);
 
   return (
@@ -58,14 +64,15 @@ export default function cart() {
         rfon.ico"
         />
       </Head>
-      {ischangemodal === true && loginData.isLogin === true ? (
+      {ischangemodal === true /*&& loginData.isLogin === true*/ ? (
         <ModalCartCountChange
           isChangeCount={isChangeCount}
           setIsChangeCount={setIsChangeCount}
+      
         />
       ) : (
         ischangemodal === false &&
-        loginData.isLogin === true && (
+        /*loginData.isLogin === true &&*/ (
           <>
             <FirstHeader />
             <CartMenu />
@@ -81,16 +88,7 @@ export default function cart() {
           </>
         )
       )}
-      {/* {loginData.isLogin===true && 
-              <>
-                  <FirstHeader />
-          <CartMenu />
-          <CartList />
-              <CartFooter />
-            </>
-      
-      } */}
-      {loginData.isLogin !== true && (
+      {loginData.isLogin === false && (
         <>
           <LoginHeader></LoginHeader>
           <Logincheck></Logincheck>

@@ -57,6 +57,7 @@ export default function Login() {
           });
           let myLogin = localStorage;
           myLogin.setItem("userId", res.data.data.userId);
+          myLogin.setItem("accessToken",res.data.data.accessToken)
           setCookie("id", res.data.data.accessToken, { path: "/"});
           
           Swal.fire({
@@ -65,29 +66,28 @@ export default function Login() {
             customClass: {
               confirmButton: "swal-confirm-button",
             },
-            // res.isConfirmed && router.back()
           }).then((res) => res.isConfirmed && router.back());
         }
       })
       .catch((err) => {
-        if (err.response.status === 400) {
+        if (err.response.status === 40) {
           Swal.fire({
             icon: "error",
             title: "아이디 혹은 비밀번호가 틀렸습니다.",
           });
-          setInputData({
-            loginId: "",
-            password: "",
-          });
+          // setInputData({
+          //   loginId: "",
+          //   password: "",
+          // });
         } else if (err.response.status === 500) {
           Swal.fire({
             icon: "error",
             title: "서버에 접속할 수 없습니다. 잠시후에 다시 시도해주세요.",
           });
-          setInputData({
-            loginId: "",
-            password: "",
-          });
+          // setInputData({
+          //   loginId: "",
+          //   password: "",
+          // });
         }
       });
   };

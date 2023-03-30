@@ -79,7 +79,7 @@ export default function SignUp() {
           },
         });
       }
-      if (inputData.isEmailAgree === false) {
+      else if (inputData.isEmailAgree === false) {
         console.log("inputData.isEmailAgree", inputData.isEmailAgree);
         Swal.fire({
           icon: "error",
@@ -89,9 +89,12 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
           },
         });
+        
+      }
+      else {
+        setStepId(stepId + 1);
         return;
       }
-      setStepId(stepId + 1);
       //3번 스텝 : 닉네임
     } else if (stepId === 3) {
       /**닉네임이 공백일때 */
@@ -126,7 +129,8 @@ export default function SignUp() {
               // cancelButton: 'swal-cancel-button',
             },
           });
-        } else if (
+        } 
+        else if (
           inputData.isNickAgree === true &&
           inputData.userNickname !== ""
         )

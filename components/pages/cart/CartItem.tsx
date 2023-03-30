@@ -9,13 +9,14 @@ import axios from "axios";
 import { useRecoilValue } from "recoil";
 
 export default function CartItem(props: { data: cartListType }) {
+  console.log('props.data.count',props.data.count)
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const BaseUrl = process.env.baseApiUrl;
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
   const [itemclose,setItemClose]=useState<boolean>(false)
-
+console.log('cartListcartListcartList',cartList)
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
       setCartList({
@@ -39,14 +40,17 @@ export default function CartItem(props: { data: cartListType }) {
       });
     }
   };
+
+
+
   const handleDelete = () => {
     axios
       .patch(`${BaseUrl}/api/v1/cart/delete`, {
         cartId: props.data.cartId,
       })
       .then((res) => {
+        setItemClose(!itemclose)
         setIsChangeModal(!modal);
-        setItemClose(true)
       });
   };
 
@@ -79,7 +83,7 @@ export default function CartItem(props: { data: cartListType }) {
             <span>{props.data.price.toLocaleString()}</span>원
           </p>
         </div>
-        <img src="assets/images/icons/close.svg" onClick={()=>handleDelete()} />
+        <img src="assets/images/icons/close.svg" onClick={handleDelete} />
       </div>
       <div className="product-view-count-info">
         <div className="product-view-count">{`수량: ${props.data.count}개`}</div>

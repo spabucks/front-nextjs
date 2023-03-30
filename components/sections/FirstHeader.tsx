@@ -74,9 +74,9 @@ export default function FirstHeader() {
           accessToken: "",
           isLogin: false,
         });
-        removeCookie('id')
+        // removeCookie('id')
         // cookie.remove('userid', {path : '/'},1000)
-        // localStorage.removeItem("accessToken");
+        localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
       
         let timerInterval: string | number | NodeJS.Timer | undefined;
