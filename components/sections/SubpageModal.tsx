@@ -46,7 +46,7 @@ export default function SubpageModal() {
             <>
               <h2>sign in to Online Store</h2>
               <p>
-                <Link href={`/login`}>
+                <Link href={`/login`} onClick={handleSubpageClose}>
                   <button className="sub-page-login" type="button">
                     로그인
                   </button>

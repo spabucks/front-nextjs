@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import axios from "axios";
 import Head from "next/head";
-import Logincheck from "@/components/ui/logincheck";
+import Logincheck from "@/components/ui/Logincheck";
 import CartList from "@/components/pages/cart/CartList";
 import CartMenu from "@/components/pages/cart/CartMenu";
 import FirstHeader from "@/components/sections/FirstHeader";
@@ -58,28 +58,37 @@ export default function cart() {
         rfon.ico"
         />
       </Head>
-
-      {ischangemodal === true ? (
+      {(ischangemodal === true && loginData.isLogin===true) ? (
         <ModalCartCountChange
           isChangeCount={isChangeCount}
           setIsChangeCount={setIsChangeCount}
         />
-      ) : (
+      ) : ((ischangemodal === false && loginData.isLogin===true) && (
         <>
-          <FirstHeader />
+        <FirstHeader />
+        <CartMenu />
+        {cartList.cartList.length === 0 &&
+        cartList.cartListFreeze.length === 0 ? (
+          ""
+        ) : (
+          <>
+            <CartList />
+            <CartFooter />
+          </>
+        )}
+      </>
+      )
+      )}
+           {/* {loginData.isLogin===true && 
+              <>
+                  <FirstHeader />
           <CartMenu />
-          {cartList.cartList.length === 0 &&
-          cartList.cartListFreeze.length === 0 ? (
-            ""
-          ) : (
-            <>
-              <CartList />
+          <CartList />
               <CartFooter />
             </>
-          )}
-        </>
-      )}
-      {loginData.isLogin===false && 
+      
+      } */}
+      {loginData.isLogin!==true && 
               <>
               <LoginHeader></LoginHeader>
               <Logincheck></Logincheck>

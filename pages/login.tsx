@@ -57,7 +57,7 @@ export default function Login() {
           });
           let myLogin = localStorage;
           myLogin.setItem("userId", res.data.data.userId);
-          setCookie("id", res.data.data.accessToken, { path: "/" });
+          setCookie("id", res.data.data.accessToken, { path: "/"});
           
           Swal.fire({
             icon: "success",
