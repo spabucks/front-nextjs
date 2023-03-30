@@ -3,6 +3,7 @@ import { recentSearchWord } from "@/state/recentSearchWord";
 import { useRecoilState } from "recoil";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 export default function Search() {
 
   const [recentWordsBox, setRecentWordsBox] = useRecoilState(recentSearchWord);
@@ -12,7 +13,20 @@ export default function Search() {
   };
 
   const handleClearKeywords = () => {
-    setRecentWordsBox([]);
+    Swal.fire({
+      icon:"info",
+      text:"최근 검색어를 모두 삭제하시겠습니까?",
+      cancelButtonText:"취소",
+      showCancelButton:true,
+      customClass:{
+        confirmButton: "swal-confirm-button",
+            cancelButton: "swal-cancel-button",
+      }
+    }).then((result)=>{
+      if(result.isConfirmed){
+        setRecentWordsBox([]);
+      }
+    })
   }
   const router = useRouter();
   return (
