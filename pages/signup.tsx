@@ -12,23 +12,25 @@ import Step04 from "./signup/Step04";
 import Step05 from "./signup/Step05";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from 'next/router'
+
 export default function SignUp() {
   const BaseUrl = process.env.baseApiUrl;
-
+  const router = useRouter()
   const [stepId, setStepId] = useState<number>(1);
   const [inputData, setInputData] = useState<inputRegisterType>({
     userEmail: "",
     userName: "",
     userNickname: "",
     loginId: "",
-    birthday: new Date(),
+    birthday: 0,
     password: "",
     confirmPassword: "",
-    phone: "",
     isUserConfirm: false,
     isLoginIdConfirm: false,
     isEmailAgree: false,
     isNickAgree: false,
+    isNameConfirm:false,
     privateAgree: {
       isAgree: false,
       isUseConfirm: false,
@@ -43,7 +45,7 @@ export default function SignUp() {
     { 4: <Step04 inputData={inputData} setInputData={setInputData} /> },
     { 5: <Step05 inputData={inputData} setInputData={setInputData} /> },
   ];
-  console.log("dddddddddddd", inputData.isEmailAgree);
+
   // useEffect(()=>{
   //   console.log(inputData)
   // },[inputData])
@@ -89,7 +91,15 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
           },
         });
-        
+      }else if(inputData.userName===""){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "이름을 입력해주세요!",
+          customClass: {
+            confirmButton: "swal-confirm-button",
+          },
+        });
       }
       else {
         setStepId(stepId + 1);
@@ -98,6 +108,7 @@ export default function SignUp() {
       //3번 스텝 : 닉네임
     } else if (stepId === 3) {
       /**닉네임이 공백일때 */
+      console.log(inputData)
       if (inputData.userNickname === "") {
         Swal.fire({
           icon: "warning",
@@ -108,31 +119,30 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
             cancelButton: "swal-cancel-button",
           },
-        }).then((result) => {
+        })
+        
+        .then((result) => {
           if (result.isConfirmed) {
             setStepId(stepId + 1);
           }
           return;
         });
-        /**닉네임이 공백이 아닐떄 */
-      } else {
+      } 
+      if(inputData.userNickname !== "") {
         //닉네임 이용약관 동의 안하고 닉네임이 있을때
         if (inputData.isNickAgree === false && inputData.userNickname !== "") {
           Swal.fire({
             icon: "error",
             text: "닉네임 사용을 원하신다면, 필수 항목에 동의해주세요",
             title: "Oops",
-            // cancelButtonText: '닉네임 정하기',
-            // showCancelButton: true,
             customClass: {
               confirmButton: "swal-confirm-button",
-              // cancelButton: 'swal-cancel-button',
             },
           });
         } 
-        else if (
+        if (
           inputData.isNickAgree === true &&
-          inputData.userNickname !== ""
+          inputData.userNickname !== "" && inputData.userNickname.length<=6
         )
           Swal.fire({
             icon: "warning",
@@ -143,7 +153,10 @@ export default function SignUp() {
               confirmButton: "swal-confirm-button",
               cancelButton: "swal-cancel-button",
             },
-          }).then((result) => {
+          })
+
+          
+          .then((result) => {
             if (result.isConfirmed) {
               setStepId(stepId + 1);
             } else {
@@ -163,11 +176,15 @@ export default function SignUp() {
           customClass: {
             confirmButton: "swal-confirm-button",
           },
-        });
-        return;
-      }
+        })}
+    else{
       setStepId(stepId + 1);
+      return;
+    }
+      
+        
     } else if (stepId === 5) {
+      console.log('stepid55555555555555555555555555555555')
       axios
         .post(`${BaseUrl}/api/v1/auth/signup`, {
           loginId: inputData.loginId,
@@ -179,34 +196,8 @@ export default function SignUp() {
           nickName: inputData.userNickname,
         })
         .then((res) => {
-          console.log(res);
-        });
-      // else if(stepId === 5){
-      //   axios.post(`${BaseUrl}/api/v1/auth/signup` ,{
-      //     loginId: inputData.loginId,
-      //     pwd: inputData.password,
-      //     userName: inputData.userName,
-      //     phoneNum: inputData.phone,
-      //     email: inputData.userEmail,
-      //     birth: "2023-03-27T10:51:32.964Z",
-      //     nickName:inputData.userNickname
-      //   }).then(
-      //     (res) => {
-      //       console.log(res)
-      // Swal.fire({
-      //   icon: 'success',
-      //   text: `회원가입이 완료되었습니다.`,
-      //   customClass: {
-      //     confirmButton: 'swal-confirm-button',
-      //   }
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     window.location.href = '/login';
-      //   }
-      // })
-      //     }
-      //   )
-      // }
+
+        }).catch((err)=>err);
     }
   };
 
@@ -215,12 +206,11 @@ export default function SignUp() {
       {stepId != 5 && (
         <>
           <div>
-            <img className="close" src="assets/images/icons/close.svg" />
+            <img className="close" src="assets/images/icons/close.svg" onClick={() => router.back()}/>
           </div>
           <Steper stepId={stepId} />
         </>
       )}
-
       {steps[stepId - 1][stepId]}
       {stepId === 5 ? (
         <footer className="footer-login-sumit">
@@ -229,6 +219,7 @@ export default function SignUp() {
               buttonText="로그인하러가기"
               textSize="1.1rem"
               type="button"
+              handler={handleStepNext}
             />
           </Link>
         </footer>
