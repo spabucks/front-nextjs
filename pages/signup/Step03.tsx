@@ -1,30 +1,40 @@
 import { inputRegisterType } from "@/types/UserRequest/Request";
-import axios from "axios";
 import React from "react";
-
+import { useState } from "react";
+import { useEffect } from "react";
 interface ChildProps {
   inputData: inputRegisterType;
   setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;
 }
 
-export default function Step03({ inputData, setInputData } : ChildProps)  {
-
+export default function Step03({ inputData, setInputData }: ChildProps) {
   const BaseUrl = process.env.baseApiUrl;
+  const NickreExp = /^[가-힣]{2,6}$/;
+  const [nickNameConfirm, setNickNameConfirm] = useState<number>(0);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNickChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setInputData({
-      ...inputData,
-      [name]: value,
-    }); 
-  }
+    if (!NickreExp.test(e.target.value)) {
+      setNickNameConfirm(2); //닉네임 양식이 틀림
+    } else {
+      setNickNameConfirm(1); //닉네임 올바른거
+      setInputData({
+        ...inputData,
+        [name]: value,
+      });
+    }
+  };
+
+  useEffect(() => {
+
+    console.log(inputData);
+  }, [inputData]);
 
   const onehandleNickCheck = (check: boolean) => {
     setInputData({
       ...inputData,
-      isNickAgree : !check
-    })
-    // setIsEmailAgree(!check);
+      isNickAgree: !check,
+    });
   };
   return (
     <div className="main-nick-form">
@@ -36,11 +46,7 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
           입력해 주세요.
         </h1>
         <div className="nick-check-all">
-          {/* <div className="agree-check-all">
-            <input type="checkbox" id="nickgree" />
-            <label> 선택적 개인정보 수집동의 및 이용약관</label>
-          </div> */}
-                    <div
+          <div
             className={
               inputData.isNickAgree
                 ? "select-agree-check-service"
@@ -59,7 +65,39 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
       <div className="nickgree-body">
         <div className="nickgree-body-form">
           <div className="nickgree-body-form-input">
-            <input type="text" placeholder="닉네임 (한글 6자리 이내)"  name="userNickname" onChange={handleChange}/>
+            <div>
+              <input
+                type="text"
+                placeholder="닉네임 (한글 6자리 이내)"
+                name="userNickname"
+                onChange={handleNickChange}
+              />
+
+              {nickNameConfirm === 2 && (
+                <p
+                  style={{ color: "red", fontSize: "10px", margin: "3px 0px" }}
+                >
+                  닉네임(한글 6자리 이내)
+                </p>
+              )}
+              {nickNameConfirm === 1 && (
+                <p
+                  style={{ color: "grey", fontSize: "10px", margin: "3px 0px" }}
+                >
+                  올바른 형식입니다
+                </p>
+              )}
+              {nickNameConfirm === 0 && (
+                <p
+                  style={{
+                    color: "grey",
+                    fontSize: "10px",
+                    opacity: 0,
+                    margin: "3px 0px",
+                  }}
+                ></p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -70,6 +108,5 @@ export default function Step03({ inputData, setInputData } : ChildProps)  {
         </p>
       </div>
     </div>
-      
   );
 }
