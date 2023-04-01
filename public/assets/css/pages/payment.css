@@ -1,0 +1,235 @@
+.main-payment body {
+  padding: 10px 10px;
+}
+
+.main-address-title {
+  font-size: 1.3rem;
+  margin-top: 70px;
+  padding: 5px 25px;
+}
+
+.change-button-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+}
+
+.change-button-form h3 {
+  font-size: 1.3rem;
+}
+
+.change-button {
+  text-align: center;
+  font-size: 1rem;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  height: 40px;
+  color: rgb(136, 136, 136);
+  border-color: rgb(151, 151, 151);
+}
+
+.pay-address-info {
+  padding: 20px;
+  font-size: 1.2rem;
+  line-height: 13px;
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+.pay-address-info p {
+  line-height: 25px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.payment-resister {
+  border: none;
+  text-align: center;
+  font-weight: 550;
+  font-size: 1.1rem;
+}
+
+.address-serch {
+  margin-top: 20px;
+  height: 40px;
+  width: 170px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  color: #01a862;
+  border-color: #01a862;
+  background-color: rgb(255, 255, 255);
+}
+
+.payment-info-wrap-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: rgb(248 248 248);
+  margin-top: 30px;
+  padding: 0px 0px 10px 20px;
+}
+
+.payment-info-wrap-list .payment-info-toggle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-info-toggle p {
+  font-size: 1.2rem;
+}
+
+.red-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+}
+
+.payment-right-img {
+  transform: rotate(-91deg);
+  width: 30px;
+  margin: 15px;
+}
+
+.payment-second-img {
+  transform: rotate(180deg);
+  width: 30px;
+  margin: 15px;
+}
+
+.payment-product-wrap-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0px 40px 0px 0px;
+}
+
+.coupon-info-wrap-list .payment-info-toggle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coupon-info-wrap-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: solid 1px #c7c7c7;
+  margin: 0px 0px 0px 20px;
+}
+
+.pay-agree-input {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.pay-agree-input input {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.payment-info-wrap-price {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 10px 20px 0px 20px;
+  line-height: 10px;
+}
+
+.payment-info-price-title h4 {
+  margin: 20px 0px 20px 0px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.pay-info-order-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+*.pay-order-price-first {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.final-info-wrap-price {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  padding: 20px;
+  font-weight: bold;
+  margin: -20px 0px 0px 0px;
+}
+
+.payment-info-wrap-price-form {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+
+.final-info-price-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -40px;
+}
+
+.final-info-price-title p:last-child {
+  font-size: 1.7rem;
+}
+.pay-agree {
+  padding: 0px 20px;
+  background-color: #f5f5f5;
+  margin: 30px 20px 120px 20px;
+}
+
+.pay-agree-form {
+  line-height: 17px;
+  margin: 0px -10px;
+}
+
+.pay-agree p {
+  font-size: 0.85rem;
+  line-height: 25px;
+  padding: 0px 0px 0px 10px;
+}
+
+.main-payment-submit {
+  background-color: rgba(255, 255, 255, 0.893);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  -webkit-box-shadow: -2px 9px 23px -8px #000000;
+  box-shadow: -2px 9px 23px -8px #000000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.main-payment-submit button {
+  width: 90%;
+  height: 60%;
+  padding: 0px;
+  background-color: #01a862;
+  border: none;
+  border-radius: 40px;
+  color: rgb(255, 255, 255);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
