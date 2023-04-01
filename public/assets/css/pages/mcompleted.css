@@ -1,86 +1,88 @@
 .main-clear-title {
-    box-sizing: border-box;
-    padding: 10px 15px 0px 20px;
-  }
+  box-sizing: border-box;
+  padding: 10px 15px 0px 20px;
   
-  /*회원가입이 완료되었습니다.*/
-  
-  .main-clear-title h1 {
-    font-size: 1.6rem;
-    font-weight: 400;
-  }
-  
-  .clear-result {
-    font-size: 0.8rem;
-    box-sizing: border-box;
-    padding: 16px 15px;
-    color: #a89e9e;
-  }
-  
-  .box-wrap {
-    margin: auto;
-    margin: 0px 18px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: thin solid #a89e9e;
-    border-top: thin solid #a89e9e;
-    font-size: 0.8rem;
-  }
-  
-  /* 표 */
-  .left-box {
-    width: 50%;
-    padding: 12px 5px;
-    text-align: left;
-    border-right: thin solid #a89e9e;
-  }
-  
-  .right-box {
-    width: 50%;
-    text-align: center;
-    padding: 12px 0;
-  }
-  
-  /* 주식회사 에스씨케이컴퍼니*/
-  .clear-company {
-    display: flex;
-    justify-content: end;
-    box-sizing: border-box;
-    padding: 0px 18px;
-  }
-  .clear-company p {
-    font-size: 0.8rem;
-    color: #a89e9e;
-  }
-  
-  /*별적립 혜택*/
-  .clear-star {
-    box-sizing: border-box;
-    padding: 0 10px;
-  }
-  
-  .clear-star img {
-    width: 100%;
-  }
-  
-  /* 회원가입 완료 사진*/
-  .clear-card {
-    box-sizing: border-box;
-    padding: 12px 40px;
-  }
-  .clear-card img {
-    width: 100%;
-  }
-  
-  #clear-card {
-    text-align: center;
-  }
-  
-  /* 적립을 받을 수 있는 방법이 궁금하시다면?  */
-  .clear-how {
-    text-align: center;
-    font-size: 1rem;
-  }
-  
+}
+
+/*회원가입이 완료되었습니다.*/
+
+.main-clear-title h1 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.clear-result {
+  font-size: 0.8rem;
+  box-sizing: border-box;
+  padding: 16px 15px;
+  color: #a89e9e;
+}
+
+
+.box-wrap {
+  margin: auto;
+  margin: 0px 18px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: thin solid #a89e9e;
+  border-top: thin solid #a89e9e;
+  font-size: 0.8rem;
+}
+
+/* 표 */
+.left-box {
+  width: 50%;
+  padding: 12px 5px;
+  text-align: left;
+  border-right: thin solid #a89e9e;
+}
+
+.right-box {
+  width: 50%;
+  text-align: center;
+  padding: 12px 0;
+}
+
+
+/* 주식회사 에스씨케이컴퍼니*/
+.clear-company {
+  display: flex;
+  justify-content: end;
+  box-sizing: border-box;
+  padding: 0px 18px;
+}
+.clear-company p{
+  font-size: 0.8rem;
+  color: #a89e9e;
+}
+
+
+/*별적립 혜택*/
+.clear-star img {
+  width: 100vw;
+  height: 80px;
+  box-sizing: border-box;
+  padding: 0px;
+}
+
+/* 회원가입 완료 사진*/
+.clear-card img {
+  width: 100vw;
+  height: 200px;
+  box-sizing: border-box;
+  padding: 20px 70px;
+}
+
+
+#clear-card {
+  text-align: center;
+}
+
+/* 적립을 받을 수 있는 방법이 궁금하시다면?  */
+.clear-how{
+
+  text-align: center;
+  font-size: 1rem;
+}
