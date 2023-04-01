@@ -5,15 +5,16 @@ import { cartOrderState } from "@/state/cartOrderState";
 import { cartListType, cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
 import axios from "axios";
-
+import { cartCount } from "@/state/cartCount";
+import { userState } from "@/state/userState";
 export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setIsChangeCount: Function}) {
-  
+  const [loginData,setLoginData]=useRecoilState(userState)
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [cartListItem, setCartListItems] =
     useRecoilState<cartType>(cartListState);
   const [item, setItem] = useState<cartListType>();
   const orderItem = useRecoilValue(cartOrderState);
-  const [changecount, setCount] = useState<number>(1);
+  const [changecount, setCount] = useRecoilState(cartCount);
   const BaseUrl = process.env.baseApiUrl;
 
   useEffect(() => {
@@ -43,6 +44,10 @@ export default function ModalCartCountChange(props:{ isChangeCount:Boolean, setI
       .patch(`${BaseUrl}/api/v1/cart/update`, {
         cartId: item?.cartId,
         amount: changecount,
+      }, {
+        headers: {
+          Authorization: `Bearer ${loginData.accessToken}`
+        }
       })
       .then((res) => {
         console.log(res);

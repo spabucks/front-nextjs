@@ -10,10 +10,7 @@ import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartCount } from "@/state/cartCount";
-import { useRef } from "react";
-import Header from "@/components/sections/Header";
-import { ShowModal } from "@/components/ui/CartProductCardDetail";
-import ChangeCheckShowModal from "@/components/ui/ChangeCheckShowModal";
+
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
 import { userState } from "@/state/userState";
 export default function Product() {
@@ -25,7 +22,6 @@ export default function Product() {
   const [isClick, setIsClick] = useState<Boolean>(false);
   /**장바구니에 추가되었습니다라는 모달 */
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
-  const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
   const [status, setStatus]=useState<number>(0);
   const [addcount,setAddCount]=useState<number>(0);
   useEffect(() => {
@@ -52,8 +48,11 @@ export default function Product() {
     axios
       .post(`${BaseUrl}/api/v1/cart/add`, {
         productId: query.productId,
-        userId: `${loginData.userId}`,
         amount: count,
+      }, {
+        headers: {
+          Authorization: `Bearer ${loginData.accessToken}`
+        }
       })
       .then((res) => {
         console.log("성공!");
@@ -61,6 +60,7 @@ export default function Product() {
         setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
       })
       .catch((err) => {
+        console.log(err)
         if (err.response.status === 400) {
           const errorresponse = err.response.data;
           console.log('errorresponse',errorresponse)
@@ -76,7 +76,7 @@ export default function Product() {
       <SecondHeader />
       <TopScrollBtn></TopScrollBtn>
       <div className="sep"></div>
-      <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />
+      <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal}/>
       {productData && <DetailProduct data={productData} />}
       {data &&
         data.map((item) => (

@@ -5,7 +5,7 @@ import MypageMenuLists from "@/components/sections/MyPageMenuLists";
 import { useRecoilState } from "recoil";
 import { userState } from "@/state/userState";
 import LoginHeader from "@/components/sections/LoginHeader";
-import Logincheck from "@/components/ui/logincheck";
+import Logincheck from "@/components/ui/Logincheck";
 export default function Mypage() {
   const [loginData, setLoginData] = useRecoilState(userState);
   return (
@@ -22,7 +22,6 @@ export default function Mypage() {
       </Head>
       {loginData.isLogin === true ? (
         <>
-          {" "}
           <FirstHeader />
           <MyPageTop />
           <MypageMenuLists title={"서비스"} />

@@ -14,7 +14,8 @@ export default function DetailProduct(props: { data: detailProduct }) {
       setSize({ width: res.width, height: res.height });
     });
   }, []);
-  /**스크롤에 따라 이미지 변경 */
+  
+  // /**스크롤에 따라 이미지 변경 */
   const [position, setPosition] = useState(0);
   const [titleshow, setTitleShow] = useState(false);
 

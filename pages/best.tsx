@@ -1,17 +1,21 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+
+import { useState, useEffect } from "react";
+
 import FirstHeader from "@/components/sections/FirstHeader";
 import ProductBestList from "@/components/layouts/ProductBestList";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { productBestList } from "@/types/type";
-import { useRouter } from "next/router";
-import { Dimmer, Loader, Image, Segment } from "semantic-ui-react";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
+import axios from "axios";
+
+import { productBestList } from "@/types/type";
+
 export default function Best() {
   const [data, setData] = useState<productBestList[]>([]);
-  const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
+
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/product/get-best/${router.query.category}`)
       .then((res) => {
@@ -19,6 +23,7 @@ export default function Best() {
       })
       .catch((err) => console.log(err));
   }, [router.query.category]);
+
   return (
     <>
       <Head>

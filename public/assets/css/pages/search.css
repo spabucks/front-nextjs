@@ -141,3 +141,8 @@ min-width: 100px;
   height: 500px;
   
 }
+.search-keyword-title{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

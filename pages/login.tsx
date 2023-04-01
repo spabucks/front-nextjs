@@ -19,6 +19,8 @@ export default function Login() {
     password: "",
   });
   //로그인 데이터
+  //하루로 기간설정
+  // const expires = new Date();
   const [loginData, setLoginData] = useRecoilState(userState);
   const [cookies, setCookie,removeCookie] = useCookies(["id"]);
 
@@ -35,12 +37,15 @@ export default function Login() {
       });
       return;
     }
+    console.log('inputData.loginId',inputData.loginId)
+    console.log('inputData.password',inputData.password)
     axios
       .post(`${BaseUrl}/api/v1/auth/login`, {
         loginId: inputData.loginId,
         pwd: inputData.password,
       })
       .then((res) => {
+        console.log('resssssssssssssssssssssssssssss',res)
         if (res.status === 204) {
           Swal.fire({
             icon: "error",
@@ -58,19 +63,19 @@ export default function Login() {
           let myLogin = localStorage;
           myLogin.setItem("userId", res.data.data.userId);
           myLogin.setItem("accessToken",res.data.data.accessToken)
-          setCookie("id", res.data.data.accessToken, { path: "/"});
-          
+          // setCookie("id", res.data.data.accessToken, { path: "/",expires: expires});
+
           Swal.fire({
             icon: "success",
             text: "로그인 성공",
             customClass: {
               confirmButton: "swal-confirm-button",
             },
-          }).then((res) => res.isConfirmed && router.back());
+          }).then((res) => res.isConfirmed && router.push(`/`));
         }
       })
       .catch((err) => {
-        if (err.response.status === 40) {
+        if (err.response.status === 500) {
           Swal.fire({
             icon: "error",
             title: "아이디 혹은 비밀번호가 틀렸습니다.",
@@ -79,11 +84,11 @@ export default function Login() {
           //   loginId: "",
           //   password: "",
           // });
-        } else if (err.response.status === 500) {
-          Swal.fire({
-            icon: "error",
-            title: "서버에 접속할 수 없습니다. 잠시후에 다시 시도해주세요.",
-          });
+        // } else if (err.response.status === 500) {
+        //   Swal.fire({
+        //     icon: "error",
+        //     title: "서버에 접속할 수 없습니다. 잠시후에 다시 시도해주세요.",
+        //   });
           // setInputData({
           //   loginId: "",
           //   password: "",

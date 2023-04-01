@@ -22,7 +22,7 @@ export default function Home() {
     axios
       .get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setData(res.data.data);
       })
       .catch((err) => console.log(err));
@@ -40,19 +40,19 @@ export default function Home() {
         rfon.ico"
         />
       </Head>
-     <TopScrollBtn/>
-          <FirstHeader />
-          <SliderContainer />
-          <SlideCircleProduct />
-          {data &&
-            data.map((item) => (
-              <SlideSquareProduct
-                key={item.id}
-                title={item.name}
-                itemData={item.data}
-                description={item.description}
-              />
-            ))}
+      <TopScrollBtn />
+      <FirstHeader />
+      <SliderContainer />
+      <SlideCircleProduct />
+      {data &&
+        data.map((item) => (
+          <SlideSquareProduct
+            key={item.id}
+            title={item.name}
+            itemData={item.data}
+            description={item.description}
+          />
+        ))}
     </>
   );
 }

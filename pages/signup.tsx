@@ -184,13 +184,11 @@ export default function SignUp() {
       
         
     } else if (stepId === 5) {
-      console.log('stepid55555555555555555555555555555555')
       axios
         .post(`${BaseUrl}/api/v1/auth/signup`, {
           loginId: inputData.loginId,
           pwd: inputData.password,
           userName: inputData.userName,
-          phoneNum: inputData.phone,
           email: inputData.userEmail,
           birth: "2023-03-27T10:51:32.964Z",
           nickName: inputData.userNickname,

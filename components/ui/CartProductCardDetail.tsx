@@ -6,7 +6,7 @@ import { detailProduct } from "@/types/type";
 export interface ChildProps {
   isClick?: Boolean;
   setIsClick?: React.Dispatch<React.SetStateAction<Boolean>>;
-  data: detailProduct;
+  data?: detailProduct;
   status: number;
   addcount: number;
 }
@@ -33,7 +33,7 @@ export function ShowModal() {
 export function ChangeCheckShowModal(props: {
   status: number;
   addcount: number;
-  data: detailProduct;
+  data?: detailProduct;
 }) {
   const [time, setTime] = useState<boolean>(false);
   useEffect(() => {
@@ -47,7 +47,7 @@ export function ChangeCheckShowModal(props: {
   return (
     <>
       <div className="buy-checkannouncement-show">
-        {`${props.data.title}상품이 장바구니에 담겨있습니다`}
+        {`${props.data?.title}상품이 장바구니에 담겨있습니다`}
         <br />
         {`담기가능수량 : ${props.addcount}개`}
       </div>
@@ -63,8 +63,9 @@ export default function CartProductCardDetail({
   addcount,
 }: ChildProps) {
 
-  // const [count, setCount] = useRecoilState(cartCount);
   const [count, setCount] = useState(1);
+
+
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };

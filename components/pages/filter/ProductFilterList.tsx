@@ -1,6 +1,6 @@
 import React from "react";
 import { filterProductList } from "@/types/type";
-import ProductFilterListCard from "../../sections/ProductFilterListCard";
+import ProductListCard from "../../sections/ProductListCard";
 import { useState } from "react";
 import Select from "react-select"; //라이브러리 import
 import { OnChangeValue } from "react-select/dist/declarations/src";
@@ -32,7 +32,7 @@ export default function ProfuctFilterList(props: {
         <div className="best-product-list">
           {props.itemData &&
             props.itemData.map((items, i) => (
-              <ProductFilterListCard key={items.id} data={items} />
+              <ProductListCard key={items.id} data={items} />
             ))}
         </div>
         {props.itemData.length === 0 && (

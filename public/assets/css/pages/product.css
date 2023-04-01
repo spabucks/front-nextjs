@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  z-index: 800;
+  z-index: 100;
   font-weight: 500;
   transition:3s linear;
 }

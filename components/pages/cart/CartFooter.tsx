@@ -4,6 +4,7 @@ import { cartListState } from '@/state/cartListState';
 import { generaldelivery } from '@/state/generaldelivery';
 import { freezedelivery } from '@/state/freezedelivery';
 export default function CartFooter() {
+
     const [cartItems, setCartItems] = useRecoilState(cartListState);
  /**체크한 상품에 대하여 가격 계산 */
     const Generalitem = cartItems.cartList.filter(

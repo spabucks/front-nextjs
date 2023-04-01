@@ -1,30 +1,29 @@
 import Link from "next/link";
-import SubPageMenu from "@/components/sections/SubPageMenu";
 import { useEffect, useState } from "react";
-import { subPageMenu } from "@/types/type";
-import axios from "axios";
-import Head from "next/head";
 import { useRecoilState } from "recoil";
 import { subPage } from "@/state/subPage";
 import { userState } from "@/state/userState";
-
 import { useCookies } from "react-cookie";
+import Image from "next/image";
+import Leftarrow from "../ui/Leftarrow";
 export default function SubpageModal() {
   // const [isLogin, setIsLogin] = useRecoilState(userState);
-  const [cookies, setCookie] = useCookies(["id"]);
+  const [cookies, getCookie] = useCookies(["id"]);
   const [subPageModal, setSubpageModal] = useRecoilState(subPage);
   const [loginData, setLoginData] = useRecoilState(userState);
   useEffect(() => {
-    const myLogin = cookies.id;
-    if (myLogin && !loginData.isLogin) {
+    // const myLogin = cookies.id;
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken && !loginData.isLogin) {
       console.log("로그인 되어있음");
       setLoginData({
-        userId: localStorage.getItem("userId") || "",
-        accessToken: localStorage.getItem("accessToken") || "",
+        userId: userId || "",
+        accessToken: accessToken || "",
         isLogin: true,
       });
     }
-  },[]);
+  }, []);
 
   const handleSubpageClose = () => {
     setSubpageModal(false);
@@ -55,8 +54,8 @@ export default function SubpageModal() {
             <>
               <h2>sign in to Online Store</h2>
               <p>
-                <Link href={`/login`} onClick={handleSubpageClose}>
-                  <button className="sub-page-login" type="button">
+                <Link href={`/login`} >
+                  <button className="sub-page-login" type="button" onClick={handleSubpageClose}>
                     로그인
                   </button>
                 </Link>
@@ -74,10 +73,7 @@ export default function SubpageModal() {
             onClick={handleSubpageClose}
           >
             전체상품보기
-            <img
-              className="sub-change-left-icon"
-              src="assets/images/icons/left-chevron.svg"
-            />
+            <Leftarrow />
           </Link>
         </div>
         <div className="sub-page__main-first-content">
@@ -86,7 +82,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=1"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/케이크.jpg" />
+              <Image
+                src="/assets/images/products/케이크.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>케이크</p>
             </Link>
           </div>
@@ -95,7 +97,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=2"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/텀블러보온병.jpg" />
+              <Image
+                src="/assets/images/products/텀블러보온병.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>텀블러/보온병</p>
             </Link>
           </div>
@@ -104,7 +112,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=3"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/머그컵.jpg" />
+              <Image
+                src="/assets/images/products/머그컵.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>머그/컵</p>
             </Link>
           </div>
@@ -115,7 +129,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=4"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/라이프스타일.jpg" />
+              <Image
+                src="/assets/images/products/라이프스타일.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>라이프스타일</p>
             </Link>
           </div>
@@ -124,7 +144,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=5"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/티커피용품.jpg" />
+              <Image
+                src="/assets/images/products/티커피용품.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>티/커피용품</p>
             </Link>
           </div>
@@ -133,7 +159,13 @@ export default function SubpageModal() {
               href="http://localhost:3000/filter?bigCategory=6"
               onClick={handleSubpageClose}
             >
-              <img src="assets/images/products/세트.jpg" />
+              <Image
+                src="/assets/images/products/세트.jpg"
+                alt="카테고리 이미지"
+                width={100}
+                height={100}
+              ></Image>
+
               <p>세트</p>
             </Link>
           </div>
@@ -148,10 +180,7 @@ export default function SubpageModal() {
           </div>
           <Link href="/event?category=1" onClick={handleSubpageClose}>
             <div className="sub-page__sub-content-icon">
-              <img
-                className="sub-change-left-icon"
-                src="assets/images/icons/left-chevron.svg"
-              />
+              <Leftarrow />
             </div>
           </Link>
         </div>
@@ -164,10 +193,7 @@ export default function SubpageModal() {
           </div>
           <Link href="/best?category=1" onClick={handleSubpageClose}>
             <div className="sub-page__sub-content-icon">
-              <img
-                className="sub-change-left-icon"
-                src="assets/images/icons/left-chevron.svg"
-              />
+              <Leftarrow />
             </div>
           </Link>
         </div>

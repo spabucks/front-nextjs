@@ -61,10 +61,13 @@
 }
 
 .agree-body-form-input {
-  height: 70px;
+  height: 80px;
   border-bottom: thin solid #c7c7c7;
   display: flex;
   align-items: center;
+}
+.validity-check-title {
+  margin: 2px 0px;
 }
 
 .agree-body-form-input input,
@@ -144,9 +147,9 @@
   color: #c7c7c7;
   padding: 30px 0px;
 }
-.id-number input:focus{
-outline: none;
-border: none;
+.id-number input:focus {
+  outline: none;
+  border: none;
 }
 .id-email-body-form-check-btn {
   height: 50px;

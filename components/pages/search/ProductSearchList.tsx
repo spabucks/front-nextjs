@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { filterProductList } from "@/types/type";
-import ProductSearchListCard from '../../sections/ProductSearchListCard';
+import ProductListCard from '../../sections/ProductListCard';
 import { useState } from "react";
 export default function ProductSearchList(props: {
     productData: filterProductList[];
@@ -38,7 +38,7 @@ export default function ProductSearchList(props: {
     <>  <div className="best-product-list">
           {props.productData &&
             props.productData.map((items, i) => (
-              <ProductSearchListCard key={items.id} data={items} />
+              <ProductListCard key={items.id} data={items} />
             ))}
         </div>
         {(props.productData.length === 0 )&& (

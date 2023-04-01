@@ -1,7 +1,6 @@
 import { inputRegisterType } from "@/types/UserRequest/Request";
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState,useEffect  } from "react";
 interface ChildProps {
   inputData: inputRegisterType;
   setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;

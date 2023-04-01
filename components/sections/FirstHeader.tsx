@@ -10,10 +10,8 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
 import { categoryMenu } from "@/types/type";
-import { useImageSize } from "react-image-size";
 import { useRecoilState } from "recoil";
 import { subPage } from "@/state/subPage";
-import { loginCheck } from "@/state/loginCheck";
 import { userState } from "@/state/userState";
 import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
@@ -21,7 +19,7 @@ export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
   const BaseUrl = process.env.baseApiUrl;
-  // const [logincheck, setLoginCheck] = useRecoilState(loginCheck);
+
   const [loginData,setLoginData]=useRecoilState(userState)
   /** 베스트 관련 변수저장*/
   const [categoryBestMenus, setCategoryBestMenus] = useState<categoryMenu[]>(
@@ -75,13 +73,13 @@ export default function FirstHeader() {
           isLogin: false,
         });
         // removeCookie('id')
-        // cookie.remove('userid', {path : '/'},1000)
+        // removeCookie('id', {path : '/'})
         localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
       
         let timerInterval: string | number | NodeJS.Timer | undefined;
         Swal.fire({
-          html: "다음에 또 만나요~~",
+          html: "다음에도 이용해주세요~",
           timer: 2000,
           timerProgressBar: true,
           didOpen: () => {

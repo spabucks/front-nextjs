@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { cartListType } from "@/types/cartTypes";
 import { cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
@@ -7,8 +7,12 @@ import { cartOrderState } from "@/state/cartOrderState";
 import { modal } from "@/state/modal";
 import axios from "axios";
 import { useRecoilValue } from "recoil";
+import { userState } from "@/state/userState";
+import { cartFetchCheck } from "@/state/cartFetchCheck";
 
 export default function CartItem(props: { data: cartListType }) {
+
+  const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck)
   console.log('props.data.count',props.data.count)
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
@@ -16,6 +20,7 @@ export default function CartItem(props: { data: cartListType }) {
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
   const [itemclose,setItemClose]=useState<boolean>(false)
+  const [loginData,setLoginData]=useRecoilState(userState)
 console.log('cartListcartListcartList',cartList)
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
@@ -47,8 +52,13 @@ console.log('cartListcartListcartList',cartList)
     axios
       .patch(`${BaseUrl}/api/v1/cart/delete`, {
         cartId: props.data.cartId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${loginData.accessToken}`
+        }
       })
       .then((res) => {
+        setCartCheck(!cartCheck)
         setItemClose(!itemclose)
         setIsChangeModal(!modal);
       });

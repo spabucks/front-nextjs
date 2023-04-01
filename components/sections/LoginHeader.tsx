@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import CloseBtn from "../ui/CloseBtn";
 export default function LoginHeader() {
   const router = useRouter()
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { inputRegisterType } from "@/types/UserRequest/Request";
 import { privateAgreeType } from "@/types/UserRequest/Request";
 import CheckBox from "@/components/pages/signup/ui/CheckBox";
-import Separator from "@/components/ui/Separator";
+import Separator from "@/components/pages/signup/ui/Separator";
 
 interface ChildProps {
   inputData: inputRegisterType;

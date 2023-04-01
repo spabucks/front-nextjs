@@ -1,5 +1,3 @@
-import { BaseRes } from "@/constants/Apis/Types/ResponseType";
-
 export interface RegisterRes {
   userEmail: string;
   userName: string;
@@ -15,7 +13,7 @@ export interface TokenInfo {
   accessToken: string;
 }
 
-export interface ReIssueTokenRes extends BaseRes {
+export interface ReIssueTokenRes {
   data: TokenInfo;
 }
 

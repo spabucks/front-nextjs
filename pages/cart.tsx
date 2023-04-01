@@ -1,57 +1,87 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
+
 import Head from "next/head";
 import Logincheck from "@/components/ui/Logincheck";
 import CartList from "@/components/pages/cart/CartList";
 import CartMenu from "@/components/pages/cart/CartMenu";
 import FirstHeader from "@/components/sections/FirstHeader";
 import CartFooter from "@/components/pages/cart/CartFooter";
-import ModalCartCountChange from "../components/pages/cart/ModalCartCountChange";
+
 import { cartListType, cartType } from "@/types/cartTypes";
 import LoginHeader from "@/components/sections/LoginHeader";
+
+import ModalCartCountChange from "../components/pages/cart/ModalCartCountChange";
+
 import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
-import { config } from "process";
-import { useCookies } from "react-cookie";
-
 import { userState } from "@/state/userState";
+import { cartFetchCheck } from "@/state/cartFetchCheck";
 export default function cart() {
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
-  const BaseUrl = process.env.baseApiUrl;
-  const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
+  const fetchCheck = useRecoilValue(cartFetchCheck)
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<Boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
-  console.log('cartListcartList',cartList)
+
   /**장바구니 조회 */
-  console.log('cartListcartListcartList',cartList)
-  const fecthCartData = () => {
+
+  // const fecthCartData = () => {
+  //   axios
+  //   .get(`${BaseUrl}/api/v1/cart/get/v2`, {
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  //     },
+  //   })
+  //   .then((res) => {
+  //     console.log(res)
+  //     setCartList({
+  //       cartListFreeze: res.data.filter(
+  //         (item: cartListType) => item.bigCategoryId === 1
+  //       ),
+  //       cartList: res.data.filter(
+  //         (item: cartListType) => item.bigCategoryId !== 1
+  //       ),
+  //     });
+  //     console.log('res',res)
+  //     console.log('@@@@@@@@@@@@@@@@', res.request.status)
+  //     if(res.request.status===404){
+  //       <Link href={'/cart'}></Link>
+  //     }
+  //   }
+   
+  //   )
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
+
+  useEffect(()=>{
+    const BaseUrl = process.env.baseApiUrl;
     axios
-    .get(`${BaseUrl}/api/v1/cart/get/v2/${loginData.userId}`, {
-      headers: {
-        Authorization: `${loginData.accessToken}`,
-      },
-    })
-    .then((res) => {
-      setCartList({
-        cartListFreeze: res.data.filter(
-          (item: cartListType) => item.bigCategoryId === 1
-        ),
-        cartList: res.data.filter(
-          (item: cartListType) => item.bigCategoryId !== 1
-        ),
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-  useEffect(() => {
-    fecthCartData();    
-  }, [isChangeCount]);
-
+      .get(`${BaseUrl}/api/v1/cart/get/v2`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res)=>{
+        if(res.status !== 404) {
+          setCartList({
+            cartListFreeze: res.data.filter(
+              (item: cartListType) => item.bigCategoryId === 1
+            ),
+            cartList: res.data.filter(
+              (item: cartListType) => item.bigCategoryId !== 1
+            ),
+          });
+        }
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+  },[isChangeCount, fetchCheck])
+  
   return (
     <>
       <Head>

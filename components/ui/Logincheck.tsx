@@ -6,7 +6,7 @@ export default function Logincheck() {
   const router = useRouter();
   return (
     <div>
-      <SecondHeader></SecondHeader>
+      <SecondHeader/>
       <p className="login-check-title">로그인 후<br/>이용할 수 있는 서비스입니다.</p>
       <div className='login-check-title-btn'>
         <button onClick={()=>router.push('/')}>메인으로 가기</button>

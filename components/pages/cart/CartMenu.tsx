@@ -5,11 +5,13 @@ import { cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
 import { userState } from "@/state/userState";
 import axios from "axios";
+import { cartFetchCheck } from "@/state/cartFetchCheck";
 export default function CartMenu() {
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const [listAllCheck, setListAllCheck] = useState<boolean>(false);
   const BaseUrl = process.env.baseApiUrl;
   const [loginData, setLoginData] = useRecoilState(userState);
+  const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck)
   useEffect(() => {
     let check = true;
     let freezeCheck = true;
@@ -42,14 +44,18 @@ export default function CartMenu() {
   };
 
   const handleAllDelete = () => {
-    const uuid: string = "85295edc-24ee-4781-b8e3-becc596b010e";
     axios
-      .put(`${BaseUrl}/api/v1/cart/delete/all`,{
-        userId:uuid
-      })
+    .put(`${BaseUrl}/api/v1/cart/delete/all`, {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => {
+        setCartCheck(!cartCheck)
        console.log("성공")
-      });
+   
+      }).catch((err)=>
+      console.log('err',err));
   };
 
   return (
@@ -74,7 +80,7 @@ export default function CartMenu() {
      </div>
      <div className="check-right">
        <button>선택삭제</button>
-       <button onClick={()=>handleAllDelete()}>전체삭제</button>
+       <button onClick={handleAllDelete}>전체삭제</button>
      </div>
    </div> 
       }

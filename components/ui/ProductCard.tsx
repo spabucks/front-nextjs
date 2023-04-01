@@ -31,7 +31,7 @@ export default function ProductCard(props: { data: productCardData }) {
         </Link>
       </div>
       <div className="slide-square-product-item__info">
-      <div className="new-best">
+        <div className="new-best">
           {props.data.isNew === true ? (
             <p className={"product-item-new"}>New</p>
           ) : (
