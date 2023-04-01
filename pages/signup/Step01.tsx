@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+
 import { inputRegisterType } from "@/types/UserRequest/Request";
 import { privateAgreeType } from "@/types/UserRequest/Request";
+
 import CheckBox from "@/components/pages/signup/ui/CheckBox";
 import Separator from "@/components/pages/signup/ui/Separator";
 
@@ -11,7 +14,6 @@ interface ChildProps {
 
 export default function Step01({ inputData, setInputData }: ChildProps) {
   const [isAllAgree, setIsAllAgree] = useState<boolean>(false);
-
   const [agreeArray, setAgreeArray] = useState<privateAgreeType>(
     {} as privateAgreeType
   );
@@ -48,7 +50,12 @@ export default function Step01({ inputData, setInputData }: ChildProps) {
   return (
     <div className="main-membership-section">
       <div className="main-membership-img">
-        <img src="assets/images/logo/logo.png" alt="" />
+        <Image
+          src="/assets/images/logo/logo.png"
+          alt="starbucks-logo"
+          height={50}
+          width={50}
+        />
         <h1>
           고객님 <br />
           환영합니다!

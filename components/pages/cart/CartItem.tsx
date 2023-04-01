@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState} from "recoil";
+import axios from "axios";
+import Image from "next/image";
+
 import { cartListType } from "@/types/cartTypes";
 import { cartType } from "@/types/cartTypes";
+
 import { cartListState } from "@/state/cartListState";
 import { cartOrderState } from "@/state/cartOrderState";
 import { modal } from "@/state/modal";
-import axios from "axios";
-import { useRecoilValue } from "recoil";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
+import CloseBtn from "@/components/ui/CloseBtn";
 
 export default function CartItem(props: { data: cartListType }) {
 
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck)
-  console.log('props.data.count',props.data.count)
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const BaseUrl = process.env.baseApiUrl;
@@ -21,7 +23,6 @@ export default function CartItem(props: { data: cartListType }) {
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
   const [itemclose,setItemClose]=useState<boolean>(false)
   const [loginData,setLoginData]=useRecoilState(userState)
-console.log('cartListcartListcartList',cartList)
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
       setCartList({
@@ -86,14 +87,17 @@ console.log('cartListcartListcartList',cartList)
     </div>
     <div className="product-cart-view">
       <div className="product-view">
-        <img src={`${props.data.imgUrl}`} alt="상품이미지" />
+        <Image src={props.data.imgUrl} alt="상품이미지" height={100} width={100}/>
+
         <div className="product-view-info">
           <p>{props.data.productName}</p>
           <p>
             <span>{props.data.price.toLocaleString()}</span>원
           </p>
         </div>
-        <img src="assets/images/icons/close.svg" onClick={handleDelete} />
+        <div onClick={handleDelete}>
+          <CloseBtn/>
+        </div>
       </div>
       <div className="product-view-count-info">
         <div className="product-view-count">{`수량: ${props.data.count}개`}</div>

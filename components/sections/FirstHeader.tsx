@@ -18,14 +18,11 @@ import { useCookies } from "react-cookie";
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
-  const BaseUrl = process.env.baseApiUrl;
 
-  const [loginData,setLoginData]=useRecoilState(userState)
-  /** 베스트 관련 변수저장*/
+  const [loginData, setLoginData] = useRecoilState(userState);
   const [categoryBestMenus, setCategoryBestMenus] = useState<categoryMenu[]>(
     []
   );
-  /** 이벤트 관련 변수저장 */
   const [categoryEventMenus, setCategoryEventMenus] = useState<categoryMenu[]>(
     []
   );
@@ -34,9 +31,10 @@ export default function FirstHeader() {
   const handleSubpageOpen = () => {
     setSubpageModal(true);
   };
-  const [cookies, setCookie,removeCookie] = useCookies(["id"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["id"]);
   /** 베스트 관련 메뉴*/
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/bigCategory/get/all`)
       .then((res) => {
@@ -48,6 +46,7 @@ export default function FirstHeader() {
   }, []);
   /** 이벤트 관련 매뉴 */
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/tag/get/all`)
       .then((res) => {
@@ -76,7 +75,7 @@ export default function FirstHeader() {
         // removeCookie('id', {path : '/'})
         localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
-      
+
         let timerInterval: string | number | NodeJS.Timer | undefined;
         Swal.fire({
           html: "다음에도 이용해주세요~",
@@ -101,9 +100,7 @@ export default function FirstHeader() {
         router.push("/");
       }
     });
-
-
-  }
+  };
   return (
     <header>
       <div className="main-header-top">
@@ -121,18 +118,6 @@ export default function FirstHeader() {
         </Link>
         <nav>
           <ul>
-            {/* {headerRightIcons.map((menuIcon) => (
-              <li key={menuIcon.id}>
-                <Link href={menuIcon.link}>
-                  <Image
-                    width={20}
-                    height={20}
-                    src={menuIcon.icon}
-                    alt={menuIcon.name}
-                  ></Image>
-                </Link>
-              </li>
-            ))} */}
             <li>
               <Link href="/search">
                 <Image
@@ -170,15 +155,13 @@ export default function FirstHeader() {
             {loginData.isLogin === true ? (
               //로그인체크가 true일 때?
               <li>
-             
-                  <Image
-                    width={20}
-                    height={20}
-                    src="/assets/images/icons/logout.png"
-                    alt="login"
-                    onClick={handleLogout}
-                  ></Image>
-  
+                <Image
+                  width={20}
+                  height={20}
+                  src="/assets/images/icons/logout.png"
+                  alt="login"
+                  onClick={handleLogout}
+                ></Image>
               </li>
             ) : (
               //로그인체크가 false일 때?

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { categoryMenu } from "@/types/type";
 
-export default function () {
+export default function FilterPage() {
   const router = useRouter();
   const categoryId: any = router.query.category;
   const BaseUrl = process.env.baseApiUrl;
@@ -22,7 +22,7 @@ export default function () {
       <div className="main-header-top">
         <div className="main-header__menu-icon">
           <Link href={`/subpage`}>
-            <img src="assets/images/icons/menu.svg" alt="" />
+            <Image src="assets/images/icons/menu.svg" alt="메뉴바" height={20} width={20}></Image>
           </Link>
         </div>
         <Link href={`/`} className="mainpage-link">

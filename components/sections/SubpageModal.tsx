@@ -6,6 +6,7 @@ import { userState } from "@/state/userState";
 import { useCookies } from "react-cookie";
 import Image from "next/image";
 import Leftarrow from "../ui/Leftarrow";
+import CloseBtn from "../ui/CloseBtn";
 export default function SubpageModal() {
   // const [isLogin, setIsLogin] = useRecoilState(userState);
   const [cookies, getCookie] = useCookies(["id"]);
@@ -36,11 +37,8 @@ export default function SubpageModal() {
     <div className="modal">
       <div className="sub-page__main-header sub-boder-under">
         <div className="sub-page__main-header-content">
-          <div className="sub-page__main-header-content-icon">
-            <img
-              src="assets/images/icons/close.svg"
-              onClick={handleSubpageClose}
-            />
+          <div className="sub-page__main-header-content-icon" onClick={handleSubpageClose}>
+            <CloseBtn/>
           </div>
 
           {loginData.isLogin === true ? (

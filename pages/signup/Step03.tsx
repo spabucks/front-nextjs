@@ -1,6 +1,6 @@
+import React,{useState,useEffect} from "react";
+import Rightarrow from "@/components/ui/Rightarrow";
 import { inputRegisterType } from "@/types/UserRequest/Request";
-import React from "react";
-import { useState,useEffect  } from "react";
 interface ChildProps {
   inputData: inputRegisterType;
   setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;
@@ -54,11 +54,7 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
             onClick={() => onehandleNickCheck(inputData.isNickAgree)}
           ></div>
           <div>선택적 개인정보 수집동의 및 이용약관</div>
-          <img
-            className="nick-right-img"
-            src="assets/images/icons/left-chevron.svg"
-            alt=""
-          />
+          <Rightarrow/>
         </div>
       </div>
       <div className="nickgree-body">

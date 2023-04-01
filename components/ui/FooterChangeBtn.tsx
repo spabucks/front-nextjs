@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 export interface ButtonProps {
     handleAddCart: () => void;
 }
@@ -10,7 +11,7 @@ export default function FooterChangeBtn(props:{handleAddCart: ButtonProps}) {
       <div className="footer-charge-total-btn">
         <div>
         <Link href={`/cart`}>
-        <img src="../assets/images/icons/shopping-cart.svg" alt="arrow-right" />
+          <Image src="../assets/images/icons/shopping-cart.svg" alt="cartimg" height={20} width={20}/>
         </Link>
         </div>
         <button type="button">선물하기</button>

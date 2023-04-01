@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Leftarrow from "../ui/Leftarrow";
 export default function SubPageMenu(props: { title: string; context: string }) {
   return (
     <>
@@ -10,19 +11,13 @@ export default function SubPageMenu(props: { title: string; context: string }) {
         {props.title === "베스트" ? (
           <Link href="/best?category=1">
             <div className="sub-page__sub-content-icon">
-              <img
-                className="sub-change-left-icon"
-                src="assets/images/icons/left-chevron.svg"
-              />
+              <Leftarrow/>
             </div>
           </Link>
         ) : (
           <Link href="/event?category=1">
             <div className="sub-page__sub-content-icon">
-              <img
-                className="sub-change-left-icon"
-                src="assets/images/icons/left-chevron.svg"
-              />
+            <Leftarrow/>
             </div>
           </Link>
         )}

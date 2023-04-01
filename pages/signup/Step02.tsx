@@ -3,6 +3,7 @@ import { inputRegisterType } from "@/types/UserRequest/Request";
 import Countdown from "react-countdown";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Rightarrow from "@/components/ui/Rightarrow";
 
 interface ChildProps {
   inputData: inputRegisterType;
@@ -217,36 +218,20 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         <div className="agree-info-wrap">
           <div className="agree-info-wrap-list">
             <p>휴대폰 본인 인증 서비스 이용약관 동의(필수)</p>
-            <img
-              className="agree-right-img"
-              src="assets/images/icons/left-chevron.svg"
-              alt=""
-            />
+           <Rightarrow/>
           </div>
 
           <div className="agree-info-wrap-list">
             <p>휴대폰 통신사 이용약관 동의(필수)</p>
-            <img
-              className="agree-right-img"
-              src="assets/images/icons/left-chevron.svg"
-              alt=""
-            />
+            <Rightarrow/>
           </div>
           <div className="agree-info-wrap-list">
             <p>개인정보 제공 및 이용 동의(필수)</p>
-            <img
-              className="agree-right-img"
-              src="assets/images/icons/left-chevron.svg"
-              alt=""
-            />
+            <Rightarrow/>
           </div>
           <div className="agree-info-wrap-list">
             <p>고유식별정보 처리(필수)</p>
-            <img
-              className="agree-right-img"
-              src="assets/images/icons/left-chevron.svg"
-              alt=""
-            />
+            <Rightarrow/>
           </div>
         </div>
       </div>

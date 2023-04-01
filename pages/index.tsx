@@ -1,24 +1,21 @@
+import axios from "axios";
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useState, useEffect } from "react";
+
 import FirstHeader from "@/components/sections/FirstHeader";
 import SlideCircleProduct from "@/components/layouts/SlideCircleProduct";
 import SlideSquareProduct from "@/components/layouts/SlideSquareProduct";
-import { recommandData } from "@/types/type";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import SliderContainer from "@/components/layouts/Slide";
-import SubpageModal from "@/components/sections/SubpageModal";
-import { subPage } from "@/state/subPage";
-import { useRecoilState } from "recoil";
-import Link from "next/link";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
+
+import { recommandData } from "@/types/type";
+
+
 export default function Home() {
   const [data, setData] = useState<recommandData[]>([]);
-  const BaseUrl = process.env.baseApiUrl;
-  const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
 
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/event-products/get/recommendMD`)
       .then((res) => {

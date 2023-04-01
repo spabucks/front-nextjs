@@ -1,25 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useState,useEffect } from "react";
+import axios from "axios";
+import Link from "next/link";
+import Image from "next/image";
+
+import { slide } from "@/types/type";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
-import axios from "axios";
-import { useEffect } from "react";
-import { slide } from "@/types/type";
-import Link from "next/link";
-import Image from "next/image";
+
 export default function SliderContainer() {
   const [data, setData] = useState<slide[]>([])
-  const BaseUrl = process.env.baseApiUrl;
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios.get(`${BaseUrl}/api/v1/event/get/banner`)
     .then( res => {
       setData(res.data.data)
     })
     .catch( err  => console.log( err ))
   },[])
+  
   return (
     <>
       <Swiper

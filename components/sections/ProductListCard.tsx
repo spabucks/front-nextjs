@@ -1,6 +1,7 @@
 import React from 'react'
-import { filterProductList } from '@/types/type';
 import Link from 'next/link';
+import Image from 'next/image';
+import { filterProductList } from '@/types/type';
 export default function ProductFilterListCard(props: {
     data: filterProductList ;
   }) {
@@ -8,7 +9,7 @@ export default function ProductFilterListCard(props: {
       <div className="best-product">
         <div className="best-product__img">
           <Link href={`/product/${props.data.id}`}>
-            <img src={props.data.imgUrl} alt={props.data.name} />
+            <Image src={props.data.imgUrl} alt={props.data.name} height={200} width={200}/>
           </Link>
         </div>
         <div className="best-product__info">

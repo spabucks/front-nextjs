@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import axios from "axios";
+import { useRecoilState, useRecoilValue} from "recoil";
 
+import axios from "axios";
 import Head from "next/head";
+
 import Logincheck from "@/components/ui/Logincheck";
 import CartList from "@/components/pages/cart/CartList";
 import CartMenu from "@/components/pages/cart/CartMenu";
@@ -18,7 +19,9 @@ import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
-export default function cart() {
+
+export default function Cart() {
+
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const fetchCheck = useRecoilValue(cartFetchCheck)
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
@@ -57,6 +60,7 @@ export default function cart() {
   //   });
   // }
 
+  console.log('cartList',cartList)
   useEffect(()=>{
     const BaseUrl = process.env.baseApiUrl;
     axios

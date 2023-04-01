@@ -6,11 +6,12 @@ import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
 export function GeneralCartOrderList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
-
+// const [buyItems,setBuyItems]
   /**체크한 상품에 대하여 가격 계산 */
   const Generalitem = cartItems.cartList.filter(
     (item: any) => item.check === true
   );
+
   const GeneralitemCharge = Generalitem.map((i) => i.price * i.count).reduce(
     (sum, charge) => (sum += charge),
     0
@@ -25,6 +26,8 @@ export function GeneralCartOrderList() {
     }
     setGeneralDeliveryCharge(0);
   }, [Generalitem]);
+
+  // 체크한 항목 리코일로 관리하기
 
   return (
     <>

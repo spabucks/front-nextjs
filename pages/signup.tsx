@@ -13,6 +13,7 @@ import Step05 from "./signup/Step05";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from 'next/router'
+import CloseBtn from "@/components/ui/CloseBtn";
 
 export default function SignUp() {
   const BaseUrl = process.env.baseApiUrl;
@@ -46,9 +47,9 @@ export default function SignUp() {
     { 5: <Step05 inputData={inputData} setInputData={setInputData} /> },
   ];
 
-  // useEffect(()=>{
-  //   console.log(inputData)
-  // },[inputData])
+  useEffect(()=>{
+    console.log(inputData)
+  },[inputData])
 
   const handleStepNext = () => {
     console.log(inputData.privateAgree);
@@ -82,7 +83,6 @@ export default function SignUp() {
         });
       }
       else if (inputData.isEmailAgree === false) {
-        console.log("inputData.isEmailAgree", inputData.isEmailAgree);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -108,7 +108,6 @@ export default function SignUp() {
       //3번 스텝 : 닉네임
     } else if (stepId === 3) {
       /**닉네임이 공백일때 */
-      console.log(inputData)
       if (inputData.userNickname === "") {
         Swal.fire({
           icon: "warning",
@@ -203,8 +202,8 @@ export default function SignUp() {
     <div className="container">
       {stepId != 5 && (
         <>
-          <div>
-            <img className="close" src="assets/images/icons/close.svg" onClick={() => router.back()}/>
+          <div onClick={() => router.back()}>
+            <CloseBtn/>
           </div>
           <Steper stepId={stepId} />
         </>

@@ -1,5 +1,7 @@
+import CloseBtn from "@/components/ui/CloseBtn";
 import { inputRegisterType } from "@/types/UserRequest/Request";
 import React from "react";
+import Image from "next/image";
 
 interface ChildProps {
   inputData: inputRegisterType;
@@ -8,10 +10,10 @@ interface ChildProps {
 
 export default function Step05({ inputData, setInputData }: ChildProps) {
   return (
-    <>
+
       <div className="container">
         <div className="clear-close">
-          <img className="clear-close" src="assets/images/icons/close.svg" />
+         <CloseBtn/>
         </div>
 
         <div className="main-clear-title">
@@ -42,14 +44,16 @@ export default function Step05({ inputData, setInputData }: ChildProps) {
         <div className="clear-company">
           <p>제공자: 주식회사 에스씨케이컴퍼니</p>
         </div>
+        <div className="clear-total-star">
         <div className="clear-star">
-          <img className="clear-star" src="assets/images/products/별혜택.jpg" />
+          <Image className="clear-star" src="/assets/images/products/별혜택.jpg" alt="별혜택" height={100} width={1000}/>
         </div>
-
         <div className="clear-card">
-          <img
-            className="clear-card"
-            src="assets/images/products/회원가입완료.jpg"
+          <Image className="clear-star"
+          src="/assets/images/products/회원가입완료.jpg"
+          alt="회원가입완료"
+          height={300}
+          width={700}
           />
         </div>
         <div className="clear-how">
@@ -61,7 +65,8 @@ export default function Step05({ inputData, setInputData }: ChildProps) {
             방법이 궁금하시다면?
           </p>
         </div>
+        </div>
       </div>
-    </>
+
   );
 }

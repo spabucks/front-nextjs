@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { eventProductList } from "@/types/type";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function EventProductListCard(props: {
   data: eventProductList;
@@ -8,7 +9,7 @@ export default function EventProductListCard(props: {
     <div className="flex-wrap-product">
       <div className="flex-wrap-product__img">
         <Link href={`/product/${props.data.id}`}>
-          <img src={props.data.imgUrl} alt={props.data.title} />
+          <Image src={props.data.imgUrl} alt={props.data.title} width={20} height={20}/>
         </Link>
       </div>
       <div className="flex-wrap-product__info">

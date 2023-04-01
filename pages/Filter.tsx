@@ -1,23 +1,20 @@
-import FilterHeader from "@/components/pages/filter/FilterHeader";
 import axios from "axios";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { eventProductList } from "@/types/type";
-import ProfuctFilterList from "@/components/pages/filter/ProductFilterList";
-import { filterProductList } from "@/types/type";
-import Header from "@/components/sections/Header";
+
+import { useRouter } from "next/router";
 import Head from "next/head";
+
+import { filterProductList } from "@/types/type";
+
+import ProfuctFilterList from "@/components/pages/filter/ProductFilterList";
 import FirstHeader from "@/components/sections/FirstHeader";
-export default function filter(props: {
-  id: number;
-  imgUrl: string;
-  itemData: eventProductList[];
-}) {
-  const { query, asPath } = useRouter();
+import FilterHeader from "@/components/pages/filter/FilterHeader";
+export default function Filter() {
+  const {asPath } = useRouter();
   const [productList, setProductList] = useState<filterProductList[]>([]);
-  const BaseUrl = process.env.baseApiUrl;
 
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/product/search2?${asPath.split("?")[1]}`)
       .then((res) => {
@@ -27,6 +24,7 @@ export default function filter(props: {
         console.log(err);
       });
   }, [asPath]);
+
   return (
     <>
       <Head>
