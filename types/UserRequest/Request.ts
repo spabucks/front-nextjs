@@ -23,15 +23,15 @@ export interface inputRegisterType {
   userName: string;
   userNickname: string;
   loginId: string;
-  birthday: Date;
+  birthday: number;
   password: string;
   confirmPassword: string;
-  phone: string;
   isUserConfirm: boolean;
   isLoginIdConfirm: boolean;
   privateAgree: privateAgreeType;
   isEmailAgree:boolean;
   isNickAgree:boolean
+  isNameConfirm:boolean
 }
 
 export interface privateAgreeType {
