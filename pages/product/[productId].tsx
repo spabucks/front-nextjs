@@ -25,7 +25,7 @@ export default function Product() {
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
   const [status, setStatus] = useState<number>(0);
   const [addcount, setAddCount] = useState<number>(0);
-  const [ changecount,setChangecount]=useState(1);
+  const [changecount, setChangecount] = useState(1);
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -49,8 +49,8 @@ export default function Product() {
   // const [count, setCount] = useRecoilState(cartCount);
   // const [ count,setCount]=useRecoilState(cartCount);
   useEffect(() => {
-    setChangecount(changecount)
- },[changecount])
+    setChangecount(changecount);
+  }, [changecount]);
 
   const [loginData, setLoginData] = useRecoilState(userState);
   const handleAddCart = () => {
@@ -73,7 +73,7 @@ export default function Product() {
         setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
       })
       .catch((err) => {
-        console.log(err);
+        console.log("err", err);
         if (err.response.status === 400) {
           const errorresponse = err.response.data;
           setStatus(400);
