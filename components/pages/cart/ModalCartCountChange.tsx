@@ -17,7 +17,9 @@ export default function ModalCartCountChange(props: {
   const [cartListItem, setCartListItems] =
     useRecoilState<cartType>(cartListState);
   const [item, setItem] = useState<cartListType>();
-  console.log("item", item);
+
+ console.log('item',item)
+
   const orderItem = useRecoilValue(cartOrderState);
   // const [changecount, setCount] = useRecoilState(cartCount);
   // const [count, setCount] = useState<number>(1);
@@ -103,8 +105,9 @@ export default function ModalCartCountChange(props: {
                       {item.count > 1 ? (
                         <button
                           onClick={() => {
-                            setItem(item.count - 1);
+                            setItem({ ...item, count: item.count - 1 })
                           }}
+                          type="button"
                         >
                           -
                         </button>
@@ -115,9 +118,10 @@ export default function ModalCartCountChange(props: {
                       <span>{item.count}</span>
                       {item.count < 5 ? (
                         <button
-                          onClick={() => {
-                            setItem(item.count + 1);
-                          }}
+                        onClick={() => {
+                          setItem({ ...item, count: item.count + 1 })
+                        }}
+                        type="button"
                         >
                           +
                         </button>
