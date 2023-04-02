@@ -9,6 +9,8 @@ export interface ChildProps {
   data?: detailProduct;
   status: number;
   addcount: number;
+  changecount:number;
+  setChangecount :React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function ShowModal() {
@@ -61,11 +63,17 @@ export default function CartProductCardDetail({
   setIsClick,
   status,
   addcount,
+  changecount,
+  setChangecount
 }: ChildProps) {
 
-  const [count, setCount] = useState(1);
+  const [ count,setCount]=useRecoilState(cartCount);
 
-
+  useEffect(() => {
+    setCount(count)
+ },[count])
+ 
+console.log('count', count)
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };
@@ -79,10 +87,10 @@ export default function CartProductCardDetail({
             <p>{data?.title}</p>
             <div className="buy-product-count-charge">
               <div className="buy-product-count">
-                {count > 1 ? (
+                {changecount > 1 ? (
                   <button
                     onClick={() => {
-                      setCount(count - 1);
+                      setChangecount(changecount- 1);
                     }}
                   >
                     -
@@ -90,11 +98,11 @@ export default function CartProductCardDetail({
                 ) : (
                   <button>-</button>
                 )}
-                <p>{count}</p>
-                {count < 5 ? (
+                <p>{changecount}</p>
+                {changecount < 5 ? (
                   <button
                     onClick={() => {
-                      setCount(count + 1);
+                      setChangecount(changecount+ 1);
                     }}
                   >
                     +
@@ -104,12 +112,12 @@ export default function CartProductCardDetail({
                 )}
               </div>
               <div className="buy-product-charge">
-                {data && (data.price * count).toLocaleString()}원
+                {data && (data.price * changecount).toLocaleString()}원
               </div>
             </div>
           </div>
           <div className="buy-product-total">
-            <p>합계 {data && (data.price * count).toLocaleString()}원</p>
+            <p>합계 {data && (data.price * changecount).toLocaleString()}원</p>
           </div>
           {count === 5 && <ShowModal />}
           {status === 400 && (
