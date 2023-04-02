@@ -1,6 +1,13 @@
+import Separator from "../pages/signup/ui/Separator";
+
 export default function MyPageTop() {
   return (
     <>
+    <div className="main-mypage-nickname-container">
+       <div className="main-mypage-nickname-title">
+          <p><span style={{color:"green"}}>민개미</span>님👩‍🦱 <br/> 환영합니다!</p>
+        </div>
+        </div>
       <section className="main-mypage">
         <div className="main-mypage-first">
           <p>주문/배송 현황</p>
