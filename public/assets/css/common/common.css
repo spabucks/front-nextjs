@@ -24,6 +24,11 @@ h1 {
   background-color: #f3f5f7;
   margin: 10px 0px;
 }
+.sep- {
+  height: 2px;
+  background-color: #f3f5f7;
+  margin: 10px 0px;
+}
 .product-item-new {
   font-size: 0.8rem;
   color: #0db904;

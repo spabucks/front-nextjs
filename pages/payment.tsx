@@ -4,7 +4,7 @@ export default function payment() {
   return (
     <>
       <div className="pay-container">
-      <SecondHeader />
+      <SecondHeader title={"온라인스토어"}/>
         <form className="main-address-form">
           <div className="address-header">
             <div className="main-address-title">

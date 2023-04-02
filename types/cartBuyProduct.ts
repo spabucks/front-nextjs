@@ -1,7 +1,7 @@
-import { cartType } from "./cartTypes";
+import { cartListType, cartType } from "./cartTypes";
 import { atom } from "recoil";
 
-export const cartBuyProduct = atom<cartType>({
+export const cartBuyProduct = atom<cartListType[]>({
   key: "cartBuyProduct",
-  default: { cartListFreeze: [], cartList: [] },
+  default: [],
 });

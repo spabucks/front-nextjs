@@ -12,7 +12,7 @@ import CartFooter from "@/components/pages/cart/CartFooter";
 import ModalCartCountChange from "../components/pages/cart/ModalCartCountChange";
 
 import { cartListType, cartType } from "@/types/cartTypes";
-import LoginHeader from "@/components/sections/LoginHeader";
+import SecondHeader from "@/components/layouts/SecondHeader";
 
 import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
@@ -108,7 +108,7 @@ export default function Cart() {
         ischangemodal === false &&
         /*loginData.isLogin === true &&*/ (
           <>
-            <FirstHeader />
+           <SecondHeader title={"온라인스토어"}></SecondHeader>
             <CartMenu />
             {cartList.cartList.length === 0 &&
             cartList.cartListFreeze.length === 0 ? (
@@ -124,7 +124,7 @@ export default function Cart() {
       )}
       {loginData.isLogin === false && (
         <>
-          <LoginHeader></LoginHeader>
+          <SecondHeader title={"온라인스토어"}></SecondHeader>
           <Logincheck></Logincheck>
         </>
       )}

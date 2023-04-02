@@ -1,16 +1,40 @@
-.pay-address-info-list-form {
-  padding: 20px;
-  font-size: 1.2rem;
-  line-height: 13px;
-  margin-top: -40px;
-  margin-bottom: -40px;
-}
+.pay-address-info-lists-form {
+  padding: 10px 25px;
 
-.pay-address-info-list {
+}
+.pay-address-info-lists{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: -40px;
+  flex-direction: row;
+}
+.pay-address-info-title{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.pay-address-info-name{
+  font-size: 1.1rem;
+}
+.pay-address-info-check{
+  background-color: #bde8b3;
+  box-sizing:border-box;
+  margin-left: 10px;
+  color: #01A862;
+  font-size: 0.8rem;
+  padding:5px;
+}
+.pay-address-information p{
+  margin: 5px 0px;
+}
+.pay-address-phonenumber p{
+  margin: 5px 0px;
+}
+/* .pay-address-info-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
 }
 
 .pay-address-info-list p {
@@ -28,12 +52,6 @@
 .order-list-line {
   display: flex;
   justify-content: space-between;
-}
-
-.pay-address-info-list p {
-  font-size: 0.9rem;
-  color: rgb(141, 140, 140);
-  margin-top: 10px;
 }
 
 .order-list-detail-form {
@@ -58,7 +76,7 @@
 
 .address-phone-number {
   color: rgb(117, 114, 114);
-}
+} */ */
 
 .border-line {
   border: solid 1px #e2e2e2;
@@ -72,7 +90,8 @@
   height: 500px;
   font-size: 15px;
   position: relative;
-  z-index: 990;
+  z-index: 100;
+  margin-top: 60px;
 }
 
 /*배송지 수정 css*/
@@ -97,6 +116,7 @@ margin: 30px 0px  10px 0px;
   padding: 10px 0px;
   border-bottom: thin solid #c7c7c7;
   width: -webkit-fill-available;
+  height: 40px;
 }
 
 .address-regi-form-input input {

@@ -24,8 +24,8 @@ export default function ProductEventList(props: {
         <Image
           src={props.imgUrl}
           alt="event-cake-banner"
-          width={400}
-          height={400}
+          width={1000}
+          height={500}
         ></Image>
       </section>
       <EventProductList itemData={props.itemData} />

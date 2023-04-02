@@ -105,13 +105,25 @@ export default function FirstHeader() {
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          <Image
+          {
+            router.pathname==="/delivery" ? <>
+              <Image
+            src="assets/images/icons/left-chevron.svg"
+            alt=""
+            width={20}
+            height={20}
+            onClick={handleSubpageOpen}
+          ></Image>
+            </> :
+            <Image
             src="assets/images/icons/menu.svg"
             alt=""
             width={20}
             height={20}
             onClick={handleSubpageOpen}
           ></Image>
+
+          }
         </div>
         <Link href="/" className="mainpage-link">
           <h1>온라인 스토어</h1>
@@ -182,7 +194,11 @@ export default function FirstHeader() {
 
       {router.pathname === "/cart" ||
       router.pathname === "/filter" ||
-      router.pathname === "/search2" ? (
+      router.pathname === "/search2" ||
+      router.pathname === "/delivery" 
+      
+      
+      ? (
         ""
       ) : (
         <div className="main-header-bottom boder-under">

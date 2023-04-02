@@ -141,3 +141,27 @@ header {
 .main-header-sub nav ul li:first-child {
   padding-right: 20px;
 }
+
+.second-header-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.6rem;
+  height: 60px;
+}
+.second-header-top img:first-child {
+  width: 1.6rem;
+  height: 1.6rem;
+  opacity: 0.5;
+}
+.second-header-top img:last-child {
+  width: 1.1rem;
+  height: 1.1rem;
+  opacity: 0.5;
+}
+.second-header-top h1{
+  font-size: 1.2rem;
+  width: 80%;
+  text-align: center;
+  margin: 0px 17px;
+}

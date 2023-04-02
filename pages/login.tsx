@@ -1,5 +1,4 @@
 import LoginMain from "@/components/sections/LoginMain";
-import LoginHeader from "@/components/sections/LoginHeader";
 import Head from "next/head";
 import { useState } from "react";
 import { LoginReq } from "@/types/UserRequest/Request";
@@ -10,6 +9,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { useCookies } from "react-cookie";
 import { userState } from "@/state/userState";
+import SecondHeader from "@/components/layouts/SecondHeader";
 export default function Login() {
   const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
@@ -109,7 +109,7 @@ export default function Login() {
         rfon.ico"
         />
       </Head>
-      <LoginHeader />
+      <SecondHeader title={"로그인"}/>
       <LoginMain inputData={inputData} setInputData={setInputData} />
       <footer className="footer-login-sumit">
         <StButton

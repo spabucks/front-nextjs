@@ -8,6 +8,7 @@ import { useState } from "react";
 import { deliveryRegisterType } from "@/types/UserRequest/Request";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { userState } from "@/state/userState";
 export default function DeliveryRegistration() {
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
@@ -32,7 +33,7 @@ export default function DeliveryRegistration() {
     useState<boolean>(false);
   const [phoneNumConfirm, setPhoneNumConfirm] = useState<boolean>(false);
   const [contentConfirm, setContentConfirm] = useState<boolean>(false);
-
+  const [loginData, setLoginData] = useRecoilState(userState);
   const handleAddressPlus = () => {
     if (
       nameConfirm === false ||
@@ -43,7 +44,7 @@ export default function DeliveryRegistration() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "필수 항목을 동의 해주세요.",
+        text: "필수 항목을 입력해주세요.",
         customClass: {
           confirmButton: "swal-confirm-button",
         },
@@ -58,7 +59,12 @@ export default function DeliveryRegistration() {
           phoneNum: deliveryData.phoneNum,
           content: deliveryData.content,
           defaultDestination: deliveryData.defaultDestination,
-        })
+        },   {
+          headers: {
+            Authorization: `Bearer ${loginData.accessToken}`,
+          },
+        }
+      )
         .then((res) => {
           setDeliveryRechange(!deliveryRechange);
         })
@@ -144,6 +150,7 @@ export default function DeliveryRegistration() {
     }
   };
 
+
   return (
     <>
       {deliveryRechange === true && (
@@ -168,7 +175,7 @@ export default function DeliveryRegistration() {
                     placeholder="ex) 집, 사무실, 학교"
                   />
 
-                  {nameConfirm === false ? (
+                  {nameConfirm === false && (
                     <p
                       style={{
                         color: "red",
@@ -178,17 +185,8 @@ export default function DeliveryRegistration() {
                     >
                       필수항목입니다.
                     </p>
-                  ) : (
-                    <p
-                      style={{
-                        color: "grey",
-                        fontSize: "10px",
-                        margin: "3px 0px",
-                      }}
-                    >
-                      입력되었습니다.
-                    </p>
-                  )}
+                  ) 
+                  }
                 </div>
               </div>
               <div className="addressbox-container">
@@ -200,9 +198,10 @@ export default function DeliveryRegistration() {
                     type="text"
                     name="recipient"
                     onChange={handlerecipient}
+                    placeholder="ex) 홍길동"
                   />
 
-                  {recipientConfirm === false ? (
+                  {recipientConfirm === false && (
                     <p
                       style={{
                         color: "red",
@@ -212,17 +211,7 @@ export default function DeliveryRegistration() {
                     >
                       필수항목입니다.
                     </p>
-                  ) : (
-                    <p
-                      style={{
-                        color: "grey",
-                        fontSize: "10px",
-                        margin: "3px 0px",
-                      }}
-                    >
-                      입력되었습니다.
-                    </p>
-                  )}
+                  ) }
                 </div>
               </div>
               <div className="addressbox-container">
@@ -234,8 +223,9 @@ export default function DeliveryRegistration() {
                     type="text"
                     name="defaultAddress"
                     onChange={handledefaultAddress}
+                    placeholder="ex) OO시 OO구 OO로"
                   />
-                  {defaultAddressConfirm === false ? (
+                  {defaultAddressConfirm === false && (
                     <p
                       style={{
                         color: "red",
@@ -244,16 +234,6 @@ export default function DeliveryRegistration() {
                       }}
                     >
                       필수항목입니다.
-                    </p>
-                  ) : (
-                    <p
-                      style={{
-                        color: "grey",
-                        fontSize: "10px",
-                        margin: "3px 0px",
-                      }}
-                    >
-                      입력되었습니다.
                     </p>
                   )}
                 </div>
@@ -269,7 +249,7 @@ export default function DeliveryRegistration() {
                     onChange={handlephoneNum}
                     placeholder="ex) 010-0000-0000"
                   />
-                  {phoneNumConfirm === false ? (
+                  {phoneNumConfirm === false && (
                     <p
                       style={{
                         color: "red",
@@ -278,16 +258,6 @@ export default function DeliveryRegistration() {
                       }}
                     >
                       필수항목입니다.
-                    </p>
-                  ) : (
-                    <p
-                      style={{
-                        color: "grey",
-                        fontSize: "10px",
-                        margin: "3px 0px",
-                      }}
-                    >
-                      입력되었습니다.
                     </p>
                   )}
                 </div>

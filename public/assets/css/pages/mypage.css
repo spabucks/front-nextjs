@@ -11,7 +11,7 @@
   height: 60px;
 }
 .main-mypage-first p:first-child {
-  font-size:23px;
+  font-size: 23px;
   font-weight: 800;
 }
 .main-mypage-first p:last-child {
@@ -51,9 +51,8 @@
 .main-service-title {
   padding: 20px 0px 10px 20px;
   margin: 0px;
-  font-size:23px;
+  font-size: 23px;
   font-weight: 800;
-
 }
 .main-service-lists {
   padding: 0px 20px 10px 20px;
@@ -84,18 +83,18 @@
 .change-left-chevron {
   transform: rotate(180deg);
 }
-.main-page-service-logout{
+.main-page-service-logout {
   padding: 20px 0px 15px 0px;
   text-align: center;
   text-decoration: underline;
 }
-.main-mypage-nickname-container{
+.main-mypage-nickname-container {
   display: flex;
   justify-content: center;
   align-content: center;
   background-color: var(--color-brightgrey-background);
 }
-.main-mypage-nickname-title{
+.main-mypage-nickname-title {
   margin-top: 100px;
   display: flex;
   justify-content: center;
@@ -105,12 +104,11 @@
   font-size: 25px;
   padding: 30px;
   background-color: white;
-  box-shadow:  0 -2px 2px #afafaf inset;
-border-radius: 9px;;
-width: 100%;
-
+  box-shadow: 0 -2px 2px #afafaf inset;
+  border-radius: 20px;
+  width: 100%;
 }
-.main-mypage-nickname-title p{
- margin:  0px;
- letter-spacing: 5px;
+.main-mypage-nickname-title p {
+  margin: 0px;
+  letter-spacing: 5px;
 }

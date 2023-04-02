@@ -102,7 +102,7 @@ export default function FilterHeader() {
   return (
     <>
       {/**메인 헤더*/}
-      {pathname === "/filter" ? (
+      { pathname === "/filter"? (
         <div className="filter-mainheader-sub border-under">
           <nav>
             <ul>

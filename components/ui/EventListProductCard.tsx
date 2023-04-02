@@ -9,7 +9,7 @@ export default function EventProductListCard(props: {
     <div className="flex-wrap-product">
       <div className="flex-wrap-product__img">
         <Link href={`/product/${props.data.id}`}>
-          <Image src={props.data.imgUrl} alt={props.data.title} width={20} height={20}/>
+          <Image src={props.data.imgUrl} alt={props.data.title} width={300} height={300}/>
         </Link>
       </div>
       <div className="flex-wrap-product__info">

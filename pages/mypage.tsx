@@ -4,8 +4,8 @@ import MyPageTop from "@/components/sections/MyPageTop";
 import MypageMenuLists from "@/components/sections/MyPageMenuLists";
 import { useRecoilState } from "recoil";
 import { userState } from "@/state/userState";
-import LoginHeader from "@/components/sections/LoginHeader";
 import Logincheck from "@/components/ui/Logincheck";
+import SecondHeader from "@/components/layouts/SecondHeader";
 export default function Mypage() {
   const [loginData, setLoginData] = useRecoilState(userState);
   return (
@@ -29,8 +29,8 @@ export default function Mypage() {
         </>
       ) : (
         <>
-          <LoginHeader></LoginHeader>
-          <Logincheck></Logincheck>
+          <SecondHeader title={"온라인스토어"}/>
+          <Logincheck/>
         </>
       )}
     </>

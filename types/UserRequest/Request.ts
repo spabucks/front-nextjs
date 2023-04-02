@@ -39,3 +39,12 @@ export interface privateAgreeType {
   isUseConfirm: boolean;
   isAdvertisingConfirm?: boolean;
 }
+
+export interface deliveryRegisterType {
+  name: string;
+  recipient: string;
+  defaultAddress: string;
+  phoneNum: string;
+  content: string;
+  defaultDestination: boolean;
+}

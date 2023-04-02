@@ -14,6 +14,7 @@ import Image from "next/image";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
 import { userState } from "@/state/userState";
 import Rightarrow from "@/components/ui/Rightarrow";
+import FirstHeader from "@/components/sections/FirstHeader";
 
 export default function Product() {
   const { query } = useRouter();
@@ -84,7 +85,7 @@ export default function Product() {
 
   return (
     <>
-      <SecondHeader />
+      <SecondHeader title={"온라인스토어"} />
       <TopScrollBtn></TopScrollBtn>
       <div className="sep"></div>
       <CartPlusModal isView={isCartModal} setIsCartModal={setIsCartModal} />

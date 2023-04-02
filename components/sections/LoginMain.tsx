@@ -1,7 +1,7 @@
 import { LoginReq } from "@/types/UserRequest/Request";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
+import Image from "next/image";
 interface ChildProps {
   inputData: LoginReq;
   setInputData: React.Dispatch<React.SetStateAction<LoginReq>>;
@@ -23,10 +23,7 @@ export default function LoginMain({ inputData, setInputData } : ChildProps) {
     <>
       <section className="section-main-login">
         <div className="section-main-login_title">
-          <img
-            src="https://www.starbucks.co.kr/common/img/common/logo.png"
-            alt=""
-          />
+          <Image src="/assets/images/logo/logo.png" alt="스타벅스로고" width={120} height={120}></Image>
           <h2>
             안녕하세요. <br />
             스타벅스입니다

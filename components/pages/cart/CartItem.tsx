@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState} from "recoil";
 import axios from "axios";
 import Image from "next/image";
-
+import { useEffect } from "react";
 import { cartListType } from "@/types/cartTypes";
 import { cartType } from "@/types/cartTypes";
 
@@ -13,7 +13,7 @@ import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
 import CloseBtn from "@/components/ui/CloseBtn";
 import ModalCartCountChange from "./ModalCartCountChange";
-
+import { cartBuyProduct } from "@/types/cartBuyProduct";
 export default function CartItem(props: { data: cartListType }) {
 
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck)
@@ -24,7 +24,7 @@ export default function CartItem(props: { data: cartListType }) {
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
   const [itemclose,setItemClose]=useState<boolean>(false)
   const [loginData,setLoginData]=useRecoilState(userState)
-
+console.log('cartListcartList',cartList)
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
       setCartList({
@@ -49,6 +49,20 @@ export default function CartItem(props: { data: cartListType }) {
     }
   };
 
+  const [buyItems, setBuyItems] = useRecoilState(cartBuyProduct);
+  const buyProduct =()=>{
+    /**체크한 전체 상품 */
+    useEffect(()=>{
+      const generalBuyProduct = cartList.cartList.filter((item:any)=>item.check)
+      const freezeBuyProduct = cartList.cartListFreeze.filter((item:any)=>item.check)
+
+      const allBuyItem= [ ...generalBuyProduct, ...freezeBuyProduct];
+
+      setBuyItems(allBuyItem)
+    },[buyItems])
+  }
+
+console.log('buyProductbuyProductv',buyItems)
 
 
   const handleDelete = () => {
