@@ -1,6 +1,7 @@
 .main-mypage {
-  margin-top: 100px;
-  padding: 20px;
+  padding: 0px 20px 10px 20px;
+  background-color: var(--color-brightgrey-background);
+  /* box-shadow:  #afafaf inset -2px px 0; */
 }
 .main-mypage-first {
   display: flex;
@@ -27,7 +28,7 @@
 }
 .main-mypage-step__product p:first-child {
   font-size: 30px;
-  color: rgba(207, 207, 207, 0.821);
+  color: rgb(181, 181, 181);
   font-weight: 800;
   margin: 10px 0px;
 }
@@ -48,7 +49,7 @@
   background-color: var(--color-brightgrey-background);
 }
 .main-service-title {
-  padding: 35px 0px 10px 20px;
+  padding: 20px 0px 10px 20px;
   margin: 0px;
   font-size:23px;
   font-weight: 800;
@@ -82,4 +83,34 @@
 }
 .change-left-chevron {
   transform: rotate(180deg);
+}
+.main-page-service-logout{
+  padding: 20px 0px 15px 0px;
+  text-align: center;
+  text-decoration: underline;
+}
+.main-mypage-nickname-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--color-brightgrey-background);
+}
+.main-mypage-nickname-title{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+  padding: 30px;
+  background-color: white;
+  box-shadow:  0 -2px 2px #afafaf inset;
+border-radius: 9px;;
+width: 100%;
+
+}
+.main-mypage-nickname-title p{
+ margin:  0px;
+ letter-spacing: 5px;
 }
