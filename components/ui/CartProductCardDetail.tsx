@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { cartCount } from "@/state/cartCount";
 import { detailProduct } from "@/types/type";
 
 export interface ChildProps {
@@ -46,6 +44,7 @@ export function ChangeCheckShowModal(props: {
   if (time === true) {
     return null;
   }
+  console.log('props.addcount',props.addcount)
   return (
     <>
       <div className="buy-checkannouncement-show">
@@ -73,7 +72,7 @@ export default function CartProductCardDetail({
 //     setCount(count)
 //  },[count])
  
-// console.log('count', count)
+
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };

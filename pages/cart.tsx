@@ -70,12 +70,12 @@ export default function Cart() {
         },
       })
       .then((res)=>{
-        if(res.status !== 404) {
+        if(res.status === 200) {
           setCartList({
-            cartListFreeze: res.data.filter(
+            cartListFreeze: res.data.data.filter(
               (item: cartListType) => item.bigCategoryId === 1
             ),
-            cartList: res.data.filter(
+            cartList: res.data.data.filter(
               (item: cartListType) => item.bigCategoryId !== 1
             ),
           });
