@@ -9,16 +9,16 @@ import CartList from "@/components/pages/cart/CartList";
 import CartMenu from "@/components/pages/cart/CartMenu";
 import FirstHeader from "@/components/sections/FirstHeader";
 import CartFooter from "@/components/pages/cart/CartFooter";
+import ModalCartCountChange from "../components/pages/cart/ModalCartCountChange";
 
 import { cartListType, cartType } from "@/types/cartTypes";
 import LoginHeader from "@/components/sections/LoginHeader";
-
-import ModalCartCountChange from "../components/pages/cart/ModalCartCountChange";
 
 import { cartListState } from "@/state/cartListState";
 import { modal } from "@/state/modal";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
+import { detailProduct } from "@/types/type";
 
 export default function Cart() {
 
@@ -102,7 +102,7 @@ export default function Cart() {
         <ModalCartCountChange
           isChangeCount={isChangeCount}
           setIsChangeCount={setIsChangeCount}
-      
+          // data={props.data.}
         />
       ) : (
         ischangemodal === false &&

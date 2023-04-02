@@ -12,6 +12,7 @@ import { modal } from "@/state/modal";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
 import CloseBtn from "@/components/ui/CloseBtn";
+import ModalCartCountChange from "./ModalCartCountChange";
 
 export default function CartItem(props: { data: cartListType }) {
 
@@ -23,6 +24,7 @@ export default function CartItem(props: { data: cartListType }) {
   const [isChangeCount, setIsChangeCount] = useState<number>(props.data.count);
   const [itemclose,setItemClose]=useState<boolean>(false)
   const [loginData,setLoginData]=useRecoilState(userState)
+
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
       setCartList({
@@ -112,7 +114,7 @@ export default function CartItem(props: { data: cartListType }) {
         </div>
         <div className="product-view-change_buy__btn">
           <button type="button" onClick={handleChangeTrueModal}>
-            주문 수정 
+            주문 수정
           </button>
           <button type="button">바로 구매</button>
         </div>

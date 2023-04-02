@@ -9,6 +9,7 @@ import { filterProductList } from "@/types/type";
 import ProfuctFilterList from "@/components/pages/filter/ProductFilterList";
 import FirstHeader from "@/components/sections/FirstHeader";
 import FilterHeader from "@/components/pages/filter/FilterHeader";
+
 export default function Filter() {
   const {asPath } = useRouter();
   const [productList, setProductList] = useState<filterProductList[]>([]);

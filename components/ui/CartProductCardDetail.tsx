@@ -67,13 +67,13 @@ export default function CartProductCardDetail({
   setChangecount
 }: ChildProps) {
 
-  const [ count,setCount]=useRecoilState(cartCount);
+//   const [ count,setCount]=useRecoilState(cartCount);
 
-  useEffect(() => {
-    setCount(count)
- },[count])
+//   useEffect(() => {
+//     setCount(count)
+//  },[count])
  
-console.log('count', count)
+// console.log('count', count)
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };
@@ -119,7 +119,7 @@ console.log('count', count)
           <div className="buy-product-total">
             <p>합계 {data && (data.price * changecount).toLocaleString()}원</p>
           </div>
-          {count === 5 && <ShowModal />}
+          {changecount === 5 && <ShowModal />}
           {status === 400 && (
             <ChangeCheckShowModal
               status={status}
