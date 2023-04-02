@@ -25,6 +25,7 @@ export default function Product() {
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
   const [status, setStatus] = useState<number>(0);
   const [addcount, setAddCount] = useState<number>(0);
+  const [ changecount,setChangecount]=useState(1);
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -45,7 +46,12 @@ export default function Product() {
       .catch((err) => console.log(err));
   }, [query.productId]);
 
-  const [count, setCount] = useRecoilState(cartCount);
+  // const [count, setCount] = useRecoilState(cartCount);
+  // const [ count,setCount]=useRecoilState(cartCount);
+  useEffect(() => {
+    setChangecount(changecount)
+ },[changecount])
+
   const [loginData, setLoginData] = useRecoilState(userState);
   const handleAddCart = () => {
     const BaseUrl = process.env.baseApiUrl;
@@ -54,7 +60,7 @@ export default function Product() {
         `${BaseUrl}/api/v1/cart/add`,
         {
           productId: query.productId,
-          amount: count,
+          amount: changecount,
         },
         {
           headers: {
@@ -122,6 +128,8 @@ export default function Product() {
         data={productData}
         status={status}
         addcount={addcount}
+        changecount={changecount}
+        setChangecount={setChangecount}
       />
 
       {isClick ? (
