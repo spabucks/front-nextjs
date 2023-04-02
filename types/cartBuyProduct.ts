@@ -1,10 +1,7 @@
-// import { cartListType } from "./cartTypes";
-// import { atom } from "recoil";
-// import { recoilPersist } from "recoil-persist";
+import { cartType } from "./cartTypes";
+import { atom } from "recoil";
 
-// const { persistAtom } = recoilPersist();
-
-// export const cartBuyProduct = atom<cartListType>({
-//   key: "cartBuyProduct",
-//   default: 
-// });
+export const cartBuyProduct = atom<cartType>({
+  key: "cartBuyProduct",
+  default: { cartListFreeze: [], cartList: [] },
+});

@@ -8,16 +8,15 @@ import { cartBuyProduct } from "@/types/cartBuyProduct";
 
 export function GeneralCartOrderList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
-  // const [buyItems,setBuyItems] = useRecoilState(cartBuyProduct);
+  const [buyItems, setBuyItems] = useRecoilState(cartBuyProduct);
 
   /**체크한 전체 상품 */
-//   useEffect(()=>{
-//     const generalBuyProduct = cartItems.cartList.filter((item:any)=>item.check===true)
-//     const freezeBuyProduct = cartItems.cartListFreeze.filter((item:any)=>item.check===true)
-// console.log('generalBuyProduct',generalBuyProduct)
-// console.log('freezeBuyProduct',freezeBuyProduct)
-// setBuyItems(...buyItems, ...freezeBuyProduct, ...generalBuyProduct)
-//   },[])
+  useEffect(()=>{
+    const generalBuyProduct = cartItems.cartList.filter((item:any)=>item.check===true)
+    const freezeBuyProduct = cartItems.cartListFreeze.filter((item:any)=>item.check===true)
+
+    setBuyItems({...buyItems, cartListFreeze: freezeBuyProduct, cartList: generalBuyProduct})
+  },[])
 
 // console.log('buyItems',buyItems)
   /**체크한 상품에 대하여 가격 계산 */
