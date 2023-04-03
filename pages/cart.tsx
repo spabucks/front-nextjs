@@ -28,38 +28,6 @@ export default function Cart() {
   const [isChangeCount, setIsChangeCount] = useState<Boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
 
-  /**장바구니 조회 */
-
-  // const fecthCartData = () => {
-  //   axios
-  //   .get(`${BaseUrl}/api/v1/cart/get/v2`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //     },
-  //   })
-  //   .then((res) => {
-  //     console.log(res)
-  //     setCartList({
-  //       cartListFreeze: res.data.filter(
-  //         (item: cartListType) => item.bigCategoryId === 1
-  //       ),
-  //       cartList: res.data.filter(
-  //         (item: cartListType) => item.bigCategoryId !== 1
-  //       ),
-  //     });
-  //     console.log('res',res)
-  //     console.log('@@@@@@@@@@@@@@@@', res.request.status)
-  //     if(res.request.status===404){
-  //       <Link href={'/cart'}></Link>
-  //     }
-  //   }
-   
-  //   )
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
-
   console.log('cartList',cartList)
   useEffect(()=>{
     const BaseUrl = process.env.baseApiUrl;
@@ -108,7 +76,7 @@ export default function Cart() {
         ischangemodal === false &&
         /*loginData.isLogin === true &&*/ (
           <>
-           <SecondHeader title={"온라인스토어"}></SecondHeader>
+            <SecondHeader title={"온라인스토어"}></SecondHeader>
             <CartMenu />
             {cartList.cartList.length === 0 &&
             cartList.cartListFreeze.length === 0 ? (

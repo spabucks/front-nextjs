@@ -2,34 +2,41 @@
   padding: 10px 25px;
 
 }
-.pay-address-info-lists{
+
+.pay-address-info-lists {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
 }
-.pay-address-info-title{
+
+.pay-address-info-title {
   display: flex;
   align-items: center;
   flex-direction: row;
 }
-.pay-address-info-name{
+
+.pay-address-info-name {
   font-size: 1.1rem;
 }
-.pay-address-info-check{
+
+.pay-address-info-check {
   background-color: #bde8b3;
-  box-sizing:border-box;
+  box-sizing: border-box;
   margin-left: 10px;
   color: #01A862;
   font-size: 0.8rem;
-  padding:5px;
+  padding: 5px;
 }
-.pay-address-information p{
+
+.pay-address-information p {
   margin: 5px 0px;
 }
-.pay-address-phonenumber p{
+
+.pay-address-phonenumber p {
   margin: 5px 0px;
 }
+
 /* .pay-address-info-list {
   display: flex;
   justify-content: space-between;
@@ -76,14 +83,15 @@
 
 .address-phone-number {
   color: rgb(117, 114, 114);
-} */ */
+} */
 
 .border-line {
   border: solid 1px #e2e2e2;
   margin: 20px 20px;
 }
+
 /*배송지 메인페이지(등록안된경우*/
-.address-resister{
+.address-resister {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,10 +109,12 @@
   padding: 5px 20px;
 
 }
-.address-regi-title h2{
-margin: 30px 0px  10px 0px;
+
+.address-regi-title h2 {
+  margin: 30px 0px 10px 0px;
 
 }
+
 .address-regi-body {
 
   padding: 0px 10px;
@@ -121,11 +131,12 @@ margin: 30px 0px  10px 0px;
 
 .address-regi-form-input input {
 
- font-size: 1.2rem;
+  font-size: 1.2rem;
 }
+
 .address-regi-form-input input::placeholder {
-color:rgb(197, 194, 194);
- font-size: 1.2rem;
+  color: rgb(197, 194, 194);
+  font-size: 1.2rem;
 }
 
 /* 우편번호 */
@@ -217,23 +228,27 @@ color:rgb(197, 194, 194);
   font-size: 1rem;
   font-weight: bold;
 }
-.address-check-all label:last-child{
+
+.address-check-all label:last-child {
   margin-left: 5px;
 }
-.deliver-plus-address-container{
+
+.deliver-plus-address-container {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 999;
   background-color: white;
 }
-.addressbox-container{
+
+.addressbox-container {
   display: flex;
   flex-direction: column;
-  margin:10px;
+  margin: 10px;
 }
-.address-regi-form-input input:focus{
-border: none;
-outline: none;
-font-size: 1.2rem;
+
+.address-regi-form-input input:focus {
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
 }

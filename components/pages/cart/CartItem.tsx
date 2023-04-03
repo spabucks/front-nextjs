@@ -50,7 +50,7 @@ console.log('cartListcartList',cartList)
   };
 
   const [buyItems, setBuyItems] = useRecoilState(cartBuyProduct);
-  const buyProduct =()=>{
+  const BuyProduct =()=>{
     /**체크한 전체 상품 */
     useEffect(()=>{
       const generalBuyProduct = cartList.cartList.filter((item:any)=>item.check)

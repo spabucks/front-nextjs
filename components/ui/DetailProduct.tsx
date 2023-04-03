@@ -78,7 +78,7 @@ export default function DetailProduct(props: { data: detailProduct }) {
           <h3>상품정보</h3>
           {props.data.productDetailImgUrl.map((item: string) => {
             return (
-              <Image
+              <Image key={item}
                 src={item}
                 alt="상품상세정보"
                 width={300}

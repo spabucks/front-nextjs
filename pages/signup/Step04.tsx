@@ -188,7 +188,7 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
                 {userPasswordCheck === 1 && (
                   <p
                     style={{
-                      color: "red",
+                      color: "blue",
                       fontSize: "10px",
                       margin: "3px 0px",
                     }}
