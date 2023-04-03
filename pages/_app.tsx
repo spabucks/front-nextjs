@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <SubpageModal />
+      
       <Component {...pageProps} />
     </RecoilRoot>
   );

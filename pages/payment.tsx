@@ -9,25 +9,51 @@ import { shippingListType } from "@/types/shipping";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { deliveryChangeModal } from "@/state/deliveryChangeModal";
+import { cartType } from "@/types/cartTypes";
+import { cartListType } from "@/types/cartTypes";
+import { orderProductType } from "@/types/OrderProduct";
 export default function payment() {
   const router = useRouter();
   //최종주문 List
   const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
+
+  const [totalOrderData, setTotalOrderData] = useState<orderProductType[]>([]);
   console.log(totalBuyItems);
   const [generaldeliveryCharge, setGeneralDeliveryCharge] =
     useRecoilState<number>(generaldelivery);
   const [freezedeliveryCharge, setFreezeDeliveryCharge] =
     useRecoilState<number>(freezedelivery);
-
-  const totalProduct = totalBuyItems
-    .map((i) => i.price * i.count)
-    .reduce((sum, charge) => (sum += charge), 0);
+  if (totalOrderData !== undefined) {
+    const totalProduct = totalOrderData
+      .map((i) => i.price * i.count)
+      .reduce((sum, charge) => (sum += charge), 0);
+  }
 
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
   const [shippingCheck, setShippingCheck] = useState<boolean>(false);
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
 
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/purchaseTmp/get`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        const data: orderProductType = res.data.data;
+        console.log("data", data);
+
+        setTotalOrderData({ ...totalOrderData, ...data });
+        console.log("성공");
+        console.log("[totalOrderData[totalOrderData", totalOrderData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [totalOrderData]);
 
   //배송지 조회
   useEffect(() => {
@@ -48,11 +74,10 @@ export default function payment() {
   }, [deliveryRechange]);
 
   const basicaddress = shippingData[0];
-  
 
-  // 배송지 등록 
+  // 배송지 등록
   const handleDeliveryClick = () => {
-    router.push('/delivery');
+    router.push("/delivery");
   };
   return (
     <>
@@ -72,7 +97,9 @@ export default function payment() {
                 <br />
                 배송지를 등록해 주세요.
               </p>
-              <button className="address-serch" onClick={handleDeliveryClick}>배송지 등록</button>
+              <button className="address-serch" onClick={handleDeliveryClick}>
+                배송지 등록
+              </button>
             </div>
           )}
           {shippingData.length !== 0 && (
@@ -97,8 +124,8 @@ export default function payment() {
               />
             </div>
             <div className="payment-product-wrap-lists">
-              {totalBuyItems &&
-                totalBuyItems.map((item) => (
+              {totalOrderData &&
+                totalOrderData.map((item) => (
                   <div className="payment-productlist">
                     <img
                       className="red-img"
@@ -108,7 +135,7 @@ export default function payment() {
                       height={20}
                     />
                     <div className="payment-productlist-info">
-                      <p>{item.productName}</p>
+                      <p>{item.name}</p>
                       <p>주문수량 : {item.count}개</p>
                       <p className="payment-productlist-charge">
                         {item.price.toLocaleString()}원

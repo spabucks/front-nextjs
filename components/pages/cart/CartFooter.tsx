@@ -35,7 +35,10 @@ export default function CartFooter() {
           },
         }
       )
-      .then((res) => router.push("/payment"));
+      .then((res) => router.push("/payment"))
+      .catch((err) => {
+        console.log("err");
+      });
   };
 
   /**체크한 상품에 대하여 가격 계산 */

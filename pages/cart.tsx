@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue} from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import axios from "axios";
 import Head from "next/head";
@@ -21,47 +21,13 @@ import { cartFetchCheck } from "@/state/cartFetchCheck";
 import { detailProduct } from "@/types/type";
 
 export default function Cart() {
-
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
-  const fetchCheck = useRecoilValue(cartFetchCheck)
+  const fetchCheck = useRecoilValue(cartFetchCheck);
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [isChangeCount, setIsChangeCount] = useState<Boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
 
-  /**장바구니 조회 */
-
-  // const fecthCartData = () => {
-  //   axios
-  //   .get(`${BaseUrl}/api/v1/cart/get/v2`, {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //     },
-  //   })
-  //   .then((res) => {
-  //     console.log(res)
-  //     setCartList({
-  //       cartListFreeze: res.data.filter(
-  //         (item: cartListType) => item.bigCategoryId === 1
-  //       ),
-  //       cartList: res.data.filter(
-  //         (item: cartListType) => item.bigCategoryId !== 1
-  //       ),
-  //     });
-  //     console.log('res',res)
-  //     console.log('@@@@@@@@@@@@@@@@', res.request.status)
-  //     if(res.request.status===404){
-  //       <Link href={'/cart'}></Link>
-  //     }
-  //   }
-   
-  //   )
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
-
-  console.log('cartList',cartList)
-  useEffect(()=>{
+  useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/cart/get/v2`, {
@@ -69,11 +35,11 @@ export default function Cart() {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
-      .then((res)=>{
-        console.log(res.data.data)
-        if(res.status === 200) {
+      .then((res) => {
+        console.log(res.data.data);
+        if (res.status === 200) {
           setCartList({
-            cartTotal : res.data.data,
+            cartTotal: res.data.data,
             cartListFreeze: res.data.data.filter(
               (item: cartListType) => item.bigCategoryId === 1
             ),
@@ -83,11 +49,11 @@ export default function Cart() {
           });
         }
       })
-      .catch(err=>{
-        console.log(err)
-      })
-  },[isChangeCount, fetchCheck])
-  
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isChangeCount, fetchCheck]);
+
   return (
     <>
       <Head>
@@ -107,10 +73,9 @@ export default function Cart() {
           // data={props.data.}
         />
       ) : (
-        ischangemodal === false &&
-        /*loginData.isLogin === true &&*/ (
-          <>
-           <SecondHeader title={"온라인스토어"}></SecondHeader>
+        ischangemodal === false && (
+          /*loginData.isLogin === true &&*/ <>
+            <SecondHeader title={"온라인스토어"}></SecondHeader>
             <CartMenu />
             {cartList.cartList.length === 0 &&
             cartList.cartListFreeze.length === 0 ? (
