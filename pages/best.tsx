@@ -13,13 +13,14 @@ import { productBestList } from "@/types/type";
 export default function Best() {
   const [data, setData] = useState<productBestList[]>([]);
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/product/get-best/${router.query.category}`)
       .then((res) => {
         setData(res.data.data);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, [router.query.category]);
@@ -36,9 +37,20 @@ export default function Best() {
         rfon.ico"
         />
       </Head>
-      <TopScrollBtn/>
-      <FirstHeader />
-      <ProductBestList itemData={data} />
+
+      {isLoading && (
+        <div className="ui segment">
+          <div className="ui active loader"></div>
+          <p></p>
+        </div>
+      )}
+      {!isLoading && (
+        <>
+          <TopScrollBtn />
+          <FirstHeader />
+          <ProductBestList itemData={data} />
+        </>
+      )}
     </>
   );
 }
