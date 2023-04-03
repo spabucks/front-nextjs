@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-
+import { modal } from "@/state/modal";
 import { cartType } from "@/types/cartTypes";
 
 import { cartListState } from "@/state/cartListState";
@@ -15,6 +15,8 @@ export default function CartMenu() {
   const [loginData, setLoginData] = useRecoilState(userState);
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck);
   const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
+  const [itemclose, setItemClose] = useState<boolean>(false);
+  const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   useEffect(() => {
     let check = true;
     let freezeCheck = true;
@@ -44,6 +46,7 @@ export default function CartMenu() {
     });
   };
 
+  //전체 아이템 삭제
   const handleAllDelete = () => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -63,33 +66,27 @@ export default function CartMenu() {
       .catch((err) => console.log("err", err));
   };
 
-  // const totalItem:[] = []
-  // const a= totalBuyItems.map((item) => item.cartId);
-  // console.log('a',a)
-  // for(let i=0; i<=totalBuyItems.length; i++){
-  //   totalItem.push(a[i])
-  // }
-
+  //선택 아이템 삭제
   const handleSelecteDelete = () => {
     const BaseUrl = process.env.baseApiUrl;
-    // const deleteitem= totalBuyItems.map((item) => item.cartId);
-    const deleteitem= totalBuyItems.map((item) => item.cartId);
-    console.log('deleteitemdeleteitem',deleteitem)
-    axios
-      .put(
-        `${BaseUrl}/api/v1/cart/selectDelete`,
-        { cartId: deleteitem },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    const deleteitem = totalBuyItems.map((item) => item.cartId);
+    {
+      axios
+        .put(
+          `${BaseUrl}/api/v1/cart/selectedDelete`,
+          {
+            cartId: deleteitem,
           },
-        }
-      )
-      .then((res) => {
-        setCartCheck(!cartCheck);
-        console.log("성공");
-      })
-      .catch((err) => console.log("err", console.log(deleteitem)));
+          {
+            headers: {
+              Authorization: `Bearer ${loginData.accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          setCartCheck(!cartCheck);
+        });
+    }
   };
 
   return (
@@ -116,7 +113,7 @@ export default function CartMenu() {
                 <label htmlFor="total-product-check">전체 선택</label>
               </div>
               <div className="check-right">
-                <button onClick={()=>handleSelecteDelete}>선택삭제</button>
+                <button onClick={handleSelecteDelete}>선택삭제</button>
                 <button onClick={handleAllDelete}>전체삭제</button>
               </div>
             </div>
