@@ -1,11 +1,13 @@
-import FirstHeader from "@/components/sections/FirstHeader";
 import Head from "next/head";
-import MyPageTop from "@/components/sections/MyPageTop";
-import MypageMenuLists from "@/components/sections/MyPageMenuLists";
 import { useRecoilState } from "recoil";
 import { userState } from "@/state/userState";
+
+import FirstHeader from "@/components/sections/FirstHeader";
+import MyPageTop from "@/components/sections/MyPageTop";
+import MypageMenuLists from "@/components/sections/MyPageMenuLists";
 import Logincheck from "@/components/ui/Logincheck";
 import SecondHeader from "@/components/layouts/SecondHeader";
+
 export default function Mypage() {
   const [loginData, setLoginData] = useRecoilState(userState);
   return (

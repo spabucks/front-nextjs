@@ -1,5 +1,5 @@
 import Separator from "../pages/signup/ui/Separator";
-
+import Leftarrow from "../ui/Leftarrow";
 export default function MyPageTop() {
   return (
     <>
@@ -18,26 +18,17 @@ export default function MyPageTop() {
             <p>0</p>
             <p>상품준비중</p>
           </div>
-          <img
-            className="main-mypage-step__icon change-left-chevron"
-            src="assets/images/icons/left-chevron.svg"
-          />
+         <Leftarrow/>
           <div className="main-mypage-step__product">
             <p>0</p>
             <p>배송준비중</p>
           </div>
-          <img
-            className="main-mypage-step__icon change-left-chevron"
-            src="assets/images/icons/left-chevron.svg"
-          />
+          <Leftarrow/>
           <div className="main-mypage-step__product">
             <p>0</p>
             <p>배송중</p>
           </div>
-          <img
-            className="main-mypage-step__icon change-left-chevron"
-            src="assets/images/icons/left-chevron.svg"
-          />
+          <Leftarrow/>
           <div className="main-mypage-step__product">
             <p>0</p>
             <p>배송완료</p>

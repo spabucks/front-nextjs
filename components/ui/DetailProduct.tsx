@@ -1,10 +1,11 @@
-import { detailProduct } from "@/types/type";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getImageSize } from "react-image-size";
 
+import { detailProduct } from "@/types/type";
+
 export default function DetailProduct(props: { data: detailProduct }) {
-  /**Image 컴포넌트 설정 */
+
   const [size, setSize] = useState({
     width: 0,
     height: 0,
@@ -33,7 +34,7 @@ export default function DetailProduct(props: { data: detailProduct }) {
     return () => {
       window.removeEventListener("scroll", handleShow);
     };
-  });
+  },[]);
 
 
   return (
@@ -79,6 +80,7 @@ export default function DetailProduct(props: { data: detailProduct }) {
           {props.data.productDetailImgUrl.map((item: string) => {
             return (
               <Image
+              key={item}
                 src={item}
                 alt="상품상세정보"
                 width={300}

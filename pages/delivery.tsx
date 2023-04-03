@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { shippingListType } from "@/types/shipping";
 import CloseBtn from "@/components/ui/CloseBtn";
+
 export default function Delivery() {
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
@@ -17,7 +18,8 @@ export default function Delivery() {
     setDeliveryRechange(!deliveryRechange);
   };
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
-  const [shippingCheck,setShippingCheck]=useState<boolean>(false)
+  const [shippingCheck, setShippingCheck] = useState<boolean>(false);
+
   //배송지 조회
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
@@ -29,17 +31,19 @@ export default function Delivery() {
       })
       .then((res) => {
         setShippingData(res.data.data);
-        setShippingCheck(!shippingCheck)
+        setShippingCheck(!shippingCheck);
       })
       .catch((err) => {
         console.log(err);
       });
-  },[]);
+  }, []);
   console.log("shippingDatashippingDatashippingData", shippingData);
   //배송지 삭제
   const Deletehandle = (id: number) => {
     const BaseUrl = process.env.baseApiUrl;
-    const targetShippingData = shippingData.find(item => item.shippingId === id);
+    const targetShippingData = shippingData.find(
+      (item) => item.shippingId === id
+    );
     if (!targetShippingData) {
       return;
     }
@@ -54,14 +58,13 @@ export default function Delivery() {
         }
       )
       .then(() => {
-        setShippingData(shippingData.filter(item => item.shippingId !== id));
+        setShippingData(shippingData.filter((item) => item.shippingId !== id));
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  console.log(shippingData.length);
   return (
     <>
       {deliveryRechange === true && <DeliveryRegistration />}
@@ -78,15 +81,15 @@ export default function Delivery() {
             </div>
           </form>
           <div onClick={handleAddressPlus}>
-              <FooterBtn title={"새 배송지 추가"}></FooterBtn>
-            </div>
+            <FooterBtn title={"새 배송지 추가"}></FooterBtn>
+          </div>
         </div>
       )}
 
       {deliveryRechange === false && shippingData.length !== 0 && (
         <>
           <div className="address-container">
-            <FirstHeader/>
+            <FirstHeader />
             <div className="address-header">
               <div className="main-address-title">
                 <h2>배송지 관리</h2>

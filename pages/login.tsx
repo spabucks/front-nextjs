@@ -1,17 +1,20 @@
-import LoginMain from "@/components/sections/LoginMain";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { useState } from "react";
-import { LoginReq } from "@/types/UserRequest/Request";
-import StButton from "@/components/pages/signup/ui/StButton";
+import { useCookies } from "react-cookie";
+import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { useCookies } from "react-cookie";
-import { userState } from "@/state/userState";
+
+import { LoginReq } from "@/types/UserRequest/Request";
+
+import LoginMain from "@/components/sections/LoginMain";
 import SecondHeader from "@/components/layouts/SecondHeader";
+import StButton from "@/components/pages/signup/ui/StButton";
+
+import { userState } from "@/state/userState";
+
 export default function Login() {
-  const BaseUrl = process.env.baseApiUrl;
   const router = useRouter();
 
   const [inputData, setInputData] = useState<LoginReq>({
@@ -26,7 +29,6 @@ export default function Login() {
 
 
   const handleLogin = () => {
-    console.log(inputData);
     if (inputData.loginId === "" || inputData.password === "") {
       Swal.fire({
         icon: "error",
@@ -37,15 +39,13 @@ export default function Login() {
       });
       return;
     }
-    console.log('inputData.loginId',inputData.loginId)
-    console.log('inputData.password',inputData.password)
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .post(`${BaseUrl}/api/v1/auth/login`, {
         loginId: inputData.loginId,
         pwd: inputData.password,
       })
       .then((res) => {
-        console.log('resssssssssssssssssssssssssssss',res)
         if (res.status === 204) {
           Swal.fire({
             icon: "error",

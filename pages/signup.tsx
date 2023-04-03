@@ -192,9 +192,7 @@ export default function SignUp() {
           birth: "2023-03-27T10:51:32.964Z",
           nickName: inputData.userNickname,
         })
-        .then((res) => {
-
-        }).catch((err)=>err);
+        .catch((err)=>err);
     }
   };
 
