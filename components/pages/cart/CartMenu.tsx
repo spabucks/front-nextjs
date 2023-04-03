@@ -8,13 +8,13 @@ import { cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
-
+import { cartBuyProduct } from "@/types/cartBuyProduct";
 export default function CartMenu() {
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const [listAllCheck, setListAllCheck] = useState<boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck);
-
+  const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
   useEffect(() => {
     let check = true;
     let freezeCheck = true;
@@ -63,6 +63,35 @@ export default function CartMenu() {
       .catch((err) => console.log("err", err));
   };
 
+  // const totalItem:[] = []
+  // const a= totalBuyItems.map((item) => item.cartId);
+  // console.log('a',a)
+  // for(let i=0; i<=totalBuyItems.length; i++){
+  //   totalItem.push(a[i])
+  // }
+
+  const handleSelecteDelete = () => {
+    const BaseUrl = process.env.baseApiUrl;
+    // const deleteitem= totalBuyItems.map((item) => item.cartId);
+    const deleteitem= totalBuyItems.map((item) => item.cartId);
+    console.log('deleteitemdeleteitem',deleteitem)
+    axios
+      .put(
+        `${BaseUrl}/api/v1/cart/selectDelete`,
+        { cartId: deleteitem },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((res) => {
+        setCartCheck(!cartCheck);
+        console.log("성공");
+      })
+      .catch((err) => console.log("err", console.log(deleteitem)));
+  };
+
   return (
     <>
       {loginData.isLogin === true && (
@@ -87,7 +116,7 @@ export default function CartMenu() {
                 <label htmlFor="total-product-check">전체 선택</label>
               </div>
               <div className="check-right">
-                <button>선택삭제</button>
+                <button onClick={()=>handleSelecteDelete}>선택삭제</button>
                 <button onClick={handleAllDelete}>전체삭제</button>
               </div>
             </div>

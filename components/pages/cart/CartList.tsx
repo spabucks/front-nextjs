@@ -7,11 +7,11 @@ import { GeneralCartOrderList } from "./CartOrderList";
 import FreezeCartOrderList from "./CartOrderList";
 import { cartListType } from "@/types/cartTypes";
 
-
 export default function CartList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
   const [listAllCheck, setListAllCheck] = useState(false);
   const [listFreezeAllCheck, setListFreezeAllCheck] = useState(false);
+  const [totalAllCheck, setTotalAllCheck] = useState(false);
   useEffect(() => {
     let check = true;
     let freezeCheck = true;
@@ -21,6 +21,7 @@ export default function CartList() {
     cartItems.cartListFreeze.find((item) => item.check === false)
       ? (freezeCheck = false)
       : (freezeCheck = true);
+
     setListAllCheck(check);
     setListFreezeAllCheck(freezeCheck);
   }, [cartItems]);
@@ -45,7 +46,6 @@ export default function CartList() {
       }),
     });
   };
-
 
   return (
     <>
@@ -87,7 +87,6 @@ export default function CartList() {
 
       {cartItems.cartListFreeze.filter((item) => item.check === true).length >
         0 && <FreezeCartOrderList />}
-  
     </>
   );
 }

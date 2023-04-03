@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Link from "next/link";
-
 import Image from "next/image";
+import Router from "next/router";
+
 import { useRecoilState } from "recoil";
 import { recentSearchWord } from "@/state/recentSearchWord";
-import Router from "next/router";
 import CloseBtn from "./CloseBtn";
 
 export default function SeachKeword() {

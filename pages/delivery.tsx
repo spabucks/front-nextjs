@@ -13,6 +13,7 @@ import CloseBtn from "@/components/ui/CloseBtn";
 export default function Delivery() {
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
+
   console.log("deliveryRechange", deliveryRechange);
   const handleAddressPlus = () => {
     setDeliveryRechange(!deliveryRechange);
@@ -36,7 +37,7 @@ export default function Delivery() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [deliveryRechange]);
   console.log("shippingDatashippingDatashippingData", shippingData);
   //배송지 삭제
   const Deletehandle = (id: number) => {
@@ -48,16 +49,14 @@ export default function Delivery() {
       return;
     }
     axios
-      .delete(
-        `${BaseUrl}/api/v1/shipping/delete`, {
-          data: {
-            id: targetShippingData.shippingId,
-          }, 
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          }
+      .delete(`${BaseUrl}/api/v1/shipping/delete`, {
+        data: {
+          id: targetShippingData.shippingId,
         },
-      )
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then(() => {
         setShippingData(shippingData.filter((item) => item.shippingId !== id));
       })
@@ -69,9 +68,14 @@ export default function Delivery() {
   return (
     <>
       {deliveryRechange === true && <DeliveryRegistration />}
-      {deliveryRechange === false && shippingData.length === 0 && (
+      {(deliveryRechange === false && shippingData.length === 0) && (
         <div className="address-container">
           <FirstHeader />
+          <div className="address-header">
+            <div className="main-address-title">
+              <h2>배송지 관리</h2>
+            </div>
+          </div>
           <form className="main-address-form">
             <div className="address-resister">
               <p>
@@ -87,7 +91,7 @@ export default function Delivery() {
         </div>
       )}
 
-      {deliveryRechange === false && shippingData.length !== 0 && (
+      {(deliveryRechange === false && shippingData.length !== 0) && (
         <>
           <div className="address-container">
             <FirstHeader />

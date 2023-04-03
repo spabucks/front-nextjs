@@ -1,6 +1,59 @@
 import React from "react";
 import SecondHeader from "@/components/layouts/SecondHeader";
+import { useRecoilState } from "recoil";
+import { cartBuyProduct } from "@/types/cartBuyProduct";
+import { generaldelivery } from "@/state/generaldelivery";
+import { freezedelivery } from "@/state/freezedelivery";
+import { useEffect, useState } from "react";
+import { shippingListType } from "@/types/shipping";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { deliveryChangeModal } from "@/state/deliveryChangeModal";
 export default function payment() {
+  const router = useRouter();
+  //최종주문 List
+  const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
+  console.log(totalBuyItems);
+  const [generaldeliveryCharge, setGeneralDeliveryCharge] =
+    useRecoilState<number>(generaldelivery);
+  const [freezedeliveryCharge, setFreezeDeliveryCharge] =
+    useRecoilState<number>(freezedelivery);
+
+  const totalProduct = totalBuyItems
+    .map((i) => i.price * i.count)
+    .reduce((sum, charge) => (sum += charge), 0);
+
+  const [shippingData, setShippingData] = useState<shippingListType[]>([]);
+  const [shippingCheck, setShippingCheck] = useState<boolean>(false);
+  const [deliveryRechange, setDeliveryRechange] =
+    useRecoilState(deliveryChangeModal);
+
+
+  //배송지 조회
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/shipping/get`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((res) => {
+        setShippingData(res.data.data);
+        // setShippingCheck(!shippingCheck);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [deliveryRechange]);
+
+  const basicaddress = shippingData[0];
+  
+
+  // 배송지 등록 
+  const handleDeliveryClick = () => {
+    router.push('/delivery');
+  };
   return (
     <>
       <div className="pay-container">
@@ -12,25 +65,28 @@ export default function payment() {
               <h3>배송 정보</h3>
             </div>
           </div>
-
-          <div className="payment-resister">
-            <p>
-              등록된 배송지가 없습니다.
-              <br />
-              배송지를 등록해 주세요.
-            </p>
-            <button className="address-serch">배송지 등록</button>
-          </div>
-          <div className="pay-address-info">
-            <h5>스파로스 아카데미(학원)</h5>
-            <p>
-              (48060) 부산광역시 해운대구 APEC로 17(우동)
-              <br />
-              센텀리더스마크 스파로스 아카데미 401호
-              <br />
-              010-0213-0622
-            </p>
-          </div>
+          {shippingData.length === 0 && (
+            <div className="payment-resister">
+              <p>
+                등록된 배송지가 없습니다.
+                <br />
+                배송지를 등록해 주세요.
+              </p>
+              <button className="address-serch" onClick={handleDeliveryClick}>배송지 등록</button>
+            </div>
+          )}
+          {shippingData.length !== 0 && (
+            <div className="pay-address-info">
+              <h5>
+                {basicaddress.recipient}({basicaddress.name})
+              </h5>
+              <p>
+                {basicaddress.defaultAddress}
+                <br />
+                {basicaddress.phoneNum}
+              </p>
+            </div>
+          )}
           <div className="payment-info-wrap-list">
             <div className="payment-info-toggle">
               <p>상품내역</p>
@@ -40,36 +96,32 @@ export default function payment() {
                 alt=""
               />
             </div>
-
             <div className="payment-product-wrap-lists">
-              <div className="payment-productlist">
-                <img
-                  className="red-img"
-                  src="assets/images/pic/커티스 머그1.png"
-                  alt=""
-                />
-                <p>23 커티스 쿨릭 레드 머그 355ml</p>
-              </div>
-
-              <div className="payment-productlist">
-                <img
-                  className="red-img"
-                  src="assets/images/pic/커티스 머그1.png"
-                  alt=""
-                />
-                <p>23 커티스 쿨릭 레드 머그 355ml</p>
-              </div>
+              {totalBuyItems &&
+                totalBuyItems.map((item) => (
+                  <div className="payment-productlist">
+                    <img
+                      className="red-img"
+                      src={item.imgUrl}
+                      alt="상품이미지"
+                      width={20}
+                      height={20}
+                    />
+                    <div className="payment-productlist-info">
+                      <p>{item.productName}</p>
+                      <p>주문수량 : {item.count}개</p>
+                      <p className="payment-productlist-charge">
+                        {item.price.toLocaleString()}원
+                      </p>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
 
           <div className="coupon-info-wrap-list">
             <div className="pay-whichone">
               <p>결제 수단</p>
-            </div>
-
-            <div className="pay-agree-input">
-              <input type="radio" id="pay-starbucks" name="pay-card" />
-              <label>스타벅스 카드</label>
             </div>
             <div className="pay-agree-input">
               <input type="radio" id="pay-credit" name="pay-card" />
@@ -83,61 +135,42 @@ export default function payment() {
           <div className="payment-info-wrap-price">
             <div className="pay-order-price-first">
               <p>주문 금액</p>
-              <p>26,000원</p>
+              <p>
+                {(
+                  totalProduct +
+                  generaldeliveryCharge +
+                  freezedeliveryCharge
+                ).toLocaleString()}
+                원
+              </p>
             </div>
             <div className="pay-info-order-price">
               <p>상품 금액</p>
-              <p>23,000원</p>
+              <p>{totalProduct.toLocaleString()}원</p>
             </div>
             <div className="pay-info-order-price">
               <p>배송비</p>
-              <p>3,000원</p>
+              <p>
+                {(
+                  generaldeliveryCharge + freezedeliveryCharge
+                ).toLocaleString()}
+                원
+              </p>
             </div>
           </div>
-
-          <div className="payment-info-wrap-price">
-            <div className="pay-order-price-first">
-              <p>할인 금액</p>
-              <p>26,000원</p>
-            </div>
-            <div className="pay-info-order-price">
-              <p>상품 할인</p>
-              <p>23,000원</p>
-            </div>
-          </div>
-
-          <div className="payment-info-wrap-price">
-            <div className="pay-order-price-first">
-              <p>결제 금액</p>
-              <p>26,000원</p>
-            </div>
-            <div className="pay-info-order-price">
-              <p>모바일 상품권</p>
-              <p>0원</p>
-            </div>
-          </div>
-
           <div className="final-info-wrap-price">
             <div className="final-info-price-title">
               <p>최종 결제 금액</p>
-              <p>26,000원</p>
+              <p>
+                {(
+                  totalProduct +
+                  generaldeliveryCharge +
+                  freezedeliveryCharge
+                ).toLocaleString()}
+                원
+              </p>
             </div>
           </div>
-
-          {/* <!--<div className="coupon-info-wrap-list">
-        <div className="payment-info-toggle">
-          <div className="payment-infomation">
-            <p>주문 금액</p>
-            <p>26,000원</p>
-            <div className="coupon-info-wrap-list">
-              <div className="payment-info-toggle">
-                <p>상품 금액</p>
-                <p>23,000원</p>
-              </div>
-            </div>
-          </div>
-        </div>--> */}
-
           <div className="pay-agree">
             <div className="pay-agree-form">
               <p>
@@ -148,7 +181,14 @@ export default function payment() {
             </div>
           </div>
           <div className="main-payment-submit">
-            <button type="submit">26,000원 결제하기</button>
+            <button type="submit">
+              {(
+                totalProduct +
+                generaldeliveryCharge +
+                freezedeliveryCharge
+              ).toLocaleString()}
+              원 결제하기
+            </button>
           </div>
         </form>
       </div>

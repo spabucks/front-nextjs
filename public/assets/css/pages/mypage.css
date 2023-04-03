@@ -75,6 +75,8 @@
 }
 .main-service-list-item-title {
   font-size: 18px;
+  text-decoration-line : none
+
 }
 .main-service-list-arrow {
   width: 30px;
@@ -111,4 +113,8 @@
 .main-mypage-nickname-title p {
   margin: 0px;
   letter-spacing: 5px;
+}
+.link-mypage{
+  text-decoration: none;
+  color:black;
 }

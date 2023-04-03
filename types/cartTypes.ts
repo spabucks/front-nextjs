@@ -12,4 +12,5 @@ export interface cartListType {
   export interface cartType {
     cartListFreeze: cartListType[];
     cartList: cartListType[];
+    cartTotal  :cartListType[];
   }

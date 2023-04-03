@@ -7,6 +7,7 @@ const { persistAtom } = recoilPersist();
 export const cartListState = atom<cartType>({
   key: "cartListState",
   default: {
+    cartTotal :[],
     cartListFreeze: [],
     cartList: [],
     // effects_UNSTABLE: [persistAtom]

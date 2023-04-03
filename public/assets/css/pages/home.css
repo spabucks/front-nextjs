@@ -50,7 +50,7 @@ section.slide-circle-product-lists {
 /*section slide-square-product-lists 관련 CSS*/
 section.slide-square-product-lists {
   padding: 0px 14px;
-  margin: 15px 0px;
+  margin: 25px 0px 10px 0px;
   height: 350px;
 }
 .slide-square-product__main-title {

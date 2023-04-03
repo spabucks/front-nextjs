@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 
 import FirstHeader from "@/components/sections/FirstHeader";
-import SlideCircleProduct from "@/components/layouts/SlideCircleProduct";
 import SlideSquareProduct from "@/components/layouts/SlideSquareProduct";
 import SliderContainer from "@/components/layouts/Slide";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
@@ -39,7 +38,6 @@ export default function Home() {
       <TopScrollBtn />
       <FirstHeader />
       <SliderContainer />
-      <SlideCircleProduct />
       {data &&
         data.map((item) => (
           <SlideSquareProduct

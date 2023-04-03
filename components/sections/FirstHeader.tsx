@@ -15,6 +15,9 @@ import { subPage } from "@/state/subPage";
 import { userState } from "@/state/userState";
 import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
+import { cartType } from "@/types/cartTypes";
+import { cartListState } from "@/state/cartListState";
+import CartItem from "../pages/cart/CartItem";
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
@@ -28,8 +31,13 @@ export default function FirstHeader() {
   );
   const [subpagemodal, setSubpageModal] = useRecoilState(subPage);
 
+  const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
+
   const handleSubpageOpen = () => {
     setSubpageModal(true);
+  };
+  const handlebackBtn = () => {
+    router.push("/mypage");
   };
   const [cookies, setCookie, removeCookie] = useCookies(["id"]);
   /** 베스트 관련 메뉴*/
@@ -105,25 +113,25 @@ export default function FirstHeader() {
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          {
-            router.pathname==="/delivery" ? <>
+          {router.pathname === "/delivery" ? (
+            <>
               <Image
-            src="assets/images/icons/left-chevron.svg"
-            alt=""
-            width={20}
-            height={20}
-            onClick={handleSubpageOpen}
-          ></Image>
-            </> :
+                src="assets/images/icons/left-chevron.svg"
+                alt=""
+                width={20}
+                height={20}
+                onClick={handlebackBtn}
+              ></Image>
+            </>
+          ) : (
             <Image
-            src="assets/images/icons/menu.svg"
-            alt=""
-            width={20}
-            height={20}
-            onClick={handleSubpageOpen}
-          ></Image>
-
-          }
+              src="assets/images/icons/menu.svg"
+              alt=""
+              width={20}
+              height={20}
+              onClick={handleSubpageOpen}
+            ></Image>
+          )}
         </div>
         <Link href="/" className="mainpage-link">
           <h1>온라인 스토어</h1>
@@ -145,11 +153,19 @@ export default function FirstHeader() {
               <li>
                 <Link href="/cart">
                   <Image
-                    width={20}
-                    height={20}
+                    width={10}
+                    height={10}
                     src="assets/images/icons/shopping-cart.svg"
                     alt="cart"
+                    className="cart-icon"
                   ></Image>
+                  {cartList.cartTotal.length > 0 ? 
+                    <div className="cart-count-check">
+                      {cartList.cartTotal.length}
+                    </div>:<div className="cart-count-check-hide">
+                      {cartList.cartTotal.length}
+                    </div>
+                  }
                 </Link>
               </li>
             ) : (
@@ -195,10 +211,7 @@ export default function FirstHeader() {
       {router.pathname === "/cart" ||
       router.pathname === "/filter" ||
       router.pathname === "/search2" ||
-      router.pathname === "/delivery" 
-      
-      
-      ? (
+      router.pathname === "/delivery" ? (
         ""
       ) : (
         <div className="main-header-bottom boder-under">

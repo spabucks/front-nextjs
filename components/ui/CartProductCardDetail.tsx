@@ -7,8 +7,8 @@ export interface ChildProps {
   data?: detailProduct;
   status: number;
   addcount: number;
-  changecount:number;
-  setChangecount :React.Dispatch<React.SetStateAction<number>>;
+  changecount: number;
+  setChangecount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function ShowModal() {
@@ -44,7 +44,7 @@ export function ChangeCheckShowModal(props: {
   if (time === true) {
     return null;
   }
-  console.log('props.addcount',props.addcount)
+  console.log("props.addcount", props.addcount);
   return (
     <>
       <div className="buy-checkannouncement-show">
@@ -63,23 +63,23 @@ export default function CartProductCardDetail({
   status,
   addcount,
   changecount,
-  setChangecount
+  setChangecount,
 }: ChildProps) {
+  //   const [ count,setCount]=useRecoilState(cartCount);
 
-//   const [ count,setCount]=useRecoilState(cartCount);
-
-//   useEffect(() => {
-//     setCount(count)
-//  },[count])
- 
+  //   useEffect(() => {
+  //     setCount(count)
+  //  },[count])
 
   const handleView = () => {
     setIsClick && setIsClick(!isClick);
   };
-  
+
   return (
     <div className="buy-product-lists">
-      <div className="view-btn" onClick={handleView}></div>
+      <div className="view-container" onClick={handleView}>
+        <div className="view-btn"></div>
+      </div>
       {isClick ? (
         <>
           <div className="buy-product-list">
@@ -89,7 +89,7 @@ export default function CartProductCardDetail({
                 {changecount > 1 ? (
                   <button
                     onClick={() => {
-                      setChangecount(changecount- 1);
+                      setChangecount(changecount - 1);
                     }}
                   >
                     -
@@ -101,7 +101,7 @@ export default function CartProductCardDetail({
                 {changecount < 5 ? (
                   <button
                     onClick={() => {
-                      setChangecount(changecount+ 1);
+                      setChangecount(changecount + 1);
                     }}
                   >
                     +

@@ -295,11 +295,20 @@
 .non-product-cart p{
   font-size:1.1rem;
 }
-
-.view-btn {
+.view-container{
   width: 100%;
   height: 10px;
   background-color: rgba(7, 7, 6, 0);
+  display: flex;
+  justify-content: center;
+
+}
+.view-btn {
+  width: 10%;
+  height: 6px;
+  background-color:rgb(190, 190, 190);
+  margin: 10px;
+  border-radius: 20px;
 }
 
 .sbCheckBoxOn{

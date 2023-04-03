@@ -1,6 +1,9 @@
 import Separator from "../pages/signup/ui/Separator";
 import Leftarrow from "../ui/Leftarrow";
+import { useRecoilState } from "recoil";
+import { userState } from "@/state/userState";
 export default function MyPageTop() {
+  const [loginData, setLoginData] = useRecoilState(userState);
   return (
     <>
     <div className="main-mypage-nickname-container">

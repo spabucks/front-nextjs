@@ -91,7 +91,6 @@
   font-size: 15px;
   position: relative;
   z-index: 100;
-  margin-top: 60px;
 }
 
 /*배송지 수정 css*/
@@ -236,4 +235,10 @@ color:rgb(197, 194, 194);
 border: none;
 outline: none;
 font-size: 1.2rem;
+}
+.address-container{
+  margin-top: 90px;
+}
+.main-address-title{
+  padding: 0px 20px;
 }
