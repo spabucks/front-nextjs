@@ -5,6 +5,7 @@ import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
 import { cartBuyProduct } from "@/types/cartBuyProduct";
 import { useRouter } from "next/router";
+import axios from "axios";
 import Link from "next/link";
 import { cartListType } from "@/types/cartTypes";
 export default function CartFooter() {
@@ -19,7 +20,22 @@ export default function CartFooter() {
   }, [cartItems]);
 
   const handleDirectClick = () => {
-    router.push("/payment");
+    const BaseUrl = process.env.baseApiUrl;
+    const buyitemId = totalBuyItems.map((item) => item.cartId);
+    console.log("buyitemId", buyitemId);
+    axios
+      .post(
+        `${BaseUrl}/api/v1/purchaseTmp/add`,
+        {
+          cartId: buyitemId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((res) => router.push("/payment"));
   };
 
   /**체크한 상품에 대하여 가격 계산 */
