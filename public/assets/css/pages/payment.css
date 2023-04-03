@@ -1,24 +1,28 @@
+.address-header h1 {
+  margin: 100px 0px 0px 0px;
+  padding: 0px 20px 0px 20px;
+}
 .main-payment body {
-  padding: 10px 10px;
+  padding: 10px;
 }
-
-.main-address-title {
-  font-size: 1.3rem;
-  margin-top: 70px;
-  padding: 5px 25px;
+.main-address-title h3 {
+  font-size: 1.2rem;
+  padding: 20px 0px 0px 20px;
+  margin: 0px;
 }
-
+.payment-resister {
+  height: 140px;
+  padding: 20px;
+}
 .change-button-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px;
 }
-
 .change-button-form h3 {
   font-size: 1.3rem;
 }
-
 .change-button {
   text-align: center;
   font-size: 1rem;
@@ -29,28 +33,25 @@
   color: rgb(136, 136, 136);
   border-color: rgb(151, 151, 151);
 }
-
 .pay-address-info {
   padding: 20px;
   font-size: 1.2rem;
   line-height: 13px;
-  margin-top: -40px;
-  margin-bottom: -40px;
 }
-
+.pay-address-info h5 {
+  margin: 10px 0px;
+}
 .pay-address-info p {
   line-height: 25px;
   font-size: 1rem;
   margin-top: 10px;
 }
-
 .payment-resister {
   border: none;
   text-align: center;
   font-weight: 550;
   font-size: 1.1rem;
 }
-
 .address-serch {
   margin-top: 20px;
   height: 40px;
@@ -61,15 +62,18 @@
   border-color: #01a862;
   background-color: rgb(255, 255, 255);
 }
-
-.payment-info-wrap-list {
+.payment-product-wrap-lists {
   display: flex;
   flex-direction: column;
-  font-size: 1.3rem;
+}
+.payment-info-wrap-list {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  font-size: 1rem;
   font-weight: bold;
   background-color: rgb(248 248 248);
-  margin-top: 30px;
-  padding: 0px 0px 10px 20px;
+  padding: 0px 20px;
 }
 
 .payment-info-wrap-list .payment-info-toggle {
@@ -79,14 +83,6 @@
 
 .payment-info-toggle p {
   font-size: 1.2rem;
-}
-
-.red-img {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80px;
-  height: 80px;
 }
 
 .payment-right-img {
@@ -100,34 +96,54 @@
   width: 30px;
   margin: 15px;
 }
-
 .payment-product-wrap-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
   font-weight: bold;
-  margin: 0px 40px 0px 0px;
+  margin: 0px 40px 10px 0px;
 }
-
-.coupon-info-wrap-list .payment-info-toggle {
+.payment-product-wrap-lists {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+.payment-productlist {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+.payment-productlist p {
+  margin-left: 10px;
+}
+.red-img {
+  width: 80px;
+  height: 80px;
 }
 
+
+.payment-productlist{
+  display: flex;
+  flex-direction: row;
+}
+.payment-productlist p{
+margin: 20px;
+
+}
 .coupon-info-wrap-list {
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   border-bottom: solid 1px #c7c7c7;
-  margin: 0px 0px 0px 20px;
+  margin: 0px 20px;
 }
 
 .pay-agree-input {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin:10px 0px;
 }
 
 .pay-agree-input input {
@@ -141,38 +157,35 @@
   justify-content: space-between;
   flex-direction: column;
   font-size: 1.1rem;
-  font-weight: bold;
-  margin: 10px 20px 0px 20px;
+  margin: 0px 20px;
   line-height: 10px;
 }
 
-.payment-info-price-title h4 {
-  margin: 20px 0px 20px 0px;
+.payment-info-price-title p {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-left: 20px;
 }
 
 .pay-info-order-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-*.pay-order-price-first {
+.pay-order-price-first {
   display: flex;
   justify-content: space-between;
   font-size: 1.25rem;
   font-weight: bold;
 }
-
 .final-info-wrap-price {
   display: flex;
   flex-direction: column;
   font-size: 1.3rem;
-  padding: 20px;
   font-weight: bold;
-  margin: -20px 0px 0px 0px;
+  margin: 20px;
 }
 
 .payment-info-wrap-price-form {
@@ -185,7 +198,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: -40px;
+  height: 50px;
 }
 
 .final-info-price-title p:last-child {
@@ -205,7 +218,7 @@
 .pay-agree p {
   font-size: 0.85rem;
   line-height: 25px;
-  padding: 0px 0px 0px 10px;
+  padding: 10px;
 }
 
 .main-payment-submit {
