@@ -44,14 +44,15 @@ export default function Delivery() {
       return;
     }
     axios
-      .post(
-        `${BaseUrl}/api/v1/shipping/delete`,
-        { id: targetShippingData.shippingId },
-        {
+      .delete(
+        `${BaseUrl}/api/v1/shipping/delete`, {
+          data: {
+            id: targetShippingData.shippingId,
+          }, 
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+          }
+        },
       )
       .then(() => {
         setShippingData(shippingData.filter(item => item.shippingId !== id));
