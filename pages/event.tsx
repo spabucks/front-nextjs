@@ -1,13 +1,9 @@
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { productEventList } from "@/types/type";
-
-import axios from "axios";
-
-import { subPage } from "@/state/subPage";
-import { useRecoilState } from "recoil";
 
 import FirstHeader from "@/components/sections/FirstHeader";
 import ProductEventList from "@/components/sections/ProductEventList";

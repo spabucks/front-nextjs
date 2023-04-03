@@ -4,14 +4,15 @@ export default function payment() {
   return (
     <>
       <div className="pay-container">
-      <SecondHeader title={"온라인스토어"}/>
+        <SecondHeader title={"온라인스토어"} />
         <form className="main-address-form">
           <div className="address-header">
+            <h1>결제하기</h1>
             <div className="main-address-title">
-              <h2>결제하기</h2>
               <h3>배송 정보</h3>
             </div>
           </div>
+
           <div className="payment-resister">
             <p>
               등록된 배송지가 없습니다.
@@ -20,11 +21,6 @@ export default function payment() {
             </p>
             <button className="address-serch">배송지 등록</button>
           </div>
-          <div className="change-button-form">
-            <h3>배송 정보</h3>
-            <button className="change-button">변경</button>
-          </div>
-
           <div className="pay-address-info">
             <h5>스파로스 아카데미(학원)</h5>
             <p>
@@ -44,46 +40,31 @@ export default function payment() {
                 alt=""
               />
             </div>
-            <div className="payment-product-wrap-list">
-              <img
-                className="red-img"
-                src="assets/images/pic/커티스 머그1.png"
-                alt=""
-              />
-              <p>23 커티스 쿨릭 레드 머그 355ml</p>
-            </div>
-          </div>
 
-          <div className="coupon-info-wrap-list">
-            <div className="payment-info-toggle">
-              <p>쿠폰 및 할인</p>
-              <img
-                className="payment-right-img"
-                src="assets/images/icons/left-chevron.svg"
-                alt=""
-              />
-            </div>
-            {/* <div className="coupon-product-wrap-list">
-          <img className="pay-coupon-img" src="assets/images/icons/coupon.svg"/>
-          <p>쿠폰</p>
-        </div> */}
-          </div>
-
-          <div className="coupon-info-wrap-list">
-            <div className="payment-info-toggle">
-              <p>모바일 상품권</p>
-              <img
-                className="payment-right-img"
-                src="assets/images/icons/left-chevron.svg"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="coupon-info-wrap-list">
-            <div className="payment-info-toggle">
-              <div className="pay-whichone">
-                <p>결제 수단</p>
+            <div className="payment-product-wrap-lists">
+              <div className="payment-productlist">
+                <img
+                  className="red-img"
+                  src="assets/images/pic/커티스 머그1.png"
+                  alt=""
+                />
+                <p>23 커티스 쿨릭 레드 머그 355ml</p>
               </div>
+
+              <div className="payment-productlist">
+                <img
+                  className="red-img"
+                  src="assets/images/pic/커티스 머그1.png"
+                  alt=""
+                />
+                <p>23 커티스 쿨릭 레드 머그 355ml</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="coupon-info-wrap-list">
+            <div className="pay-whichone">
+              <p>결제 수단</p>
             </div>
 
             <div className="pay-agree-input">
@@ -95,11 +76,11 @@ export default function payment() {
               <label>신용카드</label>
             </div>
           </div>
+          <div className="payment-info-price-title">
+            <p>결제 정보</p>
+          </div>
 
           <div className="payment-info-wrap-price">
-            <div className="payment-info-price-title">
-              <h4>결제 정보</h4>
-            </div>
             <div className="pay-order-price-first">
               <p>주문 금액</p>
               <p>26,000원</p>
@@ -113,16 +94,18 @@ export default function payment() {
               <p>3,000원</p>
             </div>
           </div>
+
           <div className="payment-info-wrap-price">
             <div className="pay-order-price-first">
               <p>할인 금액</p>
-              <p>0원</p>
+              <p>26,000원</p>
             </div>
-            <div className="payment-info-wrap-price-form">
+            <div className="pay-info-order-price">
               <p>상품 할인</p>
-              <p>0원</p>
+              <p>23,000원</p>
             </div>
           </div>
+
           <div className="payment-info-wrap-price">
             <div className="pay-order-price-first">
               <p>결제 금액</p>
@@ -140,6 +123,7 @@ export default function payment() {
               <p>26,000원</p>
             </div>
           </div>
+
           {/* <!--<div className="coupon-info-wrap-list">
         <div className="payment-info-toggle">
           <div className="payment-infomation">

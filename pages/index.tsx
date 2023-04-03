@@ -10,7 +10,6 @@ import TopScrollBtn from "@/components/ui/TopScrollBtn";
 
 import { recommandData } from "@/types/type";
 
-
 export default function Home() {
   const [data, setData] = useState<recommandData[]>([]);
 

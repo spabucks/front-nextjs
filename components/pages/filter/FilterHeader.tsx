@@ -1,19 +1,22 @@
+import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { filterType, cakecategoryType } from "@/types/filterTypes";
 import { bigCategoryType } from "@/types/filterTypes";
 
 export default function FilterHeader() {
-  const { pathname, query } = useRouter();
+  const { pathname, query} = useRouter();
+  const router = useRouter();
+
   const [bigcategory, setBigCategory] = useState<bigCategoryType[]>();
   const [subCategory, setSubCategory] = useState<cakecategoryType[]>([]);
   const [filterList, setFilterList] = useState<filterType[]>([]);
-  const BaseUrl = process.env.baseApiUrl;
-  const router = useRouter();
+
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
+
   /**빅카테고리 API호출 */
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/product/getBigCategory`)
       .then((res) => {
@@ -27,6 +30,7 @@ export default function FilterHeader() {
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
     if(bigcategoryId===undefined){
+      const BaseUrl = process.env.baseApiUrl;
       axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
@@ -36,6 +40,7 @@ export default function FilterHeader() {
         console.log(err);
       });
     } else {
+      const BaseUrl = process.env.baseApiUrl;
       axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
       .then((res) => {
