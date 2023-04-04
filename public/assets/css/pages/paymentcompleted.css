@@ -1,0 +1,131 @@
+/*주문이 완료되었습니다.*/
+.payment-info-title {
+  margin-top: 50px;
+  font-size: 0.8rem;
+  padding: 20px;
+  background: linear-gradient(#ffffff 90%, rgb(243, 241, 241) 10%);
+}
+
+.pay-info-address-form-title {
+  padding: 20px;
+}
+.pay-info-address-form-title p {
+  font-size: 30px;
+  margin: 0;
+}
+/*주문상품*/
+.payment-product-list-form {
+  padding: 20px;
+  background: linear-gradient(#ffffff 95%, rgb(243, 241, 241) 5%);
+}
+
+/*주문상품(1)*/
+.payment-product-list-form .payment-product-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-product-list form {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  padding: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  padding: 0px 0px 10px 20px;
+}
+
+.payment-product-list p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/*커티스 쿨릭 레드 머그*/
+.payment-product-list-info {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  margin: 10px;
+}
+.red-mug-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+/* .payment-total-product{
+  
+    margin-bottom: 60px;
+  } */
+
+.payment-total-product p:last-child {
+  font-size: 0.85rem;
+  color: #8b8b8b;
+}
+
+.payment-product-list-info p {
+  font-size: 0.9rem;
+}
+
+/*.payment-total-wrap-list .payment-total-wrap {
+  
+    display: flex;
+    flex-direction: column;
+  }*/
+
+/*결제 금액*/
+.payment-total-wrap-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 20px;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.payment-total-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-total-won {
+  display: flex;
+}
+
+.payment-total-won {
+  font-size: 1.3rem;
+  margin: -5px;
+}
+
+.pay-info-right-img {
+  transform: rotate(-90deg);
+  width: 20px;
+  margin: 10px;
+}
+
+/*신용카드*/
+.payment-total-sum-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.payment-total-sum {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+/*상세정보 확인*/
+.pay-info-btn-list {
+  margin: 50px 25px;
+}
+.payment-total-sum-list {
+  margin-bottom: 100px;
+}

@@ -11,28 +11,20 @@ import axios from "axios";
 import { deliveryChangeModal } from "@/state/deliveryChangeModal";
 import { cartType } from "@/types/cartTypes";
 import { cartListType } from "@/types/cartTypes";
-import { orderProductType } from "@/types/OrderProduct";
+import { orderProductType } from "@/types/orderProduct";
 export default function payment() {
   const router = useRouter();
   //최종주문 List
-  const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
 
   const [totalOrderData, setTotalOrderData] = useState<orderProductType[]>([]);
-  console.log(totalBuyItems);
+
   const [generaldeliveryCharge, setGeneralDeliveryCharge] =
     useRecoilState<number>(generaldelivery);
   const [freezedeliveryCharge, setFreezeDeliveryCharge] =
     useRecoilState<number>(freezedelivery);
-  if (totalOrderData !== undefined) {
-    const totalProduct = totalOrderData
-      .map((i) => i.price * i.count)
-      .reduce((sum, charge) => (sum += charge), 0);
-  }
 
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
-  const [shippingCheck, setShippingCheck] = useState<boolean>(false);
-  const [deliveryRechange, setDeliveryRechange] =
-    useRecoilState(deliveryChangeModal);
+  const [orderCheck, setorderCheck] = useState<boolean>(false);
 
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
@@ -43,17 +35,16 @@ export default function payment() {
         },
       })
       .then((res) => {
-        const data: orderProductType = res.data.data;
-        console.log("data", data);
-
-        setTotalOrderData({ ...totalOrderData, ...data });
-        console.log("성공");
-        console.log("[totalOrderData[totalOrderData", totalOrderData);
+        const item = res.data.data;
+        setTotalOrderData([...item]);
+        setorderCheck(true);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [totalOrderData]);
+  }, [orderCheck]);
+
+  console.log("totalOrderDatatotalOrderDatatotalOrderData", totalOrderData);
 
   //배송지 조회
   useEffect(() => {
@@ -71,14 +62,40 @@ export default function payment() {
       .catch((err) => {
         console.log(err);
       });
-  }, [deliveryRechange]);
+  }, [orderCheck]);
 
   const basicaddress = shippingData[0];
+
+  const totalProduct = totalOrderData
+    .map((i) => i.price * i.count)
+    .reduce((sum, charge) => (sum += charge), 0);
+
+  console.log("totalProduct", totalProduct);
 
   // 배송지 등록
   const handleDeliveryClick = () => {
     router.push("/delivery");
   };
+    //결제페이지 이동
+    const handlePaymentClick = () => {
+        const BaseUrl = process.env.baseApiUrl;
+        axios
+          .post(`${BaseUrl}/api/v1/purchaseHistory/add`,{}, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
+          .then((res) => {
+           console.log('성공')
+           router.push("/paymentcompleted");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    };
+
+
+
   return (
     <>
       <div className="pay-container">
@@ -135,10 +152,10 @@ export default function payment() {
                       height={20}
                     />
                     <div className="payment-productlist-info">
-                      <p>{item.name}</p>
+                      <p>{item.productName}</p>
                       <p>주문수량 : {item.count}개</p>
                       <p className="payment-productlist-charge">
-                        {item.price.toLocaleString()}원
+                        {(item.price * item.count).toLocaleString()}원
                       </p>
                     </div>
                   </div>
@@ -207,8 +224,9 @@ export default function payment() {
               </p>
             </div>
           </div>
-          <div className="main-payment-submit">
-            <button type="submit">
+        </form>
+        <div className="main-payment-submit">
+            <button type="submit" onClick={handlePaymentClick}>
               {(
                 totalProduct +
                 generaldeliveryCharge +
@@ -217,7 +235,6 @@ export default function payment() {
               원 결제하기
             </button>
           </div>
-        </form>
       </div>
     </>
   );

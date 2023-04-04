@@ -10,10 +10,12 @@ export default function MyPageMenuLists(props: { title: string }) {
         <div className="main-service-lists">
           {props.title === "서비스" ? (
             <>
+             <Link href="/orderlists" className="link-mypage">
               <MyPageMenuList
                 menuicon={"assets/images/icons/online-order.svg"}
                 title={"주문내역"}
               />
+              </Link>
               <Link href="/cart" className="link-mypage">
                 <MyPageMenuList
                   menuicon={"assets/images/icons/gift.svg"}

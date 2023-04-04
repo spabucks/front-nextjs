@@ -14,7 +14,6 @@ export default function Delivery() {
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
 
-  console.log("deliveryRechange", deliveryRechange);
   const handleAddressPlus = () => {
     setDeliveryRechange(!deliveryRechange);
   };

@@ -64,7 +64,6 @@ export default function Login() {
           myLogin.setItem("userId", res.data.data.userId);
           myLogin.setItem("accessToken",res.data.data.accessToken)
           // setCookie("id", res.data.data.accessToken, { path: "/",expires: expires});
-
           Swal.fire({
             icon: "success",
             text: "로그인 성공",

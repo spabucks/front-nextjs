@@ -211,6 +211,7 @@ export default function FirstHeader() {
       {router.pathname === "/cart" ||
       router.pathname === "/filter" ||
       router.pathname === "/search2" ||
+      router.pathname === "/orderlists" ||
       router.pathname === "/delivery" ? (
         ""
       ) : (
