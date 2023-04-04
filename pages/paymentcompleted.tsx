@@ -9,7 +9,8 @@ import { useRecoilState } from "recoil";
 import { deliveryChangeModal } from "@/state/deliveryChangeModal";
 import { orderProductType } from "@/types/orderProduct";
 import { totalOrderProductType } from "@/types/orderProduct";
-export default function paymentCompleted() {
+import Image from "next/image";
+export default function PaymentCompleted() {
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
   const [totalOrderData, setTotalOrderData] = useState<totalOrderProductType[]>(
     []
@@ -45,7 +46,6 @@ export default function paymentCompleted() {
         },
       })
       .then((res) => {
-        console.log("resssssssssssssssssㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ", res);
         setTotalOrderData(res.data.data[0].list);
         setTotalsum(res.data.data[0].sum);
         setorderCheck(!orderCheck);
@@ -54,9 +54,6 @@ export default function paymentCompleted() {
         console.log(err);
       });
   }, []);
-
-  //   console.log("totalOrderDatatotalOrderDatatotalOrderData", totalOrderData);
-
   return (
     <>
       <div className="container">
@@ -95,13 +92,13 @@ export default function paymentCompleted() {
             <div className="payment-product-wrap-lists">
               {totalOrderData &&
                 totalOrderData.map((item) => (
-                  <div className="payment-productlist">
-                    <img
-                      className="red-img"
-                      src={item.image}
-                      alt="상품이미지"
-                      width={20}
-                      height={20}
+                  <div className="payment-productlist" key={item.productName}>
+                    <Image
+                     className="red-img"
+                     src={item.image}
+                     alt="상품이미지"
+                     width={190}
+                     height={100}
                     />
                     <div className="payment-productlist-info">
                       <p>{item.productName}</p>
@@ -118,9 +115,12 @@ export default function paymentCompleted() {
               <p>결제 금액</p>
               <div className="payment-total-won">
                 <p>{totalsum?.toLocaleString()}원</p>
-                <img
-                  className="pay-info-right-img"
-                  src="assets/images/icons/left-chevron.svg"
+                <Image
+                 className="pay-info-right-img"
+                 src="assets/images/icons/left-chevron.svg"
+                 alt={"화살표"}
+                 height={20}
+                 width={20}
                 />
               </div>
             </div>

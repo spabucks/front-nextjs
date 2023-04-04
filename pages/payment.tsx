@@ -11,8 +11,10 @@ import axios from "axios";
 import { deliveryChangeModal } from "@/state/deliveryChangeModal";
 import { cartType } from "@/types/cartTypes";
 import { cartListType } from "@/types/cartTypes";
+import Image from "next/image";
 import { orderProductType } from "@/types/orderProduct";
-export default function payment() {
+import Leftarrow from "@/components/ui/Leftarrow";
+export default function Payment() {
   const router = useRouter();
   //최종주문 List
 
@@ -44,7 +46,7 @@ export default function payment() {
       });
   }, [orderCheck]);
 
-  console.log("totalOrderDatatotalOrderDatatotalOrderData", totalOrderData);
+
 
   //배송지 조회
   useEffect(() => {
@@ -57,7 +59,6 @@ export default function payment() {
       })
       .then((res) => {
         setShippingData(res.data.data);
-        // setShippingCheck(!shippingCheck);
       })
       .catch((err) => {
         console.log(err);
@@ -65,12 +66,10 @@ export default function payment() {
   }, [orderCheck]);
 
   const basicaddress = shippingData[0];
-
   const totalProduct = totalOrderData
     .map((i) => i.price * i.count)
     .reduce((sum, charge) => (sum += charge), 0);
 
-  console.log("totalProduct", totalProduct);
 
   // 배송지 등록
   const handleDeliveryClick = () => {
@@ -134,23 +133,23 @@ export default function payment() {
           <div className="payment-info-wrap-list">
             <div className="payment-info-toggle">
               <p>상품내역</p>
-              <img
-                className="payment-right-img"
-                src="assets/images/icons/left-chevron.svg"
-                alt=""
-              />
+            <Image
+             className="payment-right-img"
+             src="assets/images/icons/left-chevron.svg"
+             alt="내역보기"
+             height={20}
+             width={20}
+            />
             </div>
             <div className="payment-product-wrap-lists">
               {totalOrderData &&
                 totalOrderData.map((item) => (
-                  <div className="payment-productlist">
-                    <img
-                      className="red-img"
-                      src={item.imgUrl}
+                  <div className="payment-productlist" key={item.cartId}>
+                    <Image className="red-img"  src={item.imgUrl}
                       alt="상품이미지"
                       width={20}
-                      height={20}
-                    />
+                      height={20}/>
+   
                     <div className="payment-productlist-info">
                       <p>{item.productName}</p>
                       <p>주문수량 : {item.count}개</p>

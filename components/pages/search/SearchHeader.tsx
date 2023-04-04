@@ -4,7 +4,8 @@ import axios from "axios";
 import { bigCategoryType } from "@/types/filterTypes";
 import { cakecategoryType } from "@/types/filterTypes";
 import { filterType } from "@/types/filterTypes";
-
+import Image from "next/image";
+import CloseBtn from "@/components/ui/CloseBtn";
 export default function SearchHeader() {
   const router = useRouter();
   const { pathname, query } = useRouter();
@@ -16,6 +17,7 @@ export default function SearchHeader() {
   const bigcategoryId: string | string[] | undefined = router.query.bigCategory;
   /**빅카테고리 API호출 */
   useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .get(
         `${BaseUrl}/api/v1/product/search-menu?keyword=${query.keyword}`
@@ -27,10 +29,11 @@ export default function SearchHeader() {
         console.log(err);
       });
   }, []);
-console.log('[bigcategory[bigcategory[bigcategory[bigcategory',bigcategory)
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
+    
     if(bigcategoryId===undefined){
+      const BaseUrl = process.env.baseApiUrl;
       axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
       .then((res) => {
@@ -40,6 +43,7 @@ console.log('[bigcategory[bigcategory[bigcategory[bigcategory',bigcategory)
         console.log(err);
       });
     } else {
+      const BaseUrl = process.env.baseApiUrl;
       axios
       .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
       .then((res) => {
@@ -196,10 +200,13 @@ console.log('[bigcategory[bigcategory[bigcategory[bigcategory',bigcategory)
         <>
           <div className="filter-btn-list">
             <div>
-              <img
-                src="assets/images/icons/새로고침.png"
-                className="refresh-img"
-                onClick={allDelete}
+              <Image 
+                 src="assets/images/icons/새로고침.png"
+                 className="refresh-img"
+                 onClick={allDelete}
+                 width={20}
+                 height={20}
+                 alt={"새로고침"}
               />
             </div>
             <div className="filter-btn-content-list">
@@ -211,10 +218,7 @@ console.log('[bigcategory[bigcategory[bigcategory[bigcategory',bigcategory)
                     onClick={() => deleteFilter(item.title)}
                   >
                     <div className="filter-btn-box-title">{item.title}</div>
-                    <img
-                      src="assets/images/icons/close.svg"
-                      className="filter-btn-close"
-                    />
+                    <CloseBtn/>
                   </div>
                 </>
               ))}

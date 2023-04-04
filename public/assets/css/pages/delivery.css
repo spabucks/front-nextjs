@@ -1,89 +1,40 @@
 .pay-address-info-lists-form {
   padding: 10px 25px;
-
 }
-.pay-address-info-lists{
+.pay-address-info-lists {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
 }
-.pay-address-info-title{
+.pay-address-info-title {
   display: flex;
   align-items: center;
   flex-direction: row;
 }
-.pay-address-info-name{
+.pay-address-info-name {
   font-size: 1.1rem;
 }
-.pay-address-info-check{
+.pay-address-info-check {
   background-color: #bde8b3;
-  box-sizing:border-box;
+  box-sizing: border-box;
   margin-left: 10px;
-  color: #01A862;
+  color: #01a862;
   font-size: 0.8rem;
-  padding:5px;
+  padding: 5px;
 }
-.pay-address-information p{
+.pay-address-information p {
   margin: 5px 0px;
 }
-.pay-address-phonenumber p{
+.pay-address-phonenumber p {
   margin: 5px 0px;
 }
-/* .pay-address-info-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-}
-
-.pay-address-info-list p {
-  line-height: 25px;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.pay-address-info-list-form p {
-  line-height: 25px;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.order-list-line {
-  display: flex;
-  justify-content: space-between;
-}
-
-.order-list-detail-form {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
-
-.order-list-title {
-  font-size: 0.8rem;
-  color: rgb(44, 123, 76);
-  background-color: rgb(185 229 204);
-  height: 1.4rem;
-  width: 2.3rem;
-  text-align: center;
-  border-radius: 2px;
-}
-
-.address-change {
-  margin: 20px 40px;
-}
-
-.address-phone-number {
-  color: rgb(117, 114, 114);
-} */ */
 
 .border-line {
   border: solid 1px #e2e2e2;
   margin: 20px 20px;
 }
-/*배송지 메인페이지(등록안된경우*/
-.address-resister{
+.address-resister {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,25 +44,19 @@
   z-index: 100;
 }
 
-/*배송지 수정 css*/
 .address-regi-title {
   font-size: 1.1rem;
   margin-top: 60px;
   padding: 5px 20px;
-
 }
-.address-regi-title h2{
-margin: 30px 0px  10px 0px;
-
+.address-regi-title h2 {
+  margin: 30px 0px 10px 0px;
 }
 .address-regi-body {
-
   padding: 0px 10px;
 }
 
-
 .address-regi-form-input {
-
   padding: 10px 0px;
   border-bottom: thin solid #c7c7c7;
   width: -webkit-fill-available;
@@ -119,12 +64,11 @@ margin: 30px 0px  10px 0px;
 }
 
 .address-regi-form-input input {
-
- font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 .address-regi-form-input input::placeholder {
-color:rgb(197, 194, 194);
- font-size: 1.2rem;
+  color: rgb(197, 194, 194);
+  font-size: 1.2rem;
 }
 
 /* 우편번호 */
@@ -141,24 +85,20 @@ color:rgb(197, 194, 194);
   border-radius: 20px;
   margin: 0px;
   font-size: 1.1rem;
-  color: #01A862;
-  border-color: #01A862;
-  background-color: rgb(255, 255, 255)
+  color: #01a862;
+  border-color: #01a862;
+  background-color: rgb(255, 255, 255);
 }
 
 .address-body-form-input {
-
   padding: 10px 0px;
-
 }
 
 /*배송메모를 선택해주세요*/
 .address-regi-form-input select {
-
   width: 100%;
   height: 20px;
   border: none;
-
 }
 
 /*배송 메모 전체, 배송 메모 선택*/
@@ -175,10 +115,8 @@ color:rgb(197, 194, 194);
   width: 80px;
 }
 
-
 /*배송메모*/
 .s-memo p {
-
   font-size: 0.95rem;
   margin: 20px;
   margin-bottom: 10px;
@@ -191,21 +129,17 @@ color:rgb(197, 194, 194);
   align-items: center;
 }
 
-
 /*select id*/
 #add-memo {
-
   border-bottom: thin solid #c7c7c7;
   margin: 0px 20px;
   width: 100%;
 }
 
-
 /* 직접 입력*/
 
 /*기본 배송지로 저장*/
 .address-check-select-all {
-
   display: flex;
   align-items: center;
   margin: 10px 20px;
@@ -216,29 +150,29 @@ color:rgb(197, 194, 194);
   font-size: 1rem;
   font-weight: bold;
 }
-.address-check-all label:last-child{
+.address-check-all label:last-child {
   margin-left: 5px;
 }
-.deliver-plus-address-container{
+.deliver-plus-address-container {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 999;
   background-color: white;
 }
-.addressbox-container{
+.addressbox-container {
   display: flex;
   flex-direction: column;
-  margin:10px;
+  margin: 10px;
 }
-.address-regi-form-input input:focus{
-border: none;
-outline: none;
-font-size: 1.2rem;
+.address-regi-form-input input:focus {
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
 }
-.address-container{
+.address-container {
   margin-top: 90px;
 }
-.main-address-title{
+.main-address-title {
   padding: 0px 20px;
 }

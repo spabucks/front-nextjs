@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { inputRegisterType } from "@/types/UserRequest/Request";
-import { privateAgreeType } from "@/types/UserRequest/Request";
-import CheckBox from "@/components/pages/signup/ui/CheckBox";
 import Swal from "sweetalert2";
-import Step01 from "./signup/Step01";
-import Step02 from "./signup/Step02";
-import Step03 from "./signup/Step03";
+
 import StButton from "@/components/pages/signup/ui/StButton";
-import Steper from "./signup/Steper";
-import Step04 from "./signup/Step04";
-import Step05 from "./signup/Step05";
+
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from 'next/router'
 import CloseBtn from "@/components/ui/CloseBtn";
+import Step01 from "@/components/pages/signup/Step01";
+import Step02 from "@/components/pages/signup/Step02";
+import Step03 from "@/components/pages/signup/Step03";
+import Step04 from "@/components/pages/signup/Step04";
+import Step05 from "@/components/pages/signup/Step05";
+import Steper from "@/components/pages/signup/Steper";
 
 export default function SignUp() {
   const BaseUrl = process.env.baseApiUrl;

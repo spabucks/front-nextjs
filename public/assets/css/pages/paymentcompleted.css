@@ -80,7 +80,7 @@
 .payment-total-wrap-list {
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: bold;
   padding: 20px;
   border-bottom: solid 1px #e2e2e2;
@@ -89,6 +89,7 @@
 .payment-total-wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .payment-total-won {
@@ -97,7 +98,8 @@
 
 .payment-total-won {
   font-size: 1.3rem;
-  margin: -5px;
+display: flex;
+align-items: center;
 }
 
 .pay-info-right-img {

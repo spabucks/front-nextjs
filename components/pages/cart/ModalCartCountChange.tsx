@@ -5,9 +5,8 @@ import { cartOrderState } from "@/state/cartOrderState";
 import { cartListType, cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
 import axios from "axios";
-import { cartCount } from "@/state/cartCount";
 import { userState } from "@/state/userState";
-import { Item } from "semantic-ui-react";
+import Image from "next/image";
 export default function ModalCartCountChange(props: {
   isChangeCount: Boolean;
   setIsChangeCount: Function;
@@ -17,14 +16,7 @@ export default function ModalCartCountChange(props: {
   const [cartListItem, setCartListItems] =
     useRecoilState<cartType>(cartListState);
   const [item, setItem] = useState<cartListType>();
-
- console.log('item',item)
-
   const orderItem = useRecoilValue(cartOrderState);
-  // const [changecount, setCount] = useRecoilState(cartCount);
-  // const [count, setCount] = useState<number>(1);
-
-  const BaseUrl = process.env.baseApiUrl;
 
   useEffect(() => {
     if (orderItem.typeId === 0)
@@ -39,16 +31,12 @@ export default function ModalCartCountChange(props: {
       );
   }, []);
 
-  // useEffect(() => {
-  //   setCount(count);
-  // }, [count]);
-  // console.log("count", count);
-
   const handleChangeFalseModal = () => {
     setIsChangeModal(false);
   };
 
   const changeItemCart = () => {
+    const BaseUrl = process.env.baseApiUrl;
     axios
       .patch(
         `${BaseUrl}/api/v1/cart/update`,
@@ -63,7 +51,6 @@ export default function ModalCartCountChange(props: {
         }
       )
       .then((res) => {
-        console.log(res);
         props.setIsChangeCount(!props.isChangeCount);
         setIsChangeModal(false);
       })
@@ -77,18 +64,31 @@ export default function ModalCartCountChange(props: {
           <div className="modalcount-container">
             <header>
               <div className="sub-header">
-                <img src="assets/images/icons/white.png" />
+                <Image
+                  src="assets/images/icons/white.png"
+                  alt="hideimage"
+                  width={20}
+                  height={20}
+                />
                 <h1 className="sub-header-title">주문수량</h1>
-                <img
+                <Image
                   src="assets/images/icons/close.svg"
                   onClick={handleChangeFalseModal}
+                  width={20}
+                  height={20}
+                  alt={"닫기버튼"}
                 />
               </div>
             </header>
             <section className="modalchangecount-main boder-under-border">
               <div className="modalchangecount-info">
                 <div className="modalchangecount-img">
-                  <img src={item.imgUrl} />
+                  <Image
+                    width={200}
+                    height={200}
+                    alt={"상품 이미지"}
+                    src={item.imgUrl}
+                  />
                 </div>
                 <div className="modalchangecount-title-count">
                   <p>{item.productName}</p>
@@ -105,7 +105,7 @@ export default function ModalCartCountChange(props: {
                       {item.count > 1 ? (
                         <button
                           onClick={() => {
-                            setItem({ ...item, count: item.count - 1 })
+                            setItem({ ...item, count: item.count - 1 });
                           }}
                           type="button"
                         >
@@ -118,10 +118,10 @@ export default function ModalCartCountChange(props: {
                       <span>{item.count}</span>
                       {item.count < 5 ? (
                         <button
-                        onClick={() => {
-                          setItem({ ...item, count: item.count + 1 })
-                        }}
-                        type="button"
+                          onClick={() => {
+                            setItem({ ...item, count: item.count + 1 });
+                          }}
+                          type="button"
                         >
                           +
                         </button>
