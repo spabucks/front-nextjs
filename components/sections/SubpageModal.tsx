@@ -12,6 +12,7 @@ export default function SubpageModal() {
   const [cookies, getCookie] = useCookies(["id"]);
   const [subPageModal, setSubpageModal] = useRecoilState(subPage);
   const [loginData, setLoginData] = useRecoilState(userState);
+  const FrontUrl = `https://front-nextjs-one.vercel.app/`;
   useEffect(() => {
     // const myLogin = cookies.id;
     const userId = localStorage.getItem("userId");
@@ -66,7 +67,7 @@ export default function SubpageModal() {
       <section className="sub-page__main-contents">
         <div className="sub-page__main-contents-title">
           <Link
-            href={`http://localhost:3000/filter?bigCategory=0`}
+            href={`${FrontUrl}/filter?bigCategory=0`}
             className="sub-page__main-contents-a"
             onClick={handleSubpageClose}
           >
@@ -77,7 +78,7 @@ export default function SubpageModal() {
         <div className="sub-page__main-first-content">
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=1"
+              href={`${FrontUrl}/filter?bigCategory=1`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -92,7 +93,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=2"
+              href={`${FrontUrl}filter?bigCategory=2`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -107,7 +108,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=3"
+              href={`${FrontUrl}/filter?bigCategory=3`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -124,7 +125,7 @@ export default function SubpageModal() {
         <div className="sub-page__main-second-content">
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=4"
+              href={`${FrontUrl}/filter?bigCategory=4`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -139,7 +140,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=5"
+              href={`${FrontUrl}/filter?bigCategory=5`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -154,7 +155,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href="http://localhost:3000/filter?bigCategory=6"
+              href={`${FrontUrl}/filter?bigCategory=6`}
               onClick={handleSubpageClose}
             >
               <Image

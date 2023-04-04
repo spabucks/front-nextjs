@@ -2,6 +2,8 @@
   padding: 0px 20px 10px 20px;
   background-color: var(--color-brightgrey-background);
   /* box-shadow:  #afafaf inset -2px px 0; */
+  overflow: hidden;
+  height: 100%;
 }
 .main-mypage-first {
   display: flex;
@@ -75,8 +77,7 @@
 }
 .main-service-list-item-title {
   font-size: 18px;
-  text-decoration-line : none
-
+  text-decoration-line: none;
 }
 .main-service-list-arrow {
   width: 30px;
@@ -114,7 +115,7 @@
   margin: 0px;
   letter-spacing: 5px;
 }
-.link-mypage{
+.link-mypage {
   text-decoration: none;
-  color:black;
+  color: black;
 }
