@@ -32,6 +32,7 @@ export default function SignUp() {
     isEmailAgree: false,
     isNickAgree: false,
     isNameConfirm:false,
+    isNumber:0,
     privateAgree: {
       isAgree: false,
       isUseConfirm: false,

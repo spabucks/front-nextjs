@@ -30,8 +30,9 @@ export interface inputRegisterType {
   isLoginIdConfirm: boolean;
   privateAgree: privateAgreeType;
   isEmailAgree:boolean;
-  isNickAgree:boolean
-  isNameConfirm:boolean
+  isNickAgree:boolean;
+  isNameConfirm:boolean;
+  isNumber:number;
 }
 
 export interface privateAgreeType {
