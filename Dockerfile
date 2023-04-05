@@ -2,7 +2,8 @@ From node:19-alpine
 WORKDIR /usr/src/app
 COPY package.json ./
 COPY yarn.lock ./
-RUN npm install
+RUN yarn
 COPY . .
+RUN yarn build
 EXPOSE 3000
-CMD ["npx", "next", "build"]
+CMD ["yarn", "start"]
