@@ -126,7 +126,7 @@ export default function CartFooter() {
           </p>
         </div>
         <div className="footer-charge-total-btn">
-          <button type="button">선물하기</button>
+          {/* <button type="button">선물하기</button> */}
           <button type="button" onClick={handleDirectClick}>
             구매하기
           </button>

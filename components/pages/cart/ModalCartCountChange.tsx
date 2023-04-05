@@ -65,7 +65,7 @@ export default function ModalCartCountChange(props: {
             <header>
               <div className="sub-header">
                 <Image
-                  src="assets/images/icons/white.png"
+                  src="/assets/images/icons/white.png"
                   alt="hideimage"
                   width={20}
                   height={20}
