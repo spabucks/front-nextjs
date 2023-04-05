@@ -51,7 +51,7 @@
 .check-row {
   padding: 0.8rem 1.2rem;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-direction: row;
   border-bottom: thin solid #99999940;
 }
