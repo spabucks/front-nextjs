@@ -5,9 +5,19 @@
 }
 .sub-page__main-header-content {
   padding: 20px;
+  height: 180px;
 }
 .sub-page__main-header-content-icon {
   height: 20px;
+}
+.submodal-maintitle{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 150px;
+}
+.submodal-maintitle h2{
+  margin-bottom: 10px;
 }
 .sub-page__main-header-content-icon img {
   width: 20px;
@@ -87,6 +97,7 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  height: 100px;
   background-color: var(--color-brightgrey-background);
 }
 
@@ -99,6 +110,7 @@
 }
 .sub-page__sub-content-title p:first-child {
   font-weight: 800;
+  margin-bottom: 10px;
 }
 .sub-page__sub-content-title p:last-child {
   color: gray;

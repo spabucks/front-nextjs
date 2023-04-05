@@ -3,7 +3,6 @@ import { productBestList } from "@/types/type";
 import { useEffect, useState } from "react";
 import { getImageSize } from "react-image-size";
 import Image from "next/image";
-import axios from "axios";
 
 export default function ProducBestListCard(props: {
   data: productBestList;
@@ -14,27 +13,6 @@ export default function ProducBestListCard(props: {
     height: 0,
   });
 
-  const [liked, setLiked] = useState(false);
-
-  const handleLike = () => {
-    const BaseUrl = process.env.baseApiUrl;
-
-    axios
-      .put(
-        `${BaseUrl}/api/v1/user-likes/push`,
-        {
-          productId: props.data.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
-      .then((res) => setLiked(!liked))
-      .catch((err) => err),
-      [liked];
-  };
 
   useEffect(() => {
     getImageSize(props.data.imgUrl).then((res) =>
@@ -53,17 +31,7 @@ export default function ProducBestListCard(props: {
           />
         </Link>
         <div>{props.count + 1}</div>
-        <div onClick={handleLike}>
-          {liked ? (
-            <div >
-              <img src="assets/images/icons/like.png" />
-            </div>
-          ) : (
-            <div>
-              <img src="assets/images/icons/nlike.png" />
-            </div>
-          )}
-        </div>
+
       </div>
       
       <div className="best-product__info">

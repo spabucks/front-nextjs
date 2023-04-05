@@ -101,7 +101,7 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
                 <p
                   style={{ color: "red", fontSize: "10px", margin: "3px 0px" }}
                 >
-                  아이디는 4~13자리에~~ 입력해주세요
+                  아이디는 4~13자리로 입력해주세요
                 </p>
               )}
               {userIdConfirm === 1 && (
@@ -135,7 +135,7 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
               <div>
                 <input
                   type="password"
-                  placeholder="비밀번호 (10~20자리 이내)"
+                  placeholder="비밀번호(최소 8자리, 숫자,문자,특수문자 최소 1개 포함 필수)"
                   name="password"
                   onChange={handlePasswordChange}
                 />

@@ -43,14 +43,14 @@ export default function SubpageModal() {
           </div>
 
           {loginData.isLogin === true ? (
-            <>
+            <div className="submodal-maintitle">
               <h2>Welcome</h2>
               <p className="welcome-title">
                 온라인 스토어에 오신 것을 환영합니다.
               </p>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="submodal-maintitle">
               <h2>sign in to Online Store</h2>
               <p>
                 <Link href={`/login`} >
@@ -60,14 +60,14 @@ export default function SubpageModal() {
                 </Link>
                 후 이용해보세요
               </p>
-            </>
+              </div>
           )}
         </div>
       </div>
       <section className="sub-page__main-contents">
         <div className="sub-page__main-contents-title">
           <Link
-            href={`${FrontUrl}/filter?bigCategory=0`}
+            href={`/filter?bigCategory=0`}
             className="sub-page__main-contents-a"
             onClick={handleSubpageClose}
           >
@@ -78,7 +78,7 @@ export default function SubpageModal() {
         <div className="sub-page__main-first-content">
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}/filter?bigCategory=1`}
+              href={`/filter?bigCategory=1`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -93,7 +93,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}filter?bigCategory=2`}
+              href={`/filter?bigCategory=2`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -108,7 +108,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}/filter?bigCategory=3`}
+              href={`/filter?bigCategory=3`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -125,7 +125,7 @@ export default function SubpageModal() {
         <div className="sub-page__main-second-content">
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}/filter?bigCategory=4`}
+              href={`/filter?bigCategory=4`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -140,7 +140,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}/filter?bigCategory=5`}
+              href={`/filter?bigCategory=5`}
               onClick={handleSubpageClose}
             >
               <Image
@@ -155,7 +155,7 @@ export default function SubpageModal() {
           </div>
           <div className="sub-page__main-content-category">
             <Link
-              href={`${FrontUrl}/filter?bigCategory=6`}
+              href={`/filter?bigCategory=6`}
               onClick={handleSubpageClose}
             >
               <Image

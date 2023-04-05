@@ -38,7 +38,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
   //create email regex code
   useEffect(() => {
     console.log(new Date());
-    console.log(inputData);
   }, [inputData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,6 +98,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         })
         .then((res) => {
           console.log("res", res);
+          
           if (res.data) {
             axios
               .post(`${BaseUrl}/api/v1/email/send`, {
@@ -133,7 +133,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
           confirmButton: "swal-confirm-button",
         },
       });
-      setTimeShow(!timeShow);
     }
   };
 
@@ -145,7 +144,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         code: confirmKey,
       })
       .then((res) => {
-        console.log(res);
+        console.log("res", res);
         if (res.data) {
           Swal.fire({
             icon: "success",
@@ -354,6 +353,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         {timeShow === true && (
           <Countdown date={Date.now() + 300000} renderer={renderer} />
         )}
+
         <div className="id-email-body-form-input">
           <div className="id-number">
             <input
