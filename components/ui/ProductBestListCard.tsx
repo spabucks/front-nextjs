@@ -3,6 +3,7 @@ import { productBestList } from "@/types/type";
 import { useEffect, useState } from "react";
 import { getImageSize } from "react-image-size";
 import Image from "next/image";
+
 export default function ProducBestListCard(props: {
   data: productBestList;
   count: number;
@@ -11,6 +12,7 @@ export default function ProducBestListCard(props: {
     width: 0,
     height: 0,
   });
+
 
   useEffect(() => {
     getImageSize(props.data.imgUrl).then((res) =>
@@ -29,7 +31,9 @@ export default function ProducBestListCard(props: {
           />
         </Link>
         <div>{props.count + 1}</div>
+
       </div>
+      
       <div className="best-product__info">
         <div className="new-best">
           {props.data.isNew === true ? (

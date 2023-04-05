@@ -1,10 +1,5 @@
 import Link from "next/link";
-import {
-  headerMenus,
-  headerRightIcons,
-  headerEventSubMenus,
-  headerBestSubMenus,
-} from "@/data/navMenuDatas";
+import { headerMenus } from "@/data/navMenuDatas";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -17,7 +12,6 @@ import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
 import { cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
-import CartItem from "../pages/cart/CartItem";
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
@@ -52,6 +46,7 @@ export default function FirstHeader() {
         console.log(err);
       });
   }, []);
+  
   /** 이벤트 관련 매뉴 */
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
@@ -159,13 +154,15 @@ export default function FirstHeader() {
                     alt="cart"
                     className="cart-icon"
                   ></Image>
-                  {cartList.cartTotal.length > 0 ? 
+                  {cartList.cartTotal.length > 0 ? (
                     <div className="cart-count-check">
                       {cartList.cartTotal.length}
-                    </div>:<div className="cart-count-check-hide">
+                    </div>
+                  ) : (
+                    <div className="cart-count-check-hide">
                       {cartList.cartTotal.length}
                     </div>
-                  }
+                  )}
                 </Link>
               </li>
             ) : (

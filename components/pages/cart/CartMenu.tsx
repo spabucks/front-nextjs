@@ -1,22 +1,25 @@
 import React from "react";
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { modal } from "@/state/modal";
-import { cartType } from "@/types/cartTypes";
 
+import axios from "axios";
+import Image from "next/image";
+import { useRecoilState } from "recoil";
+
+import { modal } from "@/state/modal";
 import { cartListState } from "@/state/cartListState";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
+
 import { cartBuyProduct } from "@/types/cartBuyProduct";
+import { cartType } from "@/types/cartTypes";
+
 export default function CartMenu() {
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
   const [listAllCheck, setListAllCheck] = useState<boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck);
   const [totalBuyItems, setTotalBuyItmes] = useRecoilState(cartBuyProduct);
-  const [itemclose, setItemClose] = useState<boolean>(false);
-  const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
+
   useEffect(() => {
     let check = true;
     let freezeCheck = true;
@@ -99,7 +102,12 @@ export default function CartMenu() {
           cartList.cartListFreeze.length === 0 ? (
             <section className="non-product-cart">
               <div className="non-product-cart-content">
-                <img src="assets/images/icons/shopping-cart.svg" />
+                <Image
+                  src="assets/images/icons/shopping-cart.svg"
+                  alt="카트"
+                  width={20}
+                  height={20}
+                />
                 <p>장바구니가 비었습니다</p>
               </div>
             </section>

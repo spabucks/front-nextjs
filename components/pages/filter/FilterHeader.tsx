@@ -3,9 +3,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { filterType, cakecategoryType } from "@/types/filterTypes";
 import { bigCategoryType } from "@/types/filterTypes";
-
+import Image from "next/image";
 export default function FilterHeader() {
-  const { pathname, query} = useRouter();
+  const { pathname, query } = useRouter();
   const router = useRouter();
 
   const [bigcategory, setBigCategory] = useState<bigCategoryType[]>();
@@ -29,29 +29,28 @@ export default function FilterHeader() {
 
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
-    if(bigcategoryId===undefined){
+    if (bigcategoryId === undefined) {
       const BaseUrl = process.env.baseApiUrl;
       axios
-      .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
-      .then((res) => {
-        setSubCategory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
+        .then((res) => {
+          setSubCategory(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       const BaseUrl = process.env.baseApiUrl;
       axios
-      .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
-      .then((res) => {
-        setSubCategory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
+        .then((res) => {
+          setSubCategory(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [query.bigCategory]);
-
 
   const handleSubFilter = (event: ChangeEvent<HTMLInputElement>) => {
     let checker = filterList.find(
@@ -107,7 +106,7 @@ export default function FilterHeader() {
   return (
     <>
       {/**메인 헤더*/}
-      { pathname === "/filter"? (
+      {pathname === "/filter" ? (
         <div className="filter-mainheader-sub border-under">
           <nav>
             <ul>
@@ -198,10 +197,18 @@ export default function FilterHeader() {
         <>
           <div className="filter-btn-list">
             <div>
-              <img
+              {/* <img
                 src="assets/images/icons/새로고침.png"
                 className="refresh-img"
                 onClick={allDelete}
+              /> */}
+              <Image
+                src="/assets/images/icons/새로고침.png"
+                className="refresh-img"
+                onClick={allDelete}
+                height={20}
+                width={20}
+                alt="새로고침"
               />
             </div>
             <div className="filter-btn-content-list">
@@ -213,9 +220,12 @@ export default function FilterHeader() {
                     onClick={() => deleteFilter(item.title)}
                   >
                     <div className="filter-btn-box-title">{item.title}</div>
-                    <img
+                    <Image
                       src="assets/images/icons/close.svg"
                       className="filter-btn-close"
+                      alt="닫기이미지"
+                      width={10}
+                      height={10}
                     />
                   </div>
                 </>

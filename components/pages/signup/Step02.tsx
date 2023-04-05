@@ -34,11 +34,10 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
 
   const [confirmKey, setConfirmKey] = useState<string>("");
   const [confirmView, setConfirmView] = useState<boolean>(false);
-
+  const [timeShow, setTimeShow] = useState<boolean>(false);
   //create email regex code
   useEffect(() => {
     console.log(new Date());
-    console.log(inputData);
   }, [inputData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,7 +97,8 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
           email: inputData.userEmail,
         })
         .then((res) => {
-          console.log(res);
+          console.log("res", res);
+          
           if (res.data) {
             axios
               .post(`${BaseUrl}/api/v1/email/send`, {
@@ -108,7 +108,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
                 console.log(res);
               })
               .catch((err) => {
-                console.log(err);
+                console.log("err", err);
               });
           } else {
             Swal.fire({
@@ -125,6 +125,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         .catch((err) => {
           console.log(err);
         });
+
       Swal.fire({
         icon: "success",
         text: "인증번호가 전송되었습니다.",
@@ -132,8 +133,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
           confirmButton: "swal-confirm-button",
         },
       });
-      setConfirmView(true);
-    } else {
     }
   };
 
@@ -145,7 +144,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         code: confirmKey,
       })
       .then((res) => {
-        console.log(res);
+        console.log("res", res);
         if (res.data) {
           Swal.fire({
             icon: "success",
@@ -218,20 +217,20 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
         <div className="agree-info-wrap">
           <div className="agree-info-wrap-list">
             <p>휴대폰 본인 인증 서비스 이용약관 동의(필수)</p>
-           <Rightarrow/>
+            <Rightarrow />
           </div>
 
           <div className="agree-info-wrap-list">
             <p>휴대폰 통신사 이용약관 동의(필수)</p>
-            <Rightarrow/>
+            <Rightarrow />
           </div>
           <div className="agree-info-wrap-list">
             <p>개인정보 제공 및 이용 동의(필수)</p>
-            <Rightarrow/>
+            <Rightarrow />
           </div>
           <div className="agree-info-wrap-list">
             <p>고유식별정보 처리(필수)</p>
-            <Rightarrow/>
+            <Rightarrow />
           </div>
         </div>
       </div>
@@ -351,7 +350,10 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
           </div>
         </div>
         {/* 타이머 표시는 이메일 전송 완료 확인 ok 하면 표시 하세요. */}
-        {/* <Countdown date={Date.now() + 300000} renderer={renderer} /> */}
+        {timeShow === true && (
+          <Countdown date={Date.now() + 300000} renderer={renderer} />
+        )}
+
         <div className="id-email-body-form-input">
           <div className="id-number">
             <input

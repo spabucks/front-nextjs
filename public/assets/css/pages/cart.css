@@ -33,10 +33,9 @@
   width: 20px;
   height: 20px;
 }
-/*section*/
 
 .cart-title {
-  margin-top:70px;
+  margin-top: 70px;
   padding: 1rem 1.2rem 0rem 1.2rem;
 }
 
@@ -49,30 +48,24 @@
   border-bottom: thin solid #99999940;
   height: 30px;
 }
-  .check-row {
+.check-row {
   padding: 0.8rem 1.2rem;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   border-bottom: thin solid #99999940;
 }
-.check-btn{
+.check-btn {
   display: flex;
-  align-items:center;
+  align-items: center;
 }
 .check-btn p {
   padding: 0px 10px;
 }
-.check-left{
+.check-left {
   display: flex;
-  /* align-items:start; */
 }
-/* .check-row:last-child {
-  align-items: start;
-} */
-/*checkbox 커스텀*/
 
-/**/
 .check-right button {
   border: none;
   outline: none;
@@ -87,7 +80,6 @@
   justify-content: left;
   align-items: center;
   flex-direction: column;
-
 }
 .product-view {
   display: flex;
@@ -162,7 +154,6 @@
   border-left: none;
 }
 
-/*section-cart-middle CSS*/
 .section-cart-middle {
   padding: 0.8rem 1.2rem;
   font-size: 0.9rem;
@@ -281,37 +272,36 @@
   color: white;
 }
 /*장바구니가 비었을 때*/
-.non-product-cart-content{
+.non-product-cart-content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 500px;
 }
-.non-product-cart img{
+.non-product-cart img {
   width: 30px;
   height: 30px;
 }
-.non-product-cart p{
-  font-size:1.1rem;
+.non-product-cart p {
+  font-size: 1.1rem;
 }
-.view-container{
+.view-container {
   width: 100%;
   height: 10px;
   background-color: rgba(7, 7, 6, 0);
   display: flex;
   justify-content: center;
-
 }
 .view-btn {
   width: 10%;
   height: 6px;
-  background-color:rgb(190, 190, 190);
+  background-color: rgb(190, 190, 190);
   margin: 10px;
   border-radius: 20px;
 }
 
-.sbCheckBoxOn{
+.sbCheckBoxOn {
   width: 15px;
   height: 15px;
   border: thin solid var(--color-starbucks);
@@ -319,7 +309,7 @@
   margin-right: 10px;
   border-radius: 5px;
 }
-.sbCheckBox{
+.sbCheckBox {
   width: 15px;
   height: 15px;
   border: thin solid var(--color-starbucks);

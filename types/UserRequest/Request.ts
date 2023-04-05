@@ -19,7 +19,7 @@ export interface VeriftyEmailReq {
 }
 
 export interface inputRegisterType {
-  userEmail: string;
+  userEmail: string ;
   userName: string;
   userNickname: string;
   loginId: string;

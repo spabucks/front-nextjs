@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 export interface handleInput {
   (e: React.ChangeEvent<HTMLInputElement>): void;
 }
@@ -27,9 +28,12 @@ export default function CheckBox(props: {
         </div>
         <Link href={props.link && props.link}>
           {props.isArrow && (
-            <img
+            <Image
               className="agree-check-arrow"
               src="assets/images/icons/left-chevron.svg"
+              alt="화살표 이미지"
+              height={20}
+              width={20}
             />
           )}
         </Link>

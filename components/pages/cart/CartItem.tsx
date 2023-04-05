@@ -24,7 +24,6 @@ export default function CartItem(props: { data: cartListType }) {
   const [ischangemodal, setIsChangeModal] = useRecoilState<Boolean>(modal);
   const [itemclose, setItemClose] = useState<boolean>(false);
   const [loginData, setLoginData] = useRecoilState(userState);
-console.log('cartList',cartList)
 
   const handleCheck = () => {
     if (props.data.bigCategoryId === 1) {
