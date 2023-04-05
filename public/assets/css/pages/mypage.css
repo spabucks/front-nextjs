@@ -1,5 +1,5 @@
 .main-mypage {
-  padding: 0px 20px 10px 20px;
+  padding: 20px;
   background-color: var(--color-brightgrey-background);
   /* box-shadow:  #afafaf inset -2px px 0; */
   overflow: hidden;
@@ -57,7 +57,7 @@
   font-weight: 800;
 }
 .main-service-lists {
-  padding: 0px 20px 10px 20px;
+  padding: 0px 20px 20px 20px;
 }
 .main-service-list {
   display: flex;
@@ -118,4 +118,12 @@
 .link-mypage {
   text-decoration: none;
   color: black;
+}
+.mypage-logout-btn{
+  background-color: var(--color-brightgrey-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  padding: 10px 20px 180px 20px;
 }

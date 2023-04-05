@@ -27,7 +27,7 @@ export default function Mypage() {
           <FirstHeader />
           <MyPageTop />
           <MypageMenuLists title={"서비스"} />
-          <MypageMenuLists title={"약관 및 정책"} />
+          <div className="mypage-logout-btn">로그아웃</div>
         </>
       ) : (
         <>
