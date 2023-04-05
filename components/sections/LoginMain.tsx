@@ -35,10 +35,6 @@ export default function LoginMain({ inputData, setInputData } : ChildProps) {
           <input type="password" placeholder="비밀번호" name="password" onChange={handleChagne}/>
         </form>
         <div className="main-login__search">
-          <button type="button">아이디 찾기</button>
-          <p>|</p>
-          <button type="button">비밀번호 찾기</button>
-          <p>|</p>
           <button type="button" onClick={()=>router.push('/signup')}>회원가입</button>
         </div>
       </section>

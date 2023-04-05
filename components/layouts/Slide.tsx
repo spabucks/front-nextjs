@@ -43,7 +43,7 @@ export default function SliderContainer() {
            {item.name==="케이크"&& <Link href={`/event?category=4`}><Image src={item.imageUrl} height={500} width={500} alt={'케이크'}></Image></Link>}
            {item.name==="데스크"&& <Link href={`/filter?bigCategory=0&season=9`}><Image src={item.imageUrl} height={500} width={500} alt={'데스크'}></Image></Link>}
            {item.name==="삼일절"&& <Link href={`/filter?bigCategory=0&season=8`}><Image src={item.imageUrl} height={500} width={500} alt={'삼일절'}></Image></Link>}
-           {item.name==="23 체리블라썸"&& <Link href={`/filter?bigCategory=0&season=4`}><Image src={item.imageUrl} height={500} width={500} alt={'23체리블라썸'}></Image></Link>}
+           {item.name==="23 체리블라썸"&& <Link href={`/search2?keyword=체리&bigCategory=0`}><Image src={item.imageUrl} height={500} width={500} alt={'23체리블라썸'}></Image></Link>}
             </SwiperSlide>
           );
         })}

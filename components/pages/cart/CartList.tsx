@@ -84,7 +84,9 @@ export default function CartList() {
       {cartItems.cartListFreeze.map((item: cartListType) => (
         <CartItem key={item.cartId} data={item} />
       ))}
-
+      {/* {cartItems.cartListFreeze.map((item: cartListType) => (
+        <CartItem key={item.cartId} data={item} />
+      ))} */}
       {cartItems.cartListFreeze.filter((item) => item.check === true).length >
         0 && <FreezeCartOrderList />}
     </>

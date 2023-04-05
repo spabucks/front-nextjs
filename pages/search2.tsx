@@ -38,7 +38,7 @@ export default function Search2() {
   return (
     <>
       <FirstHeader />
-      <div className="search-title">{query.keyword}의 검색결과</div>
+      <div className="search-title">"{query.keyword}"의 검색결과</div>
       {check === true && first === true ? (
         <div className="search-prodcut-title">검색 결과가 없습니다.</div>
       ) : (

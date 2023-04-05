@@ -56,6 +56,10 @@
   flex-direction: row;
   width: 100%;
 }
+
+.section-search-tags a{
+  text-decoration: none;
+}
 .section-search-tag h3 {
   margin: 15px 2px;
 }
