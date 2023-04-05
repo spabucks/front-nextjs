@@ -2,7 +2,9 @@ body {
   margin: 0px;
 }
 
-
+h1{
+  color:black
+}
 .boder-under {
   border-bottom: thin solid #dedede;
 }
@@ -58,6 +60,9 @@ body {
 
 .top-arrow-icon {
   transform: rotate(90deg);
+}
+.bottom-arrow-icon {
+  transform: rotate(270deg);
 }
 .membership-firststep-arrow {
   transform: rotate(180deg);

@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import SecondHeader from "@/components/layouts/SecondHeader";
 import SlideSquareProduct from "@/components/layouts/SlideSquareProduct";
 import DetailProduct from "@/components/ui/DetailProduct";
@@ -15,6 +15,7 @@ import TopScrollBtn from "@/components/ui/TopScrollBtn";
 import { userState } from "@/state/userState";
 import Rightarrow from "@/components/ui/Rightarrow";
 import FirstHeader from "@/components/sections/FirstHeader";
+import Swal from "sweetalert2";
 
 export default function Product() {
   const { query } = useRouter();
@@ -54,33 +55,73 @@ export default function Product() {
   }, [changecount]);
 
   const [loginData, setLoginData] = useRecoilState(userState);
-  const handleAddCart = () => {
+  const handleDirectPayment = () => {
     const BaseUrl = process.env.baseApiUrl;
+    {
+      loginData.isLogin === true
+        ?
     axios
       .post(
-        `${BaseUrl}/api/v1/cart/add`,
+        `${BaseUrl}/api/v1/purchaseTmp/add`,
         {
-          productId: query.productId,
-          amount: changecount,
+          cartId: [query.productId],
         },
         {
           headers: {
-            Authorization: `Bearer ${loginData.accessToken}`,
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         }
       )
-      .then((res) => {
-        setIsCartModal(true); //"장바구니에 추가되었습니다라는 것이 표시되게 true로 바뀜"
-        setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
-      })
+      // .then((res) => router.push("/payment"))
       .catch((err) => {
-        console.log("err", err);
-        if (err.response.status === 400) {
-          const errorresponse = err.response.data;
-          setStatus(400);
-          setAddCount(errorresponse);
-        }
+        console.log("err");
+      }) : Swal.fire({
+        icon: "error",
+        text: "로그인이 필요합니다.",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
       });
+  };
+  }
+  
+  const handleAddCart = () => {
+    const BaseUrl = process.env.baseApiUrl;
+    {
+      loginData.isLogin === true
+        ? axios
+            .post(
+              `${BaseUrl}/api/v1/cart/add`,
+              {
+                productId: query.productId,
+                amount: changecount,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${loginData.accessToken}`,
+                },
+              }
+            )
+            .then((res) => {
+              setIsCartModal(true); //"장바구니에 추가되었습니다라는 것이 표시되게 true로 바뀜"
+              setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
+            })
+            .catch((err) => {
+              console.log("err", err);
+              if (err.response.status === 400) {
+                const errorresponse = err.response.data;
+                setStatus(400);
+                setAddCount(errorresponse);
+              }
+            })
+        : Swal.fire({
+            icon: "error",
+            text: "로그인이 필요합니다.",
+            customClass: {
+              confirmButton: "swal-confirm-button",
+            },
+          });
+    }
   };
 
   return (
@@ -143,8 +184,14 @@ export default function Product() {
               width={20}
             ></Image>
           </div>
-          <button type="button">선물하기</button>
-          <button type="button">구매하기</button>
+          {/* <button type="button">선물하기</button> */}
+          <button
+            type="button"
+            className="buy-product-direct"
+            onClick={handleDirectPayment}
+          >
+            구매하기
+          </button>
         </div>
       ) : (
         <FooterBtn

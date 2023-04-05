@@ -108,7 +108,7 @@ export default function FirstHeader() {
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          {router.pathname === "/delivery" ? (
+          {(router.pathname === "/delivery"||router.pathname === "/search2" ||router.pathname === "/filter" ) ? (
             <>
               <Image
                 src="assets/images/icons/left-chevron.svg"

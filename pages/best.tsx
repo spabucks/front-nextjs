@@ -9,18 +9,19 @@ import TopScrollBtn from "@/components/ui/TopScrollBtn";
 import axios from "axios";
 
 import { productBestList } from "@/types/type";
+import Loading from "@/components/ui/Loading";
 
 export default function Best() {
   const [data, setData] = useState<productBestList[]>([]);
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
       .get(`${BaseUrl}/api/v1/product/get-best/${router.query.category}`)
       .then((res) => {
         setData(res.data.data);
-        setIsLoading(false);
+        setIsLoading(true);
       })
       .catch((err) => console.log(err));
   }, [router.query.category]);
@@ -37,17 +38,15 @@ export default function Best() {
         rfon.ico"
         />
       </Head>
-
-      {isLoading && (
-        <div className="ui segment">
-          <div className="ui active loader"></div>
-          <p></p>
-        </div>
-      )}
+      <FirstHeader />
+      <TopScrollBtn />
       {!isLoading && (
+        <div style={{ height: '100vh' }}>
+       <Loading/>
+       </div>
+      )}
+      {isLoading && (
         <>
-          <TopScrollBtn />
-          <FirstHeader />
           <ProductBestList itemData={data} />
         </>
       )}

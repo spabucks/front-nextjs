@@ -40,6 +40,8 @@
     margin-right: 0.5rem;
     border: thin var(--color-starbucks) solid;
     color: var(--color-starbucks);
+    height: 50px;
+    border-radius: 30px;
   }
   .carplus-btn button:last-child {
     margin-left: 0.5rem;
@@ -47,6 +49,8 @@
     background-color: var(--color-starbucks);
     color: white;
     width: 50%;
+    height: 50px;
+    border-radius: 30px;
   }
 
   .carplus-btn button a{

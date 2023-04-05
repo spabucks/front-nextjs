@@ -249,6 +249,7 @@
   padding: 0.8rem 1.2rem;
   display: flex;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .footer-charge-total-btn button {
@@ -256,21 +257,22 @@
   width: 50%;
   height: 40px;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 30px;
   font-weight: 800;
   font-size: 1rem;
-}
-.footer-charge-total-btn button:first-child {
-  margin-right: 0.5rem;
-  border: thin var(--color-starbucks) solid;
-  color: var(--color-starbucks);
+  height: 50px;
 }
 .footer-charge-total-btn button:last-child {
   margin-left: 0.5rem;
   border: none;
   background-color: var(--color-starbucks);
   color: white;
-}
+  height: 50px;
+  width: 100%;
+  border-radius: 30px;
+} 
+/* 
+*/
 /*장바구니가 비었을 때*/
 .non-product-cart-content {
   display: flex;

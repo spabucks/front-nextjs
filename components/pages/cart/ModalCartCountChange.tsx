@@ -145,7 +145,7 @@ export default function ModalCartCountChange(props: {
                 </p>
               </div>
               <div className="footer-charge-total-btn">
-                <button type="button">취소</button>
+                <button type="button" onClick={handleChangeFalseModal}>취소</button>
                 <button type="button" onClick={changeItemCart}>
                   확인
                 </button>
