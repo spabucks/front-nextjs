@@ -12,28 +12,6 @@ export default function ProductSearchList(props: {
   return (
     <>
       <div className="order-product-btn">
-        {/* <button
-          className="order-high-product"
-          onClick={() => {
-            let highcopy = [...props.itemData];
-            highcopy.sort((a, b) => b.price - a.price);
-            console.log("highcopy", highcopy);
-            setProduct(highcopy);
-          }}
-        >
-          높은가격순
-        </button>
-        <button
-          className="order-low-product"
-          onClick={() => {
-            let lowcopy = [...props.itemData];
-            lowcopy.sort((a, b) => a.price - b.price);
-            console.log("lowcopy", lowcopy);
-            setProduct(lowcopy);
-          }}
-        >
-          낮은가격순
-        </button> */}
       </div>
       <section className="filter-product-lists">
         <div className="best-product-list">

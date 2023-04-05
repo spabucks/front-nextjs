@@ -59,10 +59,13 @@ export default function Login() {
             userId: res.data.data.userId,
             accessToken: res.data.data.accessToken,
             isLogin: true,
+            nickName:res.data.data.nickName
+
           });
           let myLogin = localStorage;
           myLogin.setItem("userId", res.data.data.userId);
           myLogin.setItem("accessToken",res.data.data.accessToken)
+          myLogin.setItem("nickName",res.data.data.nickName)
           // setCookie("id", res.data.data.accessToken, { path: "/",expires: expires});
           Swal.fire({
             icon: "success",

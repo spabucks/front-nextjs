@@ -40,6 +40,7 @@
 }
 .sub-page__main-contents a{
   text-decoration: none;
+  color: black;
 }
 .sub-page__main-contents-a{
   float: right;

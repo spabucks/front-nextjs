@@ -55,36 +55,40 @@ export default function Product() {
   }, [changecount]);
 
   const [loginData, setLoginData] = useRecoilState(userState);
+  const router = useRouter();
   const handleDirectPayment = () => {
     const BaseUrl = process.env.baseApiUrl;
     {
       loginData.isLogin === true
-        ?
-    axios
-      .post(
-        `${BaseUrl}/api/v1/purchaseTmp/add`,
-        {
-          cartId: [query.productId],
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
-      // .then((res) => router.push("/payment"))
-      .catch((err) => {
-        console.log("err");
-      }) : Swal.fire({
-        icon: "error",
-        text: "로그인이 필요합니다.",
-        customClass: {
-          confirmButton: "swal-confirm-button",
-        },
-      });
+        ? axios
+            .post(
+              `${BaseUrl}/api/v1/purchaseTmp/addOne`,
+              {
+                productId: query.productId,
+                amount: changecount,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem(
+                    "accessToken"
+                  )}`,
+                },
+              }
+            )
+            .then((res) => router.push("/payment"))
+            .catch((err) => {
+              console.log("err");
+            })
+        : Swal.fire({
+            icon: "error",
+            text: "로그인이 필요합니다.",
+            customClass: {
+              confirmButton: "swal-confirm-button",
+            },
+          });
+    }
   };
-  }
-  
+
   const handleAddCart = () => {
     const BaseUrl = process.env.baseApiUrl;
     {
@@ -123,6 +127,28 @@ export default function Product() {
           });
     }
   };
+
+  // const handleDirectPayment = () => {
+  //   const BaseUrl = process.env.baseApiUrl;
+  //   const  router  = useRouter();
+  //   axios
+  //     .post(
+  //       `${BaseUrl}/api/v1/purchaseTmp/addOne`,
+  //       {
+  //         productId: query.productId,
+  //         amount :changecount,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => router.push("/payment"))
+  //     .catch((err) => {
+  //       console.log("err");
+  //     });
+  // }
 
   return (
     <>

@@ -8,7 +8,7 @@ export default function MyPageTop() {
     <>
     <div className="main-mypage-nickname-container">
        <div className="main-mypage-nickname-title">
-          <p><span style={{color:"green"}}>민개미</span>님👩‍🦱 <br/> 환영합니다!</p>
+          <p><span style={{color:"green"}}>{loginData.nickName}</span>님👩‍🦱 <br/> 환영합니다!</p>
         </div>
         </div>
       <section className="main-mypage">

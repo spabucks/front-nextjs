@@ -17,9 +17,7 @@ export default function OrderLists() {
         },
       })
       .then((res) => {
-        console.log("res", res.data.data);
         setOrderLists(res.data.data);
-        console.log("orderLists", orderLists);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -33,13 +31,13 @@ export default function OrderLists() {
         <div className="order-list-page-date">
           <p>전체</p>
           <div className="order-list-page">
-            <p>dddddddddd</p>
+            <p>2022.04.06~2023.04.05</p>
           </div>
         </div>
 
         {orderLists.map((item) => (
           <>
-            <div className="order-detail-page-date">
+            <div className="order-detail-page-date" key={item.id}>
               <p>{item.orderDate.slice(0, 10)}</p>
               <div className="order-detail-page"></div>
             </div>

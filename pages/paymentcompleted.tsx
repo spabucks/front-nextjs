@@ -10,12 +10,19 @@ import { deliveryChangeModal } from "@/state/deliveryChangeModal";
 import { orderProductType } from "@/types/orderProduct";
 import { totalOrderProductType } from "@/types/orderProduct";
 import Image from "next/image";
+import { generaldelivery } from "@/state/generaldelivery";
+import { freezedelivery } from "@/state/freezedelivery";
+
 export default function PaymentCompleted() {
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
   const [totalOrderData, setTotalOrderData] = useState<totalOrderProductType[]>(
     []
   );
-  const [totalsum, setTotalsum] = useState<number>();
+  const [generaldeliveryCharge, setGeneralDeliveryCharge] =
+  useRecoilState<number>(generaldelivery);
+  const [freezedeliveryCharge, setFreezeDeliveryCharge] =
+  useRecoilState<number>(freezedelivery);
+  const [totalsum, setTotalsum] = useState<number>(0);
   const [orderCheck, setorderCheck] = useState<boolean>(false);
   //배송지 조회
   useEffect(() => {
@@ -114,7 +121,7 @@ export default function PaymentCompleted() {
             <div className="payment-total-wrap">
               <p>결제 금액</p>
               <div className="payment-total-won">
-                <p>{totalsum?.toLocaleString()}원</p>
+                <p>{(totalsum+generaldeliveryCharge+freezedeliveryCharge).toLocaleString()}원</p>
                 <Image
                  className="pay-info-right-img"
                  src="assets/images/icons/left-chevron.svg"
@@ -128,7 +135,7 @@ export default function PaymentCompleted() {
           <div className="payment-total-sum-list">
             <div className="payment-total-sum">
               <p>신용카드</p>
-              <p>{totalsum?.toLocaleString()}원</p>
+              <p>{(totalsum+generaldeliveryCharge+freezedeliveryCharge).toLocaleString()}원</p>
             </div>
           </div>
         </form>

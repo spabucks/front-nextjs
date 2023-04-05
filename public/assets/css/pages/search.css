@@ -121,7 +121,7 @@ min-width: 100px;
   width: 100%;
   height: 30px;
   padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .section-yessearch{
   height: 300px;
@@ -145,4 +145,7 @@ min-width: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.searchclosebtn{
+  margin: 10px;
 }

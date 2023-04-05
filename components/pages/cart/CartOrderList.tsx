@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
 import { cartBuyProduct } from "@/types/cartBuyProduct";
+import { useRouter } from "next/router";
 
 export function GeneralCartOrderList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
 
-  
-// console.log('buyItems',buyItems)
+  // console.log('buyItems',buyItems)
   /**체크한 상품에 대하여 가격 계산 */
   const Generalitem = cartItems.cartList.filter(
     (item: any) => item.check === true
@@ -30,9 +30,13 @@ export function GeneralCartOrderList() {
     }
     setGeneralDeliveryCharge(0);
   }, [Generalitem]);
+  const router = useRouter();
 
   // 체크한 항목 리코일로 관리하기
 
+  const handleDirectHome = () => {
+    router.push("/filter?bigCategory=0");
+  };
   return (
     <>
       {Generalitem.length > 0 && (
@@ -40,9 +44,9 @@ export function GeneralCartOrderList() {
           <div>
             <p>{`상품 ${
               Generalitem.length
-            }건 ${GeneralitemCharge.toLocaleString()}원 + 배송비${generaldeliveryCharge.toLocaleString()}원 = 총 ${
-              (generaldeliveryCharge + GeneralitemCharge).toLocaleString()
-            }원`}</p>
+            }건 ${GeneralitemCharge.toLocaleString()}원 + 배송비${generaldeliveryCharge.toLocaleString()}원 = 총 ${(
+              generaldeliveryCharge + GeneralitemCharge
+            ).toLocaleString()}원`}</p>
             {GeneralitemCharge < 30000 ? (
               <p>{`${(
                 30000 - GeneralitemCharge
@@ -51,7 +55,7 @@ export function GeneralCartOrderList() {
               <p>무료배송</p>
             )}
           </div>
-          <button type="button">더 담으러 가기</button>
+          <button type="button" onClick={handleDirectHome}>더 담으러 가기</button>
         </section>
       )}
     </>
@@ -60,7 +64,7 @@ export function GeneralCartOrderList() {
 
 export default function FreezeCartOrderList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
-
+  const router = useRouter();
   /**체크한 상품에 대하여 가격 계산 */
   const Freezeitem = cartItems.cartListFreeze.filter(
     (item: any) => item.check === true
@@ -80,6 +84,9 @@ export default function FreezeCartOrderList() {
     setFreezeDeliveryCharge(0);
   }, [Freezeitem]);
 
+  const handleDirectHome = () => {
+    router.push("/filter?bigCategory=0");
+  };
   return (
     <>
       {Freezeitem.length > 0 && (
@@ -91,12 +98,14 @@ export default function FreezeCartOrderList() {
               freezedeliveryCharge + FreezeitemCharge
             ).toLocaleString()}원`}</p>
             {FreezeitemCharge < 30000 ? (
-              <p>{`${(30000 - FreezeitemCharge).toLocaleString()}원 더 담으면 무료배송`}</p>
+              <p>{`${(
+                30000 - FreezeitemCharge
+              ).toLocaleString()}원 더 담으면 무료배송`}</p>
             ) : (
               <p>무료배송</p>
             )}
           </div>
-          <button type="button">더 담으러 가기</button>
+          <button type="button" onClick={handleDirectHome}>더 담으러 가기</button>
         </section>
       )}
     </>

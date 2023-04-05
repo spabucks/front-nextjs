@@ -197,11 +197,6 @@ export default function FilterHeader() {
         <>
           <div className="filter-btn-list">
             <div>
-              {/* <img
-                src="assets/images/icons/새로고침.png"
-                className="refresh-img"
-                onClick={allDelete}
-              /> */}
               <Image
                 src="/assets/images/icons/새로고침.png"
                 className="refresh-img"
@@ -221,12 +216,12 @@ export default function FilterHeader() {
                   >
                     <div className="filter-btn-box-title">{item.title}</div>
                     <Image
-                      src="assets/images/icons/close.svg"
-                      className="filter-btn-close"
-                      alt="닫기이미지"
+                      src="../assets/images/icons/close.svg"
+                      alt="삭제버튼"
                       width={10}
                       height={10}
-                    />
+                      className="searchclosebtn"
+                    ></Image>
                   </div>
                 </>
               ))}

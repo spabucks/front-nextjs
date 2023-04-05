@@ -31,7 +31,7 @@ export default function FirstHeader() {
     setSubpageModal(true);
   };
   const handlebackBtn = () => {
-    router.push("/mypage");
+    router.back();
   };
   const [cookies, setCookie, removeCookie] = useCookies(["id"]);
   /** 베스트 관련 메뉴*/
@@ -46,7 +46,7 @@ export default function FirstHeader() {
         console.log(err);
       });
   }, []);
-  
+
   /** 이벤트 관련 매뉴 */
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
@@ -73,6 +73,7 @@ export default function FirstHeader() {
           userId: "",
           accessToken: "",
           isLogin: false,
+          nickName: "",
         });
         // removeCookie('id')
         // removeCookie('id', {path : '/'})
@@ -108,7 +109,9 @@ export default function FirstHeader() {
     <header>
       <div className="main-header-top">
         <div className="main-header__menu-icon">
-          {(router.pathname === "/delivery"||router.pathname === "/search2" ||router.pathname === "/filter" ) ? (
+          {router.pathname === "/delivery" ||
+          router.pathname === "/search2" ||
+          router.pathname === "/filter" ? (
             <>
               <Image
                 src="assets/images/icons/left-chevron.svg"

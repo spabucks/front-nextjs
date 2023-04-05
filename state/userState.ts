@@ -5,6 +5,7 @@ export const userState = atom({
     default:{
         userId:"",
         accessToken:"",
-        isLogin:false
+        isLogin:false,
+        nickName:""
     }
 })

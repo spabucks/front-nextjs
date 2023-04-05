@@ -124,6 +124,7 @@ export default function CartProductCardDetail({
               status={status}
               addcount={addcount}
               data={data}
+              
             />
           )}
         </>

@@ -19,9 +19,7 @@ export default function SearchHeader() {
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
-      .get(
-        `${BaseUrl}/api/v1/product/search-menu?keyword=${query.keyword}`
-      )
+      .get(`${BaseUrl}/api/v1/product/search-menu?keyword=${query.keyword}`)
       .then((res) => {
         setBigCategory(res.data.data);
       })
@@ -31,27 +29,26 @@ export default function SearchHeader() {
   }, []);
   /**하위 카테고리 불러오기 전체타입 */
   useEffect(() => {
-    
-    if(bigcategoryId===undefined){
+    if (bigcategoryId === undefined) {
       const BaseUrl = process.env.baseApiUrl;
       axios
-      .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
-      .then((res) => {
-        setSubCategory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`${BaseUrl}/api/v1/product/getSubCategory/0`)
+        .then((res) => {
+          setSubCategory(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       const BaseUrl = process.env.baseApiUrl;
       axios
-      .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
-      .then((res) => {
-        setSubCategory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`${BaseUrl}/api/v1/product/getSubCategory/${bigcategoryId}`)
+        .then((res) => {
+          setSubCategory(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [query.bigCategory]);
 
@@ -106,7 +103,7 @@ export default function SearchHeader() {
   const allDelete = () => {
     setFilterList([]);
   };
-  console.log('subCategory',subCategory)
+  console.log("subCategory", subCategory);
   return (
     <>
       {/**메인 헤더*/}
@@ -132,81 +129,79 @@ export default function SearchHeader() {
           </nav>
         </div>
       ) : null}
-      {(subCategory && router.query.bigCategory == bigcategoryId)
-        && subCategory.map((menu, index) => (
-            <div className="filter-main-category" key={index}>
-              <div className="filter-title">{menu.title}</div>
-              <div className="filter-container">
-                {menu.data.map((data, index) => (
-                  <>
-                    <div className="filter-subheader-sub" key={index}>
-                      <ul className="filter-subheader-sub-content">
-                        <li key={data.id}>
-                          {filterList.find(
-                            (item: filterType) => item.title === data.name
-                          ) ? (
-                            <label className="filter-input-checkbox-label bolder-string">
-                              {data.name}
-                              <input
-                                type="checkbox"
-                                name={menu.value}
-                                value={data.id}
-                                title={data.name}
-                                onChange={handleSubFilter}
-                                id="filtercheckbox"
-                                className="filter-input-checkbox"
-                                checked={
-                                  filterList.find(
-                                    (item: filterType) =>
-                                      item.title === data.name
-                                  )
-                                    ? true
-                                    : false
-                                }
-                              />
-                            </label>
-                          ) : (
-                            <label>
-                              {data.name}
-                              <input
-                                type="checkbox"
-                                name={menu.value}
-                                value={data.id}
-                                title={data.name}
-                                onChange={handleSubFilter}
-                                id="filtercheckbox"
-                                className="filter-input-checkbox"
-                                checked={
-                                  filterList.find(
-                                    (item: filterType) =>
-                                      item.title === data.name
-                                  )
-                                    ? true
-                                    : false
-                                }
-                              />
-                            </label>
-                          )}
-                        </li>
-                      </ul>
-                    </div>
-                  </>
-                ))}
-              </div>
+      {subCategory &&
+        router.query.bigCategory == bigcategoryId &&
+        subCategory.map((menu, index) => (
+          <div className="filter-main-category" key={index}>
+            <div className="filter-title">{menu.title}</div>
+            <div className="filter-container">
+              {menu.data.map((data, index) => (
+                <>
+                  <div className="filter-subheader-sub" key={index}>
+                    <ul className="filter-subheader-sub-content">
+                      <li key={data.id}>
+                        {filterList.find(
+                          (item: filterType) => item.title === data.name
+                        ) ? (
+                          <label className="filter-input-checkbox-label bolder-string">
+                            {data.name}
+                            <input
+                              type="checkbox"
+                              name={menu.value}
+                              value={data.id}
+                              title={data.name}
+                              onChange={handleSubFilter}
+                              id="filtercheckbox"
+                              className="filter-input-checkbox"
+                              checked={
+                                filterList.find(
+                                  (item: filterType) => item.title === data.name
+                                )
+                                  ? true
+                                  : false
+                              }
+                            />
+                          </label>
+                        ) : (
+                          <label>
+                            {data.name}
+                            <input
+                              type="checkbox"
+                              name={menu.value}
+                              value={data.id}
+                              title={data.name}
+                              onChange={handleSubFilter}
+                              id="filtercheckbox"
+                              className="filter-input-checkbox"
+                              checked={
+                                filterList.find(
+                                  (item: filterType) => item.title === data.name
+                                )
+                                  ? true
+                                  : false
+                              }
+                            />
+                          </label>
+                        )}
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ))}
             </div>
-          ))
-        }
+          </div>
+        ))}
       {filterList.length > 0 && (
         <>
           <div className="filter-btn-list">
             <div>
-              <Image 
-                 src="assets/images/icons/새로고침.png"
-                 className="refresh-img"
-                 onClick={allDelete}
-                 width={20}
-                 height={20}
-                 alt={"새로고침"}
+              <Image
+                src="/assets/images/icons/새로고침.png"
+                className="refresh-img"
+                onClick={allDelete}
+                width={20}
+                height={20}
+                alt={"새로고침"}
               />
             </div>
             <div className="filter-btn-content-list">
@@ -218,7 +213,13 @@ export default function SearchHeader() {
                     onClick={() => deleteFilter(item.title)}
                   >
                     <div className="filter-btn-box-title">{item.title}</div>
-                    <CloseBtn/>
+                    <Image
+                      src="../assets/images/icons/close.svg"
+                      alt="삭제버튼"
+                      width={10}
+                      height={10}
+                      className="searchclosebtn"
+                    ></Image>
                   </div>
                 </>
               ))}
