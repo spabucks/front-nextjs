@@ -93,7 +93,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
                   icon: "success",
                   title: "인증번호가 전송되었습니다.",
                   showConfirmButton: false,
-                  timer: 500,
+                  timer: 1500,
                 });
                 setTimeShow(true);
                 setConfirmView(true);
@@ -152,7 +152,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
             icon: "success",
             title: "인증이 완료되었습니다.",
             showConfirmButton: false,
-            timer: 500,
+            timer: 1500,
           });
           setTimeShow(false)
         } else {
@@ -162,7 +162,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
             icon: "error",
             title: "인증번호가 일치하지 않습니다.",
             showConfirmButton: false,
-            timer: 500,
+            timer: 1500,
           });
         }
       })
