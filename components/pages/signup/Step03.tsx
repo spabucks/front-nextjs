@@ -24,7 +24,6 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
   };
 
   useEffect(() => {
-    console.log(inputData);
   }, [inputData]);
 
   const onehandleNickCheck = (check: boolean) => {

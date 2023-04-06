@@ -78,7 +78,6 @@ export default function DeliveryRegistration() {
   };
   const handlename = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setNameConfirm(true);
       setDeliveryData({
@@ -93,7 +92,6 @@ export default function DeliveryRegistration() {
 
   const handlerecipient = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setRecipientConfirm(true);
       setDeliveryData({
@@ -107,7 +105,6 @@ export default function DeliveryRegistration() {
   };
   const handledefaultAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setDefaultAddressConfirm(true);
       setDeliveryData({
@@ -121,7 +118,6 @@ export default function DeliveryRegistration() {
   };
   const handlephoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setPhoneNumConfirm(true);
       setDeliveryData({
@@ -136,7 +132,6 @@ export default function DeliveryRegistration() {
 
   const handlecontent = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setDeliveryData({
         ...deliveryData,

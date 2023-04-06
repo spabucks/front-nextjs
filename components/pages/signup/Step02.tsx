@@ -72,7 +72,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
   };
 
   const handleEmailCofirm = () => {
-    console.log("handleEmailCofirm");
     if (errMsg.userEmail === "") {
       axios
         .post(`${BaseUrl}/api/v1/auth/signup/chkemail`, {

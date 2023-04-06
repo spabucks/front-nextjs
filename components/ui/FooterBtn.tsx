@@ -7,7 +7,6 @@ export interface ChildProps {
 export default function FooterBtn({ title, setIsClick }: ChildProps) {
   const handleClick = () => {
     setIsClick && setIsClick(true);
-    console.log("option");
   };
 
   return (

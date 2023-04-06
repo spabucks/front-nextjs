@@ -33,7 +33,6 @@ export default function Cart() {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
         if (res.status === 200) {
           setCartList({
             cartTotal: res.data.data,

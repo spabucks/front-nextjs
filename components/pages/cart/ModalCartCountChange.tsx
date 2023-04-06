@@ -4,7 +4,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Image from "next/image";
 
-
 import { modal } from "@/state/modal";
 import { cartOrderState } from "@/state/cartOrderState";
 import { cartListState } from "@/state/cartListState";
@@ -54,7 +53,7 @@ export default function ModalCartCountChange(props: {
       })
       .catch((err) => console.log(err));
   };
-  
+
   useEffect(() => {
     if (orderItem.typeId === 0)
       setItem(
@@ -67,7 +66,6 @@ export default function ModalCartCountChange(props: {
         )
       );
   }, []);
-
 
   return (
     <>
@@ -157,7 +155,9 @@ export default function ModalCartCountChange(props: {
                 </p>
               </div>
               <div className="footer-charge-total-btn">
-                <button type="button" onClick={handleChangeFalseModal}>취소</button>
+                <button type="button" onClick={handleChangeFalseModal}>
+                  취소
+                </button>
                 <button type="button" onClick={changeItemCart}>
                   확인
                 </button>

@@ -85,7 +85,6 @@ export default function Product() {
               setIsClick(false); //장바구니, 선물하기, 구매하기가 사라지게
             })
             .catch((err) => {
-              console.log("err", err);
               if (err.response.status === 400) {
                 const errorresponse = err.response.data;
                 setStatus(400);

@@ -47,7 +47,6 @@ export default function Mypage() {
           },
         }).then((result) => {
           if (result.dismiss === Swal.DismissReason.timer) {
-            console.log("I was closed by the timer");
           }
         });
         router.push("/");
@@ -62,7 +61,9 @@ export default function Mypage() {
           <FirstHeader />
           <MyPageTop />
           <MypageMenuLists title={"서비스"} />
-          <div className="mypage-logout-btn" onClick={handleLogout}>로그아웃</div>
+          <div className="mypage-logout-btn" onClick={handleLogout}>
+            로그아웃
+          </div>
         </>
       ) : (
         <>

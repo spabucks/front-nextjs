@@ -18,7 +18,6 @@ export default function SubpageModal() {
     const accessToken = localStorage.getItem("accessToken");
     const nickName = localStorage.getItem("nickName");
     if (accessToken && !loginData.isLogin) {
-      console.log("로그인 되어있음");
       setLoginData({
         userId: userId || "",
         accessToken: accessToken || "",

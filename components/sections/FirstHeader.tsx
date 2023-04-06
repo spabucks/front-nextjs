@@ -73,7 +73,6 @@ export default function FirstHeader() {
           },
         }).then((result) => {
           if (result.dismiss === Swal.DismissReason.timer) {
-            console.log("I was closed by the timer");
           }
         });
         router.push("/");

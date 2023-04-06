@@ -48,7 +48,6 @@ export default function Payment() {
         }
       )
       .then((res) => {
-        console.log("성공");
         router.push("/paymentcompleted");
         Swal.fire({
           icon: "info",

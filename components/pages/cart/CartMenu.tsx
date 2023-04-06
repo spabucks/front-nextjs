@@ -64,7 +64,6 @@ export default function CartMenu() {
       )
       .then((res) => {
         setCartCheck(!cartCheck);
-        console.log("성공");
       })
       .catch((err) => console.log("err", err));
   };
