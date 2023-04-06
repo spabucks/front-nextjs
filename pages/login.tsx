@@ -15,15 +15,11 @@ import { userState } from "@/state/userState";
 
 export default function Login() {
   const router = useRouter();
-
   const [inputData, setInputData] = useState<LoginReq>({
     loginId: "",
     password: "",
   });
-
-  // const expires = new Date();
   const [loginData, setLoginData] = useRecoilState(userState);
-  const [cookies, setCookie, removeCookie] = useCookies(["id"]);
 
   const handleLogin = () => {
     if (inputData.loginId === "" || inputData.password === "") {
