@@ -212,3 +212,33 @@
   font-size: 0.8rem;
   color: #8d8b8b;
 }
+.signup-closeBtn{
+  margin: 20px;
+}
+.nick-input{
+  font-size: 20px;
+}
+.nick-input:focus{
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+.idfw-body-form-input{
+  display: flex;
+}
+
+.idfw-body-form-input input{
+  font-size: 20px;
+}
+.idfw-body-form-input input:focus{
+  border: none;
+  outline: none;
+  font-size: 20px;
+}
+.idfw-body-form-input button{
+  width: 100px;
+  height: 30px;
+  background-color: var(--color-starbucks);
+  border: var(--color-starbucks);
+  color: white;
+}

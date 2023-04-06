@@ -75,7 +75,7 @@
   width: 90%;
   height: 50px;
   padding: 0px;
-  margin: 20px;
+  /* margin: 20px; */
   background-color: var(--color-primary-btn);
   border: none;
   border-radius: 30px;
@@ -95,8 +95,8 @@
   font-size: 1.1rem;
   font-weight: 800;
 }
-.footer-login-sumit a button{
+/* .footer-login-sumit a button{
   padding:10px;
 width: 350px;
 height: 50px;
-}
+} */

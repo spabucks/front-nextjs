@@ -62,6 +62,7 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
           <div className="nickgree-body-form-input">
             <div>
               <input
+              className="nick-input"
                 type="text"
                 placeholder="닉네임 (한글 6자리 이내)"
                 name="userNickname"

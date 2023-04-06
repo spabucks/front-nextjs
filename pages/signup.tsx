@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 import { inputRegisterType } from "@/types/UserRequest/Request";
 import StButton from "@/components/pages/signup/ui/StButton";
@@ -16,7 +16,7 @@ import Steper from "@/components/pages/signup/Steper";
 
 export default function SignUp() {
   const BaseUrl = process.env.baseApiUrl;
-  const router = useRouter()
+  const router = useRouter();
   const [stepId, setStepId] = useState<number>(1);
   const [inputData, setInputData] = useState<inputRegisterType>({
     userEmail: "",
@@ -30,8 +30,8 @@ export default function SignUp() {
     isLoginIdConfirm: false,
     isEmailAgree: false,
     isNickAgree: false,
-    isNameConfirm:false,
-    isNumber:0,
+    isNameConfirm: false,
+    isNumber: 0,
     privateAgree: {
       isAgree: false,
       isUseConfirm: false,
@@ -47,9 +47,9 @@ export default function SignUp() {
     { 5: <Step05 inputData={inputData} setInputData={setInputData} /> },
   ];
 
-  useEffect(()=>{
-    console.log(inputData)
-  },[inputData])
+  useEffect(() => {
+    console.log(inputData);
+  }, [inputData]);
 
   const handleStepNext = () => {
     console.log(inputData.privateAgree);
@@ -81,8 +81,7 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
           },
         });
-      }
-      else if (inputData.isEmailAgree === false) {
+      } else if (inputData.isEmailAgree === false) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -91,7 +90,7 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
           },
         });
-      }else if(inputData.userName===""){
+      } else if (inputData.userName === "") {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -100,8 +99,7 @@ export default function SignUp() {
             confirmButton: "swal-confirm-button",
           },
         });
-      }
-      else {
+      } else {
         setStepId(stepId + 1);
         return;
       }
@@ -119,15 +117,14 @@ export default function SignUp() {
             cancelButton: "swal-cancel-button",
           },
         })
-        
         .then((result) => {
           if (result.isConfirmed) {
             setStepId(stepId + 1);
           }
           return;
         });
-      } 
-      if(inputData.userNickname !== "") {
+      }
+      if (inputData.userNickname !== "") {
         //닉네임 이용약관 동의 안하고 닉네임이 있을때
         if (inputData.isNickAgree === false && inputData.userNickname !== "") {
           Swal.fire({
@@ -138,10 +135,11 @@ export default function SignUp() {
               confirmButton: "swal-confirm-button",
             },
           });
-        } 
+        }
         if (
           inputData.isNickAgree === true &&
-          inputData.userNickname !== "" && inputData.userNickname.length<=6
+          inputData.userNickname !== "" &&
+          inputData.userNickname.length <= 6
         )
           Swal.fire({
             icon: "warning",
@@ -153,8 +151,6 @@ export default function SignUp() {
               cancelButton: "swal-cancel-button",
             },
           })
-
-          
           .then((result) => {
             if (result.isConfirmed) {
               setStepId(stepId + 1);
@@ -175,13 +171,19 @@ export default function SignUp() {
           customClass: {
             confirmButton: "swal-confirm-button",
           },
-        })}
-    else{
-      setStepId(stepId + 1);
-      return;
-    }
-      
-        
+        });
+      } else if (inputData.loginId==="") {
+        Swal.fire({
+          icon: "error",
+          text: `아이디를 입력해주세요`,
+          customClass: {
+            confirmButton: "swal-confirm-button",
+          },
+        });
+      } else {
+        setStepId(stepId + 1);
+        return;
+      }
     } else if (stepId === 5) {
       axios
         .post(`${BaseUrl}/api/v1/auth/signup`, {
@@ -192,7 +194,7 @@ export default function SignUp() {
           birth: "2023-03-27T10:51:32.964Z",
           nickName: inputData.userNickname,
         })
-        .catch((err)=>err);
+        .catch((err) => err);
     }
   };
 
@@ -200,8 +202,8 @@ export default function SignUp() {
     <div className="container">
       {stepId != 5 && (
         <>
-          <div onClick={() => router.back()}>
-            <CloseBtn/>
+          <div className="signup-closeBtn" onClick={() => router.back()}>
+            <CloseBtn />
           </div>
           <Steper stepId={stepId} />
         </>

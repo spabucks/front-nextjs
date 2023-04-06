@@ -3,25 +3,65 @@ import React from "react";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 interface ChildProps {
   inputData: inputRegisterType;
   setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;
 }
 
+interface errType {
+  userId: string;
+  userPassword: string;
+  userPasswordCheck: string;
+}
+
 export default function Step04({ inputData, setInputData }: ChildProps) {
   const BaseUrl = process.env.baseApiUrl;
   // ID (4~20자리, 첫글자 숫자 X) /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/
+
   const UserIdreExp = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
-  const [userIdConfirm, setUserIdConfirm] = useState<number>(0);
+  const UserPasswordreExp =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+
+  const [errMsg, setErrMsg] = useState<errType>({
+    userId: "",
+    userPassword: "",
+    userPasswordCheck: "",
+  });
+
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (!UserIdreExp.test(value)) {
-      setUserIdConfirm(2); //ID 양식이 틀림
+      setErrMsg({
+        ...errMsg,
+        userId: "아이디 형식이 올바르지 않습니다",
+      });
+      return;
     }
-    if (e.target.value === "") {
-      setUserIdConfirm(3); //공백일 경우
-    } else if (UserIdreExp.test(value)) {
-      setUserIdConfirm(1);
+    setErrMsg({
+      ...errMsg,
+      userId: "",
+    });
+    setInputData({
+      ...inputData,
+      [name]: value,
+    });
+  };
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (!UserPasswordreExp.test(value)) {
+      setErrMsg({
+        ...errMsg,
+        userPassword: "비밀번호 형식이 올바르지 않습니다.",
+      });
+    } else {
+      setErrMsg({
+        ...errMsg,
+        userPassword: "",
+      });
       setInputData({
         ...inputData,
         [name]: value,
@@ -29,54 +69,61 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
     }
   };
 
-  useEffect(() => {
-    console.log(inputData);
-  }, [inputData]);
-
-  // 비밀번호 (최소 8자리, 숫자,문자,특수문자 최소 1개)
-  // /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
-  const UserPasswordreExp =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-  const [userPasswordConfirm, setUserPasswordConfirm] = useState<number>(0);
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const passwordCurrent = e.target.value;
-    if (!UserPasswordreExp.test(passwordCurrent)) {
-      setUserPasswordConfirm(2); //비밀번호 양식이 틀림
-    }
-    if (e.target.value === "") {
-      setUserPasswordConfirm(3); //공백일 경우
-    } else if (UserPasswordreExp.test(passwordCurrent)) {
-      setUserPasswordConfirm(1);
-      setInputData({
-        ...inputData,
-        password: passwordCurrent,
-      });
+  const handleIdConfirm = () => {
+    if (errMsg.userId === "") {
+      axios
+        .post(`${BaseUrl}/api/v1/auth/check/loginId`, {
+          loginId: inputData.loginId,
+        })
+        .then((res) => {
+          //중복이있음
+          if (res.data.data === true) {
+            setErrMsg({
+              ...errMsg,
+              userId: "이미 존재하는 아이디 입니다.",
+            });
+            return;
+          } else {
+            Swal.fire({
+              icon: "info",
+              text: `사용할 수 있는 아이디입니다.`,
+              customClass: {
+                confirmButton: "swal-confirm-button",
+              },
+            });
+          }
+        });
     }
   };
 
-  const [userPasswordCheck, setUserPasswordCheck] = useState<number>(0);
-
-  const onChangePasswordConfirm = useCallback(
+  const onChangePasswordConfirm = 
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const passwordConfirmCurrent = e.target.value;
-      console.log(passwordConfirmCurrent);
-      console.log(e.target.value);
+      const { name, value } = e.target;
+      console.log("name",name)
+      console.log("value",value)
+      const passwordConfirmCurrent = value;
       if (inputData.password === passwordConfirmCurrent) {
-        setUserPasswordCheck(1);
         setInputData({
           ...inputData,
           confirmPassword: passwordConfirmCurrent,
         });
+        setErrMsg({
+          ...errMsg,
+          userPasswordCheck: "",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          userPasswordCheck: "비밀번호를 다시 입력해주세요.",
+        });
+        setInputData({
+          ...inputData,
+          confirmPassword:"",
+        });
+        return;
       }
-      if (passwordConfirmCurrent === "") {
-        setUserPasswordCheck(3); //공백일 경우
-      }
-      if (inputData.password !== passwordConfirmCurrent) {
-        setUserPasswordCheck(2);
-      }
-    },
-    [inputData.password]
-  );
+    };
+  
 
   return (
     <div className="main-idfw-section">
@@ -97,39 +144,14 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
                 name="loginId"
                 onChange={handleIdChange}
               />
-              {userIdConfirm === 2 && (
-                <p
-                  style={{ color: "red", fontSize: "10px", margin: "3px 0px" }}
-                >
-                  아이디는 4~13자리로 입력해주세요
-                </p>
-              )}
-              {userIdConfirm === 1 && (
-                <p
-                  style={{ color: "grey", fontSize: "10px", margin: "3px 0px" }}
-                >
-                  올바른 형식입니다
-                </p>
-              )}
-              {userIdConfirm === 3 && (
-                <p
-                  style={{ color: "red", fontSize: "10px", margin: "3px 0px" }}
-                >
-                  아이디를 입력해주세요
-                </p>
-              )}
-              {userIdConfirm === 0 && (
-                <p
-                  style={{
-                    color: "grey",
-                    fontSize: "10px",
-                    opacity: 0,
-                    margin: "3px 0px",
-                  }}
-                ></p>
-              )}
+              <button type="button" onClick={handleIdConfirm}>
+                중복확인
+              </button>
             </div>
           </div>
+
+          <p style={{ fontSize: "0.8rem", color: "red" }}>{errMsg.userId}</p>
+
           <div className="idfw-body-form-input">
             <div className="p-check">
               <div>
@@ -137,45 +159,16 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
                   type="password"
                   placeholder="비밀번호(최소 8자리, 숫자,문자,특수문자 최소 1개 포함 필수)"
                   name="password"
-                  onChange={handlePasswordChange}
+                  onChange={handleChangePassword}
                 />
-                {userPasswordConfirm === 2 && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    비밀번호는 최소 8자리, 숫자,문자,특수문자 최소 1개가
-                    필요합니다.
-                  </p>
-                )}
-                {userPasswordConfirm === 1 && (
-                  <p
-                    style={{
-                      color: "grey",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    올바른 형식입니다
-                  </p>
-                )}
-                {userPasswordConfirm === 3 && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    비밀번호를 입력해주세요
-                  </p>
-                )}
               </div>
             </div>
           </div>
+
+          <p style={{ fontSize: "0.8rem", color: "red" }}>
+            {errMsg.userPassword}
+          </p>
+
           <div className="idfw-body-form-input">
             <div className="pass-check">
               <div>
@@ -185,39 +178,9 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
                   name="confirmPassword"
                   onChange={onChangePasswordConfirm}
                 />
-                {userPasswordCheck === 1 && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    비밀번호를 똑같이 입력했어요
-                  </p>
-                )}
-                {userPasswordCheck === 2 && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ
-                  </p>
-                )}
-                {userPasswordCheck === 3 && (
-                  <p
-                    style={{
-                      color: "red",
-                      fontSize: "10px",
-                      margin: "3px 0px",
-                    }}
-                  >
-                    비밀번호를 한번 더 입력해주세요!
-                  </p>
-                )}
+                <p style={{ fontSize: "0.8rem", color: "red" }}>
+                  {errMsg.userPasswordCheck}
+                </p>
               </div>
             </div>
           </div>
