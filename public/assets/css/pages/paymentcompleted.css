@@ -10,12 +10,13 @@
   padding: 20px;
 }
 .pay-info-address-form-title p {
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
+  font-weight: 800;
 }
 /*주문상품*/
 .payment-product-list-form {
-  padding: 20px;
+  padding: 0px 20px;
   background: linear-gradient(#ffffff 95%, rgb(243, 241, 241) 5%);
 }
 

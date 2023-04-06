@@ -1,19 +1,16 @@
 import React from "react";
 import SecondHeader from "@/components/layouts/SecondHeader";
 import { useRecoilState } from "recoil";
-import { cartBuyProduct } from "@/types/cartBuyProduct";
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
 import { useEffect, useState } from "react";
 import { shippingListType } from "@/types/shipping";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { deliveryChangeModal } from "@/state/deliveryChangeModal";
-import { cartType } from "@/types/cartTypes";
-import { cartListType } from "@/types/cartTypes";
 import Image from "next/image";
 import { orderProductType } from "@/types/orderProduct";
-import Leftarrow from "@/components/ui/Leftarrow";
+import Swal from "sweetalert2";
+
 export default function Payment() {
   const router = useRouter();
   //최종주문 List
@@ -87,13 +84,18 @@ export default function Payment() {
           .then((res) => {
            console.log('성공')
            router.push("/paymentcompleted");
+           Swal.fire({
+            icon:"info",
+            title: "결제가 완료되었습니다.",
+            customClass: {
+              confirmButton: "swal-confirm-button",
+            },
+          });
           })
           .catch((err) => {
             console.log(err);
           });
     };
-
-
 
   return (
     <>

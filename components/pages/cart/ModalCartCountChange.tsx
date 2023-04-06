@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import axios from "axios";
+
 import { modal } from "@/state/modal";
 import { cartOrderState } from "@/state/cartOrderState";
-import { cartListType, cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
-import axios from "axios";
 import { userState } from "@/state/userState";
+
 import Image from "next/image";
+import Swal from "sweetalert2";
+
+
+import { cartListType, cartType } from "@/types/cartTypes";
 export default function ModalCartCountChange(props: {
   isChangeCount: Boolean;
   setIsChangeCount: Function;
@@ -53,6 +58,13 @@ export default function ModalCartCountChange(props: {
       .then((res) => {
         props.setIsChangeCount(!props.isChangeCount);
         setIsChangeModal(false);
+        Swal.fire({
+          icon: "info",
+          title: "수량이 변경 되었습니다.",
+          customClass: {
+            confirmButton: "swal-confirm-button",
+          },
+        });
       })
       .catch((err) => console.log(err));
   };

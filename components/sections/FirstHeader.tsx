@@ -1,17 +1,23 @@
+import axios from "axios";
+
 import Link from "next/link";
-import { headerMenus } from "@/data/navMenuDatas";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import axios from "axios";
-import { categoryMenu } from "@/types/type";
+import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+
+import Swal from "sweetalert2";
+
 import { subPage } from "@/state/subPage";
 import { userState } from "@/state/userState";
-import Swal from "sweetalert2";
-import { useCookies } from "react-cookie";
-import { cartType } from "@/types/cartTypes";
 import { cartListState } from "@/state/cartListState";
+
+import { cartType } from "@/types/cartTypes";
+import { categoryMenu } from "@/types/type";
+
+import { headerMenus } from "@/data/navMenuDatas";
+
 export default function FirstHeader() {
   const router = useRouter();
   const categoryId: any = router.query.category;
@@ -33,8 +39,7 @@ export default function FirstHeader() {
   const handlebackBtn = () => {
     router.back();
   };
-  const [cookies, setCookie, removeCookie] = useCookies(["id"]);
-  /** 베스트 관련 메뉴*/
+
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -47,7 +52,6 @@ export default function FirstHeader() {
       });
   }, []);
 
-  /** 이벤트 관련 매뉴 */
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -75,28 +79,23 @@ export default function FirstHeader() {
           isLogin: false,
           nickName: "",
         });
-        // removeCookie('id')
-        // removeCookie('id', {path : '/'})
         localStorage.removeItem("accessToken");
         localStorage.removeItem("userId");
+        localStorage.removeItem("nickName");
 
         let timerInterval: string | number | NodeJS.Timer | undefined;
+
         Swal.fire({
-          html: "다음에도 이용해주세요~",
-          timer: 2000,
+          title: "다음에도 이용해주세요!",
+          timer: 1000,
           timerProgressBar: true,
           didOpen: () => {
             Swal.showLoading();
-            // const b = Swal.getHtmlContainer().querySelector("b");
-            // timerInterval = setInterval(() => {
-            //   b.textContent = Swal.getTimerLeft();
-            // }, 100);
           },
           willClose: () => {
             clearInterval(timerInterval);
           },
         }).then((result) => {
-          /* Read more about handling dismissals below */
           if (result.dismiss === Swal.DismissReason.timer) {
             console.log("I was closed by the timer");
           }
@@ -181,7 +180,6 @@ export default function FirstHeader() {
               </li>
             )}
             {loginData.isLogin === true ? (
-              //로그인체크가 true일 때?
               <li>
                 <Image
                   width={20}
@@ -192,7 +190,6 @@ export default function FirstHeader() {
                 ></Image>
               </li>
             ) : (
-              //로그인체크가 false일 때?
               <li>
                 <Link href="/login">
                   <Image

@@ -12,8 +12,10 @@ import { totalOrderProductType } from "@/types/orderProduct";
 import Image from "next/image";
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
+import { useRouter } from "next/router";
 
 export default function PaymentCompleted() {
+  const router = useRouter();
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
   const [totalOrderData, setTotalOrderData] = useState<totalOrderProductType[]>(
     []
@@ -24,6 +26,15 @@ export default function PaymentCompleted() {
   useRecoilState<number>(freezedelivery);
   const [totalsum, setTotalsum] = useState<number>(0);
   const [orderCheck, setorderCheck] = useState<boolean>(false);
+
+
+  const handleDetailBuyProduct = () =>{
+    router.push("/orderlists");
+  }
+  const handleMainDirect = () =>{
+    router.push("/");
+  }
+
   //배송지 조회
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
@@ -140,8 +151,8 @@ export default function PaymentCompleted() {
           </div>
         </form>
         <div className="footer-charge-total-btn">
-          <button type="button">상세정보 확인</button>
-          <button type="button">메인으로 가기</button>
+          <button type="button" onClick={handleDetailBuyProduct}>상세정보 확인</button>
+          <button type="button" onClick={handleMainDirect}>메인으로 가기</button>
         </div>
       </div>
     </>
