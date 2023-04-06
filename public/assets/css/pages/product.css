@@ -180,7 +180,7 @@ margin-left: 10px;
 .buy-product-lists {
   width: 100%;
   position: fixed;
-  bottom: 5rem;
+  bottom: 4.5rem;
   background-color: white;
   z-index: 999;
 }
