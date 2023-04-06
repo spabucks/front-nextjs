@@ -1,10 +1,7 @@
-import { inputRegisterType } from "@/types/UserRequest/Request";
-import React from "react";
-import { useState } from "react";
-import { useCallback } from "react";
-import { useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { inputRegisterType } from "@/types/UserRequest/Request";
 
 interface ChildProps {
   inputData: inputRegisterType;
@@ -99,8 +96,6 @@ export default function Step04({ inputData, setInputData }: ChildProps) {
   const onChangePasswordConfirm = 
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      console.log("name",name)
-      console.log("value",value)
       const passwordConfirmCurrent = value;
       if (inputData.password === passwordConfirmCurrent) {
         setInputData({

@@ -155,6 +155,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
             showConfirmButton: false,
             timer: 1500,
           });
+          setTimeShow(false)
         } else {
           Swal.fire({
             toast: true,

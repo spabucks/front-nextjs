@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Rightarrow from "@/components/ui/Rightarrow";
 import { inputRegisterType } from "@/types/UserRequest/Request";
 interface ChildProps {
@@ -7,7 +7,6 @@ interface ChildProps {
 }
 
 export default function Step03({ inputData, setInputData }: ChildProps) {
-  const BaseUrl = process.env.baseApiUrl;
   const NickreExp = /^[가-힣]{2,6}$/;
   const [nickNameConfirm, setNickNameConfirm] = useState<number>(0);
 
@@ -25,7 +24,6 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
   };
 
   useEffect(() => {
-
     console.log(inputData);
   }, [inputData]);
 
@@ -54,7 +52,7 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
             onClick={() => onehandleNickCheck(inputData.isNickAgree)}
           ></div>
           <div>선택적 개인정보 수집동의 및 이용약관</div>
-          <Rightarrow/>
+          <Rightarrow />
         </div>
       </div>
       <div className="nickgree-body">
@@ -62,7 +60,7 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
           <div className="nickgree-body-form-input">
             <div>
               <input
-              className="nick-input"
+                className="nick-input"
                 type="text"
                 placeholder="닉네임 (한글 6자리 이내)"
                 name="userNickname"

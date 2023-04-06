@@ -1,17 +1,14 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useRecoilState } from "recoil";
+import { useRouter } from "next/router";
+
 import { cartListState } from "@/state/cartListState";
-import { useEffect, useState } from "react";
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
-import { cartBuyProduct } from "@/types/cartBuyProduct";
-import { useRouter } from "next/router";
 
 export function GeneralCartOrderList() {
   const [cartItems, setCartItems] = useRecoilState(cartListState);
 
-  // console.log('buyItems',buyItems)
-  /**체크한 상품에 대하여 가격 계산 */
   const Generalitem = cartItems.cartList.filter(
     (item: any) => item.check === true
   );
@@ -55,7 +52,9 @@ export function GeneralCartOrderList() {
               <p>무료배송</p>
             )}
           </div>
-          <button type="button" onClick={handleDirectHome}>더 담으러 가기</button>
+          <button type="button" onClick={handleDirectHome}>
+            더 담으러 가기
+          </button>
         </section>
       )}
     </>
@@ -105,7 +104,9 @@ export default function FreezeCartOrderList() {
               <p>무료배송</p>
             )}
           </div>
-          <button type="button" onClick={handleDirectHome}>더 담으러 가기</button>
+          <button type="button" onClick={handleDirectHome}>
+            더 담으러 가기
+          </button>
         </section>
       )}
     </>
