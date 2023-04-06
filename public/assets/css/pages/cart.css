@@ -256,13 +256,15 @@
 
 .footer-charge-total-btn button {
   background-color: transparent;
-  width: 50%;
+  width: 100%;
   height: 40px;
   box-sizing: border-box;
   border-radius: 30px;
   font-weight: 800;
   font-size: 1rem;
   height: 50px;
+  color: var(--color-starbucks);
+  border: solid 1px var(--color-starbucks);
 }
 .footer-charge-total-btn button:last-child {
   margin-left: 0.5rem;
