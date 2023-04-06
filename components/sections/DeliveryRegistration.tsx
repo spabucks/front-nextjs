@@ -12,9 +12,6 @@ import { userState } from "@/state/userState";
 export default function DeliveryRegistration() {
   const [deliveryRechange, setDeliveryRechange] =
     useRecoilState(deliveryChangeModal);
-  // const handleAddressPlus = () => {
-  //   setDeliveryRechange(!deliveryRechange);
-  // };
 
   const [deliveryData, setDeliveryData] = useState<deliveryRegisterType>({
     name: "",
@@ -24,8 +21,6 @@ export default function DeliveryRegistration() {
     content: "",
     defaultDestination: false,
   });
-
-  useEffect(() => {}, [deliveryData]);
 
   const [nameConfirm, setNameConfirm] = useState<boolean>(false);
   const [recipientConfirm, setRecipientConfirm] = useState<boolean>(false);
@@ -52,19 +47,22 @@ export default function DeliveryRegistration() {
     } else {
       const BaseUrl = process.env.baseApiUrl;
       axios
-        .post(`${BaseUrl}/api/v1/shipping/add`, {
-          name: deliveryData.name,
-          recipient: deliveryData.recipient,
-          defaultAddress: deliveryData.defaultAddress,
-          phoneNum: deliveryData.phoneNum,
-          content: deliveryData.content,
-          defaultDestination: deliveryData.defaultDestination,
-        },   {
-          headers: {
-            Authorization: `Bearer ${loginData.accessToken}`,
+        .post(
+          `${BaseUrl}/api/v1/shipping/add`,
+          {
+            name: deliveryData.name,
+            recipient: deliveryData.recipient,
+            defaultAddress: deliveryData.defaultAddress,
+            phoneNum: deliveryData.phoneNum,
+            content: deliveryData.content,
+            defaultDestination: deliveryData.defaultDestination,
           },
-        }
-      )
+          {
+            headers: {
+              Authorization: `Bearer ${loginData.accessToken}`,
+            },
+          }
+        )
         .then((res) => {
           setDeliveryRechange(!deliveryRechange);
         })
@@ -150,7 +148,7 @@ export default function DeliveryRegistration() {
     }
   };
 
-
+  useEffect(() => {}, [deliveryData]);
   return (
     <>
       {deliveryRechange === true && (
@@ -185,8 +183,7 @@ export default function DeliveryRegistration() {
                     >
                       필수항목입니다.
                     </p>
-                  ) 
-                  }
+                  )}
                 </div>
               </div>
               <div className="addressbox-container">
@@ -211,7 +208,7 @@ export default function DeliveryRegistration() {
                     >
                       필수항목입니다.
                     </p>
-                  ) }
+                  )}
                 </div>
               </div>
               <div className="addressbox-container">
@@ -290,13 +287,6 @@ export default function DeliveryRegistration() {
               <div>기본 배송지로 저장합니다.</div>
             </div>
           </div>
-          {/* 
-          const [nameConfirm, setNameConfirm] = useState<boolean>(false);
-  const [recipientConfirm, setRecipientConfirm] = useState<boolean>(false);
-  const [defaultAddressConfirm, setDefaultAddressConfirm] =
-    useState<boolean>(false);
-  const [phoneNumConfirm, setPhoneNumConfirm] = useState<boolean>(false);
-  const [contentConfirm, setContentConfirm] = useState<boolean>(false); */}
 
           <div onClick={handleAddressPlus}>
             <FooterBtn title="등록하기" />

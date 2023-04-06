@@ -1,19 +1,20 @@
-import React from "react";
-import SecondHeader from "@/components/layouts/SecondHeader";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import Image from "next/image";
+
+import SecondHeader from "@/components/layouts/SecondHeader";
+
+import { orderProductType } from "@/types/orderProduct";
+import { shippingListType } from "@/types/shipping";
+
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
-import { useEffect, useState } from "react";
-import { shippingListType } from "@/types/shipping";
-import { useRouter } from "next/router";
-import axios from "axios";
-import Image from "next/image";
-import { orderProductType } from "@/types/orderProduct";
-import Swal from "sweetalert2";
 
 export default function Payment() {
   const router = useRouter();
-  //최종주문 List
 
   const [totalOrderData, setTotalOrderData] = useState<orderProductType[]>([]);
 
@@ -25,6 +26,42 @@ export default function Payment() {
   const [shippingData, setShippingData] = useState<shippingListType[]>([]);
   const [orderCheck, setorderCheck] = useState<boolean>(false);
 
+  const basicaddress = shippingData[0];
+  const totalProduct = totalOrderData
+    .map((i) => i.price * i.count)
+    .reduce((sum, charge) => (sum += charge), 0);
+
+  const handleDeliveryClick = () => {
+    router.push("/delivery");
+  };
+
+  const handlePaymentClick = () => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .post(
+        `${BaseUrl}/api/v1/purchaseHistory/add`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("성공");
+        router.push("/paymentcompleted");
+        Swal.fire({
+          icon: "info",
+          title: "결제가 완료되었습니다.",
+          customClass: {
+            confirmButton: "swal-confirm-button",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -43,9 +80,6 @@ export default function Payment() {
       });
   }, [orderCheck]);
 
-
-
-  //배송지 조회
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -61,41 +95,6 @@ export default function Payment() {
         console.log(err);
       });
   }, [orderCheck]);
-
-  const basicaddress = shippingData[0];
-  const totalProduct = totalOrderData
-    .map((i) => i.price * i.count)
-    .reduce((sum, charge) => (sum += charge), 0);
-
-
-  // 배송지 등록
-  const handleDeliveryClick = () => {
-    router.push("/delivery");
-  };
-    //결제페이지 이동
-    const handlePaymentClick = () => {
-        const BaseUrl = process.env.baseApiUrl;
-        axios
-          .post(`${BaseUrl}/api/v1/purchaseHistory/add`,{}, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          })
-          .then((res) => {
-           console.log('성공')
-           router.push("/paymentcompleted");
-           Swal.fire({
-            icon:"info",
-            title: "결제가 완료되었습니다.",
-            customClass: {
-              confirmButton: "swal-confirm-button",
-            },
-          });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    };
 
   return (
     <>
@@ -135,23 +134,26 @@ export default function Payment() {
           <div className="payment-info-wrap-list">
             <div className="payment-info-toggle">
               <p>상품내역</p>
-            <Image
-             className="payment-right-img"
-             src="assets/images/icons/left-chevron.svg"
-             alt="내역보기"
-             height={20}
-             width={20}
-            />
+              <Image
+                className="payment-right-img"
+                src="assets/images/icons/left-chevron.svg"
+                alt="내역보기"
+                height={20}
+                width={20}
+              />
             </div>
             <div className="payment-product-wrap-lists">
               {totalOrderData &&
                 totalOrderData.map((item) => (
                   <div className="payment-productlist" key={item.cartId}>
-                    <Image className="red-img"  src={item.imgUrl}
+                    <Image
+                      className="red-img"
+                      src={item.imgUrl}
                       alt="상품이미지"
                       width={20}
-                      height={20}/>
-   
+                      height={20}
+                    />
+
                     <div className="payment-productlist-info">
                       <p>{item.productName}</p>
                       <p>주문수량 : {item.count}개</p>
@@ -227,15 +229,15 @@ export default function Payment() {
           </div>
         </form>
         <div className="main-payment-submit">
-            <button type="submit" onClick={handlePaymentClick}>
-              {(
-                totalProduct +
-                generaldeliveryCharge +
-                freezedeliveryCharge
-              ).toLocaleString()}
-              원 결제하기
-            </button>
-          </div>
+          <button type="submit" onClick={handlePaymentClick}>
+            {(
+              totalProduct +
+              generaldeliveryCharge +
+              freezedeliveryCharge
+            ).toLocaleString()}
+            원 결제하기
+          </button>
+        </div>
       </div>
     </>
   );

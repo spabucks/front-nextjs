@@ -1,18 +1,16 @@
-import FirstHeader from "@/components/sections/FirstHeader";
-import React from "react";
-import SecondHeader from "@/components/layouts/SecondHeader";
-import { useState } from "react";
-import { shippingListType } from "@/types/shipping";
-import { useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { deliveryChangeModal } from "@/state/deliveryChangeModal";
-import { orderProductType } from "@/types/orderProduct";
-import { totalOrderProductType } from "@/types/orderProduct";
 import Image from "next/image";
+
+import { useRouter } from "next/router";
+import SecondHeader from "@/components/layouts/SecondHeader";
+
+import { shippingListType } from "@/types/shipping";
+import { totalOrderProductType } from "@/types/orderProduct";
+
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
-import { useRouter } from "next/router";
 
 export default function PaymentCompleted() {
   const router = useRouter();
@@ -20,22 +18,21 @@ export default function PaymentCompleted() {
   const [totalOrderData, setTotalOrderData] = useState<totalOrderProductType[]>(
     []
   );
+  const basicaddress = shippingData[0];
   const [generaldeliveryCharge, setGeneralDeliveryCharge] =
-  useRecoilState<number>(generaldelivery);
+    useRecoilState<number>(generaldelivery);
   const [freezedeliveryCharge, setFreezeDeliveryCharge] =
-  useRecoilState<number>(freezedelivery);
+    useRecoilState<number>(freezedelivery);
   const [totalsum, setTotalsum] = useState<number>(0);
   const [orderCheck, setorderCheck] = useState<boolean>(false);
 
-
-  const handleDetailBuyProduct = () =>{
+  const handleDetailBuyProduct = () => {
     router.push("/orderlists");
-  }
-  const handleMainDirect = () =>{
+  };
+  const handleMainDirect = () => {
     router.push("/");
-  }
+  };
 
-  //배송지 조회
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -53,8 +50,6 @@ export default function PaymentCompleted() {
       });
   }, [orderCheck]);
 
-  const basicaddress = shippingData[0];
-  //임시 저장용 구매 테이블 조회
   useEffect(() => {
     const BaseUrl = process.env.baseApiUrl;
     axios
@@ -112,11 +107,11 @@ export default function PaymentCompleted() {
                 totalOrderData.map((item) => (
                   <div className="payment-productlist" key={item.productName}>
                     <Image
-                     className="red-img"
-                     src={item.image}
-                     alt="상품이미지"
-                     width={190}
-                     height={100}
+                      className="red-img"
+                      src={item.image}
+                      alt="상품이미지"
+                      width={190}
+                      height={100}
                     />
                     <div className="payment-productlist-info">
                       <p>{item.productName}</p>
@@ -132,13 +127,20 @@ export default function PaymentCompleted() {
             <div className="payment-total-wrap">
               <p>결제 금액</p>
               <div className="payment-total-won">
-                <p>{(totalsum+generaldeliveryCharge+freezedeliveryCharge).toLocaleString()}원</p>
+                <p>
+                  {(
+                    totalsum +
+                    generaldeliveryCharge +
+                    freezedeliveryCharge
+                  ).toLocaleString()}
+                  원
+                </p>
                 <Image
-                 className="pay-info-right-img"
-                 src="assets/images/icons/left-chevron.svg"
-                 alt={"화살표"}
-                 height={20}
-                 width={20}
+                  className="pay-info-right-img"
+                  src="assets/images/icons/left-chevron.svg"
+                  alt={"화살표"}
+                  height={20}
+                  width={20}
                 />
               </div>
             </div>
@@ -146,13 +148,24 @@ export default function PaymentCompleted() {
           <div className="payment-total-sum-list">
             <div className="payment-total-sum">
               <p>신용카드</p>
-              <p>{(totalsum+generaldeliveryCharge+freezedeliveryCharge).toLocaleString()}원</p>
+              <p>
+                {(
+                  totalsum +
+                  generaldeliveryCharge +
+                  freezedeliveryCharge
+                ).toLocaleString()}
+                원
+              </p>
             </div>
           </div>
         </form>
         <div className="footer-charge-total-btn">
-          <button type="button" onClick={handleDetailBuyProduct}>상세정보 확인</button>
-          <button type="button" onClick={handleMainDirect}>메인으로 가기</button>
+          <button type="button" onClick={handleDetailBuyProduct}>
+            상세정보 확인
+          </button>
+          <button type="button" onClick={handleMainDirect}>
+            메인으로 가기
+          </button>
         </div>
       </div>
     </>

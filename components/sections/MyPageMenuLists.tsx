@@ -1,7 +1,6 @@
-import { myMenuList } from "@/types/type";
-import { useState } from "react";
 import MyPageMenuList from "../ui/MyPageMenuList";
 import Link from "next/link";
+
 export default function MyPageMenuLists(props: { title: string }) {
   return (
     <>

@@ -1,20 +1,23 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useRecoilState } from "recoil";
 import { subPage } from "@/state/subPage";
 import { userState } from "@/state/userState";
-import { useCookies } from "react-cookie";
 import Image from "next/image";
 import Leftarrow from "../ui/Leftarrow";
 import CloseBtn from "../ui/CloseBtn";
+
 export default function SubpageModal() {
-  // const [isLogin, setIsLogin] = useRecoilState(userState);
-  const [cookies, getCookie] = useCookies(["id"]);
   const [subPageModal, setSubpageModal] = useRecoilState(subPage);
   const [loginData, setLoginData] = useRecoilState(userState);
-  const FrontUrl = `https://front-nextjs-one.vercel.app/`;
+  const handleSubpageClose = () => {
+    setSubpageModal(false);
+  };
+  if (!subPageModal) {
+    return null;
+  }
+
   useEffect(() => {
-    // const myLogin = cookies.id;
     const userId = localStorage.getItem("userId");
     const accessToken = localStorage.getItem("accessToken");
     const nickName = localStorage.getItem("nickName");
@@ -28,13 +31,6 @@ export default function SubpageModal() {
       });
     }
   }, []);
-
-  const handleSubpageClose = () => {
-    setSubpageModal(false);
-  };
-  if (!subPageModal) {
-    return null;
-  }
 
   return (
     <div className="modal">

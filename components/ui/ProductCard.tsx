@@ -1,8 +1,8 @@
-import { productCardData } from "@/types/type";
-import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getImageSize } from "react-image-size";
+import Link from "next/link";
+import Image from "next/image";
+import { productCardData } from "@/types/type";
 
 export default function ProductCard(props: { data: productCardData }) {
   const [size, setSize] = useState({
@@ -10,7 +10,6 @@ export default function ProductCard(props: { data: productCardData }) {
     height: 0,
   });
 
-  /**객체로 넘어옴 */
   useEffect(() => {
     getImageSize(props.data.imgUrl).then((res) => {
       setSize({ width: res.width, height: res.height });

@@ -8,7 +8,6 @@ import FirstHeader from "@/components/sections/FirstHeader";
 
 import { filterProductList } from "@/types/type";
 
-
 export default function Search2() {
   const router = useRouter();
   const [productList, setProductList] = useState<filterProductList[]>([]);

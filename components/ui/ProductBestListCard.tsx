@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { productBestList } from "@/types/type";
+import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { getImageSize } from "react-image-size";
-import Image from "next/image";
+import { productBestList } from "@/types/type";
 
 export default function ProducBestListCard(props: {
   data: productBestList;
@@ -13,12 +14,12 @@ export default function ProducBestListCard(props: {
     height: 0,
   });
 
-
   useEffect(() => {
     getImageSize(props.data.imgUrl).then((res) =>
       setSize({ width: res.width, height: res.height })
     );
   });
+
   return (
     <div className="best-product">
       <div className="best-product__img">
@@ -31,9 +32,8 @@ export default function ProducBestListCard(props: {
           />
         </Link>
         <div>{props.count + 1}</div>
-
       </div>
-      
+
       <div className="best-product__info">
         <div className="new-best">
           {props.data.isNew === true ? (

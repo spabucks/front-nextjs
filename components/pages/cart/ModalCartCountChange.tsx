@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
+import Swal from "sweetalert2";
+import Image from "next/image";
+
 
 import { modal } from "@/state/modal";
 import { cartOrderState } from "@/state/cartOrderState";
 import { cartListState } from "@/state/cartListState";
 import { userState } from "@/state/userState";
 
-import Image from "next/image";
-import Swal from "sweetalert2";
-
-
 import { cartListType, cartType } from "@/types/cartTypes";
+
 export default function ModalCartCountChange(props: {
   isChangeCount: Boolean;
   setIsChangeCount: Function;
@@ -22,20 +22,6 @@ export default function ModalCartCountChange(props: {
     useRecoilState<cartType>(cartListState);
   const [item, setItem] = useState<cartListType>();
   const orderItem = useRecoilValue(cartOrderState);
-
-  useEffect(() => {
-    if (orderItem.typeId === 0)
-      setItem(
-        cartListItem.cartList.find((item) => item.cartId === orderItem.itemId)
-      );
-    else
-      setItem(
-        cartListItem.cartListFreeze.find(
-          (item) => item.cartId === orderItem.itemId
-        )
-      );
-  }, []);
-
   const handleChangeFalseModal = () => {
     setIsChangeModal(false);
   };
@@ -68,6 +54,20 @@ export default function ModalCartCountChange(props: {
       })
       .catch((err) => console.log(err));
   };
+  
+  useEffect(() => {
+    if (orderItem.typeId === 0)
+      setItem(
+        cartListItem.cartList.find((item) => item.cartId === orderItem.itemId)
+      );
+    else
+      setItem(
+        cartListItem.cartListFreeze.find(
+          (item) => item.cartId === orderItem.itemId
+        )
+      );
+  }, []);
+
 
   return (
     <>

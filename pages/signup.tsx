@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { inputRegisterType } from "@/types/UserRequest/Request";
 import Swal from "sweetalert2";
-
-import StButton from "@/components/pages/signup/ui/StButton";
-
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from 'next/router'
+
+import { inputRegisterType } from "@/types/UserRequest/Request";
+import StButton from "@/components/pages/signup/ui/StButton";
 import CloseBtn from "@/components/ui/CloseBtn";
 import Step01 from "@/components/pages/signup/Step01";
 import Step02 from "@/components/pages/signup/Step02";

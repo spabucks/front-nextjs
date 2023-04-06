@@ -1,5 +1,6 @@
 import Leftarrow from "./Leftarrow";
 import Image from "next/image";
+
 export default function MyPageMenuList(props: {
   menuicon: string;
   title: string;

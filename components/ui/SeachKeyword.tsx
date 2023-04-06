@@ -15,12 +15,10 @@ export default function SeachKeword() {
     setInputData(e.target.value);
   };
   const handleSearchKeyword = () => {
-    //최근 검색어에 inputData가 포함되어있지않으면?
     if (!searchValue.includes(inputData) && inputData.length > 0) {
       Router.push(`/search2?keyword=${inputData}`);
       setSearchValue((prev) => [inputData, ...prev.slice(0, 9)]);
       setInputData("");
-      //최근 검색어에 inputData가 포함되어있으면?
     } else if (searchValue.includes(inputData) && inputData.length > 0) {
       Router.push(`/search2?keyword=${inputData}`);
       const newList = [

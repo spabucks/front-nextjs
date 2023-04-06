@@ -1,58 +1,32 @@
-import { Router, useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import axios from "axios";
+import Swal from "sweetalert2";
+
+import { useRouter } from "next/router";
+import Image from "next/image";
+
+import { detailProduct, recommandproduct } from "@/types/type";
+import { userState } from "@/state/userState";
+
 import SecondHeader from "@/components/layouts/SecondHeader";
 import SlideSquareProduct from "@/components/layouts/SlideSquareProduct";
 import DetailProduct from "@/components/ui/DetailProduct";
-import { detailProduct, recommandproduct } from "@/types/type";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import FooterBtn from "@/components/ui/FooterBtn";
 import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { cartCount } from "@/state/cartCount";
-import Image from "next/image";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
-import { userState } from "@/state/userState";
 import Rightarrow from "@/components/ui/Rightarrow";
-import FirstHeader from "@/components/sections/FirstHeader";
-import Swal from "sweetalert2";
 
 export default function Product() {
   const { query } = useRouter();
   const [data, setData] = useState<recommandproduct[]>([]);
   const [productData, setProductData] = useState<detailProduct>();
-  /**isClick===true이면 선물하기, 구매하기,장바구니가 보이는게  */
   const [isClick, setIsClick] = useState<Boolean>(false);
-  /**장바구니에 추가되었습니다라는 모달 */
   const [isCartModal, setIsCartModal] = useState<Boolean>(false);
   const [status, setStatus] = useState<number>(0);
   const [addcount, setAddCount] = useState<number>(0);
   const [changecount, setChangecount] = useState(1);
-  useEffect(() => {
-    const BaseUrl = process.env.baseApiUrl;
-    axios
-      .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
-      .then((res) => {
-        setProductData(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, [query.productId]);
-
-  useEffect(() => {
-    const BaseUrl = process.env.baseApiUrl;
-    axios
-      .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  }, [query.productId]);
-
-  // const [count, setCount] = useRecoilState(cartCount);
-  // const [ count,setCount]=useRecoilState(cartCount);
-  useEffect(() => {
-    setChangecount(changecount);
-  }, [changecount]);
 
   const [loginData, setLoginData] = useRecoilState(userState);
   const router = useRouter();
@@ -128,27 +102,29 @@ export default function Product() {
     }
   };
 
-  // const handleDirectPayment = () => {
-  //   const BaseUrl = process.env.baseApiUrl;
-  //   const  router  = useRouter();
-  //   axios
-  //     .post(
-  //       `${BaseUrl}/api/v1/purchaseTmp/addOne`,
-  //       {
-  //         productId: query.productId,
-  //         amount :changecount,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //         },
-  //       }
-  //     )
-  //     .then((res) => router.push("/payment"))
-  //     .catch((err) => {
-  //       console.log("err");
-  //     });
-  // }
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/product/get/${query.productId}`)
+      .then((res) => {
+        setProductData(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [query.productId]);
+
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/product-category/get-others/${query.productId}`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, [query.productId]);
+
+  useEffect(() => {
+    setChangecount(changecount);
+  }, [changecount]);
 
   return (
     <>

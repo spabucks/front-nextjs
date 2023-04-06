@@ -11,18 +11,14 @@ export interface ChildProps {
 }
 
 export default function CartPlusModal({ isView, setIsCartModal }: ChildProps) {
-  
   const router = useRouter();
   if (!isView) {
     return null;
   }
 
-  const handleDirectHome=()=>{
+  const handleDirectHome = () => {
     router.push("/filter?bigCategory=0");
-  }
-  // const handleDirectBack=()=>{
-  //   router.back();
-  // }
+  };
   const handleCloseModal = () => {
     setIsCartModal(false);
   };
@@ -45,7 +41,9 @@ export default function CartPlusModal({ isView, setIsCartModal }: ChildProps) {
           <button type="button">
             <Link href={"/cart"}>장바구니 가기</Link>
           </button>
-          <button type="button" onClick={handleDirectHome}>상품 더보기</button>
+          <button type="button" onClick={handleDirectHome}>
+            상품 더보기
+          </button>
         </div>
       </div>
     </>

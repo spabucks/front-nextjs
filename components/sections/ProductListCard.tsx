@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { filterProductList } from '@/types/type';
+
 export default function ProductFilterListCard(props: {
     data: filterProductList ;
   }) {

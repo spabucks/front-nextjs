@@ -1,20 +1,10 @@
 import Link from "next/link";
-import {
-  headerMenus,
-  headerRightIcons,
-  headerEventSubMenus,
-  headerBestSubMenus,
-} from "@/data/navMenuDatas";
-import { useEffect, useState } from "react";
+import { headerRightIcons } from "@/data/navMenuDatas";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import axios from "axios";
-import { categoryMenu } from "@/types/type";
 
 export default function Header() {
   const router = useRouter();
-  const categoryId: any = router.query.category;
-  const BaseUrl = process.env.baseApiUrl;
 
   return (
     <header>
@@ -29,7 +19,9 @@ export default function Header() {
             ></Image>
           </Link>
         </div>
-        <Link href='/' className="mainpage-link"><h1>온라인 스토어</h1></Link>
+        <Link href="/" className="mainpage-link">
+          <h1>온라인 스토어</h1>
+        </Link>
         <nav>
           <ul>
             {headerRightIcons.map((menuIcon) => (

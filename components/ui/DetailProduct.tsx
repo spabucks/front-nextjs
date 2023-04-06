@@ -5,18 +5,11 @@ import { getImageSize } from "react-image-size";
 import { detailProduct } from "@/types/type";
 
 export default function DetailProduct(props: { data: detailProduct }) {
-
   const [size, setSize] = useState({
     width: 0,
     height: 0,
   });
-  useEffect(() => {
-    getImageSize(props.data.imgUrl).then((res) => {
-      setSize({ width: res.width, height: res.height });
-    });
-  }, []);
-  
-  // /**스크롤에 따라 이미지 변경 */
+
   const [position, setPosition] = useState(0);
   const [titleshow, setTitleShow] = useState(false);
 
@@ -30,12 +23,17 @@ export default function DetailProduct(props: { data: detailProduct }) {
   };
 
   useEffect(() => {
+    getImageSize(props.data.imgUrl).then((res) => {
+      setSize({ width: res.width, height: res.height });
+    });
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleShow);
     return () => {
       window.removeEventListener("scroll", handleShow);
     };
-  },[]);
-
+  }, []);
 
   return (
     <>
@@ -80,7 +78,7 @@ export default function DetailProduct(props: { data: detailProduct }) {
           {props.data.productDetailImgUrl.map((item: string) => {
             return (
               <Image
-              key={item}
+                key={item}
                 src={item}
                 alt="상품상세정보"
                 width={300}

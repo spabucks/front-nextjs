@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import axios from "axios";
 import { useRecoilState } from "recoil";
+
 import { deliveryChangeModal } from "@/state/deliveryChangeModal";
+
+import { shippingListType } from "@/types/shipping";
+
 import FirstHeader from "@/components/sections/FirstHeader";
-import SecondHeader from "@/components/layouts/SecondHeader";
 import FooterBtn from "@/components/ui/FooterBtn";
 import DeliveryRegistration from "@/components/sections/DeliveryRegistration";
-import { useEffect } from "react";
-import axios from "axios";
-import { shippingListType } from "@/types/shipping";
 import CloseBtn from "@/components/ui/CloseBtn";
+
 
 export default function Delivery() {
   const [deliveryRechange, setDeliveryRechange] =

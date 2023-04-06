@@ -1,8 +1,10 @@
-import FirstHeader from "@/components/sections/FirstHeader";
 import React, { useState } from "react";
 import { useEffect } from "react";
+
 import axios from "axios";
 import { totalOrderListsType } from "@/types/orderProduct";
+
+import FirstHeader from "@/components/sections/FirstHeader";
 
 export default function OrderLists() {
   const [orderLists, setOrderLists] = useState<totalOrderListsType[]>([]);
@@ -47,7 +49,9 @@ export default function OrderLists() {
                   <img src={item.image} alt="" />
                 </div>
                 <div className="order-product-card-right">
-                    <strong><p style={{fontSize:17}}>{item.paymentNum}</p></strong>
+                  <strong>
+                    <p style={{ fontSize: 17 }}>{item.paymentNum}</p>
+                  </strong>
                   <p>{item.orderName}</p>
                   <p className="order-product-price">
                     {item.sum}원

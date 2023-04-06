@@ -1,8 +1,11 @@
+
+import Image from "next/image";
+import { getImageSize } from "react-image-size";
+import { useEffect, useState } from "react";
+
 import { eventProductList } from "@/types/type";
 import EventProductList from "../layouts/EventProductList";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { getImageSize } from "react-image-size";
+
 export default function ProductEventList(props: {
   id: number;
   imgUrl: string;

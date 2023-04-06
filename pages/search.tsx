@@ -1,13 +1,13 @@
-import SeachKeyword from "@/components/ui/SeachKeyword";
-import { recentSearchWord } from "@/state/recentSearchWord";
 import { useRecoilState } from "recoil";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import Image from "next/image"
+
+import { recentSearchWord } from "@/state/recentSearchWord";
 import SearchNotWord from "@/components/ui/SearchNotWord";
 import RecommendTagList from "@/components/ui/RecommendTagList";
 import CloseBtn from "@/components/ui/CloseBtn";
+import SeachKeyword from "@/components/ui/SeachKeyword";
+
 export default function Search() {
   const [recentWordsBox, setRecentWordsBox] = useRecoilState(recentSearchWord);
 
@@ -68,18 +68,15 @@ export default function Search() {
                     type="button"
                     onClick={() => handleRemoveKeyword(item)}
                   >
-                    <CloseBtn/>
+                    <CloseBtn />
                   </button>
                 </div>
               </div>
             ))}
           </div>
-          {recentWordsBox.length === 0 && (
-           <SearchNotWord/>
-          )}
+          {recentWordsBox.length === 0 && <SearchNotWord />}
         </section>
-
-       <RecommendTagList/>
+        <RecommendTagList />
       </div>
     </>
   );

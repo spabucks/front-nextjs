@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Leftarrow from "../ui/Leftarrow";
+
 export default function SubPageMenu(props: { title: string; context: string }) {
   return (
     <>

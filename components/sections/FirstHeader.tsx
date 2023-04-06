@@ -40,30 +40,6 @@ export default function FirstHeader() {
     router.back();
   };
 
-  useEffect(() => {
-    const BaseUrl = process.env.baseApiUrl;
-    axios
-      .get(`${BaseUrl}/api/v1/bigCategory/get/all`)
-      .then((res) => {
-        setCategoryBestMenus(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    const BaseUrl = process.env.baseApiUrl;
-    axios
-      .get(`${BaseUrl}/api/v1/tag/get/all`)
-      .then((res) => {
-        setCategoryEventMenus(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const handleLogout = () => {
     Swal.fire({
       title: "로그아웃 하시겠습니까?",
@@ -104,6 +80,31 @@ export default function FirstHeader() {
       }
     });
   };
+
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/bigCategory/get/all`)
+      .then((res) => {
+        setCategoryBestMenus(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    const BaseUrl = process.env.baseApiUrl;
+    axios
+      .get(`${BaseUrl}/api/v1/tag/get/all`)
+      .then((res) => {
+        setCategoryEventMenus(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <header>
       <div className="main-header-top">
