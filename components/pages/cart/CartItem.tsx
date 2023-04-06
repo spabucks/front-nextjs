@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useRouter } from "next/router";
+
 import { cartListType } from "@/types/cartTypes";
 import { cartType } from "@/types/cartTypes";
 
@@ -12,10 +13,9 @@ import { modal } from "@/state/modal";
 import { userState } from "@/state/userState";
 import { cartFetchCheck } from "@/state/cartFetchCheck";
 import CloseBtn from "@/components/ui/CloseBtn";
-import ModalCartCountChange from "./ModalCartCountChange";
-import { cartBuyProduct } from "@/types/cartBuyProduct";
 
 export default function CartItem(props: { data: cartListType }) {
+  const router = useRouter();
   const [cartCheck, setCartCheck] = useRecoilState<boolean>(cartFetchCheck);
   const [cartOrder, setCartOrder] = useRecoilState(cartOrderState);
   const [cartList, setCartList] = useRecoilState<cartType>(cartListState);
@@ -42,7 +42,8 @@ export default function CartItem(props: { data: cartListType }) {
           return item;
         }),
       });
-    } if (props.data.bigCategoryId !== 1) {
+    }
+    if (props.data.bigCategoryId !== 1) {
       setCartList({
         ...cartList,
         cartList: cartList.cartList.map((item: cartListType) => {
@@ -59,8 +60,8 @@ export default function CartItem(props: { data: cartListType }) {
         }),
       });
     }
-  }
-  
+  };
+
   const handleDelete = () => {
     axios
       .patch(
@@ -88,6 +89,29 @@ export default function CartItem(props: { data: cartListType }) {
       itemId: props.data.cartId,
     });
     setIsChangeModal(true);
+  };
+
+  const handleDirectPayment = () => {
+    const BaseUrl = process.env.baseApiUrl;
+    {
+      axios
+        .post(
+          `${BaseUrl}/api/v1/purchaseTmp/addOne`,
+          {
+            productId: props.data.productId,
+            amount: props.data.count,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        )
+        .then((res) => router.push("/payment"))
+        .catch((err) => {
+          console.log("err");
+        });
+    }
   };
   return (
     <>
@@ -134,7 +158,9 @@ export default function CartItem(props: { data: cartListType }) {
                 <button type="button" onClick={handleChangeTrueModal}>
                   주문 수정
                 </button>
-                <button type="button">바로 구매</button>
+                <button type="button" onClick={handleDirectPayment}>
+                  바로 구매
+                </button>
               </div>
             </div>
           </div>

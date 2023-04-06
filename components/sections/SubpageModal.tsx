@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+
 import { subPage } from "@/state/subPage";
 import { userState } from "@/state/userState";
+
 import Image from "next/image";
 import Leftarrow from "../ui/Leftarrow";
 import CloseBtn from "../ui/CloseBtn";
@@ -10,12 +12,6 @@ import CloseBtn from "../ui/CloseBtn";
 export default function SubpageModal() {
   const [subPageModal, setSubpageModal] = useRecoilState(subPage);
   const [loginData, setLoginData] = useRecoilState(userState);
-  const handleSubpageClose = () => {
-    setSubpageModal(false);
-  };
-  if (!subPageModal) {
-    return null;
-  }
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -31,6 +27,13 @@ export default function SubpageModal() {
       });
     }
   }, []);
+
+  const handleSubpageClose = () => {
+    setSubpageModal(false);
+  };
+  if (!subPageModal) {
+    return null;
+  }
 
   return (
     <div className="modal">

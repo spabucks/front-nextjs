@@ -186,7 +186,6 @@ export default function Product() {
               width={20}
             ></Image>
           </div>
-          {/* <button type="button">선물하기</button> */}
           <button
             type="button"
             className="buy-product-direct"

@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { useRouter } from "next/router";
+import axios from "axios";
 import { cartListState } from "@/state/cartListState";
 import { generaldelivery } from "@/state/generaldelivery";
 import { freezedelivery } from "@/state/freezedelivery";
 import { cartBuyProduct } from "@/types/cartBuyProduct";
-import { useRouter } from "next/router";
-import axios from "axios";
-import Link from "next/link";
-import { cartListType } from "@/types/cartTypes";
 export default function CartFooter() {
   const router = useRouter();
   const [cartItems, setCartItems] = useRecoilState(cartListState);
@@ -126,7 +124,6 @@ export default function CartFooter() {
           </p>
         </div>
         <div className="footer-charge-total-btn">
-          {/* <button type="button">선물하기</button> */}
           <button type="button" onClick={handleDirectClick}>
             구매하기
           </button>
