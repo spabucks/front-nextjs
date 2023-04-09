@@ -5,26 +5,34 @@ interface ChildProps {
   inputData: inputRegisterType;
   setInputData: React.Dispatch<React.SetStateAction<inputRegisterType>>;
 }
-
+interface errType {
+  userNickName: string;
+}
 export default function Step03({ inputData, setInputData }: ChildProps) {
   const NickreExp = /^[가-힣]{2,6}$/;
-  const [nickNameConfirm, setNickNameConfirm] = useState<number>(0);
+
+  const [errMsg, setErrMsg] = useState<errType>({
+    userNickName: "",
+  });
 
   const handleNickChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (!NickreExp.test(e.target.value)) {
-      setNickNameConfirm(2); //닉네임 양식이 틀림
-    } else {
-      setNickNameConfirm(1); //닉네임 올바른거
-      setInputData({
-        ...inputData,
-        [name]: value,
-      });
+      setErrMsg({
+        ...errMsg,
+        userNickName: "닉네임 형식이 올바르지 않습니다.",
+      }); //닉네임 양식이 틀림
+      return;
     }
+    setErrMsg({
+      ...errMsg,
+      userNickName: "",
+    }); //
+    setInputData({
+      ...inputData,
+      [name]: value,
+    });
   };
-
-  useEffect(() => {
-  }, [inputData]);
 
   const onehandleNickCheck = (check: boolean) => {
     setInputData({
@@ -35,12 +43,13 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
   return (
     <div className="main-nick-form">
       <div className="nick-header">
-        <div className="main-nick-title"></div>
-        <h1>
-          닉네임을
-          <br />
-          입력해 주세요.
-        </h1>
+        <div className="main-nick-title">
+          <h1>
+            닉네임을
+            <br />
+            입력해 주세요.
+          </h1>
+        </div>
         <div className="nick-check-all">
           <div
             className={
@@ -65,31 +74,9 @@ export default function Step03({ inputData, setInputData }: ChildProps) {
                 name="userNickname"
                 onChange={handleNickChange}
               />
-
-              {nickNameConfirm === 2 && (
-                <p
-                  style={{ color: "red", fontSize: "10px", margin: "3px 0px" }}
-                >
-                  닉네임(한글 6자리 이내)
-                </p>
-              )}
-              {nickNameConfirm === 1 && (
-                <p
-                  style={{ color: "grey", fontSize: "10px", margin: "3px 0px" }}
-                >
-                  올바른 형식입니다
-                </p>
-              )}
-              {nickNameConfirm === 0 && (
-                <p
-                  style={{
-                    color: "grey",
-                    fontSize: "10px",
-                    opacity: 0,
-                    margin: "3px 0px",
-                  }}
-                ></p>
-              )}
+              <p style={{ fontSize: "0.8rem", color: "red" }}>
+                {errMsg.userNickName}
+              </p>
             </div>
           </div>
         </div>
