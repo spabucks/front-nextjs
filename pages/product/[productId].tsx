@@ -17,6 +17,7 @@ import CartProductCardDetail from "@/components/ui/CartProductCardDetail";
 import CartPlusModal from "@/components/sections/CartPlusModal";
 import TopScrollBtn from "@/components/ui/TopScrollBtn";
 import Rightarrow from "@/components/ui/Rightarrow";
+import ProductDetailBottom from "@/components/sections/ProductDetailBottom";
 
 export default function Product() {
   const { query } = useRouter();
@@ -142,29 +143,7 @@ export default function Product() {
           />
         ))}
       <div className="sep"></div>
-
-      <footer className="footer-product-detail">
-        <div className="footer-product-checkinfo">
-          <div className="boder-under">
-            <p>이용조건 및 배송 안내</p>
-
-            <Rightarrow />
-          </div>
-          <div className="boder-under">
-            <p>상품제공정보고시</p>
-            <Rightarrow />
-          </div>
-          <div className="boder-under">
-            <p>교환/반품 안내</p>
-
-            <Rightarrow />
-          </div>
-          <div className="boder-under">
-            <p>취소/환불 안내</p>
-            <Rightarrow />
-          </div>
-        </div>
-      </footer>
+      <ProductDetailBottom />
       <CartProductCardDetail
         isClick={isClick}
         setIsClick={setIsClick}
@@ -174,7 +153,6 @@ export default function Product() {
         changecount={changecount}
         setChangecount={setChangecount}
       />
-
       {isClick ? (
         <div className="footer-charge-total-btn">
           <div onClick={handleAddCart}>

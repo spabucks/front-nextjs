@@ -12,7 +12,6 @@ interface ChildProps {
 
 interface errType {
   userEmail: string;
-  userNickname: string;
   userName: string;
 }
 
@@ -46,7 +45,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
 
   const [errMsg, setErrMsg] = useState<errType>({
     userEmail: "",
-    userNickname: "",
     userName: "",
   });
 
@@ -85,7 +83,6 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
                 email: inputData.userEmail,
               })
               .then((res) => {
-
                 setCurrentCountDown(Date.now() + 300000);
                 Swal.fire({
                   toast: true,
@@ -154,7 +151,7 @@ export default function Step02({ inputData, setInputData }: ChildProps) {
             showConfirmButton: false,
             timer: 1500,
           });
-          setTimeShow(false)
+          setTimeShow(false);
         } else {
           Swal.fire({
             toast: true,

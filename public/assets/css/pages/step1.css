@@ -14,7 +14,6 @@
 .agree-form .agree-title h1 {
   font-size: 1.4rem;
   font-weight: bold;
-  padding: 20px 0px;
 }
 
 .agree-check-all {
@@ -212,30 +211,30 @@
   font-size: 0.8rem;
   color: #8d8b8b;
 }
-.signup-closeBtn{
+.signup-closeBtn {
   margin: 20px;
 }
-.nick-input{
+.nick-input {
   font-size: 20px;
 }
-.nick-input:focus{
+.nick-input:focus {
   font-size: 20px;
   border: none;
   outline: none;
 }
-.idfw-body-form-input{
+.idfw-body-form-input {
   display: flex;
 }
 
-.idfw-body-form-input input{
+.idfw-body-form-input input {
   font-size: 20px;
 }
-.idfw-body-form-input input:focus{
+.idfw-body-form-input input:focus {
   border: none;
   outline: none;
   font-size: 20px;
 }
-.idfw-body-form-input button{
+.idfw-body-form-input button {
   width: 100px;
   height: 30px;
   background-color: var(--color-starbucks);
